@@ -52,13 +52,14 @@ class PendaftaranController extends Controller
 
     public function indextrans()
     {
-        $kendaraans = Pendaftaran::leftJoin('kodepenerbitans','kodepenerbitans.id','=','pendaftarans.kodepenerbitans_id')->leftJoin('identitaskendaraans','identitaskendaraans.id','=','pendaftarans.identitaskendaraan_id')->leftJoin('transaksis','transaksis.pendaftaran_id','=','pendaftarans.id')->where('tglbayar',date("Y-m-d"))->get();
+        $kendaraans = Pendaftaran::with('kodepenerbitans','identitaskendaraan','transaksi')->where('tglbayar',date("Y-m-d"))->get();
+        // $kendaraans = Identitaskendaraan::leftJoin('pendaftarans','identitaskendaraans.id','=','pendaftarans.identitaskendaraan_id')->leftJoin('kodepenerbitans','kodepenerbitans.id','=','pendaftarans.kodepenerbitans_id')->leftJoin('transaksis','transaksis.pendaftaran_id','=','pendaftarans.id')->where('tglbayar',date("Y-m-d"))->get();
         return response()->json(['kendaraans'=> $kendaraans]);
     }
 
     public function indextransall()
     {
-        $kendaraans = Pendaftaran::leftJoin('transaksis','transaksis.pendaftaran_id','=','pendaftarans.id')->leftJoin('kodepenerbitans','kodepenerbitans.id','=','pendaftarans.kodepenerbitans_id')->leftJoin('identitaskendaraans','identitaskendaraans.id','=','pendaftarans.identitaskendaraan_id')->get();
+        $kendaraans = Pendaftaran::leftJoin('kodepenerbitans','kodepenerbitans.id','=','pendaftarans.kodepenerbitans_id')->leftJoin('identitaskendaraans','identitaskendaraans.id','=','pendaftarans.identitaskendaraan_id')->leftJoin('transaksis','transaksis.pendaftaran_id','=','pendaftarans.id')->get();
         return response()->json(['kendaraans'=> $kendaraans]);
     }
 
@@ -141,11 +142,11 @@ class PendaftaranController extends Controller
         }
 
         if ($request->kodewilayah == '') {
-            $kode='BJBR'; 
+            $kode='BNJRM'; 
         }
 
         if ($request->kodewilayahasal == '') {
-            $kodeasal='BJBR'; 
+            $kodeasal='BNJRM'; 
         }
 
         if (empty($request->jeniskendaraan['jenis'])) {

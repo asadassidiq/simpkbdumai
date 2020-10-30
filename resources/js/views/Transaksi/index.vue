@@ -26,9 +26,9 @@
                 <div class="text-center d-flex align-center">
                     <v-tooltip top>
                         <template v-slot:activator="{on}">
-                            <v-btn depressed color="error" x-small v-if="item.status === null"> Belum Lunas </v-btn>
-                            <v-btn depressed color="success" x-small  v-if="item.status == 1"> Lunas </v-btn>
-                            <v-btn depressed color="error" x-small v-if="item.status == 0">Belum Lunas </v-btn>
+                            <v-btn depressed color="error" x-small v-if="item.transaksi === ''"> Belum Lunas </v-btn>
+                            <v-btn depressed color="success" x-small  v-if="item.transaksi.status == 1"> Lunas </v-btn>
+                            <v-btn depressed color="error" x-small v-if="item.transaksi.status == 0">Belum Lunas </v-btn>
                         </template>
                     </v-tooltip>
                 </div>
@@ -63,12 +63,12 @@ export default {
             search: '',
             halamanaksestrans: [],
             headers: [
-                { text: 'No Kendaraan', value: 'noregistrasikendaraan' },
-                { text: 'No Uji', value: 'nouji' },
-                { text: 'Nama', value: 'nama' },
-                { text: 'Jbb', value: 'jbb' },
-                { text: 'Th Pembuatan', value: 'thpembuatan' },
-                { text: 'Jenis Pendaftaran', value: 'keterangan' },
+                { text: 'No Kendaraan', value: 'identitaskendaraan.noregistrasikendaraan' },
+                { text: 'No Uji', value: 'identitaskendaraan.nouji' },
+                { text: 'Nama', value: 'identitaskendaraan.nama' },
+                { text: 'Jbb', value: 'identitaskendaraan.jbb' },
+                { text: 'Th Pembuatan', value: 'identitaskendaraan.thpembuatan' },
+                { text: 'Jenis Pendaftaran', value: 'kodepenerbitans.keterangan' },
                 { text: 'Status', value: 'status' },
                 { text: 'Actions', value: 'actions', sortable: false },
             ],
@@ -107,7 +107,7 @@ export default {
         },
         initialize () {
             var id = JSON.parse(localStorage.getItem("user"));
-      
+           
         },
         print(id){
             window.open('/cetak/'+id+'/printkwitansi', "_blank");
