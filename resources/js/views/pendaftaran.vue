@@ -97,11 +97,11 @@
             <v-col cols="12" sm="4" md="4">
               <v-text-field name="norangka" v-model="form.norangka" label="Nomer Rangka" outlined dense clearable required></v-text-field>
             </v-col>
-            <v-col v-if="form.jenispendaftaran.id === 5  || form.jenispendaftaran.id === 6  " class="d-flex" cols="12" sm="4" md="4">
+            <v-col v-if="form.jenispendaftaran.id === 5  || form.jenispendaftaran.id === 6 || form.jenispendaftaran.id === 9 || form.jenispendaftaran.id === 10 " class="d-flex" cols="12" sm="4" md="4">
               <v-autocomplete :items="kodewilayah" item-text="namawilayah" 
               item-value="kodewilayah" name="kodewilayah" v-model="form.kodewilayah"  label="Daerah" return-object outlined dense clearable required></v-autocomplete>
             </v-col>
-            <v-col v-if="form.jenispendaftaran.id === 5 || form.jenispendaftaran.id === 6" class="d-flex" cols="12" sm="4" md="4">
+            <v-col v-if="form.jenispendaftaran.id === 5 || form.jenispendaftaran.id === 6 || form.jenispendaftaran.id === 9 || form.jenispendaftaran.id === 10" class="d-flex" cols="12" sm="4" md="4">
               <v-autocomplete :items="kodewilayah" item-text="namawilayah" 
               item-value="kodewilayah" v-model="form.kodewilayahasal" name="kodewilayahasal" label="Daerah Asal" return-object outlined dense clearable required></v-autocomplete>
             </v-col>

@@ -54,13 +54,13 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-2">
-                <img class="img-fluid" src="{{url('/img/kota.jpg')}}" alt="Image"/>
+                <img height="75%" width="75%" class="img-fluid" src="{{url('/img/kota.jpg')}}" alt="Image"/>
             </div>
             <div class="col-8 align-self-center">
-                    <h3><p class="text-center"><b>PEMERINTAH KABUTAPATEN BANJARMASIN</b></p></h3>                   
+                    <h3><p class="text-center"><b>PEMERINTAH KOTA BANJARMASIN</b></p></h3>                   
                     <h2><p class="text-center"><b>DINAS PERHUBUNGAN</b></p></h2>    
                     <h3><p class="text-center"><b>UPT PENGUJIAN KENDARAAN BERMOTOR</b></p></h3> 
-                    <h4><p class="text-center"><b>JL. SOEKARNO HATTA TELP. 907650 7007772 BANJARMASIN</b></p></h4>  
+                    <h4><p class="text-center"><b>Jl. Gubernur Soebarjo / Lingkar Selatan Km. 11 Banjarmasin</b></p></h4>  
             </div>          
             <div class="col-2">
                 <img class="img-fluid" src="{{url('/img/dishub.jpg')}}" alt="Image"/>
@@ -68,31 +68,27 @@
         </div>
         <hr style="border: 1px double black;">
         <div class="row">
-             <div class="col-6"></div>
              <div class="col-6">
-                <p>BANJARMASIN, <span id="date"></span></p>
-             </div>
-        </div>
-        <div class="row">
-             <div class="col-6">
-                <div class="row">
+				<div class="row">
                     <div class="col-4">
                         <p>Nomor</p>
                         <p>Lampiran</p>
                         <p>Perihal</p>
                     </div>
                     <div class="col-8">
-                        <p><b>: 555.23/DISHUB-PKB/NU/</b></p>
-                        <p>: 1 ( satu ) Berkas</p>
-                        <p>: <u><b>Izin Numpang Uji</b></u></p>
+                        <p><b>: </b></p>
+                        <p>: 1 (satu) Berkas</p>
+                        <p>: <u><b>Numpang Uji Keluar</b></u></p>
                     </div>
                 </div>
-             </div>
+			 </div>
              <div class="col-6">
-                <p><b>Kepada :</b></p>
+                <p>Banjarmasin, <span id="date"><?php echo date("d F Y") ?></span></p>
+				<br>
+				<p><b>Kepada ,</b></p>
                 <p>Yth. <b>Kepala Dinas Perhubungan</b> </p>
-                <p><b>KOTA/KAB. <span> {{ $kendaraan->identitaskendaraan->kodewilayah }} </span></b></p>
-                <p><b>C/q. Pengujian Kendaraan Bermotor</b></p>
+                <p><b><span> {{ $wilayah->namawilayah }} </span></b></p>
+                <p><b>Up. Kepala Unit Pengujian Kendaraan Bermotor</b></p>
                 <p><b>DI <span><u>{{ $wilayah->namawilayah }}</u></span></b></p>
              </div>
         </div>
@@ -102,49 +98,55 @@
             <div class="row" style="padding-left:50px">
                 <div class="col-4">
                     <b>
-                        <p>Nomor Kendaraan </p>
                         <p>Nomor Pemeriksaan</p>
-                        <p>Merk/Th Pembutan/tipe</p>
-                        <p>Nomor Chassis</p>
-                        <p>Nomor Mesin</p>
-                        <p>Jenis</p>
+						<p>Nomor Kendaraan </p>
                         <p>Pemilik</p>
                         <p>Alamat</p>
+                        <p>Jenis</p>
+                        <p>Merk</p>
+						<p>Type</p>
+						<p>Tahun</p>
+                        <p>Nomor Rangka</p>
+                        <p>Nomor Mesin</p>
                     </b>
                 </div>
                 <div class="col-8">
                     <b>
-                        <p>: {{ $kendaraan->identitaskendaraan->noregistrasikendaraan }}</p>
-                        <p>: {{ $kendaraan->identitaskendaraan->nouji }}</p>
-                        <p>: {{ $kendaraan->merek }} / {{ $kendaraan->identitaskendaraan->thpembuatan }} / {{ $kendaraan->tipe }} </p>
-                        <p>: {{ $kendaraan->identitaskendaraan->norangka }}</p>
-                        <p>: {{ $kendaraan->identitaskendaraan->nomesin }}</p>
-                        <p>: {{ $kendaraan->identitaskendaraan->jenis }}</p>
-                        <p>: {{ $kendaraan->identitaskendaraan->nama }}</p>
-                        <p>: {{ $kendaraan->identitaskendaraan->alamat }}</p>
+                        <p>: {{ $kendaraan->nouji }}</p>
+						<p>: {{ $kendaraan->noregistrasikendaraan }}</p>
+                        <p>: {{ $kendaraan->nama }}</p>
+                        <p>: {{ $kendaraan->alamat }}</p>
+                        <p>: {{ $kendaraan->jenis }}</p>
+                        <p>: {{ $kendaraan->merek }}</p>
+						<p>: {{ $kendaraan->tipe }} </p>
+						<p>: {{ $kendaraan->thpembuatan }} </p>
+                        <p>: {{ $kendaraan->norangka }}</p>
+                        <p>: {{ $kendaraan->nomesin }}</p>
                     </b>
                 </div>          
             </div>
             <br><br>    
             <div class="row">
                 <div class="col-12">
-                    <p>Kendaraan tersebut tidak keberatan di uji 1 <b><i>( satu ) kali </i></b> di Pengujian Kendaraan Bermotor <span> Kota/Kab {{ $wilayah->namawilayah }} </span> dan hasil uji kendaraan supaya di kirim ke Pengujian Kendaraan Bermotor Dinas Perhubungan Kota BANJARMASIN.</p>
+                    <p>Sesuai dengan permohonan pemilik, kendaraan tersebut numpang uji ke <span><b> {{ $wilayah->namawilayah }} </b></span> satu kali uji dan hasil pengujiannya segera dikirimkan ke Kota Banjarmasin.</p>
                 <br>
-                <p>Demiikian disampaikan untuk diketahui, atas kerjasamanya yang baik di ucapkan terima kasih.</p>
+                <p>Demiikian disampaikan, untuk mendapatkan penyelesaian sebagaimana mestinya.</p>
                 </div>
             </div>
         </div>
         <br>
         <div class="row">
-            <div class="col-8"></div>
-            <div class="col-4 text-center">
+            <div class="col-7"></div>
+            <div class="col-5 text-center">
                 <b>
-                    <p><?php echo '$ttd->pangkat' ?></p>
-                    <P>PENGUJIAN KENDARAAN BERMOTOR</P>
+                    <p>An. Kepala Dinas Perhubungan Banjarmasin</p>
+					<p>Kepala UPTD</p>
+                    <P>Pengujian Kendaraan Bermotor</P>
+					<p>Kota Banjarmasin</p>
                     <br><br>
                     <br><br>
-                    <p><u><?php echo '$ttd->nama' ?></u></p>
-                    <p>NIP.<?php echo '$ttd->nip' ?></p>
+                    <p><u>CHALIKIN NOOR, SE</u></p>
+                    <p>NIP. 19750305 199803 1 006</p>
                 </b>
             </div>
         </div>

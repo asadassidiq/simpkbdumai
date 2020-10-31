@@ -24,14 +24,7 @@
           <v-data-table :headers="headers" :items="pendaftarans" :search="search" class="elevation-1 yellow lighten-3">
             <template v-slot:item.actions="{ item }">
                 <div class="text-center d-flex align-center">
-                    <v-tooltip top>
-                        <template v-slot:activator="{on}">
-                            <v-btn v-if="halamanaksesmutasi.edit == '1' " class="v-btn-simple" color="success" icon v-on="on" @click="editpendaftaran(item.identitaskendaraan_id)">
-                                <v-icon>mdi-pencil</v-icon>
-                            </v-btn>
-                        </template>
-                        <span>edit</span>
-                    </v-tooltip>
+                    
                     <v-tooltip top>
                         <template v-slot:activator="{on}">
                             <v-btn class="v-btn-simple" color="primary" icon v-on="on" @click="print(item.id)">
@@ -39,22 +32,6 @@
                             </v-btn>
                         </template>
                         <span>print</span>
-                    </v-tooltip>
-                    <v-tooltip top>
-                        <template v-slot:activator="{on}">
-                            <v-btn class="v-btn-simple" color="error" icon v-on="on" @click="print(item.id)">
-                                <v-icon>mdi-pdf-box</v-icon>
-                            </v-btn>
-                        </template>
-                        <span>pdf</span>
-                    </v-tooltip>
-                    <v-tooltip top>
-                        <template v-slot:activator="{on}">
-                            <v-btn v-if="halamanaksesmutasi.delete == '1' "" class="v-btn-simple" color="error" icon v-on="on" @click="deletependaftaran(item.id)">
-                                <v-icon>mdi-trash-can</v-icon>
-                            </v-btn>
-                        </template>
-                        <span>delete</span>
                     </v-tooltip>
                 </div>
 
@@ -111,7 +88,7 @@ export default {
             })
         },
         print(id){
-            window.open('/cetak/'+id+'/print', "_blank");
+            window.open('/cetak/'+id+'/printmt', "_blank");
         },
         refreshPost() {
             this.$store.dispatch('getPendaftaransmu');

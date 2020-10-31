@@ -57,7 +57,7 @@
                 <img class="img-fluid" src="{{url('/img/kota.jpg')}}" alt="Image"/>
             </div>
             <div class="col-8">
-            <div class="d-flex justify-content-center"><h3><b>PEMERINTAH KABUTAPATEN BANJARMASIN</b></h3></div>  
+            <div class="d-flex justify-content-center"><h3><b>PEMERINTAH KOTA BANJARMASIN</b></h3></div>  
             <div class="d-flex justify-content-center"><h2><b>DINAS PERHUBUNGAN</b></p></h2></div>
             <div class="d-flex justify-content-center"><h3><b>UPT PENGUJIAN KENDARAAN BERMOTOR</b></p></h3></div>
             <div class="d-flex justify-content-center"><h5><b>JL. SOEKARNO HATTA TELP. 907650 7007772 BANJARMASIN</b></h5></div>
@@ -105,10 +105,20 @@
         </div>
         <div class="row">
             <div class="col-2">
-                <p>Catatan POS 1</p>
+                <p><b>Catatan POS 1</b></p>
             </div>
             <div class="col-8">
                 <p>: {{ $kendaraan->catatanpos1 }}</p>
+            </div>   
+            
+            <br><br>
+        </div>
+		<div class="row">
+            <div class="col-2">
+                <p><b>Catatan POS 2</b></p>
+            </div>
+            <div class="col-8">
+                <p>: {{ $kendaraan->catatanpos2 }}</p>
             </div>   
             
             <br><br>

@@ -64,15 +64,15 @@
             <div class="col-sm-4">
               
             </div>
-            <div class="col-sm-8 text-center">
+            <div class="col-sm-8 text-left">
               <p></p>
-              <p style="font-size: 18px"><b><strong> <?php $date=date_create(date('d-M-y')); echo date_format($date,"d F Y"); ?></span> </strong></b></p>
+              <p style="font-size: 22px"><b><strong> <?php $date=date_create(date('d-M-y')); echo date_format($date,"d F Y"); ?></span> </strong></b></p>
               <br>
               <br>
             </div>
            </div>
            <div class="row">
-             <div class="col-sm-6 text-center" style="font-size: 18px">
+             <div class="col-sm-6 text-center" style="font-size: 22px">
                <p style="margin-top: 230px;"><b>{{ $data->nouji }}</b></p>
              </div>
            </div>

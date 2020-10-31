@@ -70,13 +70,7 @@
                 <p><b>{{ $data->alamat }}</b></p>      
               </div>
           </div>
-          <div class="row" style="margin-top: 100px; ">
-            <div class="col-sm-4">
-              </div>
-              <div class="col-sm-8" style="font-size:16px;">
-                <p><b>{{ $data->nouji }}</b></p> 
-              </div>
-          </div>
+		  
         </div>
         <div class="col-sm-6">  
           <div class="row" style="margin-top: 30px;font-size: 14px;">
@@ -87,17 +81,17 @@
               <br><br>
               <b><p>{{ $data->merek }}</p>
               <p>{{ $data->tipe }}</p>
+              <?php if (!empty($data->isisilinder)): ?>
+              <p  style="margin-top:60px">{{ $data->isisilinder }}</p>
+              <?php else: ?>
+              <p style="margin-top:60px">0</p>
+              <?php endif ?>
               <?php if (empty($data->dayamotorpenggerak)): ?>
-              <p class="line" style="margin-top:50px">{{ $data->dayamotorpenggerak }}</p>
+              <p style="margin-top:15px">0</p>
               <?php else: ?>
-              <p class="line">0</p>
+              <p style="margin-top:15px">{{ $data->dayamotorpenggerak }}</p>
               <?php endif ?>
-              <?php if (empty($data->isisilinder)): ?>
-              <p class="line">0</p>
-              <?php else: ?>
-              <p class="line">{{ $data->isisilinder }}</p>
-              <?php endif ?>
-              <p class="line">{{ strtoupper( $data->bahanbakar) }}</p>
+              <p >{{ strtoupper( $data->bahanbakar) }}</p>
               <p style="margin-top:10px">{{ $data->thpembuatan }}</p>
                             
               <p></p>
@@ -106,14 +100,7 @@
               </b>
             </div>
           </div>   
-
-          <div class="row" style="margin-top: 90px; ">
-            <div class="col-sm-4">
-              </div>
-              <div class="col-sm-8" style="font-size:16px;">
-                <p><b>{{ $data->nouji }}</b></p> 
-              </div>
-          </div>   
+  
        </div> 
       </div>
     </div>

@@ -2,9 +2,9 @@
 <v-container fluid >
     <v-col cols="12">
     <v-bottom-navigation :value="activeBtn" v-model="activeBtn" color="lime" horizontal >
-        <v-btn v-show="halamanakses.view == '1'" @click="refreshPost()"><span>POS 1</span><v-icon>mdi-map-marker</v-icon></v-btn>
+        <v-btn v-show="halamanakses == '1'" @click="refreshPost()"><span>POS 1</span><v-icon>mdi-map-marker</v-icon></v-btn>
 
-        <v-btn v-show="halamanakses2.view == '1'" @click="refreshPost()"><span>POS 2</span><v-icon>mdi-map-marker</v-icon></v-btn> 
+        <v-btn v-show="halamanakses2 == '1'" @click="refreshPost()"><span>POS 2</span><v-icon>mdi-map-marker</v-icon></v-btn> 
       </v-bottom-navigation>
     </v-col>
     <div v-if="activeBtn == '0'">
@@ -84,7 +84,7 @@ export default {
                 { text: 'Actions', value: 'actions', sortable: false },
             ],
             form: new Form({}),
-            activeBtn: 0,
+            activeBtn: '',
             halamanakses: [],
             halamanakses2: [],
         }
@@ -137,6 +137,8 @@ export default {
                 })
                 .then((result) => {
                     this.halamanakses = result.data.halamanakses
+					if(this.halamanakses === 1 )
+						this.activeBtn = 0
                 }).catch((err) => {
 
                 });
@@ -146,6 +148,8 @@ export default {
                 })
                 .then((result) => {
                     this.halamanakses2 = result.data.halamanakses
+					if(this.halamanakses2 === 1 )
+						this.activeBtn = 1
                 }).catch((err) => {
 
                 });

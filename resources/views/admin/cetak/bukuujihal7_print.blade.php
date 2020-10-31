@@ -15,8 +15,9 @@
         body{
             color:#333;
             text-align:left;
-            font-size:18px;
+            font-size:12px;
             margin:0;
+			bold;
         }
         .container{
             margin:0 auto;
@@ -27,7 +28,7 @@
             background-color:#fff;
         }
         caption{
-            font-size:28px;
+            font-size:14px;
             margin-bottom:15px;
         }
         table{
@@ -47,62 +48,60 @@
         h4, p{
             margin:0px;
         }
-         @page { size: landscape; }
+         @page { size: potrait; }
     </style>
 </head>
 <body onload="window.print();">
     <div class="container-fluid">
-      <div class="row" style="margin-top: 15px">
-        <div class="col-sm-6">            
-        </div>      
+      <div class="row" style="margin-top: 65px">
+		<div class="col-sm-5"></div>
         <div class="col-sm-6">
-          <div class="col-sm-2"></div>
-          <div class="col-sm-3"></div>
-          <div class="col-sm-3">
-          <b>
-            <p style="line-height: 27px;margin-top:18px;">{{ $data->alatuji_remutamatotalgayapengereman }}</p>
-            <p style="line-height: 27px">{{ $data->alatuji_remutamaselisihgayapengeremanrodakirikanan1 }}</p>
-            <p style="line-height: 27px">{{ $data->alatuji_remutamaselisihgayapengeremanrodakirikanan2 }}</p>
-            <p style="line-height: 27px">{{ $data->alatuji_remutamaselisihgayapengeremanrodakirikanan3 }}</p>
-            <p style="line-height: 27px">{{ $data->alatuji_remutamaselisihgayapengeremanrodakirikanan4 }}</p>
-            <p style="line-height: 27px;margin-top:47px">{{ $data->alatuji_lampuutamakekuatanpancarlampukanan }}</p>
-            <p>{{ $data->alatuji_lampuutamakekuatanpancarlampukiri }}</p>
-            <p>{{ $data->alatuji_lampuutamapenyimpanganlampukanan }}</p> 
-            <p>{{ $data->alatuji_lampuutamapenyimpanganlampukiri }}</p> 
-            <p>{{ $data->alatuji_emisiasapbahanbakarsolar }}</p> <!-- lampu -->
-            <br>
-            <br>
-            <?php if ((int)$data->thpembuatan<2007) { ?>
-              <p>{{ $data->alatuji_emisicobahanbakarbensin }}</p>
-              <p>{{ $data->alatuji_emisihcbahanbakarbensin }}</p>
-              <p></p>
-              <p></p>
-            <?php } else { ?>
-              <p></p>
-              <p></p>
-              <p style="margin-top:50px">{{ $data->alatuji_emisicobahanbakarbensin }}</p>
-              <p>{{ $data->alatuji_emisihcbahanbakarbensin }}</p>
-            <?php } ?>
-            </b>
-          </div>
-          <div class="col-sm-4 text-center">
-            <br>
-            <b>
-            <p style="line-height: 10px;margin-top:50px">LULUS</p>
-            <p>BANJARMASIN</p>
-            @php $date=date_create($data->tglpendaftaran)
-            @endphp
-            <p>{{ date_format($date,"d-M-y") }}</span></p>
-            <br>
-            @php $date1=date_create($data->masaberlakuuji)
-            @endphp
-            <p>{{ date_format($date1,"d-M-y") }}</span></p>
-            </b>
-          </div>
-        </div>
-        <div class="col-sm-6">            
-        </div>      
-      </div>
-    </div>  
+          <div class="row">
+				<div class="col-sm-2"></div>
+				<div class="col-sm-3"></div>
+				<div class="col-sm-2 text-center" style="padding:0">
+				<b>
+				<p style="line-height: 37px;">{{ $data->alatuji_remutamatotalgayapengereman }}</p>
+				<p style="line-height: 27px">{{ $data->alatuji_remutamaselisihgayapengeremanrodakirikanan1 }}</p>
+				<p style="line-height: 27px">{{ $data->alatuji_remutamaselisihgayapengeremanrodakirikanan2 }}</p>
+				<p style="line-height: 27px">{{ $data->alatuji_remutamaselisihgayapengeremanrodakirikanan3 }}</p>
+				<p style="line-height: 27px">{{ $data->alatuji_remutamaselisihgayapengeremanrodakirikanan4 }}</p>
+				<p style="line-height: 27px;">{{ $data->alatuji_lampuutamakekuatanpancarlampukanan }}</p>
+				<p>{{ $data->alatuji_lampuutamakekuatanpancarlampukiri }}</p>
+				<p>{{ $data->alatuji_lampuutamapenyimpanganlampukanan }}</p> 
+				<p>{{ $data->alatuji_lampuutamapenyimpanganlampukiri }}</p> 
+				<p>{{ $data->alatuji_emisiasapbahanbakarsolar }}</p></b> <!-- lampu -->
+				<br>
+				<br>
+				<?php if ((int)$data->thpembuatan<2007) { ?>
+					<b>
+				  <p>{{ $data->alatuji_emisicobahanbakarbensin }}</p>
+				  <p>{{ $data->alatuji_emisihcbahanbakarbensin }}</p>
+				  <p></p>
+				  <p></p>
+				<?php } else { ?>
+				  <br>
+				  <br>
+				  <p style="margin-top:50px"><b>{{ $data->alatuji_emisicobahanbakarbensin }}</b></p>
+				  <p>{{ $data->alatuji_emisihcbahanbakarbensin }}</p></b>
+				<?php } ?>
+				</div>
+				<div class="col-sm-5 text-left" style="padding:0;font-weight: 900">
+					<br>
+					@php $date=date_create($data->tglpendaftaran)
+					@endphp
+					<b><p style="line-height: 10px;margin-top:30px">LULUS</p></b>
+					<br>
+					<p>BANJARMASIN</p>
+					<p class="text-left" style="font-size:12px">{{ date_format($date,"dMy") }}</span></p>
+					<br>
+					@php $date1=date_create($data->masaberlakuuji)
+					@endphp
+					<p style="margin-top:30px;font-size:12px">{{ date_format($date1,"dMy") }}</span></p>
+					
+			  </div>
+        </div>   
+      </div>   
+    </div>
 </body>
 </html>

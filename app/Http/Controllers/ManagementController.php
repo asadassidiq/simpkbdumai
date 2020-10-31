@@ -38,13 +38,15 @@ class ManagementController extends Controller
     public function cekhakakses1($id)
     {
         $halamanakses = User::where('users.id',$id)->where('hak_akses.setHalaman_id','3')->leftJoin('hak_akses','users.id','=','hak_akses.user_id')->leftJoin('set_halamen','set_halamen.id','=','hak_akses.setHalaman_id')->first();;
-        return response()->json(['halamanakses' => $halamanakses]);
+        $halamanakses = $halamanakses['view'];
+	return response()->json(['halamanakses' => $halamanakses]);
     }
 
     public function cekhakakses2($id)
     {
         $halamanakses = User::where('users.id',$id)->where('hak_akses.setHalaman_id','4')->leftJoin('hak_akses','users.id','=','hak_akses.user_id')->leftJoin('set_halamen','set_halamen.id','=','hak_akses.setHalaman_id')->first();;
-        return response()->json(['halamanakses' => $halamanakses]);
+        $halamanakses = $halamanakses['view'];
+	return response()->json(['halamanakses' => $halamanakses]);
     }
 
     public function navakses($id)

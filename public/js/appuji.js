@@ -4307,7 +4307,7 @@ __webpack_require__.r(__webpack_exports__);
         sortable: false
       }],
       form: new Form({}),
-      activeBtn: 0,
+      activeBtn: '',
       halamanakses: [],
       halamanakses2: []
     };
@@ -4356,12 +4356,14 @@ __webpack_require__.r(__webpack_exports__);
         method: "get"
       }).then(function (result) {
         _this2.halamanakses = result.data.halamanakses;
+        if (_this2.halamanakses === 1) _this2.activeBtn = 0;
       })["catch"](function (err) {});
       axios({
         url: '/api/cekakses2/' + id.id,
         method: "get"
       }).then(function (result) {
         _this2.halamanakses2 = result.data.halamanakses;
+        if (_this2.halamanakses2 === 1) _this2.activeBtn = 1;
       })["catch"](function (err) {});
     }
   },
@@ -4549,12 +4551,14 @@ __webpack_require__.r(__webpack_exports__);
         method: "get"
       }).then(function (result) {
         _this2.halamanakses = result.data.halamanakses;
+        if (_this2.halamanakses === 1) _this2.activeBtn = 0;
       })["catch"](function (err) {});
       axios({
         url: '/api/cekakses2/' + id.id,
         method: "get"
       }).then(function (result) {
         _this2.halamanakses2 = result.data.halamanakses;
+        if (_this2.halamanakses2 === 1) _this2.activeBtn = 1;
       })["catch"](function (err) {});
     }
   },
@@ -4935,12 +4939,14 @@ __webpack_require__.r(__webpack_exports__);
         method: "get"
       }).then(function (result) {
         _this2.halamanakses = result.data.halamanakses;
+        if (_this2.halamanakses === 1) _this2.activeBtn = 0;
       })["catch"](function (err) {});
       axios({
         url: '/api/cekakses2/' + id.id,
         method: "get"
       }).then(function (result) {
         _this2.halamanakses2 = result.data.halamanakses;
+        if (_this2.halamanakses2 === 1) _this2.activeBtn = 1;
       })["catch"](function (err) {});
     }
   },
@@ -6005,7 +6011,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
     return {
       radios: 'Duckduckgo',
-      activeBtn: 1,
+      activeBtn: '',
       datakendaraan: [],
       halamanakses: [],
       halamanakses2: [],
@@ -6082,12 +6088,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     savePost: function savePost() {},
     getbk: function getbk() {
       if (this.form.beratsumbu4 > 0) {
-        this.form.beratkosong = parseInt(this.form.beratsumbu1) + parseInt(this.form.beratsumbu2) + parseInt(this.form.beratsumbu3) + parseInt(this.form.beratsumbu4);
-      } else if (this.form.beratsumbu3 > 0) {
-        this.form.beratkosong = parseInt(this.form.beratsumbu1) + parseInt(this.form.beratsumbu2) + parseInt(this.form.beratsumbu3);
-      } else if (this.form.beratsumbu2 > 0) {
-        this.form.beratkosong = parseInt(this.form.beratsumbu1) + parseInt(this.form.beratsumbu2);
-      } else if (this.form.beratsumbu1 > 0) {
+        this.form.beratkosong = parseInt(this.form.bsumbu1) + parseInt(this.form.bsumbu2) + parseInt(this.form.bsumbu3) + parseInt(this.form.bsumbu4);
+      } else if (this.form.bsumbu13 > 0) {
+        this.form.beratkosong = parseInt(this.form.bsumbu1) + parseInt(this.form.bsumbu2) + parseInt(this.form.bsumbu3);
+      } else if (this.form.bsumbu2 > 0) {
+        this.form.beratkosong = parseInt(this.form.bsumbu1) + parseInt(this.form.bsumbu2);
+      } else if (this.form.bsumbu1 > 0) {
         this.form.beratkosong = parseInt(this.form.beratsumbu1);
       }
     },
@@ -6188,8 +6194,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           _this.form.pos2 = result.data.kendaraan.pos2.toString();
           _this.form.catatanpos1 = result.data.kendaraan.catatanpos1;
           _this.form.catatanpos2 = result.data.kendaraan.catatanpos2;
-          console.log(result.data.kendaraan.jaraksumbu1_2);
-          console.log('ok');
+          console.log(_this.form.catatanpos1);
         }
       })["catch"](function (err) {});
     },
@@ -6205,18 +6210,29 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var id = JSON.parse(localStorage.getItem("user"));
       this.form.petugaspos1 = id.id;
       this.form.petugaspos2 = id.id;
-      this.form.posisipos = '1';
       axios({
         url: '/api/cekakses1/' + id.id,
         method: "get"
       }).then(function (result) {
         _this2.halamanakses = result.data.halamanakses;
+
+        if (_this2.halamanakses === 1) {
+          _this2.form.posisipos = '1';
+        }
       })["catch"](function (err) {});
       axios({
         url: '/api/cekakses2/' + id.id,
         method: "get"
       }).then(function (result) {
         _this2.halamanakses2 = result.data.halamanakses;
+
+        if (_this2.halamanakses === 1) {
+          _this2.form.posisipos = '1';
+          _this2.activeBtn = 1;
+        } else if (_this2.halamanakses2 === 1) {
+          _this2.form.posisipos = '2';
+          _this2.activeBtn = 2;
+        }
       })["catch"](function (err) {});
     },
     editPost: function editPost(id) {
@@ -46148,7 +46164,9 @@ var render = function() {
                           ),
                           _vm._v(" "),
                           _vm.form.jenispendaftaran.id === 5 ||
-                          _vm.form.jenispendaftaran.id === 6
+                          _vm.form.jenispendaftaran.id === 6 ||
+                          _vm.form.jenispendaftaran.id === 9 ||
+                          _vm.form.jenispendaftaran.id === 10
                             ? _c(
                                 "v-col",
                                 {
@@ -46183,7 +46201,9 @@ var render = function() {
                             : _vm._e(),
                           _vm._v(" "),
                           _vm.form.jenispendaftaran.id === 5 ||
-                          _vm.form.jenispendaftaran.id === 6
+                          _vm.form.jenispendaftaran.id === 6 ||
+                          _vm.form.jenispendaftaran.id === 9 ||
+                          _vm.form.jenispendaftaran.id === 10
                             ? _c(
                                 "v-col",
                                 {
@@ -48255,8 +48275,8 @@ var render = function() {
                     {
                       name: "show",
                       rawName: "v-show",
-                      value: _vm.halamanakses.view == "1",
-                      expression: "halamanakses.view == '1'"
+                      value: _vm.halamanakses == "1",
+                      expression: "halamanakses == '1'"
                     }
                   ],
                   on: {
@@ -48279,8 +48299,8 @@ var render = function() {
                     {
                       name: "show",
                       rawName: "v-show",
-                      value: _vm.halamanakses2.view == "1",
-                      expression: "halamanakses2.view == '1'"
+                      value: _vm.halamanakses2 == "1",
+                      expression: "halamanakses2 == '1'"
                     }
                   ],
                   on: {
@@ -48597,8 +48617,8 @@ var render = function() {
                     {
                       name: "show",
                       rawName: "v-show",
-                      value: _vm.halamanakses.view == "1",
-                      expression: "halamanakses.view == '1'"
+                      value: _vm.halamanakses == "1",
+                      expression: "halamanakses == '1'"
                     }
                   ],
                   on: {
@@ -48621,8 +48641,8 @@ var render = function() {
                     {
                       name: "show",
                       rawName: "v-show",
-                      value: _vm.halamanakses2.view == "1",
-                      expression: "halamanakses2.view == '1'"
+                      value: _vm.halamanakses2 == "1",
+                      expression: "halamanakses2 == '1'"
                     }
                   ],
                   on: {
@@ -49318,8 +49338,8 @@ var render = function() {
                     {
                       name: "show",
                       rawName: "v-show",
-                      value: _vm.halamanakses.view == "1",
-                      expression: "halamanakses.view == '1'"
+                      value: _vm.halamanakses == "1",
+                      expression: "halamanakses == '1'"
                     }
                   ],
                   on: {
@@ -49342,8 +49362,8 @@ var render = function() {
                     {
                       name: "show",
                       rawName: "v-show",
-                      value: _vm.halamanakses2.view == "1",
-                      expression: "halamanakses2.view == '1'"
+                      value: _vm.halamanakses2 == "1",
+                      expression: "halamanakses2 == '1'"
                     }
                   ],
                   on: {
@@ -49672,7 +49692,7 @@ var render = function() {
                     _c(
                       "v-btn",
                       [
-                        _c("span", [_vm._v("Foto Kendaraan")]),
+                        _c("span", [_vm._v("Data Kendaraan")]),
                         _c("v-icon", [_vm._v("mdi-map-marker")])
                       ],
                       1
@@ -49685,8 +49705,8 @@ var render = function() {
                           {
                             name: "show",
                             rawName: "v-show",
-                            value: _vm.halamanakses.view == "1",
-                            expression: "halamanakses.view == '1'"
+                            value: _vm.halamanakses == "1",
+                            expression: "halamanakses == '1'"
                           }
                         ],
                         on: {
@@ -49709,8 +49729,8 @@ var render = function() {
                           {
                             name: "show",
                             rawName: "v-show",
-                            value: _vm.halamanakses2.view == "1",
-                            expression: "halamanakses2.view == '1'"
+                            value: _vm.halamanakses2 == "1",
+                            expression: "halamanakses2 == '1'"
                           }
                         ],
                         on: {
@@ -52919,7 +52939,7 @@ var render = function() {
                 )
               : _vm._e(),
             _vm._v(" "),
-            _vm.activeBtn === _vm.itemuji[12]
+            _vm.activeBtn === _vm.itemuji[11]
               ? _c(
                   "v-col",
                   { attrs: { cols: "12" } },
@@ -53119,7 +53139,7 @@ var render = function() {
                 )
               : _vm._e(),
             _vm._v(" "),
-            _vm.activeBtn === _vm.itemuji[13]
+            _vm.activeBtn === _vm.itemuji[12]
               ? _c(
                   "v-col",
                   { attrs: { cols: "12" } },
@@ -53236,7 +53256,7 @@ var render = function() {
                 )
               : _vm._e(),
             _vm._v(" "),
-            _vm.activeBtn === _vm.itemuji[14]
+            _vm.activeBtn === _vm.itemuji[13]
               ? _c(
                   "v-col",
                   { attrs: { cols: "12" } },
@@ -53591,6 +53611,129 @@ var render = function() {
                 )
               : _vm._e(),
             _vm._v(" "),
+            _vm.activeBtn === _vm.itemuji[4]
+              ? _c(
+                  "v-col",
+                  { attrs: { cols: "12" } },
+                  [
+                    _c(
+                      "v-card",
+                      { staticClass: "mx-auto yellow lighten-3 black--text" },
+                      [
+                        _c("v-card-title", [_vm._v("BERAT SUMBU")]),
+                        _vm._v(" "),
+                        _c(
+                          "v-card-subtitle",
+                          [
+                            _c(
+                              "v-row",
+                              { attrs: { "no-gutters": "" } },
+                              [
+                                _c(
+                                  "v-col",
+                                  { attrs: { cols: "12", sm: "6", md: "3" } },
+                                  [
+                                    _c("v-text-field", {
+                                      attrs: {
+                                        type: "number",
+                                        outlined: "",
+                                        label: "S1",
+                                        suffix: "Kg"
+                                      },
+                                      model: {
+                                        value: _vm.form.bsumbu1,
+                                        callback: function($$v) {
+                                          _vm.$set(_vm.form, "bsumbu1", $$v)
+                                        },
+                                        expression: "form.bsumbu1"
+                                      }
+                                    })
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "v-col",
+                                  { attrs: { cols: "12", sm: "6", md: "3" } },
+                                  [
+                                    _c("v-text-field", {
+                                      attrs: {
+                                        type: "number",
+                                        outlined: "",
+                                        label: "S2",
+                                        suffix: "Kg"
+                                      },
+                                      model: {
+                                        value: _vm.form.bsumbu2,
+                                        callback: function($$v) {
+                                          _vm.$set(_vm.form, "bsumbu2", $$v)
+                                        },
+                                        expression: "form.bsumbu2"
+                                      }
+                                    })
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "v-col",
+                                  { attrs: { cols: "12", sm: "6", md: "3" } },
+                                  [
+                                    _c("v-text-field", {
+                                      attrs: {
+                                        type: "number",
+                                        outlined: "",
+                                        label: "S3",
+                                        suffix: "Kg"
+                                      },
+                                      model: {
+                                        value: _vm.form.bsumbu3,
+                                        callback: function($$v) {
+                                          _vm.$set(_vm.form, "bsumbu3", $$v)
+                                        },
+                                        expression: "form.bsumbu3"
+                                      }
+                                    })
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "v-col",
+                                  { attrs: { cols: "12", sm: "6", md: "3" } },
+                                  [
+                                    _c("v-text-field", {
+                                      attrs: {
+                                        type: "number",
+                                        outlined: "",
+                                        label: "S4",
+                                        suffix: "Kg"
+                                      },
+                                      model: {
+                                        value: _vm.form.bsumbu4,
+                                        callback: function($$v) {
+                                          _vm.$set(_vm.form, "bsumbu4", $$v)
+                                        },
+                                        expression: "form.bsumbu4"
+                                      }
+                                    })
+                                  ],
+                                  1
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        )
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                )
+              : _vm._e(),
+            _vm._v(" "),
             _vm.activeBtn === _vm.itemuji[14]
               ? _c(
                   "v-col",
@@ -53767,129 +53910,6 @@ var render = function() {
                                           _vm.$set(_vm.form, "mst", $$v)
                                         },
                                         expression: "form.mst"
-                                      }
-                                    })
-                                  ],
-                                  1
-                                )
-                              ],
-                              1
-                            )
-                          ],
-                          1
-                        )
-                      ],
-                      1
-                    )
-                  ],
-                  1
-                )
-              : _vm._e(),
-            _vm._v(" "),
-            _vm.activeBtn === _vm.itemuji[4]
-              ? _c(
-                  "v-col",
-                  { attrs: { cols: "12" } },
-                  [
-                    _c(
-                      "v-card",
-                      { staticClass: "mx-auto yellow lighten-3 black--text" },
-                      [
-                        _c("v-card-title", [_vm._v("BERAT SUMBU")]),
-                        _vm._v(" "),
-                        _c(
-                          "v-card-subtitle",
-                          [
-                            _c(
-                              "v-row",
-                              { attrs: { "no-gutters": "" } },
-                              [
-                                _c(
-                                  "v-col",
-                                  { attrs: { cols: "12", sm: "6", md: "3" } },
-                                  [
-                                    _c("v-text-field", {
-                                      attrs: {
-                                        type: "number",
-                                        outlined: "",
-                                        label: "S1",
-                                        suffix: "Kg"
-                                      },
-                                      model: {
-                                        value: _vm.form.bsumbu1,
-                                        callback: function($$v) {
-                                          _vm.$set(_vm.form, "bsumbu1", $$v)
-                                        },
-                                        expression: "form.bsumbu1"
-                                      }
-                                    })
-                                  ],
-                                  1
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "v-col",
-                                  { attrs: { cols: "12", sm: "6", md: "3" } },
-                                  [
-                                    _c("v-text-field", {
-                                      attrs: {
-                                        type: "number",
-                                        outlined: "",
-                                        label: "S2",
-                                        suffix: "Kg"
-                                      },
-                                      model: {
-                                        value: _vm.form.bsumbu2,
-                                        callback: function($$v) {
-                                          _vm.$set(_vm.form, "bsumbu2", $$v)
-                                        },
-                                        expression: "form.bsumbu2"
-                                      }
-                                    })
-                                  ],
-                                  1
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "v-col",
-                                  { attrs: { cols: "12", sm: "6", md: "3" } },
-                                  [
-                                    _c("v-text-field", {
-                                      attrs: {
-                                        type: "number",
-                                        outlined: "",
-                                        label: "S3",
-                                        suffix: "Kg"
-                                      },
-                                      model: {
-                                        value: _vm.form.bsumbu3,
-                                        callback: function($$v) {
-                                          _vm.$set(_vm.form, "bsumbu3", $$v)
-                                        },
-                                        expression: "form.bsumbu3"
-                                      }
-                                    })
-                                  ],
-                                  1
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "v-col",
-                                  { attrs: { cols: "12", sm: "6", md: "3" } },
-                                  [
-                                    _c("v-text-field", {
-                                      attrs: {
-                                        type: "number",
-                                        outlined: "",
-                                        label: "S4",
-                                        suffix: "Kg"
-                                      },
-                                      model: {
-                                        value: _vm.form.bsumbu4,
-                                        callback: function($$v) {
-                                          _vm.$set(_vm.form, "bsumbu4", $$v)
-                                        },
-                                        expression: "form.bsumbu4"
                                       }
                                     })
                                   ],
@@ -54938,25 +54958,33 @@ var render = function() {
                                   "v-col",
                                   { attrs: { cols: "12", sm: "6", md: "4" } },
                                   [
-                                    _c("v-textarea", {
-                                      attrs: {
-                                        "auto-grow": "",
-                                        row: "4",
-                                        "row-height": "20",
-                                        name: "alamat",
-                                        label: "Catatan Hasil Pengujian",
-                                        outlined: "",
-                                        dense: "",
-                                        clearable: ""
-                                      },
-                                      model: {
-                                        value: _vm.form.catatanpos1,
-                                        callback: function($$v) {
-                                          _vm.$set(_vm.form, "catatanpos1", $$v)
+                                    _c(
+                                      "v-textarea",
+                                      {
+                                        attrs: {
+                                          "auto-grow": "",
+                                          row: "4",
+                                          "row-height": "20",
+                                          name: "alamat",
+                                          label: "Catatan Hasil Pengujian",
+                                          outlined: "",
+                                          dense: "",
+                                          clearable: ""
                                         },
-                                        expression: "form.catatanpos1"
-                                      }
-                                    })
+                                        model: {
+                                          value: _vm.form.catatanpos1,
+                                          callback: function($$v) {
+                                            _vm.$set(
+                                              _vm.form,
+                                              "catatanpos1",
+                                              $$v
+                                            )
+                                          },
+                                          expression: "form.catatanpos1"
+                                        }
+                                      },
+                                      [_vm._v(_vm._s(_vm.form.catatanpos1))]
+                                    )
                                   ],
                                   1
                                 )

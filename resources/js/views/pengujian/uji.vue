@@ -4,11 +4,11 @@
   <form @submit.prevent="savePost">
 	<v-col cols="12">
 	<v-bottom-navigation :value="activeBtn" v-model="activeBtn" color="primary" horizontal >
-	    <v-btn><span>Foto Kendaraan</span><v-icon>mdi-map-marker</v-icon></v-btn>
+	    <v-btn><span>Data Kendaraan</span><v-icon>mdi-map-marker</v-icon></v-btn>
 
-	    <v-btn v-show="halamanakses.view == '1'" @click="posisipos('1')"><span>POS 1</span><v-icon>mdi-map-marker</v-icon></v-btn>
+	    <v-btn v-show="halamanakses == '1'" @click="posisipos('1')"><span>POS 1</span><v-icon>mdi-map-marker</v-icon></v-btn>
 
-	    <v-btn v-show="halamanakses2.view == '1'" @click="posisipos('2')"><span>POS 2</span><v-icon>mdi-map-marker</v-icon></v-btn> 
+	    <v-btn v-show="halamanakses2 == '1'" @click="posisipos('2')"><span>POS 2</span><v-icon>mdi-map-marker</v-icon></v-btn> 
 	  </v-bottom-navigation>
 	</v-col>
 	<v-col cols="12">
@@ -636,7 +636,7 @@
 	</v-card>
 	</v-col>
 
-	<v-col cols="12" v-if="activeBtn === itemuji[12]">
+	<v-col cols="12" v-if="activeBtn === itemuji[11]">
 	<v-card class="mx-auto yellow lighten-3">
 	<v-card-title>Dimensi Kendaraan</v-card-title>
 	<v-card-subtitle>
@@ -664,7 +664,7 @@
 	</v-card>
 	</v-col>
 
-	<v-col cols="12" v-if="activeBtn === itemuji[13]">
+	<v-col cols="12" v-if="activeBtn === itemuji[12]">
     <v-card class="mx-auto yellow lighten-3">
     <v-card-title>Dimensi Bak Mutan</v-card-title>
     <v-card-subtitle>
@@ -683,7 +683,7 @@
     </v-card>
     </v-col>
 
-    <v-col cols="12" v-if="activeBtn === itemuji[14]">
+    <v-col cols="12" v-if="activeBtn === itemuji[13]">
           <v-card class="mx-auto yellow lighten-3">
           <v-card-title>Jarak Sumbu</v-card-title>
           <v-card-subtitle>
@@ -740,6 +740,28 @@
 	</v-card>
 	</v-col>
 
+	<v-col cols="12" v-if="activeBtn === itemuji[4]">
+	<v-card class="mx-auto yellow lighten-3 black--text">
+	<v-card-title>BERAT SUMBU</v-card-title>
+	<v-card-subtitle>
+		<v-row no-gutters >
+			<v-col cols="12" sm="6" md="3">
+				<v-text-field type="number" v-model="form.bsumbu1" outlined label="S1" suffix="Kg"></v-text-field>
+			</v-col>
+			<v-col cols="12" sm="6" md="3">
+				<v-text-field type="number" v-model="form.bsumbu2" outlined label="S2" suffix="Kg"></v-text-field>
+			</v-col>
+			<v-col cols="12" sm="6" md="3">
+				<v-text-field type="number" v-model="form.bsumbu3" outlined label="S3" suffix="Kg"></v-text-field>
+			</v-col>
+			<v-col cols="12" sm="6" md="3">
+				<v-text-field type="number" v-model="form.bsumbu4" outlined label="S4" suffix="Kg"></v-text-field>
+			</v-col>
+		</v-row>
+	</v-card-subtitle>
+	</v-card>
+	</v-col>
+	
 	<v-col cols="12" v-if="activeBtn === itemuji[14]">
 	<v-card class="mx-auto yellow lighten-3">
 	<v-card-title>Daya Angkut, Jumlah Berat</v-card-title>
@@ -765,28 +787,6 @@
         </v-col>
 
 	</v-row>
-	</v-card-subtitle>
-	</v-card>
-	</v-col>
-
-	<v-col cols="12" v-if="activeBtn === itemuji[4]">
-	<v-card class="mx-auto yellow lighten-3 black--text">
-	<v-card-title>BERAT SUMBU</v-card-title>
-	<v-card-subtitle>
-		<v-row no-gutters >
-			<v-col cols="12" sm="6" md="3">
-				<v-text-field type="number" v-model="form.bsumbu1" outlined label="S1" suffix="Kg"></v-text-field>
-			</v-col>
-			<v-col cols="12" sm="6" md="3">
-				<v-text-field type="number" v-model="form.bsumbu2" outlined label="S2" suffix="Kg"></v-text-field>
-			</v-col>
-			<v-col cols="12" sm="6" md="3">
-				<v-text-field type="number" v-model="form.bsumbu3" outlined label="S3" suffix="Kg"></v-text-field>
-			</v-col>
-			<v-col cols="12" sm="6" md="3">
-				<v-text-field type="number" v-model="form.bsumbu4" outlined label="S4" suffix="Kg"></v-text-field>
-			</v-col>
-		</v-row>
 	</v-card-subtitle>
 	</v-card>
 	</v-col>
@@ -968,7 +968,7 @@
 				</v-radio-group>
 			</v-col>
 			<v-col cols="12" sm="6" md="4">
-				<v-textarea auto-grow row="4" v-model="form.catatanpos1"  row-height="20" name="alamat" label="Catatan Hasil Pengujian" outlined dense clearable></v-textarea>
+				<v-textarea auto-grow row="4" v-model="form.catatanpos1"  row-height="20" name="alamat" label="Catatan Hasil Pengujian" outlined dense clearable>{{ form.catatanpos1 }}</v-textarea>
 			</v-col>
 		</v-row>
 		<v-row v-if="activeBtn == '2' ">
@@ -1018,7 +1018,7 @@
     data () {
       return {
         radios: 'Duckduckgo',
-        activeBtn: 1,
+		activeBtn: '',
         datakendaraan: [],
         halamanakses: [],
         halamanakses2: [],
@@ -1122,12 +1122,12 @@
         },
         getbk(){
             if(this.form.beratsumbu4 > 0){
-            this.form.beratkosong = parseInt(this.form.beratsumbu1)+parseInt(this.form.beratsumbu2)+parseInt(this.form.beratsumbu3)+parseInt(this.form.beratsumbu4)
-            }else if(this.form.beratsumbu3 > 0){
-                this.form.beratkosong = parseInt(this.form.beratsumbu1)+parseInt(this.form.beratsumbu2)+parseInt(this.form.beratsumbu3)
-            }else if(this.form.beratsumbu2 > 0){
-                this.form.beratkosong = parseInt(this.form.beratsumbu1)+parseInt(this.form.beratsumbu2)
-            }else if(this.form.beratsumbu1 > 0){
+            this.form.beratkosong = parseInt(this.form.bsumbu1)+parseInt(this.form.bsumbu2)+parseInt(this.form.bsumbu3)+parseInt(this.form.bsumbu4)
+            }else if(this.form.bsumbu13 > 0){
+                this.form.beratkosong = parseInt(this.form.bsumbu1)+parseInt(this.form.bsumbu2)+parseInt(this.form.bsumbu3)
+            }else if(this.form.bsumbu2 > 0){
+                this.form.beratkosong = parseInt(this.form.bsumbu1)+parseInt(this.form.bsumbu2)
+            }else if(this.form.bsumbu1 > 0){
                 this.form.beratkosong = parseInt(this.form.beratsumbu1)
             }
             
@@ -1227,8 +1227,8 @@
                     this.form.pos2 = result.data.kendaraan.pos2.toString()
                     this.form.catatanpos1 = result.data.kendaraan.catatanpos1
                     this.form.catatanpos2 = result.data.kendaraan.catatanpos2
-                    console.log(result.data.kendaraan.jaraksumbu1_2)
-                    console.log('ok')
+                    console.log(this.form.catatanpos1)
+                    
                     }
                     
                 }).catch((err) => {
@@ -1248,13 +1248,17 @@
             var id = JSON.parse(localStorage.getItem("user"));
             this.form.petugaspos1 = id.id
             this.form.petugaspos2 = id.id
-            this.form.posisipos = '1'
+            
             axios({
                     url: '/api/cekakses1/'+id.id,
                     method: "get",
                 })
                 .then((result) => {
                     this.halamanakses = result.data.halamanakses
+					if(this.halamanakses === 1){
+						this.form.posisipos = '1'
+						
+						}
                 }).catch((err) => {
 
                 });
@@ -1264,6 +1268,14 @@
                 })
                 .then((result) => {
                     this.halamanakses2 = result.data.halamanakses
+					if(this.halamanakses === 1){
+						this.form.posisipos = '1'
+						this.activeBtn = 1
+						}
+					else if(this.halamanakses2 === 1){
+						this.form.posisipos = '2'
+						this.activeBtn = 2
+					}
                 }).catch((err) => {
 
                 });

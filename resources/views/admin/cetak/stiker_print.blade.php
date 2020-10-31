@@ -64,7 +64,7 @@
                <p style="font-size: 30px;padding-top: 0px; "><b>{{ $data->noregistrasikendaraan }}</b></p>
         </div>
         <div class="col-sm-6">
-            <div class="row text-center" style="margin-top:-10px;">
+            <div class="row text-center" style="margin-top:10px;line-height: 30px">
                 <div class="col-sm-12">
                   <p><b>{{ $data->beratkosong }}</b></p>
                   <p style="margin-top: 15px;"><b>{{ $data->panjangkendaraan }}</b></p>
@@ -75,7 +75,7 @@
                   <p ><b>{{ $data->mst }}</b></p> 
                 </div>  
             </div>         
-            <div class="row text-right" style="margin-top: 40px;">
+            <div class="row text-right" style="margin-top: 50px;">
                 <div class="col-sm-3">
                   <p style="margin-right: -38px;"><b>{{ number_format((int)$data->dayaangkutorang/(int)60) }}</b></p>
                 </div>
@@ -85,20 +85,20 @@
                   <b>{{ $data->dayaangkutorang }}</b>
                 </div>                       
             </div>
-            <div class="row text-center" style="margin-top:-20px">
+            <div class="row text-center" style="margin-top:-20px;line-height: 30px">
                 <div class="col-sm-12">  
                   <p><b>{{ $data->dayaangkutbarang }}</b></p>
                   <p><b>{{ $data->kelasjalanterendah }}</b></p>
                   <p></p>
-                  <p class="text-center" style="font-size: 14"><b>UPTD PENGUJIAN KENDARAAN BARMOTOR</b></p>
+                  <p class="text-center" style="font-size: 14"><b>UPTD PENGUJIAN KENDARAAN BERMOTOR</b></p>
                   <p class="text-center" style="font-size: 14px"><b>DINAS PERHUBUNGAN KOTA BANJARMASIN</b></p>
                 </div>
             </div>
             <div class="row text-right" style="margin-top:3cm">
                 <div class="col-sm-12">
-                    <p><b>A. JUNAIDI, SE</b></p>
-                    <p><b>063.071.PT4.01.001</b></p>
-                    <p><b>196212211983021003</b></p>
+                    <p  style="margin-right:60px"><b>A. JUNAIDI, SE</b></p>
+                    <p style="font-size:15px;line-height:14px;"><b>063.071.PT4.01.001</b></p>
+                    <p style="font-size:15px;line-height:14px;"><b>196212211983021003</b></p>
                 </div> 
             </div>
       </div>

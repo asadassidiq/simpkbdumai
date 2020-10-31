@@ -202,6 +202,7 @@ class PendaftaranController extends Controller
             'identitaskendaraan_id' => $data->id,
             'tglpendaftaran'        => $request->tglpendaftaran,
             'tglbayar'              => $request->tglbayar,
+			'masaberlakuuji'        => $request->masaberlakuuji,
             'kodepenerbitans_id'    => $jenispendaftaran,
             'jenispendaftaran'                 => 'ots',
             'verif'                 => 'y',
@@ -268,6 +269,14 @@ class PendaftaranController extends Controller
             $kodeasal= $request->kodewilayahasal['kodewilayah'];
         }else{
             $kodeasal= $request->kodewilayahasal;
+        }
+		
+		if ($request->kodewilayah == '') {
+            $kode='BNJRM'; 
+        }
+
+        if ($request->kodewilayahasal == '') {
+            $kodeasal='BNJRM'; 
         }
 
         if (is_array($request->jeniskendaraan) == 1 ) {
@@ -367,7 +376,8 @@ class PendaftaranController extends Controller
 
     public function printNK($id)
     {
-        $kendaraan = Pendaftaran::with(['identitaskendaraan'])->find($id)->orderBy('id','asc')->first();
+        
+		$kendaraan = Pendaftaran::leftJoin('identitaskendaraans','identitaskendaraans.id','=','pendaftarans.identitaskendaraan_id')->where('pendaftarans.id',$id)->first();
         $wilayah = Kodewilayah::select('namawilayah')->where('kodewilayah',$kendaraan->identitaskendaraan->kodewilayah)->first();
         // return response()->json(['kendaraan' => $wilayah]);
         return view('admin.cetak.nk_print', compact('kendaraan'), compact('wilayah'));
@@ -375,7 +385,7 @@ class PendaftaranController extends Controller
 
     public function printMT($id)
     {
-        $kendaraan = Pendaftaran::with(['identitaskendaraan'])->find($id)->orderBy('id','asc')->first();
+        $kendaraan = Pendaftaran::leftJoin('identitaskendaraans','identitaskendaraans.id','=','pendaftarans.identitaskendaraan_id')->where('pendaftarans.id',$id)->first();
         $wilayah = Kodewilayah::select('namawilayah')->where('kodewilayah',$kendaraan->identitaskendaraan->kodewilayah)->first();
         return view('admin.cetak.mt_print', compact('kendaraan'), compact('wilayah'));
     }

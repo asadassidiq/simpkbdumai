@@ -15,8 +15,9 @@
         body{
             color:#333;
             text-align:left;
-            font-size:18px;
+            font-size:12px;
             margin:0;
+			bold;
         }
         .container{
             margin:0 auto;
@@ -27,7 +28,7 @@
             background-color:#fff;
         }
         caption{
-            font-size:28px;
+            font-size:14px;
             margin-bottom:15px;
         }
         table{
@@ -47,7 +48,7 @@
         h4, p{
             margin:0px;
         }
-         @page { size: landscape; }
+         @page { size: potrait; }
 
     </style>
 </head>
@@ -55,7 +56,7 @@
     <div class="container-fluid">
       <div class="row" >
         <div class="col-sm-6">
-          <div class="row" style="margin-top: 30px;padding-right: 30px; ">
+          <div class="row" style="margin-top: 10px;padding-right: 30px; line-height:15px">
               <div class="col-sm-8">
                 
               </div>
@@ -72,16 +73,15 @@
                 <p>{{ $data->q }}</p></b>
               </div>
           </div>
-          <div class="row" style="padding-left: 15px;">
+          <div class="row" style="padding-left: 15px;line-height:15px">
             <div class="col-sm-6"></div>
             <div class="col-sm-6">
-              <br><br><br><br><br><b>
+              <b>
               <p>{{ $data->panjangbakatautangki }}</p>
               <p>{{ $data->lebarbakatautangki }}</p>
               <p>{{ $data->tinggibakatautangki }}</p>
               <p></p> <!-- BAHAN -->
-              <br><br>
-              <p></p>
+			  <p></p>
               <p></p>
               <p></p>
               <p></p>
@@ -90,18 +90,18 @@
               <p></p>
               <p></p>
               <br><br><br><br>
+			  <br><br><br><br><br><br><br>
               <p><b>{{ $data->ukuranban }}</b></p>
               <p><b>{{ $data->ukuranban }}</b></p>
-              <p></p>
-              <p></p>
+              
 
-              <p style="margin-top: 30px;">{{ $data->konfigurasisumburoda }}</p>
-              <p>{{ $data->jbb }}</p>
-              <p>{{ $data->jbkb }}</p></b>
-            </div>
-          </div>
+              <p style="margin-top: 30px;line-height:20px">{{ $data->konfigurasisumburoda }}</p>
+              <p style="margin-top: 9px;line-height:20px">{{ $data->jbb }}</p>
+              <p style="line-height:20px">{{ $data->jbkb }}</p></b>
+			</div>
+			</div>
         </div>
-        <div class="col-sm-6" style="margin-top: 10px;">  
+		<div class="col-sm-6" style="margin-top: 10px;line-height:24px;font-size:14px">  
           <div class="row">
             <div class="col-sm-4"></div>
             <div class="col-sm-6 text-center">
@@ -127,11 +127,11 @@
               <?php else: ?>
                 <p><?php echo '0' ?></p>
               <?php endif ?>
-              <p><b>{{ $data->beratkosong }}</b></p>
+              <p style="margin-top:10px"><b>{{ $data->beratkosong }}</b></p>
               <?php if (!empty($data->dayaangkutorang)): ?>
                 <p style="margin-top:20px">{{ $data->dayaangkutorang }}</p>
               <?php else: ?>
-                <p><?php echo '0' ?></p>
+                <p style="margin-top:20px"><?php echo '0' ?></p>
               <?php endif ?>
               <?php if (!empty($data->dayaangkutbarang)): ?>
                 <p style="margin-top:20px">{{ $data->dayaangkutbarang }}</p>
@@ -141,22 +141,19 @@
               <?php if (!empty($data->jbi)): ?>
                 <p style="margin-top:20px">{{ $data->jbi }}</p>
               <?php else: ?>
-                <p><?php echo '0' ?></p>
+                <p style="margin-top:20px"><?php echo '0' ?></p>
               <?php endif ?>
               <br>
               <br>
-              <br>
-              <br>
-              <?php if (!empty($data->jbki)): ?>
+			  <?php if (!empty($data->jbki)): ?>
                 <p>{{ $data->jbki }}</p>
               <?php else: ?>
                 <p><?php echo '0' ?></p>
               <?php endif ?>
               <br>
               <br>
-              <br>
-              <br>   
-              <br>         
+              
+              <br>        
               <?php if (!empty($data->mst)): ?>
                 <p>{{ $data->mst }}</p>
               <?php else: ?>
@@ -167,7 +164,6 @@
             </div>
           </div>      
        </div> 
-      </div>
     </div>  
 </body>
 </html>

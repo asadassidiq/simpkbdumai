@@ -93,7 +93,7 @@ class PengujianController extends Controller
         $pendaftaran = Pendaftaran::find($id);
         $pendaftaran->pos1 = '1';
         $pendaftaran->pos2 = '1';
-        $pendaftaran->save()''
+        $pendaftaran->save();
     }
 
     public function rejected(Request $request,$id){

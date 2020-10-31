@@ -54,6 +54,14 @@
                             <v-btn depressed color="blue lighten-5" x-small @click="print7(item.id)"> hal 7 </v-btn>
                         </template>
                     </v-tooltip>
+					<v-tooltip top>
+                        <template v-slot:activator="{on}">
+                            <v-btn  class="v-btn-simple" color="error" icon v-on="on" @click="printsktl(item.id)">
+                                <v-icon>mdi-printer</v-icon>
+                            </v-btn>
+                        </template>
+                        <span>SKTL</span>
+                    </v-tooltip>
                     <v-tooltip top>
                         <template v-slot:activator="{on}">
                             <v-btn  class="v-btn-simple" color="success" icon v-on="on" @click="print2(item.id)">
@@ -103,6 +111,9 @@ export default {
         },
         print2(id){
             window.open('/cetak/'+id+'/printstiker', "_blank");
+        },
+		printsktl(id){
+            window.open('/cetak/'+id+'/printlembarsktl', "_blank");
         },
         refreshPostpend() {
             this.$store.dispatch('getPendaftaranall');

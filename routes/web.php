@@ -39,7 +39,7 @@ Route::group(['prefix' => 'cetak'], function() {
     Route::get('/{id}/printbukuujihal1', 'PendaftaranController@printbukuujihal1')->name('bukuuji.print');
     Route::get('/{id}/printbukuujihal23', 'PendaftaranController@printbukuujihal23')->name('bukuuji.print');
     Route::get('/{id}/printbukuujihal45', 'PendaftaranController@printbukuujihal45')->name('bukuuji.print');
-    Route::get('/{id}/printbukuujihal6', 'PendaftaranController@printbukuujihal7')->name('bukuuji.print');
+    Route::get('/{id}/printbukuujihal6', 'PendaftaranController@printbukuujihal6')->name('bukuuji.print');
     Route::get('/{id}/printbukuujihal7', 'PendaftaranController@printbukuujihal7')->name('bukuuji.print');
     Route::get('/{id}/printlmbrpermohonan', 'PendaftaranController@printlembarpermohonan')->name('lmbrpermohonan.print');
     Route::get('/{id}/printlmbrpemeriksaan', 'PendaftaranController@printlembarpemeriksaan')->name('lmbrpemeriksaan.print');
