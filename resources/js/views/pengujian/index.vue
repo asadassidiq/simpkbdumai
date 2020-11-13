@@ -139,6 +139,7 @@ export default {
                     this.halamanakses = result.data.halamanakses
 					if(this.halamanakses === 1 )
 						this.activeBtn = 0
+                        this.refreshPost();
                 }).catch((err) => {
 
                 });
@@ -150,6 +151,7 @@ export default {
                     this.halamanakses2 = result.data.halamanakses
 					if(this.halamanakses2 === 1 )
 						this.activeBtn = 1
+                        this.refreshPost();
                 }).catch((err) => {
 
                 });
@@ -164,18 +166,11 @@ export default {
         if (this.pendaftarans.length) {
             return;
         }
-        if(this.activeBtn == 1){
-            this.$store.dispatch('getPendaftaranPos2');
-        }else{
-            this.$store.dispatch('getPendaftaranPos1');
-        }
     },
     created() {
-        Fire.$on('afterCreate', () => {
-            this.refreshPost();
-        })
-        this.refreshPost();
         this.initialize();
+        Fire.$on('afterCreate', () => {
+        })
     }
 }
 </script>

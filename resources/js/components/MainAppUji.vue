@@ -136,6 +136,7 @@
         { icon: 'mdi-content-copy', text: 'Datakendaraan', link: '/uji/verif', level: '12' },
         { icon: 'mdi-content-copy', text: 'Lulus', link: '/uji/veriflulus', level: '12' },
         { icon: 'mdi-content-copy', text: 'Tidak Lulus', link: '/uji/verifgagal', level: '12' },
+        { icon: 'mdi-content-copy', text: 'Semua Datakendaraan', link: '/uji/verifall', level: '12' },
       ],
     }),
     methods: {

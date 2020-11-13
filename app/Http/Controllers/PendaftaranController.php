@@ -16,6 +16,7 @@ class PendaftaranController extends Controller
 {
     public function index()
     {
+        $date = date('Y-m-d');
         $kendaraans = Pendaftaran::with('kodepenerbitans','identitaskendaraan')->where('tglpendaftaran',date('Y-m-d'))->get();
         return response()->json(['kendaraans'=> $kendaraans]);
     }
@@ -89,7 +90,13 @@ class PendaftaranController extends Controller
 
     public function verif()
     {
-        $kendaraans = Pendaftaran::with('kodepenerbitans','identitaskendaraan')->where('pos1','1')->where('pos2','1')->orWhere('pos1','2')->orWhere('pos2','2')->where('tglpendaftaran',date('Y-m-d'))->get();
+        $kendaraans = Pendaftaran::with('kodepenerbitans','identitaskendaraan')->where('pos1','>=','1')->where('pos2','>=','1')->where('tglpendaftaran',date('Y-m-d'))->get();
+        return response()->json(['kendaraans'=> $kendaraans]);
+    }
+
+    public function verifall()
+    {
+        $kendaraans = Pendaftaran::with('kodepenerbitans','identitaskendaraan')->where('pos1','>=','1')->where('pos2','>=','1')->get();
         return response()->json(['kendaraans'=> $kendaraans]);
     }
 

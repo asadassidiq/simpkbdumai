@@ -232,6 +232,18 @@ export default new Vuex.Store ({
             });
         },
 
+        getVerifall(context){
+            axios.get('/api/verifall')
+            .then((result) => {
+                context.commit('updatePendaftarans',result.data.kendaraans)
+            }).catch((err) => {
+                if (err.response.status == 401) {
+                    context.commit('logout');
+                    window.location.href = '/login';
+                }
+            });
+        },
+
         getVeriflulus(context){
             axios.get('/api/veriflulus')
             .then((result) => {

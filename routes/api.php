@@ -73,6 +73,7 @@ Route::group(['middleware' => 'auth'], function ($router) {
     Route::get('tidaklulusuji1', 'PendaftaranController@tidaklulusuji1');
     Route::get('tidaklulusuji2', 'PendaftaranController@tidaklulusuji2');
     Route::get('verif', 'PendaftaranController@verif');
+    Route::get('verifall', 'PendaftaranController@verifall');
     Route::get('veriflulus', 'PendaftaranController@veriflulus');
     Route::get('verifgagal', 'PendaftaranController@verifgagal');
 

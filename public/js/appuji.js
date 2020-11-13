@@ -2458,6 +2458,11 @@ __webpack_require__.r(__webpack_exports__);
         text: 'Tidak Lulus',
         link: '/uji/verifgagal',
         level: '12'
+      }, {
+        icon: 'mdi-content-copy',
+        text: 'Semua Datakendaraan',
+        link: '/uji/verifall',
+        level: '12'
       }]
     };
   },
@@ -4357,6 +4362,8 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (result) {
         _this2.halamanakses = result.data.halamanakses;
         if (_this2.halamanakses === 1) _this2.activeBtn = 0;
+
+        _this2.refreshPost();
       })["catch"](function (err) {});
       axios({
         url: '/api/cekakses2/' + id.id,
@@ -4364,6 +4371,8 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (result) {
         _this2.halamanakses2 = result.data.halamanakses;
         if (_this2.halamanakses2 === 1) _this2.activeBtn = 1;
+
+        _this2.refreshPost();
       })["catch"](function (err) {});
     }
   },
@@ -4376,21 +4385,10 @@ __webpack_require__.r(__webpack_exports__);
     if (this.pendaftarans.length) {
       return;
     }
-
-    if (this.activeBtn == 1) {
-      this.$store.dispatch('getPendaftaranPos2');
-    } else {
-      this.$store.dispatch('getPendaftaranPos1');
-    }
   },
   created: function created() {
-    var _this3 = this;
-
-    Fire.$on('afterCreate', function () {
-      _this3.refreshPost();
-    });
-    this.refreshPost();
     this.initialize();
+    Fire.$on('afterCreate', function () {});
   }
 });
 
@@ -6170,32 +6168,32 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           _this.form.gayaremkiris2 = result.data.kendaraan.gayaremkiris2;
           _this.form.gayaremkiris3 = result.data.kendaraan.gayaremkiris3;
           _this.form.gayaremkiris4 = result.data.kendaraan.gayaremkiris4;
-          _this.form.dayaangkutbarang = result.data.kendaraan.dayaangkutbarang;
-          _this.form.dayaangkutorang = result.data.kendaraan.dayaangkutorang;
-          _this.form.mst = result.data.kendaraan.mst;
-          _this.form.jbi = result.data.kendaraan.jbi;
-          _this.form.jbki = result.data.kendaraan.jbki;
-          _this.form.jmlhorang = result.data.kendaraan.dayaangkutorang / 60;
-          _this.form.panjangkendaraan = result.data.kendaraan.panjangkendaraan;
-          _this.form.lebarkendaraan = result.data.kendaraan.lebarkendaraan;
-          _this.form.tinggikendaraan = result.data.kendaraan.tinggikendaraan;
-          _this.form.julurbelakang = result.data.kendaraan.julurbelakang;
-          _this.form.julurdepan = result.data.kendaraan.julurdepan;
-          _this.form.groundclearance = result.data.kendaraan.groundclearance;
-          _this.form.panjangbakatautangki = result.data.kendaraan.panjangbakatautangki;
-          _this.form.lebarbakatautangki = result.data.kendaraan.lebarbakatautangki;
-          _this.form.tinggibakatautangki = result.data.kendaraan.tinggibakatautangki;
-          _this.form.jaraksumbu1_2 = result.data.kendaraan.jaraksumbu1_2;
-          _this.form.jaraksumbu2_3 = result.data.kendaraan.jaraksumbu2_3;
-          _this.form.jaraksumbu3_4 = result.data.kendaraan.jaraksumbu3_4;
-          _this.form.q = result.data.kendaraan.q;
-          _this.form.p = result.data.kendaraan.p;
-          _this.form.pos1 = result.data.kendaraan.pos1.toString();
-          _this.form.pos2 = result.data.kendaraan.pos2.toString();
-          _this.form.catatanpos1 = result.data.kendaraan.catatanpos1;
-          _this.form.catatanpos2 = result.data.kendaraan.catatanpos2;
-          console.log(_this.form.catatanpos1);
         }
+
+        _this.form.dayaangkutbarang = result.data.kendaraan.dayaangkutbarang;
+        _this.form.dayaangkutorang = result.data.kendaraan.dayaangkutorang;
+        _this.form.mst = result.data.kendaraan.mst;
+        _this.form.jbi = result.data.kendaraan.jbi;
+        _this.form.jbki = result.data.kendaraan.jbki;
+        _this.form.jmlhorang = result.data.kendaraan.dayaangkutorang / 60;
+        _this.form.panjangkendaraan = result.data.kendaraan.panjangkendaraan;
+        _this.form.lebarkendaraan = result.data.kendaraan.lebarkendaraan;
+        _this.form.tinggikendaraan = result.data.kendaraan.tinggikendaraan;
+        _this.form.julurbelakang = result.data.kendaraan.julurbelakang;
+        _this.form.julurdepan = result.data.kendaraan.julurdepan;
+        _this.form.groundclearance = result.data.kendaraan.groundclearance;
+        _this.form.panjangbakatautangki = result.data.kendaraan.panjangbakatautangki;
+        _this.form.lebarbakatautangki = result.data.kendaraan.lebarbakatautangki;
+        _this.form.tinggibakatautangki = result.data.kendaraan.tinggibakatautangki;
+        _this.form.jaraksumbu1_2 = result.data.kendaraan.jaraksumbu1_2;
+        _this.form.jaraksumbu2_3 = result.data.kendaraan.jaraksumbu2_3;
+        _this.form.jaraksumbu3_4 = result.data.kendaraan.jaraksumbu3_4;
+        _this.form.q = result.data.kendaraan.q;
+        _this.form.p = result.data.kendaraan.p;
+        _this.form.pos1 = result.data.kendaraan.pos1.toString();
+        _this.form.pos2 = result.data.kendaraan.pos2.toString();
+        _this.form.catatanpos1 = result.data.kendaraan.catatanpos1;
+        _this.form.catatanpos2 = result.data.kendaraan.catatanpos2;
       })["catch"](function (err) {});
     },
     initialize: function initialize() {
@@ -6312,6 +6310,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
     if (id) {
       this.fetchPost(id);
+      console.log(id);
     }
   }
 });
@@ -6539,6 +6538,241 @@ __webpack_require__.r(__webpack_exports__);
     }
 
     this.$store.dispatch('getVerif');
+  },
+  created: function created() {
+    var _this4 = this;
+
+    Fire.$on('afterCreate', function () {
+      _this4.refreshPost();
+    });
+    this.refreshPost();
+    this.initialize();
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/pengujian/verifall.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/pengujian/verifall.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      search: '',
+      idAcc: '',
+      headers: [{
+        text: 'No Kendaraan',
+        value: 'identitaskendaraan.noregistrasikendaraan'
+      }, {
+        text: 'No Uji',
+        value: 'identitaskendaraan.nouji'
+      }, {
+        text: 'Nama',
+        value: 'identitaskendaraan.nama'
+      }, {
+        text: 'Jenis Pendaftaran',
+        value: 'kodepenerbitans.keterangan'
+      }, {
+        text: 'Pos1',
+        value: 'pos1',
+        sortable: false
+      }, {
+        text: 'Pos2',
+        value: 'pos2',
+        sortable: false
+      }, {
+        text: 'Actions',
+        value: 'actions',
+        sortable: false
+      }],
+      form: new Form({
+        idpenguji: ''
+      }),
+      dialog: false
+    };
+  },
+  methods: {
+    deletependaftaran: function deletependaftaran(id) {
+      var _this = this;
+
+      Swal.fire({
+        title: 'Anda yakin hapus pendaftaran ini?',
+        text: "Silahkan pastikan data yang di hapus benar!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes!'
+      }).then(function (result) {
+        if (result.value) {
+          _this.form["delete"]('/api/pendaftarans/' + id);
+
+          Fire.$emit('afterCreate');
+          Swal.fire('Deleted!', 'success');
+        } else if (
+        /* Read more about handling dismissals below */
+        result.dismiss === Swal.DismissReason.cancel) {
+          Swal.fire('Cancelled', 'Data masih tersimpan)', 'error');
+        }
+      });
+    },
+    initialize: function initialize() {
+      var id = JSON.parse(localStorage.getItem("user"));
+      this.form.idpenguji = id.id;
+    },
+    setAcc: function setAcc(id) {
+      this.idAcc = id;
+      this.dialog = true;
+    },
+    acc: function acc() {
+      var _this2 = this;
+
+      this.form.patch('/api/pengujian/acc/' + this.idAcc).then(function (result) {
+        Swal.fire({
+          type: 'success',
+          title: 'saved',
+          showConfirmButton: false,
+          timer: 500
+        });
+        _this2.dialog = false;
+      })["catch"](function (err) {
+        Swal.fire({
+          type: 'error',
+          title: 'Ooops',
+          text: err
+        });
+      });
+    },
+    rejected: function rejected() {
+      var _this3 = this;
+
+      this.form.patch('/api/pengujian/rejected/' + this.idAcc).then(function (result) {
+        Swal.fire({
+          type: 'success',
+          title: 'saved',
+          showConfirmButton: false,
+          timer: 500
+        });
+        _this3.dialog = false;
+      })["catch"](function (err) {
+        Swal.fire({
+          type: 'error',
+          title: 'Ooops',
+          text: err
+        });
+      });
+    },
+    refreshPost: function refreshPost() {
+      this.$store.dispatch('getVerifall');
+    },
+    editpendaftaran: function editpendaftaran(id) {
+      this.$router.push('/uji/pengujians/' + id);
+    }
+  },
+  computed: {
+    pendaftarans: function pendaftarans() {
+      return this.$store.getters.pendaftarans;
+    }
+  },
+  mounted: function mounted() {
+    if (this.pendaftarans.length) {
+      return;
+    }
+
+    this.$store.dispatch('getVerifall');
   },
   created: function created() {
     var _this4 = this;
@@ -55223,6 +55457,398 @@ render._withStripped = true
 /*!*************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/pengujian/verif.vue?vue&type=template&id=11219b96& ***!
   \*************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "v-container",
+    { attrs: { fluid: "" } },
+    [
+      _c(
+        "v-card",
+        { attrs: { color: "lime lighten-3 black--text" } },
+        [
+          _c(
+            "v-card-title",
+            [
+              _vm._v("\r\n      Pendaftaran\r\n      "),
+              _c("v-spacer"),
+              _vm._v(" "),
+              _c("v-text-field", {
+                attrs: {
+                  "append-icon": "mdi-magnify",
+                  label: "Search",
+                  "single-line": "",
+                  "hide-details": ""
+                },
+                model: {
+                  value: _vm.search,
+                  callback: function($$v) {
+                    _vm.search = $$v
+                  },
+                  expression: "search"
+                }
+              })
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c("v-data-table", {
+        staticClass: "elevation-1 yellow lighten-3",
+        attrs: {
+          headers: _vm.headers,
+          items: _vm.pendaftarans,
+          search: _vm.search
+        },
+        scopedSlots: _vm._u([
+          {
+            key: "item.pos1",
+            fn: function(ref) {
+              var item = ref.item
+              return [
+                _c(
+                  "div",
+                  { staticClass: "text-center d-flex align-center" },
+                  [
+                    _c(
+                      "v-tooltip",
+                      {
+                        attrs: { top: "" },
+                        scopedSlots: _vm._u(
+                          [
+                            {
+                              key: "activator",
+                              fn: function(ref) {
+                                var on = ref.on
+                                return [
+                                  item.pos1 == "2"
+                                    ? _c(
+                                        "v-btn",
+                                        _vm._g(
+                                          {
+                                            staticClass: "v-btn-simple",
+                                            attrs: { color: "error", icon: "" },
+                                            on: {
+                                              click: function($event) {
+                                                return _vm.editpendaftaran(
+                                                  item.identitaskendaraan_id
+                                                )
+                                              }
+                                            }
+                                          },
+                                          on
+                                        ),
+                                        [
+                                          _c("v-icon", [
+                                            _vm._v("mdi-alert-remove")
+                                          ])
+                                        ],
+                                        1
+                                      )
+                                    : item.pos1 == "1"
+                                    ? _c(
+                                        "v-btn",
+                                        _vm._g(
+                                          {
+                                            staticClass: "v-btn-simple",
+                                            attrs: {
+                                              color: "success",
+                                              icon: ""
+                                            },
+                                            on: {
+                                              click: function($event) {
+                                                return _vm.editpendaftaran(
+                                                  item.identitaskendaraan_id
+                                                )
+                                              }
+                                            }
+                                          },
+                                          on
+                                        ),
+                                        [
+                                          _c("v-icon", [
+                                            _vm._v(
+                                              "mdi-checkbox-marked-circle-outline"
+                                            )
+                                          ])
+                                        ],
+                                        1
+                                      )
+                                    : _vm._e()
+                                ]
+                              }
+                            }
+                          ],
+                          null,
+                          true
+                        )
+                      },
+                      [
+                        _vm._v(" "),
+                        _c("span", [_vm._v("edit" + _vm._s(item.pos1))])
+                      ]
+                    )
+                  ],
+                  1
+                )
+              ]
+            }
+          },
+          {
+            key: "item.pos2",
+            fn: function(ref) {
+              var item = ref.item
+              return [
+                _c(
+                  "div",
+                  { staticClass: "text-center d-flex align-center" },
+                  [
+                    _c(
+                      "v-tooltip",
+                      {
+                        attrs: { top: "" },
+                        scopedSlots: _vm._u(
+                          [
+                            {
+                              key: "activator",
+                              fn: function(ref) {
+                                var on = ref.on
+                                return [
+                                  item.pos2 == "2"
+                                    ? _c(
+                                        "v-btn",
+                                        _vm._g(
+                                          {
+                                            staticClass: "v-btn-simple",
+                                            attrs: { color: "error", icon: "" },
+                                            on: {
+                                              click: function($event) {
+                                                return _vm.editpendaftaran(
+                                                  item.identitaskendaraan_id
+                                                )
+                                              }
+                                            }
+                                          },
+                                          on
+                                        ),
+                                        [
+                                          _c("v-icon", [
+                                            _vm._v("mdi-alert-remove")
+                                          ])
+                                        ],
+                                        1
+                                      )
+                                    : item.pos2 == "1"
+                                    ? _c(
+                                        "v-btn",
+                                        _vm._g(
+                                          {
+                                            staticClass: "v-btn-simple",
+                                            attrs: {
+                                              color: "success",
+                                              icon: ""
+                                            },
+                                            on: {
+                                              click: function($event) {
+                                                return _vm.editpendaftaran(
+                                                  item.identitaskendaraan_id
+                                                )
+                                              }
+                                            }
+                                          },
+                                          on
+                                        ),
+                                        [
+                                          _c("v-icon", [
+                                            _vm._v(
+                                              "mdi-checkbox-marked-circle-outline"
+                                            )
+                                          ])
+                                        ],
+                                        1
+                                      )
+                                    : _vm._e()
+                                ]
+                              }
+                            }
+                          ],
+                          null,
+                          true
+                        )
+                      },
+                      [_vm._v(" "), _c("span", [_vm._v("edit")])]
+                    )
+                  ],
+                  1
+                )
+              ]
+            }
+          },
+          {
+            key: "item.actions",
+            fn: function(ref) {
+              var item = ref.item
+              return [
+                _c(
+                  "div",
+                  { staticClass: "text-center d-flex align-center" },
+                  [
+                    _c(
+                      "v-tooltip",
+                      {
+                        attrs: { top: "" },
+                        scopedSlots: _vm._u(
+                          [
+                            {
+                              key: "activator",
+                              fn: function(ref) {
+                                var on = ref.on
+                                return [
+                                  _c(
+                                    "v-btn",
+                                    _vm._g(
+                                      {
+                                        staticClass: "v-btn-simple",
+                                        attrs: { color: "primary", icon: "" },
+                                        on: {
+                                          click: function($event) {
+                                            $event.stopPropagation()
+                                            return _vm.setAcc(item.id)
+                                          }
+                                        }
+                                      },
+                                      on
+                                    ),
+                                    [
+                                      _c("v-icon", [
+                                        _vm._v("mdi-cog-clockwise")
+                                      ])
+                                    ],
+                                    1
+                                  )
+                                ]
+                              }
+                            }
+                          ],
+                          null,
+                          true
+                        )
+                      },
+                      [_vm._v(" "), _c("span", [_vm._v("ACC")])]
+                    )
+                  ],
+                  1
+                )
+              ]
+            }
+          }
+        ])
+      }),
+      _vm._v(" "),
+      _c(
+        "v-dialog",
+        {
+          attrs: { "max-width": "290" },
+          model: {
+            value: _vm.dialog,
+            callback: function($$v) {
+              _vm.dialog = $$v
+            },
+            expression: "dialog"
+          }
+        },
+        [
+          _c(
+            "v-card",
+            [
+              _c("v-card-title", { staticClass: "headline" }, [
+                _vm._v("\r\n              Apakah sudah yakin?\r\n            ")
+              ]),
+              _vm._v(" "),
+              _c("v-card-text", [
+                _vm._v(
+                  "\r\n              Jika sudah yakin untuk meluluskan pengujian kendaraan maka data akan di sinkronkan ke data Kementrian. Jika tidak maka segera kembalikan ke pos untuk di uji kembali!.\r\n            "
+                )
+              ]),
+              _vm._v(" "),
+              _c(
+                "v-card-actions",
+                [
+                  _c("v-spacer"),
+                  _vm._v(" "),
+                  _c(
+                    "v-btn",
+                    {
+                      attrs: { color: "green darken-1", text: "" },
+                      on: {
+                        click: function($event) {
+                          _vm.dialog = false
+                        }
+                      }
+                    },
+                    [_vm._v("\r\n                Cancel\r\n              ")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-btn",
+                    {
+                      attrs: { color: "green darken-1", text: "" },
+                      on: {
+                        click: function($event) {
+                          return _vm.rejected()
+                        }
+                      }
+                    },
+                    [_vm._v("\r\n                Gagal\r\n              ")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-btn",
+                    {
+                      attrs: { color: "green darken-1", text: "" },
+                      on: {
+                        click: function($event) {
+                          return _vm.acc()
+                        }
+                      }
+                    },
+                    [_vm._v("\r\n                Setuju\r\n              ")]
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/pengujian/verifall.vue?vue&type=template&id=a58a1a08&":
+/*!****************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/pengujian/verifall.vue?vue&type=template&id=a58a1a08& ***!
+  \****************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -116337,10 +116963,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _views_pengujian_datakendaraanlulus_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./views/pengujian/datakendaraanlulus.vue */ "./resources/js/views/pengujian/datakendaraanlulus.vue");
 /* harmony import */ var _views_pengujian_uji_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./views/pengujian/uji.vue */ "./resources/js/views/pengujian/uji.vue");
 /* harmony import */ var _views_pengujian_verif_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./views/pengujian/verif.vue */ "./resources/js/views/pengujian/verif.vue");
-/* harmony import */ var _views_pengujian_lulusverif_vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./views/pengujian/lulusverif.vue */ "./resources/js/views/pengujian/lulusverif.vue");
-/* harmony import */ var _views_pengujian_gagalverif_vue__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./views/pengujian/gagalverif.vue */ "./resources/js/views/pengujian/gagalverif.vue");
-/* harmony import */ var _views_pengujian_lulus_vue__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./views/pengujian/lulus.vue */ "./resources/js/views/pengujian/lulus.vue");
-/* harmony import */ var _views_pengujian_tidaklulus_vue__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./views/pengujian/tidaklulus.vue */ "./resources/js/views/pengujian/tidaklulus.vue");
+/* harmony import */ var _views_pengujian_verifall_vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./views/pengujian/verifall.vue */ "./resources/js/views/pengujian/verifall.vue");
+/* harmony import */ var _views_pengujian_lulusverif_vue__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./views/pengujian/lulusverif.vue */ "./resources/js/views/pengujian/lulusverif.vue");
+/* harmony import */ var _views_pengujian_gagalverif_vue__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./views/pengujian/gagalverif.vue */ "./resources/js/views/pengujian/gagalverif.vue");
+/* harmony import */ var _views_pengujian_lulus_vue__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./views/pengujian/lulus.vue */ "./resources/js/views/pengujian/lulus.vue");
+/* harmony import */ var _views_pengujian_tidaklulus_vue__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./views/pengujian/tidaklulus.vue */ "./resources/js/views/pengujian/tidaklulus.vue");
+
 
 
 
@@ -116373,14 +117001,20 @@ var routes = [{
     requireAuth: true
   }
 }, {
+  path: '/uji/verifall',
+  component: _views_pengujian_verifall_vue__WEBPACK_IMPORTED_MODULE_9__["default"],
+  meta: {
+    requireAuth: true
+  }
+}, {
   path: '/uji/veriflulus',
-  component: _views_pengujian_lulusverif_vue__WEBPACK_IMPORTED_MODULE_9__["default"],
+  component: _views_pengujian_lulusverif_vue__WEBPACK_IMPORTED_MODULE_10__["default"],
   meta: {
     requireAuth: true
   }
 }, {
   path: '/uji/verifgagal',
-  component: _views_pengujian_gagalverif_vue__WEBPACK_IMPORTED_MODULE_10__["default"],
+  component: _views_pengujian_gagalverif_vue__WEBPACK_IMPORTED_MODULE_11__["default"],
   meta: {
     requireAuth: true
   }
@@ -116404,13 +117038,13 @@ var routes = [{
   }
 }, {
   path: '/uji/lulus',
-  component: _views_pengujian_lulus_vue__WEBPACK_IMPORTED_MODULE_11__["default"],
+  component: _views_pengujian_lulus_vue__WEBPACK_IMPORTED_MODULE_12__["default"],
   meta: {
     requireAuth: true
   }
 }, {
   path: '/uji/tidaklulus',
-  component: _views_pengujian_tidaklulus_vue__WEBPACK_IMPORTED_MODULE_12__["default"],
+  component: _views_pengujian_tidaklulus_vue__WEBPACK_IMPORTED_MODULE_13__["default"],
   meta: {
     requireAuth: true
   }
@@ -116627,6 +117261,16 @@ var user = Object(_helpers_auth__WEBPACK_IMPORTED_MODULE_0__["getLocalUser"])();
     },
     getVerif: function getVerif(context) {
       axios.get('/api/verif').then(function (result) {
+        context.commit('updatePendaftarans', result.data.kendaraans);
+      })["catch"](function (err) {
+        if (err.response.status == 401) {
+          context.commit('logout');
+          window.location.href = '/login';
+        }
+      });
+    },
+    getVerifall: function getVerifall(context) {
+      axios.get('/api/verifall').then(function (result) {
         context.commit('updatePendaftarans', result.data.kendaraans);
       })["catch"](function (err) {
         if (err.response.status == 401) {
@@ -117502,6 +118146,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_verif_vue_vue_type_template_id_11219b96___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_verif_vue_vue_type_template_id_11219b96___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/views/pengujian/verifall.vue":
+/*!***************************************************!*\
+  !*** ./resources/js/views/pengujian/verifall.vue ***!
+  \***************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _verifall_vue_vue_type_template_id_a58a1a08___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./verifall.vue?vue&type=template&id=a58a1a08& */ "./resources/js/views/pengujian/verifall.vue?vue&type=template&id=a58a1a08&");
+/* harmony import */ var _verifall_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./verifall.vue?vue&type=script&lang=js& */ "./resources/js/views/pengujian/verifall.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _verifall_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _verifall_vue_vue_type_template_id_a58a1a08___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _verifall_vue_vue_type_template_id_a58a1a08___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/views/pengujian/verifall.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/views/pengujian/verifall.vue?vue&type=script&lang=js&":
+/*!****************************************************************************!*\
+  !*** ./resources/js/views/pengujian/verifall.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_verifall_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./verifall.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/pengujian/verifall.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_verifall_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/views/pengujian/verifall.vue?vue&type=template&id=a58a1a08&":
+/*!**********************************************************************************!*\
+  !*** ./resources/js/views/pengujian/verifall.vue?vue&type=template&id=a58a1a08& ***!
+  \**********************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_verifall_vue_vue_type_template_id_a58a1a08___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./verifall.vue?vue&type=template&id=a58a1a08& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/pengujian/verifall.vue?vue&type=template&id=a58a1a08&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_verifall_vue_vue_type_template_id_a58a1a08___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_verifall_vue_vue_type_template_id_a58a1a08___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

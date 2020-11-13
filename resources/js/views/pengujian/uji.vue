@@ -1203,6 +1203,8 @@
                     this.form.gayaremkiris2 = result.data.kendaraan.gayaremkiris2
                     this.form.gayaremkiris3 = result.data.kendaraan.gayaremkiris3
                     this.form.gayaremkiris4 = result.data.kendaraan.gayaremkiris4
+                    }
+                    
                     this.form.dayaangkutbarang = result.data.kendaraan.dayaangkutbarang
                     this.form.dayaangkutorang = result.data.kendaraan.dayaangkutorang
                     this.form.mst = result.data.kendaraan.mst
@@ -1227,9 +1229,7 @@
                     this.form.pos2 = result.data.kendaraan.pos2.toString()
                     this.form.catatanpos1 = result.data.kendaraan.catatanpos1
                     this.form.catatanpos2 = result.data.kendaraan.catatanpos2
-                    console.log(this.form.catatanpos1)
                     
-                    }
                     
                 }).catch((err) => {
 
@@ -1357,6 +1357,7 @@
     	var id = this.$route.params.id
         if (id) {
             this.fetchPost(id)
+            console.log(id)
         }
     }
 

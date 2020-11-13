@@ -109,7 +109,7 @@
                   </v-menu>
                 </v-col>
                 <v-col cols="2" class="text-center">
-                  <v-btn class="mx-2" fab dark small color="primary" @click="editPost">
+                  <v-btn class="mx-2" fab dark small color="primary" @click="printkuharianan">
                   <v-icon dark> mdi-printer </v-icon>
                 </v-btn>
                 </v-col>
@@ -137,7 +137,7 @@
                 </v-menu>
                 </v-col>
                 <v-col cols="2" class="text-center">
-                  <v-btn class="mx-2" fab dark small color="primary" @click="printbulanan">
+                  <v-btn class="mx-2" fab dark small color="primary" @click="printkubulannan">
                   <v-icon dark> mdi-printer </v-icon>
                 </v-btn>
                 </v-col>
@@ -165,7 +165,7 @@
                 </v-menu>
                 </v-col>
                 <v-col cols="2" class="text-center">
-                  <v-btn class="mx-2" fab dark small color="primary" @click="printbulanan">
+                  <v-btn class="mx-2" fab dark small color="primary" @click="printkutahunan">
                   <v-icon dark> mdi-printer </v-icon>
                 </v-btn>
                 </v-col>

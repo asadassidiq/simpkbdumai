@@ -7,6 +7,7 @@ import Datakendaraan from './views/datakendaraan/datakendaraan.vue';
 import Datakendaraanlulus from './views/pengujian/datakendaraanlulus.vue';
 import Uji from './views/pengujian/uji.vue';
 import Verif from './views/pengujian/verif.vue';
+import Verifall from './views/pengujian/verifall.vue';
 import veriflulus from './views/pengujian/lulusverif.vue';
 import Verifgagal from './views/pengujian/gagalverif.vue';
 import Lulus from './views/pengujian/lulus.vue';
@@ -31,6 +32,13 @@ export const routes = [
     {
         path : '/uji/verif',
         component : Verif,
+        meta:{
+            requireAuth : true
+        }
+    },
+    {
+        path : '/uji/verifall',
+        component : Verifall,
         meta:{
             requireAuth : true
         }

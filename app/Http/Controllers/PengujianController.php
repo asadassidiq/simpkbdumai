@@ -176,6 +176,10 @@ class PengujianController extends Controller
                     $pendaftaran->catatanpos2 = $request->catatanpos2;
                     $pendaftaran->petugaspos2 = $request->petugaspos2;
                 }
+
+                if ($pendaftaran->pos1 == 1 || $pendaftaran->pos1 == 2 && is_null($pendaftaran->pos2)) {
+                    $pendaftaran->pos2 = '0';
+                }
             }
             $pendaftaran->save();
         }
@@ -274,6 +278,10 @@ class PengujianController extends Controller
                     $pendaftaran->pos2 = $request->pos2;
                     $pendaftaran->catatanpos2 = $request->catatanpos2;
                     $pendaftaran->petugaspos2 = $request->petugaspos2;
+                }
+
+                if ($pendaftaran->pos1 == 1 || $pendaftaran->pos1 == 2 && is_null($pendaftaran->pos2)) {
+                    $pendaftaran->pos2 = '0';
                 }
             }
             $pendaftaran->save();
