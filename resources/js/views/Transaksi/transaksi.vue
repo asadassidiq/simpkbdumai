@@ -62,29 +62,45 @@
               </thead>
               <tbody>
                 <tr>
-                  <td><v-checkbox v-model="retribusi"></v-checkbox></td>
-                  <td>Retribusi</td>
+                  <td><v-checkbox v-model="retribusi" @click="setretribusi()"></v-checkbox></td>
+                  <td>Jasa Pengujian</td>
                   <td><v-text-field v-model="form.retribusi" solo></v-text-field></td>
                 </tr>
                 <tr>
-                  <td><v-checkbox v-model="registrasi"></v-checkbox></td>
-                  <td>Registrasi Kendaraan</td>
+                  <td><v-checkbox @click="setregistrasi()" v-model="registrasi"></v-checkbox></td>
+                  <td>Penilaian Teknis Kendaraan</td>
                   <td><v-text-field  v-model="form.registrasi" solo></v-text-field></td>
                 </tr>
                 <tr>
                   <td><v-checkbox v-model="bukuuji" @click="setbukuuji()"></v-checkbox></td>
-                  <td><v-select :items="items" v-model="formbuku.jenis" label="Buku Uji" @change="getbukuuji()" solo></v-select></td>
+                  <td><v-select :items="items" v-model="formbuku.jenis" label="Smart Card" @change="getbukuuji()" solo></v-select></td>
                   <td><v-text-field v-model="form.buku" solo></v-text-field></td>
                 </tr>
                 <tr>
-                  <td><v-checkbox v-model="platuji" @click="setplatuji()"></v-checkbox></td>
-                  <td>Plat Uji</td>
-                  <td><v-text-field v-model="form.platuji" solo></v-text-field></td>
+                  <td><v-checkbox v-model="statuskepemilikan" @click="setstatuskepemilikan()"></v-checkbox></td>
+                  <td>Perubahan status kepemilikan teknis KBM</td>
+                  <td><v-text-field v-model="form.statuskepemilikan" solo></v-text-field></td>
+                </tr>
+
+                <tr>
+                  <td><v-checkbox v-model="perubahansifat" @click="setperubahansifat()"></v-checkbox></td>
+                  <td>Perubahan/Penentuan sifat KBM(SPSK)</td>
+                  <td><v-text-field v-model="form.perubahansifat" solo></v-text-field></td>
                 </tr>
                 <tr>
-                  <td><v-checkbox v-model="tandasamping" @click="settandasamping()"></v-checkbox></td>
-                  <td>Stiker</td>
-                  <td><v-text-field v-model="form.stiker" solo></v-text-field></td>
+                  <td><v-checkbox v-model="emisi" @click="setemisi()"></v-checkbox></td>
+                  <td>Biaya Pengujian Emisi Gas Buang</td>
+                  <td><v-text-field v-model="form.emisi" solo></v-text-field></td>
+                </tr>
+                <tr>
+                  <td><v-checkbox v-model="pengujiankeliling" @click="setpengujiankeliling()"></v-checkbox></td>
+                  <td>Biaya Tambahan Pengujian Keliling</td>
+                  <td><v-text-field v-model="form.pengujiankeliling" solo></v-text-field></td>
+                </tr>
+                <tr>
+                  <td><v-checkbox v-model="numpangujidanmutasi" @click="setnumpangujidanmutasi()"></v-checkbox></td>
+                  <td>Biaya Numpang Uji dan Mutasi KBM</td>
+                  <td><v-text-field v-model="form.numpangujidanmutasi" solo></v-text-field></td>
                 </tr>
                 <tr>
                   <td><v-checkbox v-model="denda" @click="setdenda()"></v-checkbox></td>
@@ -125,22 +141,28 @@ export default {
             retribusi:true,
             registrasi:true,
             bukuuji:false,
-            tandasamping:false,
-            platuji:false,
+            emisi:false,
+            pengujiankeliling: false,
+            numpangujidanmutasi: false,
+            statuskepemilikan:false,
+            perubahansifat:false,
             denda:false,
-            items: ['Buku Uji Baru', 'Buku Uji Rusak', 'Buku Uji Hilang'],
+            items: ['Smart Card Baru', 'Smart Card Rusak', 'Smart Card Hilang'],
             jenispendaftaran: [],
             biayadenda:'',
             form: new Form({
                 buku: 0,
                 ketbuku:'',
+                pengujiankeliling: 0,
                 registrasi: 0,
                 blndenda:0,
-                stiker: 0,
+                emisi: 0,
+                numpangujidanmutasi: 0,
                 denda: 0,
+                perubahansifat:0,
                 total:0,
                 retribusi:0,
-                platuji: 0,
+                statuskepemilikan: 0,
             }),
 
             formbuku : new Form({
@@ -149,9 +171,15 @@ export default {
             }),
 
             formdata: new Form({
-                platuji: 0,
-                stiker: 0,
+                statuskepemilikan: 0,
+                pengujiankelilingumum: 0,
+                pengujiankelilingtidakumum: 0,
+                numpangujidanmutasi: 0,
+                emisi: 0,
+                perubahansifat:0,
                 denda: 0,
+                registrasi: 0,
+                retribusi: 0,
                 noregistrasikendaraan:'',
                 nama:'',
                 nouji:'',
@@ -194,20 +222,39 @@ export default {
                     this.formdata.peruntukan= this.post.peruntukan
                     this.formdata.jbb= this.post.jbb
                     this.formdata.jenis= this.post.jenis
-                    console.log(result.data.kendaraan)
-                    if(this.post.bukuuji > 0){
-                    this.form.buku = this.post.bukuuji
-                    this.formbuku.jenis = this.post.ketbuku
-                    this.form.ketbuku = this.post.ketbuku
+                    if(this.post.kartu > 0){
+                    this.form.buku = this.post.kartu
+                    this.formbuku.jenis = this.post.ketkartu
+                    this.form.ketbuku = this.post.ketkartu
                     this.bukuuji = true
                     }
-                    if(this.post.platuji > 0){
-                    this.form.platuji = this.post.platuji
-                    this.platuji = true
+                    if(this.post.emisi > 0){
+                    this.form.emisi = this.post.emisi
+                    this.emisi = true
                     }
-                    if(this.post.stiker > 0){
-                    this.form.stiker = this.post.stiker
-                    this.tandasamping = true
+                    if(this.post.perubahansifat > 0){
+                    this.form.perubahansifat = this.post.perubahansifat
+                    this.perubahansifat = true
+                    }
+                    if(this.post.perubahanstatus > 0){
+                    this.form.statuskepemilikan = this.post.statuskepemilikan
+                    this.statuskepemilikan = true
+                    }
+                    if(this.post.pengujiankeliling > 0){
+                    this.form.pengujiankeliling = this.post.pengujiankeliling
+                    this.pengujiankeliling = true
+                    }
+                    if(this.post.numpangujidanmutasi > 0){
+                    this.form.numpangujidanmutasi = this.post.numpangujidanmutasi
+                    this.numpangujidanmutasi = true
+                    }
+                    if(this.post.penilianteknis > 0){
+                    this.form.registrasi = this.post.penilianteknis
+                    this.registrasi = true
+                    }
+                    if(this.post.jasapengujian > 0){
+                    this.form.retribusi = this.post.jasapengujian
+                    this.retribusi = true
                     }
                     if(this.post.blndenda > 0){
                     this.form.blndenda = this.post.blndenda
@@ -254,25 +301,85 @@ export default {
         getdenda(){
             this.formdata.denda = this.form.blndenda*this.biayadenda;
         },
-        setplatuji(){
-            if(this.platuji === true){ 
-               this.form.total = this.form.total+this.formdata.platuji
-               this.form.platuji = this.formdata.platuji
+        setstatuskepemilikan(){
+            if(this.statuskepemilikan === true){ 
+               this.form.total = this.form.total+this.formdata.statuskepemilikan
+               this.form.statuskepemilikan = this.formdata.statuskepemilikan
             }
             else{
-                this.form.total = this.form.total-this.formdata.platuji
-               this.form.platuji = 0
+                this.form.total = this.form.total-this.formdata.statuskepemilikan
+                this.form.statuskepemilikan = 0
             }
         },
-        settandasamping(){
-            if(this.tandasamping === true){
-                this.form.total = this.form.total+this.formdata.stiker
-                this.form.stiker = this.formdata.stiker
+        setretribusi(){
+            if(this.retribusi === false){
+                this.form.total = this.form.total-this.formdata.retribusi
+                this.form.retribusi = 0
             }
             else{
-                this.form.total = this.form.total-this.formdata.stiker
-                this.form.stiker = 0
+                this.form.total = this.form.total+this.formdata.retribusi
+                this.form.retribusi = this.formdata.retribusi
             }
+        },
+        setregistrasi(){
+            if(this.registrasi === false){
+                this.form.total = this.form.total-this.formdata.registrasi
+                this.form.registrasi = 0
+            }
+            else{
+                this.form.total = this.form.total+this.formdata.registrasi
+                this.form.registrasi = this.formdata.registrasi
+            }
+        },
+        setperubahansifat(){
+            if(this.perubahansifat === true){
+                this.form.total = this.form.total+this.formdata.perubahansifat
+                this.form.perubahansifat = this.formdata.perubahansifat
+            }
+            else{
+                this.form.total = this.form.total-this.formdata.perubahansifat
+                this.form.perubahansifat = 0
+            }
+        },
+        setemisi(){
+            if(this.emisi === true){
+                this.form.total = this.form.total+this.formdata.emisi
+                this.form.emisi = this.formdata.emisi
+            }
+            else{
+                this.form.total = this.form.total-this.formdata.emisi
+                this.form.emisi = 0
+            }
+        },
+        setnumpangujidanmutasi(){
+            if(this.numpangujidanmutasi === true){
+                this.form.total = this.form.total+this.formdata.numpangujidanmutasi
+                this.form.numpangujidanmutasi = this.formdata.numpangujidanmutasi
+            }
+            else{
+                this.form.total = this.form.total-this.formdata.numpangujidanmutasi
+                this.form.numpangujidanmutasi = 0
+            }
+        },
+        setpengujiankeliling(){
+            if(this.pengujiankeliling === true && this.formdata.peruntukan === 'Umum'){
+                this.form.total = this.form.total+this.formdata.pengujiankelilingumum
+                this.form.pengujiankeliling = this.formdata.pengujiankelilingumum
+            }else if(this.pengujiankeliling === true && this.formdata.peruntukan === 'Tidak Umum' || this.formdata.peruntukan === 'Pemerintah'){
+                this.form.total = this.form.total+this.formdata.pengujiankelilingtidakumum
+                this.form.pengujiankeliling = this.formdata.pengujiankelilingtidakumum
+            }else if(this.pengujiankeliling === false && this.formdata.peruntukan === 'Tidak Umum' || this.formdata.peruntukan === 'Pemerintah'){
+                this.form.total = this.form.total-this.formdata.pengujiankelilingtidakumum
+                this.form.pengujiankeliling = 0
+            }else if(this.pengujiankeliling === false && this.formdata.peruntukan === 'Umum'){
+                this.form.total = this.form.total-this.formdata.pengujiankelilingumum
+                this.form.pengujiankeliling = 0
+            }
+            else{
+                this.form.total = this.form.total-this.formdata.pengujiankeliling
+                this.form.pengujiankeliling = 0
+            }
+            console.log(this.form)
         },
         setbukuuji(){
             if(this.bukuuji === true){
@@ -320,20 +427,67 @@ export default {
 
                 });
             axios({
-                    url: '/api/biayaplatuji/',
+                    url: '/api/biayastatuskepemilikan/',
                     method: "get"
                 })
                 .then((result) => {
-                    this.formdata.platuji = result.data.biaya
+                    this.formdata.statuskepemilikan = result.data.biaya
                 }).catch((err) => {
 
                 });
             axios({
-                    url: '/api/biayastiker/',
+                    url: '/api/biayaperubahansifat/',
                     method: "get"
                 })
                 .then((result) => {
-                    this.formdata.stiker = result.data.biaya
+                    this.formdata.perubahansifat = result.data.biaya
+                }).catch((err) => {
+
+                });
+            axios({
+                    url: '/api/biayanumpangujidanmutasi/',
+                    method: "get"
+                })
+                .then((result) => {
+                    this.formdata.numpangujidanmutasi = result.data.biaya
+                }).catch((err) => {
+
+                });
+            axios({
+                    url: '/api/biayaemisi/',
+                    method: "get"
+                })
+                .then((result) => {
+                    this.formdata.emisi = result.data.biaya
+                }).catch((err) => {
+
+                });
+            axios({
+                    url: '/api/biayapengujiankelilingumum/',
+                    method: "get"
+                })
+                .then((result) => {
+                    this.formdata.pengujiankelilingumum = result.data.biaya
+                }).catch((err) => {
+
+                });
+            axios({
+                    url: '/api/biayapengujiankelilingtidakumum/',
+                    method: "get"
+                })
+                .then((result) => {
+                    this.formdata.pengujiankelilingtidakumum = result.data.biaya
+                }).catch((err) => {
+
+                });
+
+            axios({
+                    url: '/api/retribusi/'+this.$route.params.id,
+                    method: "get"
+                })
+                .then((result) => {
+                    this.form.retribusi = result.data.retribusi.biaya
+                    this.formdata.retribusi = result.data.retribusi.biaya
                 }).catch((err) => {
 
                 });
@@ -342,16 +496,8 @@ export default {
                     method: "get"
                 })
                 .then((result) => {
-                    this.form.registrasi = result.data.registrasi
-                }).catch((err) => {
-
-                });
-            axios({
-                    url: '/api/retribusi/'+this.$route.params.id,
-                    method: "get"
-                })
-                .then((result) => {
-                    this.form.retribusi = result.data.retribusi.biaya
+                    this.form.registrasi = result.data.registrasi.biaya
+                    this.formdata.registrasi = result.data.registrasi.biaya
                 }).catch((err) => {
 
                 });

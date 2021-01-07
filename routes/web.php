@@ -31,9 +31,9 @@ Route::get('/admin/{any}', function(){
 
 Route::group(['prefix' => 'cetak'], function() {
     //[.. CODE SEBELUMNYA ..]
-    Route::get('/{id}/pdf', 'PendaftaranController@generateNK')->name('invoice.print');
-    Route::get('/{id}/print', 'PendaftaranController@printNK')->name('invoice1.print');
-    Route::get('/{id}/printmt', 'PendaftaranController@printMT')->name('invoice2.print');
+    Route::get('/{id}/pdf', 'PendaftaranController@generateNK')->name('Soltindo.print');
+    Route::get('/{id}/print', 'PendaftaranController@printNK')->name('Soltindo1.print');
+    Route::get('/{id}/printmt', 'PendaftaranController@printMT')->name('Soltindo2.print');
     Route::get('/{id}/printstiker', 'PendaftaranController@printstiker')->name('stiker.print');
     Route::get('/{id}/printbukuuji', 'PendaftaranController@printbukuuji')->name('bukuuji.print');
     Route::get('/{id}/printbukuujihal1', 'PendaftaranController@printbukuujihal1')->name('bukuuji.print');
@@ -45,12 +45,13 @@ Route::group(['prefix' => 'cetak'], function() {
     Route::get('/{id}/printlmbrpemeriksaan', 'PendaftaranController@printlembarpemeriksaan')->name('lmbrpemeriksaan.print');
     Route::get('/{id}/printlembarsktl', 'PendaftaranController@printlembarsktl')->name('printlembarsktl.print');
     Route::get('/{id}/printkwitansi', 'TransaksiController@printkwitansi')->name('kwitansi.print');
-    Route::get('/{id}/laporanloketpendaftaran', 'PendaftaranController@printlaporanloketpendaftaran')->name('laporanloketpendaftaran.print');
-    Route::get('/{id}/laporanloketpendaftaranbulanan', 'PendaftaranController@printlaporanloketpendaftaranbulanan')->name('laporanloketpendaftaranbulanan.print');
-    Route::get('/{id}/laporanloketpendaftarantahunan', 'PendaftaranController@printlaporanloketpendaftarantahunan')->name('laporanloketpendaftarantahunan.print');
-    Route::get('/{id}/laporankeuanganharian', 'TransaksiController@printlaporankeuanganharian')->name('laporankeuanganharian.print');
-    Route::get('/{id}/laporankeuanganbulanan', 'TransaksiController@printlaporankeuanganbulanan')->name('laporankeuanganbulanan.print');
-    Route::get('/{id}/laporankeuangantahunan', 'TransaksiController@printlaporankeuangantahunan')->name('laporankeuangantahunan.print');
+    Route::get('/{id}/laporanloketpendaftaran', 'LaporanController@printlaporanloketpendaftaran')->name('laporanloketpendaftaran.print');
+    Route::get('/{id}/laporanloketpendaftaranbulanan', 'LaporanController@printlaporanloketpendaftaranbulanan')->name('laporanloketpendaftaranbulanan.print');
+    Route::get('/{id}/{id2}/laporanloketpendaftarantriwulan', 'LaporanController@printlaporanloketpendaftarantriwulan')->name('laporanloketpendaftaranbulanan.print');
+    Route::get('/{id}/laporanloketpendaftarantahunan', 'LaporanController@printlaporanloketpendaftarantahunan')->name('laporanloketpendaftarantahunan.print');
+    Route::get('/{id}/laporankeuanganharian', 'LaporanController@printlaporankeuanganharian')->name('laporankeuanganharian.print');
+    Route::get('/{id}/laporankeuanganbulanan', 'LaporanController@printlaporankeuanganbulanan')->name('laporankeuanganbulanan.print');
+    Route::get('/{id}/laporankeuangantahunan', 'LaporanController@printlaporankeuangantahunan')->name('laporankeuangantahunan.print');
 });
 
 
@@ -65,3 +66,6 @@ Route::get('/login', function () {
 Route::get('/uji/{any}', function(){
     return view('penguji.penguji');
 })->where('any','.*');
+
+Route::get('upload/{id}/fotokendaraan/', 'FotoController@getImage')->name('get.image');
+Route::POST('intervention_postimage', 'FotoController@postImage')->name('post.image');

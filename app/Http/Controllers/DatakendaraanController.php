@@ -81,7 +81,71 @@ class DatakendaraanController extends Controller
 
     public function update(Request $request, $id)
     {
-        $kendaraan = Datakendaraan::find($id);
+        if (is_array($request->kodewilayah) == 1) {
+            $kode= $request->kodewilayah['kodewilayah'];
+        }else{
+            $kode= $request->kodewilayah;
+        }
+
+        if (is_array($request->kodewilayahasal) == 1) {
+            $kodeasal= $request->kodewilayahasal['kodewilayah'];
+        }else{
+            $kodeasal= $request->kodewilayahasal;
+        }
+        
+        if ($request->kodewilayah == '') {
+            $kode='BNJRM'; 
+        }
+
+        if ($request->kodewilayahasal == '') {
+            $kodeasal='BNJRM'; 
+        }
+
+        if (is_array($request->jeniskendaraan) == 1 ) {
+            $jeniskendaraan= $request->jeniskendaraan['jenis'];
+        }else{
+            $jeniskendaraan= $request->jeniskendaraan;
+        }
+
+        if (is_array($request->jenispendaftaran) == 1 ) {
+            $jenispendaftaran= $request->jenispendaftaran['id'];
+        }else{
+            $jenispendaftaran= $request->jenispendaftaran;
+        }
+
+        if (is_array($request->merek) == 1) {
+            $merek= $request->merek['merek'];
+        }else{
+            $merek= $request->merek;
+        }
+        if (is_array($request->tipe) == 1) {
+            $tipe= $request->tipe['tipe'];
+        }else{
+            $tipe= $request->tipe;
+        }
+        $kendaraan = Identitaskendaraan::find($id);
+        $kendaraan->nouji                   = $request->nouji;
+        $kendaraan->nama                    = $request->nama;
+        $kendaraan->alamat                  = $request->alamat;
+        $kendaraan->kecamatan               = $request->kecamatan;
+        $kendaraan->nohp                    = $request->nohp;
+        $kendaraan->noidentitaspemilik      = $request->noidentitaspemilik;
+        $kendaraan->noregistrasikendaraan   = $request->noregistrasikendaraan;
+        $kendaraan->norangka                = $request->norangka;
+        $kendaraan->merek                   = $merek;
+        $kendaraan->tipe                    = $tipe;
+        $kendaraan->nomesin                 = $request->nomesin;
+        $kendaraan->thpembuatan             = $request->thpembuatan;
+        $kendaraan->bahanbakar              = $request->bahanbakar;
+        $kendaraan->peruntukan              = $request->peruntukan;
+        $kendaraan->jenis                   = $jeniskendaraan;
+        $kendaraan->isisilinder             = $request->isisilinder;
+        $kendaraan->jbb                     = $request->jbb;
+        $kendaraan->kodewilayah             = $kode;
+        $kendaraan->kodewilayahasal         = $kodeasal;
+        $kendaraan->save();
+
+        $kendaraan = Datakendaraan::where('identitaskendaraan_id',$id)->first();
         if (!empty($kendaraan)) {
             $kendaraan->identitaskendaraan_id   = $id;
             $kendaraan->nosertifikatreg         = $request->nosertifikatreg;

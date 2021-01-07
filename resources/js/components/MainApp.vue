@@ -98,7 +98,7 @@
         style="width: 300px"
         class="ml-0 pl-4"
       >
-        <span class="hidden-sm-and-down black--text">SIM PKB BANJARMASIN</span>
+        <span class="hidden-sm-and-down black--text">SIM PKB DUMAI</span>
       </v-toolbar-title>
      
       <v-spacer></v-spacer>

@@ -123,11 +123,15 @@ Route::group(['middleware' => 'auth'], function ($router) {
     Route::get('getkami/{id}', 'PengujianController@getkami');
 
     Route::post('cekhargabuku', 'TransaksiController@cekhargabuku');
-    Route::get('registrasi/{id}', 'TransaksiController@registrasi');
+    Route::get('registrasi/{id}', 'TransaksiController@penilianteknis');
     Route::get('retribusi/{id}', 'TransaksiController@retribusi');
     Route::get('biayadenda', 'TransaksiController@biayadenda');
-    Route::get('biayaplatuji', 'TransaksiController@biayaplatuji');
-    Route::get('biayastiker', 'TransaksiController@biayastiker');
+    Route::get('biayastatuskepemilikan', 'TransaksiController@biayastatuskepemilikan');
+    Route::get('biayaperubahansifat', 'TransaksiController@biayaperubahansifat');
+    Route::get('biayaemisi', 'TransaksiController@biayaemisi');
+    Route::get('biayapengujiankelilingumum', 'TransaksiController@biayapengujiankelilingumum');
+    Route::get('biayapengujiankelilingtidakumum', 'TransaksiController@biayapengujiankelilingtidakumum');
+    Route::get('biayanumpangujidanmutasi', 'TransaksiController@biayanumpangujidanmutasi');
     Route::post('transaksi/new', 'TransaksiController@store');
     Route::patch('transaksi/edit/{id}', 'TransaksiController@update');
     Route::delete('transaksi/{id}', 'TransaksiController@destroy');

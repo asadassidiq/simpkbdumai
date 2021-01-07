@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Pendaftaran;
 use App\Datakendaraan;
 use App\Identitaskendaraan;
+use App\Datapengujian;
 use App\Kodewilayah;
 use App\Kodepenerbitan;
 use App\Jenis;
@@ -53,17 +54,17 @@ class PendaftaranController extends Controller
 
     public function indextrans()
     {
-        $kendaraans = Pendaftaran::with('kodepenerbitans','identitaskendaraan','transaksi')->where('tglbayar',date("Y-m-d"))->get();
+        $kendaraans = Pendaftaran::with('kodepenerbitans','identitaskendaraan')->where('tglbayar',date("Y-m-d"))->get();
         // $kendaraans = Identitaskendaraan::leftJoin('pendaftarans','identitaskendaraans.id','=','pendaftarans.identitaskendaraan_id')->leftJoin('kodepenerbitans','kodepenerbitans.id','=','pendaftarans.kodepenerbitans_id')->leftJoin('transaksis','transaksis.pendaftaran_id','=','pendaftarans.id')->where('tglbayar',date("Y-m-d"))->get();
         return response()->json(['kendaraans'=> $kendaraans]);
     }
 
     public function indextransall()
     {
-        $kendaraans = Pendaftaran::leftJoin('kodepenerbitans','kodepenerbitans.id','=','pendaftarans.kodepenerbitans_id')->leftJoin('identitaskendaraans','identitaskendaraans.id','=','pendaftarans.identitaskendaraan_id')->leftJoin('transaksis','transaksis.pendaftaran_id','=','pendaftarans.id')->get();
+        $kendaraans = Pendaftaran::with('kodepenerbitans','identitaskendaraan')->get();
+        // $kendaraans = Pendaftaran::leftJoin('kodepenerbitans','kodepenerbitans.id','=','pendaftarans.kodepenerbitans_id')->leftJoin('identitaskendaraans','identitaskendaraans.id','=','pendaftarans.identitaskendaraan_id')->get();
         return response()->json(['kendaraans'=> $kendaraans]);
     }
-
     public function indexpos1()
     {
         $kendaraans = Pendaftaran::with('kodepenerbitans','identitaskendaraan')->where('pos1','0')->where('tglpendaftaran',date('Y-m-d'))->get();
@@ -90,13 +91,15 @@ class PendaftaranController extends Controller
 
     public function verif()
     {
-        $kendaraans = Pendaftaran::with('kodepenerbitans','identitaskendaraan')->where('pos1','>=','1')->where('pos2','>=','1')->where('tglpendaftaran',date('Y-m-d'))->get();
+        // $kendaraans = Pendaftaran::with('kodepenerbitans','identitaskendaraan')->where('pos1','>=','1')->where('pos2','>=','1')->where('tglpendaftaran',date('Y-m-d'))->get();
+        $kendaraans = Identitaskendaraan::leftJoin('datakendaraans','identitaskendaraans.id','=','datakendaraans.identitaskendaraan_id')->leftJoin('pendaftarans','identitaskendaraans.id','=','pendaftarans.identitaskendaraan_id')->leftJoin('pengujians','pendaftarans.id','=','pengujians.pendaftaran_id')->leftJoin('kodepenerbitans','kodepenerbitans.id','=','pendaftarans.kodepenerbitans_id')->where('statuslulusuji','0')->where('pos1','>=','1')->where('pos2','>=','1')->where('verif','n')->where('tglpendaftaran',date('Y-m-d'))->get();
         return response()->json(['kendaraans'=> $kendaraans]);
     }
 
     public function verifall()
     {
-        $kendaraans = Pendaftaran::with('kodepenerbitans','identitaskendaraan')->where('pos1','>=','1')->where('pos2','>=','1')->get();
+        // $kendaraans = Pendaftaran::with('kodepenerbitans','identitaskendaraan')->where('pos1','>=','1')->where('pos2','>=','1')->get();
+        $kendaraans = Identitaskendaraan::leftJoin('datakendaraans','identitaskendaraans.id','=','datakendaraans.identitaskendaraan_id')->leftJoin('pendaftarans','identitaskendaraans.id','=','pendaftarans.identitaskendaraan_id')->leftJoin('pengujians','pendaftarans.id','=','pengujians.pendaftaran_id')->leftJoin('kodepenerbitans','kodepenerbitans.id','=','pendaftarans.kodepenerbitans_id')->where('pos1','>=','1')->where('pos2','>=','1')->get();
         return response()->json(['kendaraans'=> $kendaraans]);
     }
 
@@ -136,6 +139,14 @@ class PendaftaranController extends Controller
 
     public function store(Request $request)
     {
+         if ($request->kodewilayah == '' && is_array($request->kodewilayah) == '') {
+            $kode='DUMAI'; 
+        }
+
+        if ($request->kodewilayahasal == '' && is_array($request->kodewilayahasal) == '') {
+            $kodeasal='DUMAI'; 
+        }
+
         if (is_array($request->kodewilayah) == 1) {
             $kode= $request->kodewilayah['kodewilayah'];
         }else{
@@ -147,14 +158,10 @@ class PendaftaranController extends Controller
         }else{
             $kodeasal= $request->kodewilayahasal;
         }
+        
+       
 
-        if ($request->kodewilayah == '') {
-            $kode='BNJRM'; 
-        }
-
-        if ($request->kodewilayahasal == '') {
-            $kodeasal='BNJRM'; 
-        }
+        // print_r($kode);
 
         if (empty($request->jeniskendaraan['jenis'])) {
             $jeniskendaraan= $request->jeniskendaraan;
@@ -199,8 +206,9 @@ class PendaftaranController extends Controller
             'peruntukan'            => $request->peruntukan,
             'jenis'                 => $jeniskendaraan,
             'isisilinder'           => $request->isisilinder,
-            'idkepaladinas'         => '1',
-            'iddirektur'            => '1',
+            'dayamotorpenggerak'    => $request->dayamotorpenggerak,
+            'idkepaladinas'         => '278',
+            'iddirektur'            => '18',
             'kodewilayah'           => $kode,
             'kodewilayahasal'       => $kodeasal,
             ]);
@@ -209,10 +217,10 @@ class PendaftaranController extends Controller
             'identitaskendaraan_id' => $data->id,
             'tglpendaftaran'        => $request->tglpendaftaran,
             'tglbayar'              => $request->tglbayar,
-			'masaberlakuuji'        => $request->masaberlakuuji,
+            'masaberlakuuji'        => $request->masaberlakuuji,
             'kodepenerbitans_id'    => $jenispendaftaran,
             'jenispendaftaran'                 => 'ots',
-            'verif'                 => 'y',
+            'verif'                 => 'n',
             ]);
 
             Datakendaraan::create([
@@ -240,8 +248,50 @@ class PendaftaranController extends Controller
             'masaberlakuuji'        => $request->masaberlakuuji,
             'kodepenerbitans_id'    => $jenispendaftaran,
             'jenispendaftaran'                 => 'ots',
-            'verif'                 => 'y',
-            ]);   
+            'verif'                 => 'n',
+            ]); 
+
+            $cekkendaraan = Identitaskendaraan::where('identitaskendaraans.nouji',$request->nouji)->first();
+            $identitaskendaraan_id= $cekkendaraan->id;
+            $kendaraan = Identitaskendaraan::where('id',$identitaskendaraan_id)->first();
+            $kendaraan->nouji                   = $request->nouji;
+            $kendaraan->nama                    = $request->nama;
+            $kendaraan->alamat                  = $request->alamat;
+            $kendaraan->kecamatan               = $request->kecamatan;
+            $kendaraan->nohp                    = $request->nohp;
+            $kendaraan->noidentitaspemilik      = $request->noidentitaspemilik;
+            $kendaraan->noregistrasikendaraan   = $request->noregistrasikendaraan;
+            $kendaraan->norangka                = $request->norangka;
+            $kendaraan->merek                   = $merek;
+            $kendaraan->tipe                    = $tipe;
+            $kendaraan->nomesin                 = $request->nomesin;
+            $kendaraan->thpembuatan             = $request->thpembuatan;
+            $kendaraan->bahanbakar              = $request->bahanbakar;
+            $kendaraan->peruntukan              = $request->peruntukan;
+            $kendaraan->jenis                   = $jeniskendaraan;
+            $kendaraan->isisilinder             = $request->isisilinder;
+            $kendaraan->dayamotorpenggerak      = $request->dayamotorpenggerak;
+            $kendaraan->jbb                     = $request->jbb;
+            $kendaraan->kodewilayah             = $kode;
+            $kendaraan->kodewilayahasal         = $kodeasal;
+            $kendaraan->idkepaladinas           = '278';
+            $kendaraan->iddirektur              = '18';
+            $kendaraan->save();
+
+            $datakendaraan = Datakendaraan::where('identitaskendaraan_id',$identitaskendaraan_id)->first();
+            $datakendaraan->nosertifikatreg         = $request->nosertifikatreg;
+            $datakendaraan->tglsertifikatreg        = $request->tglsertifikatreg;
+            $datakendaraan->jbkb                    = $request->jbkb;
+            $datakendaraan->konfigurasisumburoda    = $request->konfigurasisumburoda;
+            $datakendaraan->ukuranban               = $request->ukuranban;
+            $datakendaraan->jaraksumbu1_2           = $request->jaraksumbu1_2;
+            $datakendaraan->jaraksumbu2_3           = $request->jaraksumbu2_3;
+            $datakendaraan->jaraksumbu3_4           = $request->jaraksumbu3_4;
+            $datakendaraan->q                       = $request->q;
+            $datakendaraan->p                       = $request->p;
+            $datakendaraan->kelasjalanterendah      = $request->kelasjalanterendah;
+            $datakendaraan->save();  
+        // print_r($cekkendaraan->id);
         }        
     }
 
@@ -277,13 +327,13 @@ class PendaftaranController extends Controller
         }else{
             $kodeasal= $request->kodewilayahasal;
         }
-		
-		if ($request->kodewilayah == '') {
-            $kode='BNJRM'; 
+        
+        if ($request->kodewilayah == '' && is_array($request->kodewilayah) == '') {
+            $kode='DUMAI'; 
         }
 
-        if ($request->kodewilayahasal == '') {
-            $kodeasal='BNJRM'; 
+        if ($request->kodewilayahasal == '' && is_array($request->kodewilayahasal) == '') {
+            $kodeasal='DUMAI'; 
         }
 
         if (is_array($request->jeniskendaraan) == 1 ) {
@@ -328,6 +378,7 @@ class PendaftaranController extends Controller
         $kendaraan->peruntukan              = $request->peruntukan;
         $kendaraan->jenis                   = $jeniskendaraan;
         $kendaraan->isisilinder             = $request->isisilinder;
+        $kendaraan->dayamotorpenggerak      = $request->dayamotorpenggerak;
         $kendaraan->jbb                     = $request->jbb;
         $kendaraan->kodewilayah             = $kode;
         $kendaraan->kodewilayahasal         = $kodeasal;
@@ -355,6 +406,45 @@ class PendaftaranController extends Controller
         $datakendaraan->kelasjalanterendah      = $request->kelasjalanterendah;
         $datakendaraan->save();
 
+        $id = Pendaftaran::find($id);
+        if (!is_null($id->idx)) {
+        $date=date_create($request->tglsertifikatreg);
+        $tglsertifikatreg = date_format($date,'dmY');
+        $date1=date_create($request->masaberlakuuji);
+        $masaberlakuuji= date_format($date1,'dmY');
+
+        $datapengujian = Datapengujian::find($id->idx);
+        $datapengujian->nouji                   = $request->nouji;
+        $datapengujian->nama                    = $request->nama;
+        $datapengujian->alamat                  = $request->alamat;
+        $datapengujian->noidentitaspemilik      = $request->noidentitaspemilik;
+        $datapengujian->noregistrasikendaraan   = $request->noregistrasikendaraan;
+        $datapengujian->norangka                = $request->norangka;
+        $datapengujian->merek                   = $merek;
+        $datapengujian->tipe                    = $tipe;
+        $datapengujian->nomesin                 = $request->nomesin;
+        $datapengujian->thpembuatan             = $request->thpembuatan;
+        $datapengujian->bahanbakar              = $request->bahanbakar;
+        $datapengujian->jenis                   = $jeniskendaraan;
+        $datapengujian->isisilinder             = $request->isisilinder;
+        $datapengujian->dayamotorpenggerak      = $request->dayamotorpenggerak;
+        $datapengujian->jbb                     = $request->jbb;
+        $datapengujian->kodewilayah             = $kode;
+        $datapengujian->kodewilayahasal         = $kodeasal;
+        $datapengujian->nosertifikatreg         = $request->nosertifikatreg;
+        $datapengujian->tglsertifikatreg        = $tglsertifikatreg;
+        $datapengujian->masaberlakuuji          = $masaberlakuuji;
+        $datapengujian->statuspenerbitan        = $jenispendaftaran;
+        $datapengujian->jbkb                    = $request->jbkb;
+        $datapengujian->konfigurasisumburoda    = $request->konfigurasisumburoda;
+        $datapengujian->ukuranban               = $request->ukuranban;
+        $datapengujian->jaraksumbu1_2           = $request->jaraksumbu1_2;
+        $datapengujian->jaraksumbu2_3           = $request->jaraksumbu2_3;
+        $datapengujian->jaraksumbu3_4           = $request->jaraksumbu3_4;
+        $datapengujian->kelasjalanterendah      = $request->kelasjalanterendah;
+        $datapengujian->save();
+        }
+
         return response()->json(['kendaraan' => $request->pendaftaran]);
         
     }
@@ -364,6 +454,18 @@ class PendaftaranController extends Controller
         $pendaftaran->pos1          = '0';
         $pendaftaran->save();
     }
+
+    // public function statusdata0($id){
+    //     $pendaftaran = Pendaftaran::find($id);
+    //     $pendaftaran->statusdata   = '0';
+    //     $pendaftaran->save();
+    // }
+
+    // public function statusdata1($id){
+    //     $pendaftaran = Pendaftaran::find($id);
+    //     $pendaftaran->statusdata   = '1';
+    //     $pendaftaran->save();
+    // }
 
     public function destroy($id)
     {
@@ -384,7 +486,7 @@ class PendaftaranController extends Controller
     public function printNK($id)
     {
         
-		$kendaraan = Pendaftaran::leftJoin('identitaskendaraans','identitaskendaraans.id','=','pendaftarans.identitaskendaraan_id')->where('pendaftarans.id',$id)->first();
+        $kendaraan = Pendaftaran::leftJoin('identitaskendaraans','identitaskendaraans.id','=','pendaftarans.identitaskendaraan_id')->where('pendaftarans.id',$id)->first();
         $wilayah = Kodewilayah::select('namawilayah')->where('kodewilayah',$kendaraan->identitaskendaraan->kodewilayah)->first();
         // return response()->json(['kendaraan' => $wilayah]);
         return view('admin.cetak.nk_print', compact('kendaraan'), compact('wilayah'));
@@ -458,215 +560,7 @@ class PendaftaranController extends Controller
         return view('admin.cetak.bukuujihal7_print', compact('data'));
     }
 
-    public function printlaporanloketpendaftaran($tgl)
-    {
-        $tglcetak = date('d-m-Y', strtotime($tgl));
-        $tglcreate = date_create($tgl);
-        $hari = date_format($tglcreate,"D");
- 
-        switch($hari){
-            case 'Sun':
-                $hari_ini = "Minggu";
-            break;
-     
-            case 'Mon':         
-                $hari_ini = "Senin";
-            break;
-     
-            case 'Tue':
-                $hari_ini = "Selasa";
-            break;
-     
-            case 'Wed':
-                $hari_ini = "Rabu";
-            break;
-     
-            case 'Thu':
-                $hari_ini = "Kamis";
-            break;
-     
-            case 'Fri':
-                $hari_ini = "Jumat";
-            break;
-     
-            case 'Sat':
-                $hari_ini = "Sabtu";
-            break;
-            
-            default:
-                $hari_ini = "Tidak di ketahui";     
-            break;
-        }
-        $tglprint = $hari_ini.', '.$tglcetak;
-
-        $umum       = Pendaftaran::leftJoin('identitaskendaraans','identitaskendaraans.id','=','pendaftarans.identitaskendaraan_id')->where('tglpendaftaran',$tgl)->where('peruntukan','Umum')->count();
-        $tidakumum  = Pendaftaran::leftJoin('identitaskendaraans','identitaskendaraans.id','=','pendaftarans.identitaskendaraan_id')->where('tglpendaftaran',$tgl)->where('peruntukan','Tidak Umum')->count();
-        $kendaraan  = Pendaftaran::leftJoin('identitaskendaraans','identitaskendaraans.id','=','pendaftarans.identitaskendaraan_id')->leftJoin('kodepenerbitans','kodepenerbitans.id','=','pendaftarans.kodepenerbitans_id')->leftJoin('pengujians','pengujians.pendaftaran_id','=','pendaftarans.id')->leftJoin('jenis','jenis.jenis','=','identitaskendaraans.jenis')->leftJoin('klasifikasis','klasifikasis.id','=','jenis.klasifikasis_id')->where('tglpendaftaran',$tgl)->get();
-        $lulus      = Pendaftaran::leftJoin('pengujians','pengujians.pendaftaran_id','=','pendaftarans.id')->where('tglpendaftaran',$tgl)->where('statuslulusuji','1')->count();
-        $tidaklulus = Pendaftaran::leftJoin('pengujians','pengujians.pendaftaran_id','=','pendaftarans.id')->where('tglpendaftaran',$tgl)->where('statuslulusuji','0')->count();
-        $jeniskendaraan = Jenis::all();
-        $jenispelayanan = kodepenerbitan::all();
-
-        $totaljenis = array();
-        foreach ($jeniskendaraan as $jenis) {
-            $arr = array(
-                        'jenis'  => $jenis->jenis,
-                        'jumlah' => Pendaftaran::leftJoin('identitaskendaraans','identitaskendaraans.id','=','pendaftarans.identitaskendaraan_id')->where('tglpendaftaran',$tgl)->where('jenis',$jenis->jenis)->count(),
-                        );
-            array_push($totaljenis, $arr);
-        }
-
-        $pelayanan = array();
-        foreach ($jenispelayanan as $data) {
-            $arr = array(
-                        'jenispelayanan'  => $data->keterangan,
-                        'jumlah' => Pendaftaran::leftJoin('kodepenerbitans','kodepenerbitans.id','=','pendaftarans.kodepenerbitans_id')->where('tglpendaftaran',$tgl)->where('keterangan',$data->keterangan)->count(),
-                        );
-            array_push($pelayanan, $arr);
-        }
-        return view('admin.cetak.laporanloketpendaftaran_print', ['kendaraan' => $kendaraan,'tglprint' => $tglprint, 'umum' => $umum, 'tidakumum' => $tidakumum, 'lulus' => $lulus, 'tidaklulus' => $tidaklulus, 'jenis' => $totaljenis, 'jenispelayanan' => $pelayanan ]);
-    }
-
-    public function printlaporanloketpendaftaranbulanan($tgl)
-    {
-        $tglcetak = date('d-m-Y', strtotime($tgl));
-        $tglcreate = date_create($tgl);
-        $hari = date_format($tglcreate,"D");
-        $bulan = date_format($tglcreate,"m");
-        $bulanan = date_format($tglcreate,"F");
-        $tahun = date_format($tglcreate,"Y");
- 
-        switch($hari){
-            case 'Sun':
-                $hari_ini = "Minggu";
-            break;
-     
-            case 'Mon':         
-                $hari_ini = "Senin";
-            break;
-     
-            case 'Tue':
-                $hari_ini = "Selasa";
-            break;
-     
-            case 'Wed':
-                $hari_ini = "Rabu";
-            break;
-     
-            case 'Thu':
-                $hari_ini = "Kamis";
-            break;
-     
-            case 'Fri':
-                $hari_ini = "Jumat";
-            break;
-     
-            case 'Sat':
-                $hari_ini = "Sabtu";
-            break;
-            
-            default:
-                $hari_ini = "Tidak di ketahui";     
-            break;
-        }
-        $tglprint = strtoupper($bulanan);
-
-        $umum       = Pendaftaran::leftJoin('identitaskendaraans','identitaskendaraans.id','=','pendaftarans.identitaskendaraan_id')->whereMonth('tglpendaftaran',$bulan)->whereYear('tglpendaftaran',$tahun)->where('peruntukan','Umum')->count();
-        $tidakumum  = Pendaftaran::leftJoin('identitaskendaraans','identitaskendaraans.id','=','pendaftarans.identitaskendaraan_id')->whereMonth('tglpendaftaran',$bulan)->whereYear('tglpendaftaran',$tahun)->where('peruntukan','Tidak Umum')->count();
-        $lulus      = Pendaftaran::leftJoin('pengujians','pengujians.pendaftaran_id','=','pendaftarans.id')->whereMonth('tglpendaftaran',$bulan)->whereYear('tglpendaftaran',$tahun)->where('statuslulusuji','1')->count();
-        $tidaklulus = Pendaftaran::leftJoin('pengujians','pengujians.pendaftaran_id','=','pendaftarans.id')->whereMonth('tglpendaftaran',$bulan)->whereYear('tglpendaftaran',$tahun)->where('statuslulusuji','0')->count();
-        $jeniskendaraan = Jenis::all();
-        $jenispelayanan = kodepenerbitan::all();
-
-        $totaljenis = array();
-        foreach ($jeniskendaraan as $jenis) {
-            $arr = array(
-                        'jenis'  => $jenis->jenis,
-                        'jumlah' => Pendaftaran::leftJoin('identitaskendaraans','identitaskendaraans.id','=','pendaftarans.identitaskendaraan_id')->whereMonth('tglpendaftaran',$bulan)->whereYear('tglpendaftaran',$tahun)->where('jenis',$jenis->jenis)->count(),
-                        );
-            array_push($totaljenis, $arr);
-        }
-
-        $pelayanan = array();
-        foreach ($jenispelayanan as $data) {
-            $arr = array(
-                        'jenispelayanan'  => $data->keterangan,
-                        'jumlah' => Pendaftaran::leftJoin('kodepenerbitans','kodepenerbitans.id','=','pendaftarans.kodepenerbitans_id')->whereMonth('tglpendaftaran',$bulan)->whereYear('tglpendaftaran',$tahun)->where('keterangan',$data->keterangan)->count(),
-                        );
-            array_push($pelayanan, $arr);
-        }
-        return view('admin.cetak.laporanloketpendaftaranbulanan_print', ['tglprint' => $tglprint, 'umum' => $umum, 'tidakumum' => $tidakumum, 'lulus' => $lulus, 'tidaklulus' => $tidaklulus, 'jenis' => $totaljenis, 'jenispelayanan' => $pelayanan ]);
-    }
-
-    public function printlaporanloketpendaftarantahunan($tgl)
-    {
-        $tglcetak = date('d-m-Y', strtotime($tgl));
-        $tglcreate = date_create($tgl);
-        $hari = date_format($tglcreate,"D");
-        $bulan = date_format($tglcreate,"m");
-        $tahun = date_format($tglcreate,"Y");
- 
-        switch($hari){
-            case 'Sun':
-                $hari_ini = "Minggu";
-            break;
-     
-            case 'Mon':         
-                $hari_ini = "Senin";
-            break;
-     
-            case 'Tue':
-                $hari_ini = "Selasa";
-            break;
-     
-            case 'Wed':
-                $hari_ini = "Rabu";
-            break;
-     
-            case 'Thu':
-                $hari_ini = "Kamis";
-            break;
-     
-            case 'Fri':
-                $hari_ini = "Jumat";
-            break;
-     
-            case 'Sat':
-                $hari_ini = "Sabtu";
-            break;
-            
-            default:
-                $hari_ini = "Tidak di ketahui";     
-            break;
-        }
-        $tglprint = $tahun;
-
-        $umum       = Pendaftaran::leftJoin('identitaskendaraans','identitaskendaraans.id','=','pendaftarans.identitaskendaraan_id')->whereYear('tglpendaftaran',$tahun)->where('peruntukan','Umum')->count();
-        $tidakumum  = Pendaftaran::leftJoin('identitaskendaraans','identitaskendaraans.id','=','pendaftarans.identitaskendaraan_id')->whereYear('tglpendaftaran',$tahun)->where('peruntukan','Tidak Umum')->count();
-        $lulus      = Pendaftaran::leftJoin('pengujians','pengujians.pendaftaran_id','=','pendaftarans.id')->whereYear('tglpendaftaran',$tahun)->where('statuslulusuji','1')->count();
-        $tidaklulus = Pendaftaran::leftJoin('pengujians','pengujians.pendaftaran_id','=','pendaftarans.id')->whereYear('tglpendaftaran',$tahun)->where('statuslulusuji','0')->count();
-        $jeniskendaraan = Jenis::all();
-        $jenispelayanan = kodepenerbitan::all();
-
-        $totaljenis = array();
-        foreach ($jeniskendaraan as $jenis) {
-            $arr = array(
-                        'jenis'  => $jenis->jenis,
-                        'jumlah' => Pendaftaran::leftJoin('identitaskendaraans','identitaskendaraans.id','=','pendaftarans.identitaskendaraan_id')->whereYear('tglpendaftaran',$tahun)->where('jenis',$jenis->jenis)->count(),
-                        );
-            array_push($totaljenis, $arr);
-        }
-
-        $pelayanan = array();
-        foreach ($jenispelayanan as $data) {
-            $arr = array(
-                        'jenispelayanan'  => $data->keterangan,
-                        'jumlah' => Pendaftaran::leftJoin('kodepenerbitans','kodepenerbitans.id','=','pendaftarans.kodepenerbitans_id')->whereYear('tglpendaftaran',$tahun)->where('keterangan',$data->keterangan)->count(),
-                        );
-            array_push($pelayanan, $arr);
-        }
-        return view('admin.cetak.laporanloketpendaftaranbulanan_print', ['tglprint' => $tglprint, 'umum' => $umum, 'tidakumum' => $tidakumum, 'lulus' => $lulus, 'tidaklulus' => $tidaklulus, 'jenis' => $totaljenis, 'jenispelayanan' => $pelayanan ]);
-    }
+    
 
 
 }

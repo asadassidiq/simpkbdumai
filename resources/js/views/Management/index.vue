@@ -59,7 +59,7 @@
                 </v-col>
                 <v-col cols="12" sm="6">
                     <v-select 
-                    :items="['Pendaftaran', 'Retribusi', 'Cetak', 'Penguji', 'Verifikator']" label="Level*" v-model="form.level" required >
+                    :items="['Pendaftaran', 'Retribusi', 'Cetak', 'Penguji', 'Verifikator','Datakendaraan']" label="Level*" v-model="form.level" required >
                     </v-select>
               </v-col>
               </v-row>

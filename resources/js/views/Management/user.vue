@@ -111,7 +111,7 @@
 export default {
     data() {
         return {
-            level : ['Pendaftaran', 'Retribusi', 'Cetak', 'Penguji'],
+            level : ['Pendaftaran', 'Retribusi', 'Cetak', 'Penguji', 'Datakendaraan'],
             dialog: false,
             halamanakses: [],
             halaman: [],

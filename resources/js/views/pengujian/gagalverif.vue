@@ -21,7 +21,7 @@
                             <v-btn class="v-btn-simple" v-if="item.pos1 == '2'" color="error" icon v-on="on" @click="editpendaftaran(item.pendaftaran_id)">
                                 <v-icon>mdi-alert-remove</v-icon>
                             </v-btn>
-                            <v-btn class="v-btn-simple" v-else-if="item.pos1 == '1'" color="success" icon v-on="on" @click="editpendaftaran(item.identitaskendaraan_id)">
+                            <v-btn class="v-btn-simple" v-else-if="item.pos1 == '1'" color="success" icon v-on="on" @click="editpendaftaran(item.pendaftaran_id)">
                                 <v-icon>mdi-checkbox-marked-circle-outline</v-icon>
                             </v-btn>
                         </template>
@@ -36,7 +36,7 @@
                             <v-btn class="v-btn-simple" v-if="item.pos2 == '2'" color="error" icon v-on="on" @click="editpendaftaran(item.pendaftaran_id)">
                                 <v-icon>mdi-alert-remove</v-icon>
                             </v-btn>
-                            <v-btn class="v-btn-simple" v-else-if="item.pos2 == '1'" color="success" icon v-on="on" @click="editpendaftaran(item.identitaskendaraan_id)">
+                            <v-btn class="v-btn-simple" v-else-if="item.pos2 == '1'" color="success" icon v-on="on" @click="editpendaftaran(item.pendaftaran_id)">
                                 <v-icon>mdi-checkbox-marked-circle-outline</v-icon>
                             </v-btn>
                         </template>
@@ -44,11 +44,21 @@
                     </v-tooltip>
                 </div>
             </template>
+            <template v-slot:item.hasil="{ item }">
+                <div class="text-center d-flex align-center">
+                    <v-tooltip top>
+                        <template v-slot:activator="{on}">
+                            <v-btn depressed color="success" x-small  v-if="item.statuslulusuji == 1"> Lulus </v-btn>
+                            <v-btn depressed color="error" x-small v-if="item.statuslulusuji == 0">Belum Lulus </v-btn>
+                        </template>
+                    </v-tooltip>
+                </div>
+            </template>
             <template v-slot:item.actions="{ item }">
                 <div class="text-center d-flex align-center">
                     <v-tooltip top>
                         <template v-slot:activator="{on}">
-                            <v-btn class="v-btn-simple" color="primary" icon v-on="on" @click.stop="dialog = true">
+                            <v-btn class="v-btn-simple" color="primary" icon v-on="on" @click.stop="setAcc(item.pendaftaran_id)">
                                 <v-icon>mdi-cog-clockwise</v-icon>
                             </v-btn>
                         </template>
@@ -74,7 +84,9 @@
               <v-btn color="green darken-1" text  @click="dialog = false" >
                 Cancel
               </v-btn>
-
+              <v-btn color="green darken-1" text  @click="rejected()" >
+                Gagal
+              </v-btn>
               <v-btn color="green darken-1" text @click="acc()"  >
                 Setuju
               </v-btn>
@@ -95,6 +107,7 @@ export default {
                 { text: 'Jenis Pendaftaran', value: 'keterangan' },
                 { text: 'Pos1', value: 'pos1', sortable: false },
                 { text: 'Pos2', value: 'pos2', sortable: false },
+                { text: 'Hasil', value: 'hasil', sortable: false },
                 { text: 'Actions', value: 'actions', sortable: false },
             ],
             form: new Form({}),
@@ -131,14 +144,47 @@ export default {
                 }
             })
         },
+        setAcc(id){
+            this.idAcc = id
+            this.dialog = true
+        },
         acc(){
-            Swal.fire({
-                        type: 'success',
-                        title: 'saved',
-                        showConfirmButton: false,
-                        timer: 500,
+        this.form.patch('/api/pengujian/acc/' + this.idAcc)
+                .then((result) => {
+                    Swal.fire({
+                                type: 'success',
+                                title: 'saved',
+                                showConfirmButton: false,
+                                timer: 500,
+                            })
+                            this.dialog = false;
+                            this.refreshPost
+                    }).catch((err) => {
+                    Swal.fire({
+                        type: 'error',
+                        title: 'Ooops',
+                        text: err
                     })
-                    this.dialog = false;
+                });
+        },
+        rejected(){
+            this.form.patch('/api/pengujian/rejected/' + this.idAcc)
+                .then((result) => {
+                    Swal.fire({
+                                type: 'success',
+                                title: 'saved',
+                                showConfirmButton: false,
+                                timer: 500,
+                            })
+                            this.dialog = false;
+                            this.refreshPost();
+                    }).catch((err) => { 
+                    Swal.fire({
+                        type: 'error',
+                        title: 'Ooops',
+                        text: err
+                    })
+                });
         },
         refreshPost() {
             this.$store.dispatch('getVerifgagal');

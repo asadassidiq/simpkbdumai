@@ -16,7 +16,7 @@
           >
             <form @submit.prevent="authenticate">
             <v-card class="elevation-12 yellow lighten-1 text-center">
-            <v-card-title >SIM PKB BANJARMASIN</v-card-title>
+            <v-card-title >SIM PKB DUMAI</v-card-title>
               <v-card-text>
                   <v-text-field class="white--text"
                     v-model="form.email"
@@ -80,6 +80,8 @@ import {login} from '../helpers/auth';
               window.location.href =  '/admin/transaksis';
             }else if(id.level == 'Cetak'){
               window.location.href =  '/admin/hasiluji';
+            }else if(id.level == 'Datakendaraan'){
+              window.location.href =  '/admin/datakendaraans';
             }else{            
               window.location.href =  '/admin/pendaftarans';
             }

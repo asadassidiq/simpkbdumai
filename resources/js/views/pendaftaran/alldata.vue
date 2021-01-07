@@ -47,19 +47,11 @@
                     </v-tooltip>
                     <v-tooltip top>
                         <template v-slot:activator="{on}">
-                            <v-btn class="v-btn-simple" color="error" icon v-on="on" @click="print(item.identitaskendaraan_id)">
-                                <v-icon>mdi-pdf-box</v-icon>
+                            <v-btn class="v-btn-simple" color="primary" icon v-on="on" @click="print2(item.id)">
+                                <v-icon>mdi-printer-check</v-icon>
                             </v-btn>
                         </template>
-                        <span>pdf</span>
-                    </v-tooltip>
-                    <v-tooltip top v-if="halamanaksespendaftaran.delete == '1' ">
-                        <template v-slot:activator="{on}">
-                            <v-btn  class="v-btn-simple" color="error" icon v-on="on" @click="deletependaftaran(item.id)">
-                                <v-icon>mdi-trash-can</v-icon>
-                            </v-btn>
-                        </template>
-                        <span>delete</span>
+                        <span>print</span>
                     </v-tooltip>
                 </div>
 

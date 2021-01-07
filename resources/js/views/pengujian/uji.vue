@@ -14,7 +14,7 @@
 	<v-col cols="12">
 	<v-card class="mx-auto yellow lighten-3 black--text" tile>
 		<v-row no-gutters>
-		<v-col cols="2">
+		<v-col cols="4">
 		<v-list-item two-line>
 	      <v-list-item-content>
 	        <v-list-item-title>No Kendaraan</v-list-item-title>
@@ -22,7 +22,7 @@
 	      </v-list-item-content>
 	    </v-list-item>
 		</v-col>
-		<v-col cols="2">
+		<v-col cols="4">
 		<v-list-item two-line>
 	      <v-list-item-content>
 	        <v-list-item-title>No Uji</v-list-item-title>
@@ -30,7 +30,7 @@
 	      </v-list-item-content>
 	    </v-list-item>
 		</v-col>
-		<v-col cols="2">
+		<v-col cols="4">
 		<v-list-item two-line>
 	      <v-list-item-content>
 	        <v-list-item-title>Th Pembuatan</v-list-item-title>
@@ -38,7 +38,7 @@
 	      </v-list-item-content>
 	    </v-list-item>
 		</v-col>
-		<v-col cols="2">
+		<v-col cols="4">
 		<v-list-item two-line>
 	      <v-list-item-content>
 	        <v-list-item-title>Merek</v-list-item-title>
@@ -46,7 +46,7 @@
 	      </v-list-item-content>
 	    </v-list-item>
 		</v-col>
-		<v-col cols="2">
+		<v-col cols="4">
 		<v-list-item two-line>
 	      <v-list-item-content>
 	        <v-list-item-title>JBB</v-list-item-title>
@@ -54,7 +54,7 @@
 	      </v-list-item-content>
 	    </v-list-item>
 		</v-col>
-		<v-col cols="2">
+		<v-col cols="4">
 		<v-list-item two-line>
 	      <v-list-item-content>
 	        <v-list-item-title>Jenis Kendaraan</v-list-item-title>
@@ -62,7 +62,7 @@
 	      </v-list-item-content>
 	    </v-list-item>
 		</v-col>
-		<v-col cols="2">
+		<v-col cols="4">
 		<v-list-item two-line>
 	      <v-list-item-content>
 	        <v-list-item-title>No Mesin</v-list-item-title>
@@ -70,7 +70,7 @@
 	      </v-list-item-content>
 	    </v-list-item>
 		</v-col>
-		<v-col cols="3">
+		<v-col cols="4">
 		<v-list-item two-line>
 	      <v-list-item-content>
 	        <v-list-item-title>No Rangka</v-list-item-title>
@@ -81,6 +81,22 @@
 		</v-row>
     </v-card>
 	</v-col>
+	<v-col cols="12" v-if="activeBtn === 0">
+	<v-card class="mx-auto yellow lighten-3 black--text">
+	<v-card-title>FOTO KENDARAAN</v-card-title>
+	<v-card-subtitle>
+		<v-row>
+			<v-col cols="2" class="text-center">
+            	<v-btn class="mx-2" fab dark small color="primary" @click="fotokendaraan">
+					<v-icon dark> mdi-folder-upload </v-icon>
+				</v-btn>
+            </v-col>
+		</v-row>
+	</v-card-subtitle>
+	</v-card-title>
+	</v-card>
+	</v-col>
+
 	<v-col cols="12" v-if="activeBtn === itemuji[0]">
 	<v-card class="mx-auto yellow lighten-3 black--text">
 	<v-card-title>PEMERIKSAAN VISUAL KENDARAAN</v-card-title>
@@ -757,6 +773,17 @@
 			<v-col cols="12" sm="6" md="3">
 				<v-text-field type="number" v-model="form.bsumbu4" outlined label="S4" suffix="Kg"></v-text-field>
 			</v-col>
+			<v-col cols="12" sm="6" md="3">
+            
+            <v-row>
+                <v-col cols="9">
+                <v-text-field label="Berat Kosong (Kg)" name="beratkosong" v-model="form.beratkosong" type="number"  outlined dense required></v-text-field>
+                </v-col>
+                <v-col cols="3">
+                <v-btn class="mx-2" fab dark small color="primary" @click="getbk()" ><v-icon dark> mdi-calculator-variant-outline </v-icon></v-btn>
+                </v-col>
+            </v-row>
+        </v-col>
 		</v-row>
 	</v-card-subtitle>
 	</v-card>
@@ -829,7 +856,7 @@
 			<v-col cols="12" sm="6" md="3">
 				<v-row>
 				<v-col cols="9">
-				<v-text-field v-model="form.alatuji_remutamatotalgayapengereman" type="number" outlined label="Efisiensi Rem Utama" suffix="%"></v-text-field>
+				<v-text-field v-model="form.alatuji_remutamatotalgayapengereman" type="number" outlined label="Total Gaya Rem Utama" suffix="Kg"></v-text-field>
 				</v-col>
 				<v-col cols="3">
 				<v-btn class="mx-2" fab dark small color="primary" @click="counteffisensirem()" ><v-icon dark> mdi-calculator-variant-outline </v-icon></v-btn>
@@ -1118,6 +1145,9 @@
     	goBack() {
           window.history.length > 1 ? this.$router.go(-1) : this.$router.push('/')
         },
+        fotokendaraan() {
+            window.open('/upload/'+this.$route.params.id+'/fotokendaraan/', "_blank");
+        },
         savePost() {
         },
         getbk(){
@@ -1195,6 +1225,7 @@
                     this.form.bsumbu2 = result.data.kendaraan.beratsumbu2
                     this.form.bsumbu3 = result.data.kendaraan.beratsumbu3
                     this.form.bsumbu4 = result.data.kendaraan.beratsumbu4
+                    this.form.beratkosong = result.data.kendaraan.beratkosong
                     this.form.gayaremkanans1 = result.data.kendaraan.gayaremkanans1
                     this.form.gayaremkanans2 = result.data.kendaraan.gayaremkanans2
                     this.form.gayaremkanans3 = result.data.kendaraan.gayaremkanans3
@@ -1290,7 +1321,7 @@
                         timer: 500,
                     })
                     console.log(this.form);
-                   this.$router.push('/uji/pengujians/'+id)
+                   this.$router.push('/uji/pendaftarans')
                 }).catch((err) => {
                     Swal.fire({
                         type: 'error',
@@ -1314,11 +1345,11 @@
 		    var bs3 = this.form.bsumbu3;
 		    var bs4 = this.form.bsumbu4;
 
-		    var totals  = (parseInt(s1)/10)+(parseInt(s2)/10)+(parseInt(s3)/10)+(parseInt(s4)/10)+(parseInt(s5)/10)+(parseInt(s6)/10)+(parseInt(s7)/10)+(parseInt(s8)/10);
+		    var totals  = parseInt(s1)+parseInt(s2)+parseInt(s3)+parseInt(s4)+parseInt(s5)+parseInt(s6)+parseInt(s7)+parseInt(s8);
 		    var btotals = parseInt(bs1)+parseInt(bs2)+parseInt(bs3)+parseInt(bs4);
 
 		    var hasil = (totals/btotals)*100;
-        	this.form.alatuji_remutamatotalgayapengereman = hasil.toFixed(2);
+        	this.form.alatuji_remutamatotalgayapengereman = totals;
 
         	if (parseInt(s1)>parseInt(s5)) {
 		        var hasilS1 = ((parseInt(s1)-parseInt(s5))/parseInt(bs1));
@@ -1357,7 +1388,6 @@
     	var id = this.$route.params.id
         if (id) {
             this.fetchPost(id)
-            console.log(id)
         }
     }
 

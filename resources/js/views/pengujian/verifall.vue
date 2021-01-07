@@ -18,10 +18,10 @@
                 <div class="text-center d-flex align-center">
                     <v-tooltip top>
                         <template v-slot:activator="{on}">
-                            <v-btn class="v-btn-simple" v-if="item.pos1 == '2'" color="error" icon v-on="on" @click="editpendaftaran(item.identitaskendaraan_id)">
+                            <v-btn class="v-btn-simple" v-if="item.pos1 == '2'" color="error" icon v-on="on" @click="editpendaftaran(item.pendaftaran_id)">
                                 <v-icon>mdi-alert-remove</v-icon>
                             </v-btn>
-                            <v-btn class="v-btn-simple" v-else-if="item.pos1 == '1'" color="success" icon v-on="on" @click="editpendaftaran(item.identitaskendaraan_id)">
+                            <v-btn class="v-btn-simple" v-else-if="item.pos1 == '1'" color="success" icon v-on="on" @click="editpendaftaran(item.pendaftaran_id)">
                                 <v-icon>mdi-checkbox-marked-circle-outline</v-icon>
                             </v-btn>
                         </template>
@@ -33,14 +33,24 @@
                 <div class="text-center d-flex align-center">
                     <v-tooltip top>
                         <template v-slot:activator="{on}">
-                            <v-btn class="v-btn-simple" v-if="item.pos2 == '2'" color="error" icon v-on="on" @click="editpendaftaran(item.identitaskendaraan_id)">
+                            <v-btn class="v-btn-simple" v-if="item.pos2 == '2'" color="error" icon v-on="on" @click="editpendaftaran(item.pendaftaran_id)">
                                 <v-icon>mdi-alert-remove</v-icon>
                             </v-btn>
-                            <v-btn class="v-btn-simple" v-else-if="item.pos2 == '1'" color="success" icon v-on="on" @click="editpendaftaran(item.identitaskendaraan_id)">
+                            <v-btn class="v-btn-simple" v-else-if="item.pos2 == '1'" color="success" icon v-on="on" @click="editpendaftaran(item.pendaftaran_id)">
                                 <v-icon>mdi-checkbox-marked-circle-outline</v-icon>
                             </v-btn>
                         </template>
                         <span>edit</span>
+                    </v-tooltip>
+                </div>
+            </template>            
+            <template v-slot:item.hasil="{ item }">
+                <div class="text-center d-flex align-center">
+                    <v-tooltip top>
+                        <template v-slot:activator="{on}">
+                            <v-btn depressed color="success" x-small  v-if="item.statuslulusuji == 1"> Lulus </v-btn>
+                            <v-btn depressed color="error" x-small v-if="item.statuslulusuji == 0">Belum Lulus </v-btn>
+                        </template>
                     </v-tooltip>
                 </div>
             </template>
@@ -48,7 +58,7 @@
                 <div class="text-center d-flex align-center">
                     <v-tooltip top>
                         <template v-slot:activator="{on}">
-                            <v-btn class="v-btn-simple" color="primary" icon v-on="on" @click.stop="setAcc(item.id)">
+                            <v-btn class="v-btn-simple" color="primary" icon v-on="on" @click.stop="setAcc(item.pendaftaran_id)">
                                 <v-icon>mdi-cog-clockwise</v-icon>
                             </v-btn>
                         </template>
@@ -92,12 +102,13 @@ export default {
             search: '',
             idAcc: '',
             headers: [
-                { text: 'No Kendaraan', value: 'identitaskendaraan.noregistrasikendaraan' },
-                { text: 'No Uji', value: 'identitaskendaraan.nouji' },
-                { text: 'Nama', value: 'identitaskendaraan.nama' },
-                { text: 'Jenis Pendaftaran', value: 'kodepenerbitans.keterangan' },
+                { text: 'No Kendaraan', value: 'noregistrasikendaraan' },
+                { text: 'No Uji', value: 'nouji' },
+                { text: 'Nama', value: 'nama' },
+                { text: 'Jenis Pendaftaran', value: 'keterangan' },
                 { text: 'Pos1', value: 'pos1', sortable: false },
                 { text: 'Pos2', value: 'pos2', sortable: false },
+                { text: 'hasil', value: 'hasil', sortable: false },
                 { text: 'Actions', value: 'actions', sortable: false },
             ],
             form: new Form({
@@ -154,6 +165,7 @@ export default {
                                 timer: 500,
                             })
                             this.dialog = false;
+                            this.refreshPost
                     }).catch((err) => {
                     Swal.fire({
                         type: 'error',

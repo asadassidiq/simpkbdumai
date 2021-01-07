@@ -29,40 +29,40 @@
           <v-data-table :headers="headers1" :items="pendaftarans" :search="search" class="elevation-1 yellow lighten-3" >
             <template v-slot:item.actions="{ item }">
                 <div class="text-center d-flex align-center">
-                    <v-tooltip top v-if="item.pos1 === 1 && item.pos2 === 1">
+                    <v-tooltip top v-if="item.pos1 === 1 && item.pos2 === 1 && item.verif === 'y'">
                         <template v-slot:activator="{on}">
                             <v-btn depressed color="blue lighten-1" x-small @click="print1(item.id)"> hal 1 </v-btn>
                         </template>
                     </v-tooltip>
-                    <v-tooltip top v-if="item.pos1 === 1 && item.pos2 === 1">
+                    <v-tooltip top v-if="item.pos1 === 1 && item.pos2 === 1 && item.verif === 'y'">
                         <template v-slot:activator="{on}">
                             <v-btn depressed color="blue lighten-2" x-small @click="print23(item.id)"> hal 23 </v-btn>
                         </template>
                     </v-tooltip>
-                    <v-tooltip top v-if="item.pos1 === 1 && item.pos2 === 1">
+                    <v-tooltip top v-if="item.pos1 === 1 && item.pos2 === 1 && item.verif === 'y'">
                         <template v-slot:activator="{on}">
                             <v-btn depressed color="blue lighten-3" x-small @click="print45(item.id)"> hal 45 </v-btn>
                         </template>
                     </v-tooltip>
-                    <v-tooltip top v-if="item.pos1 === 1 && item.pos2 === 1">
+                    <v-tooltip top v-if="item.pos1 === 1 && item.pos2 === 1 && item.verif === 'y'">
                         <template v-slot:activator="{on}">
                             <v-btn depressed color="blue lighten-4" x-small @click="print6(item.id)"> hal 6 </v-btn>
                         </template>
                     </v-tooltip>
-                    <v-tooltip top v-if="item.pos1 === 1 && item.pos2 === 1">
+                    <v-tooltip top v-if="item.pos1 === 1 && item.pos2 === 1 && item.verif === 'y'">
                         <template v-slot:activator="{on}">
                             <v-btn depressed color="blue lighten-5" x-small @click="print7(item.id)"> hal 7 </v-btn>
                         </template>
                     </v-tooltip>
 					<v-tooltip top>
-                        <template v-slot:activator="{on}" v-if="item.pos1 === 2 && item.pos2 === 2">
+                        <template v-slot:activator="{on}" v-if="item.pos1 === 2 && item.pos2 === 2 && item.verif === 'y'">
                             <v-btn  class="v-btn-simple" color="error" icon v-on="on" @click="printsktl(item.id)">
                                 <v-icon>mdi-printer</v-icon>
                             </v-btn>
                         </template>
                         <span>SKTL</span>
                     </v-tooltip>
-                    <v-tooltip top v-if="item.pos1 === 1 && item.pos2 === 1">
+                    <v-tooltip top v-if="item.pos1 === 1 && item.pos2 === 1 && item.verif === 'y'">
                         <template v-slot:activator="{on}">
                             <v-btn  class="v-btn-simple" color="success" icon v-on="on" @click="print2(item.id)">
                                 <v-icon>mdi-printer</v-icon>

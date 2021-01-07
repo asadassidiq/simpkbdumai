@@ -32,27 +32,10 @@
               <v-text-field name="nama" v-model="form.nama" label="Nama" outlined dense clearable required></v-text-field>
             </v-col>
             <v-col cols="12" sm="4" md="4">
-              <v-text-field name="noidentitaspemilik" v-model="form.noidentitaspemilik" label="Nomer Identitas" outlined dense clearable required></v-text-field>
-            </v-col>
-            <v-col cols="12" sm="4" md="4">
               <v-textarea filled auto-grow row="4" v-model="form.alamat" row-height="10" name="alamat" label="Alamat" outlined dense clearable required></v-textarea>
             </v-col>
             <v-col cols="12" sm="4" md="4">
-              <v-text-field name="nosertifikatreg" v-model="form.nosertifikatreg" label="No Sertifikat Reg" outlined dense required clearable></v-text-field>
-            </v-col>
-            <v-col cols="12" sm="6" md="4">
-              <v-menu ref="menu" v-model="menu":close-on-content-click="false" :return-value.sync="date"
-                transition="scale-transition" offset-y min-width="290px">
-                <template v-slot:activator="{ on, attrs }">
-                  <v-text-field v-model="form.tglsertifikatreg" name="tglsertifikatreg" label="Tgl Sertifikat Reg" outlined dense required v-bind="attrs" v-on="on"
-                  ></v-text-field>
-                </template>
-                <v-date-picker v-model="form.tglsertifikatreg" no-title scrollable>
-                  <v-spacer></v-spacer>
-                  <v-btn text color="primary" @click="menu = false">Cancel</v-btn>
-                  <v-btn text color="primary" @click="$refs.menu.save(form.tglsertifikatreg)">OK</v-btn>
-                </v-date-picker>
-              </v-menu>
+              <v-text-field name="noidentitaspemilik" v-model="form.noidentitaspemilik" label="Nomer Identitas" outlined dense clearable required></v-text-field>
             </v-col>
             <v-col cols="12" sm="4" md="4">
             <v-row no-gutters>
@@ -82,20 +65,53 @@
                 </v-col>
             </v-row>
         </v-col>
+        <v-col class="d-flex" cols="12" sm="4" md="4">
+          <v-row no-gutters>
+              <v-col cols="10">
+                  <v-autocomplete :items="jeniskendaraan" item-text="jenis" 
+                  item-value="jenis" v-model="form.jeniskendaraan" name="jeniskendaraan" label="Jenis Kendaraan" return-object outlined dense clearable required :disabled="form.jenispendaftaran === 2 || form.jenispendaftaran === 9 || form.jenispendaftaran === 10 || form.jenispendaftaran === 7 || form.jenispendaftaran === 3 || form.jenispendaftaran === 4 || form.jenispendaftaran === 8 || form.jenispendaftaran === 11 || form.jenispendaftaran.id === 2 || form.jenispendaftaran.id === 9 || form.jenispendaftaran.id === 10 || form.jenispendaftaran.id === 7 || form.jenispendaftaran.id === 3 || form.jenispendaftaran.id === 4 || form.jenispendaftaran.id === 8 || form.jenispendaftaran.id === 11"></v-autocomplete>
+              </v-col>
+              <v-col cols="2">
+                  <v-btn class="v-btn-simple" color="error" icon v-on="on" @click="dialogjenis = !dialogjenis">
+                      <v-icon>mdi-plus</v-icon>
+                  </v-btn>
+              </v-col>
+          </v-row>
+          </v-col>
             <v-col cols="12" sm="4" md="4">
               <v-text-field name="thpembuatan" v-model="form.thpembuatan" label="Tahun Pembuatan" outlined dense clearable required></v-text-field>
-            </v-col>
-            <v-col cols="12" sm="4" md="4">
-              <v-text-field name="isisilender" v-model="form.isisilinder"  label="Isi Silender" outlined dense clearable required></v-text-field>
-            </v-col>
-            <v-col class="d-flex" cols="12" sm="4" md="4">
-              <v-select :items="bahanbakar" v-model="form.bahanbakar" name="bahanbakar" label="Bahan Bakar" return-object outlined dense clearable required></v-select>
             </v-col>
             <v-col cols="12" sm="4" md="4">
               <v-text-field name="nomesin" v-model="form.nomesin" label="Nomer Mesin" outlined dense clearable required></v-text-field>
             </v-col>
             <v-col cols="12" sm="4" md="4">
               <v-text-field name="norangka" v-model="form.norangka" label="Nomer Rangka" outlined dense clearable required></v-text-field>
+            </v-col>
+            <v-col cols="12" sm="4" md="4">
+              <v-text-field name="isisilender" v-model="form.isisilinder"  label="Isi Silender" outlined dense clearable required></v-text-field>
+            </v-col>
+            <v-col cols="12" sm="4" md="4">
+              <v-text-field name="dayamotorpenggerak" v-model="form.dayamotorpenggerak"  label="Daya Motor Penggerak" outlined dense clearable required></v-text-field>
+            </v-col>
+            <v-col class="d-flex" cols="12" sm="4" md="4">
+              <v-select :items="bahanbakar" v-model="form.bahanbakar" name="bahanbakar" label="Bahan Bakar" return-object outlined dense clearable required></v-select>
+            </v-col>
+            <v-col cols="12" sm="4" md="4">
+              <v-text-field name="nosertifikatreg" v-model="form.nosertifikatreg" label="No Sertifikat Reg" outlined dense required clearable></v-text-field>
+            </v-col>
+            <v-col cols="12" sm="6" md="4">
+              <v-menu ref="menu" v-model="menu":close-on-content-click="false" :return-value.sync="form.tglsertifikatreg"
+                transition="scale-transition" offset-y min-width="290px">
+                <template v-slot:activator="{ on, attrs }">
+                  <v-text-field v-model="form.tglsertifikatreg" name="tglsertifikatreg" label="Tgl Sertifikat Reg" outlined dense required v-bind="attrs" v-on="on"
+                  ></v-text-field>
+                </template>
+                <v-date-picker v-model="form.tglsertifikatreg" no-title scrollable>
+                  <v-spacer></v-spacer>
+                  <v-btn text color="primary" @click="menu = false">Cancel</v-btn>
+                  <v-btn text color="primary" @click="$refs.menu.save(form.tglsertifikatreg)">OK</v-btn>
+                </v-date-picker>
+              </v-menu>
             </v-col>
             <v-col v-if="form.jenispendaftaran.id === 5  || form.jenispendaftaran.id === 6 || form.jenispendaftaran.id === 9 || form.jenispendaftaran.id === 10 " class="d-flex" cols="12" sm="4" md="4">
               <v-autocomplete :items="kodewilayah" item-text="namawilayah" 
@@ -114,25 +130,10 @@
               item-value="kodewilayah" v-model="form.kodewilayahasal" name="kodewilayahasal" label="Daerah Asal" return-object outlined dense clearable required></v-autocomplete>
             </v-col>
             <v-col class="d-flex" cols="12" sm="4" md="4">
-              <v-select :items="peruntukan" v-model="form.peruntukan" name="peruntukan" label="Peruntukan" return-object outlined dense clearable required></v-select>
+              <v-select :items="peruntukan" v-model="form.peruntukan" name="peruntukan" label="Peruntukan" return-object outlined dense clearable required :disabled="form.jenispendaftaran === 2 || form.jenispendaftaran === 9 || form.jenispendaftaran === 10 || form.jenispendaftaran === 7 || form.jenispendaftaran === 3 || form.jenispendaftaran === 4  || form.jenispendaftaran === 11 || form.jenispendaftaran === 8 || form.jenispendaftaran.id === 2 || form.jenispendaftaran.id === 9 || form.jenispendaftaran.id === 10 || form.jenispendaftaran.id === 7 || form.jenispendaftaran.id === 3 || form.jenispendaftaran.id === 4 || form.jenispendaftaran.id === 11 || form.jenispendaftaran.id === 8"></v-select>
             </v-col>
             <v-col class="d-flex" cols="12" sm="4" md="4">
-            <v-row no-gutters>
-                <v-col cols="10">
-                    <v-autocomplete :items="jeniskendaraan" item-text="jenis" 
-                    item-value="jenis" v-model="form.jeniskendaraan" name="jeniskendaraan" label="Jenis Kendaraan" return-object outlined dense clearable required></v-autocomplete>
-                </v-col>
-                <v-col cols="2">
-                    <v-btn class="v-btn-simple" color="error" icon v-on="on" @click="dialogjenis = !dialogjenis">
-                        <v-icon>mdi-plus</v-icon>
-                    </v-btn>
-                </v-col>
-            </v-row>
-              
-            </v-col>
-
-            <v-col class="d-flex" cols="12" sm="4" md="4">
-            <v-menu ref="menu2" v-model="menu2":close-on-content-click="false" :return-value.sync="form.tglpendaftaran"
+            <v-menu ref="menu2" v-mode        <v-menu ref="menu2" v-mod11l="menu2":close-on-content-click="false" :return-value.sync="form.tglpendaftaran"
               transition="scale-transition" offset-y min-width="290px">
               <template v-slot:activator="{ on, attrs }">
                 <v-text-field v-model="form.tglpendaftaran" name="tglpendaftaran" label="Tgl Pendaftaran" outlined dense required v-bind="attrs" v-on="on"
@@ -340,7 +341,7 @@ export default {
             tipe: [],
             dialog: false,
             dialogtipe : false,
-            date: new Date().toISOString().substr(0, 10),
+            date: new Date().getMonth()+6,
             bahanbakar : [ 'Bensin', 'Solar', 'Gas' ],
             peruntukan : [ 'Umum', 'Tidak Umum', 'Pemerintah' ],
             form: new Form({
@@ -352,11 +353,12 @@ export default {
                 alamat: '',
                 nosertifikatreg: '',
                 tglsertifikatreg: new Date().toISOString().substr(0, 10),
-                masaberlakuuji: new Date().toISOString().substr(0, 10),
+                masaberlakuuji: this.masaberlakuuji,
                 merek: '',
                 tipe: '',
                 thpembuatan: '',
                 isisilinder: '',
+                dayamotorpenggerak: '',
                 bahanbakar: '',
                 nomesin: '',
                 norangka: '',
@@ -368,8 +370,8 @@ export default {
                 tglpendaftaran: new Date().toISOString().substr(0, 10),
                 tglbayar: new Date().toISOString().substr(0, 10),
                 jbkb: '0',
-                kelasjalanterendah: '',
-                konfigurasisumburoda: '',
+                kelasjalanterendah: 'I',
+                konfigurasisumburoda: '1.1',
                 ukuranban:  '',
                 jaraksumbu1_2: '0',
                 jaraksumbu2_3: '0',
@@ -504,6 +506,7 @@ export default {
                     this.form.tglsertifikatreg = this.post.tglsertifikatreg
                     this.form.thpembuatan= this.post.thpembuatan
                     this.form.isisilinder= this.post.isisilinder
+                    this.form.dayamotorpenggerak= this.post.dayamotorpenggerak
                     this.form.bahanbakar= this.post.bahanbakar
                     this.form.nomesin= this.post.nomesin
                     this.form.norangka= this.post.norangka
@@ -541,7 +544,6 @@ export default {
                 })
                 .then((result) => {
                     Vue.set(this.$data, 'post', result.data.kendaraan)
-                    this.form.jenispendaftaran= this.post.kodepenerbitans_id
                     this.form.nouji= this.post.nouji
                     this.form.noregistrasikendaraan= this.post.noregistrasikendaraan
                     this.form.nama= this.post.nama
@@ -551,6 +553,7 @@ export default {
                     this.form.tglsertifikatreg = this.post.tglsertifikatreg
                     this.form.thpembuatan= this.post.thpembuatan
                     this.form.isisilinder= this.post.isisilinder
+                    this.form.dayamotorpenggerak= this.post.dayamotorpenggerak
                     this.form.bahanbakar= this.post.bahanbakar
                     this.form.nomesin= this.post.nomesin
                     this.form.norangka= this.post.norangka
@@ -560,6 +563,10 @@ export default {
                     this.form.kodewilayahasal= this.post.kodewilayahasal
                     this.form.jeniskendaraan= this.post.jenis
                     this.form.peruntukan= this.post.peruntukan
+                    if(typeof this.post.peruntukan === 'undefined'){
+                    this.form.peruntukan= this.post.statuspenggunaan
+                    }
+                    if(this.post.masaberlakuuji)
                     this.form.masaberlakuuji= this.post.masaberlakuuji
                     this.form.merek= this.post.merek
                     this.form.tipe= this.post.tipe
@@ -572,7 +579,11 @@ export default {
                     this.form.q = this.post.q
                     this.form.p = this.post.p
                 }).catch((err) => {
-
+                    Swal.fire({
+                        type: 'error',
+                        title: 'Data ditemukan',
+                        text: 'Cek Nomer uji'
+                    })
                 });
         },
         editPost(id) {
@@ -659,12 +670,19 @@ export default {
                 });
         },
     },
+    computed: {
+        masaberlakuuji() {
+         const now = new Date();
+         now.setMonth(now.getMonth() + 6);
+         return new Date(now.toISOString().substr(0, 10)).toISOString().substr(0, 10);
+      }
+    },
     mounted() {
         var id = this.$route.params.id
         if (id) {
             this.fetchPost(id)
         }
-
+        this.form.masaberlakuuji = this.masaberlakuuji
         this.initialize()
     }
 }

@@ -5,6 +5,7 @@ use App\Identitaskendaraan;
 use App\Pengujian;
 use App\Pendaftaran;
 use App\Datakendaraan;
+use App\Datapengujian;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
@@ -90,10 +91,132 @@ class PengujianController extends Controller
         $pengujian->idpenguji = $request->idpenguji;
         $pengujian->save();
 
+        $identitaskendaraan = Pendaftaran::leftJoin('identitaskendaraans','pendaftarans.identitaskendaraan_id','=','identitaskendaraans.id')->leftJoin('datakendaraans','datakendaraans.identitaskendaraan_id','=','identitaskendaraans.id')->leftJoin('pengujians','pengujians.pendaftaran_id','=','pendaftarans.id')->leftJoin('jenis','jenis.jenis','=','identitaskendaraans.jenis')->find($id);
+        if ($identitaskendaraan->kodepenerbitans_id == '8') {
+            $statuspenerbitan = '2';
+        }elseif ($identitaskendaraan->kodepenerbitans_id == '7') {
+            $kode = Pendaftaran::where('pendaftarans.id',$id)->where('kodepenerbitans_id','!=','7')->orderBy('pendaftarans.id','desc')->limit('1');
+            $statuspenerbitan = $kode->kodepenerbitans_id;
+        }else{
+            $statuspenerbitan = $identitaskendaraan->kodepenerbitans_id;
+        }
+
+        $date=date_create($identitaskendaraan->tglsertifikatreg);
+        $tglsertifikatreg = date_format($date,'dmY');
+        $date1=date_create($identitaskendaraan->masaberlakuuji);
+        $masaberlakuuji= date_format($date1,'dmY');
+
         $pendaftaran = Pendaftaran::find($id);
-        $pendaftaran->pos1 = '1';
-        $pendaftaran->pos2 = '1';
+        if (!empty($pendaftaran->idx) || !is_null($pendaftaran->idx)) {
+            $dataidx = NULL;
+        }else{
+            $data = Datapengujian::create([
+            'statuspenerbitan'      => $statuspenerbitan,
+            'nouji'                 => $identitaskendaraan->nouji,
+            'nama'                  => $identitaskendaraan->nama,
+            'alamat'                => $identitaskendaraan->alamat,
+            'noidentitaspemilik'    => $identitaskendaraan->noidentitaspemilik,
+            'noregistrasikendaraan' => $identitaskendaraan->noregistrasikendaraan,
+            'norangka'              => $identitaskendaraan->norangka,
+            'merek'                 => $identitaskendaraan->merek,
+            'tipe'                  => $identitaskendaraan->tipe,
+            'nomesin'               => $identitaskendaraan->nomesin,
+            'jbb'                   => $identitaskendaraan->jbb,
+            'thpembuatan'           => $identitaskendaraan->thpembuatan,
+            'bahanbakar'            => $identitaskendaraan->bahanbakar,
+            'jenis'                 => $identitaskendaraan->jeniskendaraan,
+            'isisilinder'           => $identitaskendaraan->isisilinder,
+            'dayamotorpenggerak'    => $identitaskendaraan->dayamotorpenggerak,
+            'idkepaladinas'         => '278',
+            'iddirektur'            => '18',
+            'kodewilayah'           => $identitaskendaraan->kodewilayah,
+            'kodewilayahasal'       => $identitaskendaraan->kodewilayahasal,
+            'jbi'                   => $identitaskendaraan->jbi,
+            'nosertifikatreg'       => $identitaskendaraan->nosertifikatreg,
+            'tglsertifikatreg'      => $tglsertifikatreg,
+            'jbkb'                  => $identitaskendaraan->jbkb,
+            'jbki'                  => $identitaskendaraan->jbki,
+            'mst'                   => $identitaskendaraan->mst,
+            'beratkosong'           => $identitaskendaraan->beratkosong,
+            'konfigurasisumburoda'  => $identitaskendaraan->konfigurasisumburoda,
+            'ukuranban'             => $identitaskendaraan->ukuranban,
+            'panjangkendaraan'      => $identitaskendaraan->panjangkendaraan,
+            'lebarkendaraan'        => $identitaskendaraan->lebarkendaraan,
+            'tinggikendaraan'       => $identitaskendaraan->tinggikendaraan,
+            'panjangbakatautangki'  => $identitaskendaraan->panjangbakatautangki,
+            'lebarbakatautangki'    => $identitaskendaraan->lebarbakatautangki,
+            'tinggibakatautangki'   => $identitaskendaraan->tinggibakatautangki,
+            'julurdepan'            => $identitaskendaraan->julurdepan,
+            'julurbelakang'         => $identitaskendaraan->julurbelakang,
+            'jaraksumbu1_2'         => $identitaskendaraan->jaraksumbu1_2,
+            'jaraksumbu2_3'         => $identitaskendaraan->jaraksumbu2_3,
+            'jaraksumbu3_4'         => $identitaskendaraan->jaraksumbu3_4,
+            'dayaangkutorang'       => $identitaskendaraan->dayaangkutorang,
+            'dayaangkutbarang'      => $identitaskendaraan->dayaangkutbarang,
+            'kelasjalanterendah'    => $identitaskendaraan->kelasjalanterendah,
+            'idpetugasuji'          => $identitaskendaraan->idpenguji,
+            'huv_nomordankondisirangka'                 => $identitaskendaraan->huv_nomordankondisirangka,
+            'huv_nomordantipemotorpenggerak'            => $identitaskendaraan->huv_nomordantipemotorpenggerak,
+            'huv_kondisitangkicorongdanpipabahanbakar'  => $identitaskendaraan->huv_kondisitangkicorongdanpipabahanbakar,
+            'huv_kondisiconverterkit'                   => $identitaskendaraan->huv_kondisiconverterkit,
+            'huv_kondisidanposisipipapembuangan'        => $identitaskendaraan->huv_kondisidanposisipipapembuangan,
+            'huv_ukurandankondisiban'                   => $identitaskendaraan->huv_ukurandankondisiban,
+            'huv_kondisisistemsuspensi'                 => $identitaskendaraan->huv_kondisisistemsuspensi,
+            'huv_kondisisistemremutama'                 => $identitaskendaraan->huv_kondisisistemremutama,
+            'huv_kondisipenutuplampudanalatpantulcahaya'=> $identitaskendaraan->huv_kondisipenutuplampudanalatpantulcahaya,
+            'huv_kondisipanelinstrumentdashboard'       => $identitaskendaraan->huv_kondisipanelinstrumentdashboard,
+            'huv_kondisikacaspion'                      => $identitaskendaraan->huv_kondisikacaspion,
+            'huv_kondisispakbor'                        => $identitaskendaraan->huv_kondisispakbor,
+            'huv_bentukbumper'                          => $identitaskendaraan->huv_bentukbumper,
+            'huv_keberadaandankondisiperlengkapan'      => $identitaskendaraan->huv_keberadaandankondisiperlengkapan,
+            'huv_rancanganteknis'                       => $identitaskendaraan->huv_rancanganteknis,
+            'huv_keberadaandankondisifasilitastanggapdaruratuntukmobilbus'   => $identitaskendaraan->huv_keberadaandankondisifasilitastanggapdaruratuntukmobilbus,
+            'huv_kondisibadankacaengseltempatdudukmbarangbakmuatantertutup'  => $identitaskendaraan->huv_kondisibadankacaengseltempatdudukmbarangbakmuatantertutup,
+            'hum_kondisipenerusdaya'                    => $identitaskendaraan->hum_kondisipenerusdaya,
+            'hum_sudutbebaskemudi'                      => $identitaskendaraan->hum_sudutbebaskemudi,
+            'hum_kondisiremparkir'                      => $identitaskendaraan->hum_kondisiremparkir,
+            'hum_fungsilampudanalatpantulcahaya'        => $identitaskendaraan->hum_fungsilampudanalatpantulcahaya,
+            'hum_fungsipenghapuskaca'                   => $identitaskendaraan->hum_fungsipenghapuskaca,
+            'hum_tingkatkegelapankaca'                  => $identitaskendaraan->hum_tingkatkegelapankaca,
+            'hum_fungsiklakson'                         => $identitaskendaraan->hum_fungsiklakson,
+            'hum_kondisidanfungsisabukkeselamatan'      => $identitaskendaraan->hum_kondisidanfungsisabukkeselamatan,
+            'hum_ukurankendaraan'                       => $identitaskendaraan->hum_ukurankendaraan,
+            'hum_ukurantempatdudukdanbagiandalamkendaraanuntukmobilbus'       => $identitaskendaraan->hum_ukurantempatdudukdanbagiandalamkendaraanuntukmobilbus,
+            'alatuji_emisiasapbahanbakarsolar'          => $identitaskendaraan->alatuji_emisiasapbahanbakarsolar,
+            'alatuji_emisicobahanbakarbensin'           => $identitaskendaraan->alatuji_emisicobahanbakarbensin,
+            'alatuji_emisihcbahanbakarbensin'           => $identitaskendaraan->alatuji_emisihcbahanbakarbensin,
+            'alatuji_remutamatotalgayapengereman'       => $identitaskendaraan->alatuji_remutamatotalgayapengereman,
+            'alatuji_remutamaselisihgayapengeremanrodakirikanan1'  => $identitaskendaraan->alatuji_remutamaselisihgayapengeremanrodakirikanan1,
+            'alatuji_remutamaselisihgayapengeremanrodakirikanan2'  => $identitaskendaraan->alatuji_remutamaselisihgayapengeremanrodakirikanan2,
+            'alatuji_remutamaselisihgayapengeremanrodakirikanan3'  => $identitaskendaraan->alatuji_remutamaselisihgayapengeremanrodakirikanan3,
+            'alatuji_remutamaselisihgayapengeremanrodakirikanan4'  => $identitaskendaraan->alatuji_remutamaselisihgayapengeremanrodakirikanan4,
+            'alatuji_remparkirtangan'                   => $identitaskendaraan->alatuji_remparkirtangan,
+            'alatuji_remparkirkaki'                     => $identitaskendaraan->alatuji_remparkirkaki,
+            'alatuji_kincuprodadepan'                   => $identitaskendaraan->alatuji_kincuprodadepan,
+            'alatuji_tingkatkebisingan'                 => $identitaskendaraan->alatuji_tingkatkebisingan,
+            'alatuji_lampuutamakekuatanpancarlampukanan'=> $identitaskendaraan->alatuji_lampuutamakekuatanpancarlampukanan,
+            'alatuji_lampuutamakekuatanpancarlampukiri' => $identitaskendaraan->alatuji_lampuutamakekuatanpancarlampukiri,
+            'alatuji_lampuutamapenyimpanganlampukanan'  => $identitaskendaraan->alatuji_lampuutamapenyimpanganlampukanan,
+            'alatuji_lampuutamapenyimpanganlampukiri'   => $identitaskendaraan->alatuji_lampuutamapenyimpanganlampukiri,
+            'alatuji_penunjukkecepatan'                 => $identitaskendaraan->alatuji_penunjukkecepatan,
+            'alatuji_kedalamanalurban'                  => $identitaskendaraan->alatuji_kedalamanalurban,
+            'tgluji'                                    => $identitaskendaraan->tgluji, 
+            'masaberlakuuji'                            => $masaberlakuuji, 
+            'statuslulusuji'                            => $identitaskendaraan->statuslulusuji, 
+            ]);
+            $dataidx = $data->idx;
+        }
+        
+
+        $pendaftaran = Pendaftaran::find($id);
+        $pendaftaran->pos1  = '1';
+        $pendaftaran->pos2  = '1';
+        $pendaftaran->verif = 'y';
+        if (!is_null($dataidx)) {
+            $pendaftaran->idx = $dataidx;
+        }
         $pendaftaran->save();
+
     }
 
     public function rejected(Request $request,$id){
@@ -101,10 +224,49 @@ class PengujianController extends Controller
         $pengujian->statuslulusuji = '0';
         $pengujian->idpenguji = $request->idpenguji;
         $pengujian->save();
+
+        $iddata = Pendaftaran::find($id);
+        if (!is_null($iddata->idx)) {
+            $datapengujian = Datapengujian::find($iddata->idx);
+            $datapengujian->delete();
+
+            $pendaftaran = Pendaftaran::find($id);
+            $pendaftaran->verif = 'y';
+            $pendaftaran->idx = NULL;
+            $pendaftaran->save();
+        }else{
+            $pendaftaran = Pendaftaran::find($id);
+            $pendaftaran->verif = 'y';
+            $pendaftaran->save();  
+        }   
+        
     }
 
     public function update(Request $request, $id)
     {
+        if ($request->alatuji_remutamaselisihgayapengeremanrodakirikanan1 >= 0) {
+            $selisih1 = $request->alatuji_remutamaselisihgayapengeremanrodakirikanan1;
+        }else{
+            $selisih1 = 0;
+        }
+
+        if ($request->alatuji_remutamaselisihgayapengeremanrodakirikanan2 >= 0) {
+            $selisih2 = $request->alatuji_remutamaselisihgayapengeremanrodakirikanan2;
+        }else{
+            $selisih2 = 0;
+        }
+
+        if ($request->alatuji_remutamaselisihgayapengeremanrodakirikanan3 >= 0) {
+            $selisih3 = $request->alatuji_remutamaselisihgayapengeremanrodakirikanan3;
+        }else{
+            $selisih3 = 0;
+        }
+
+        if ($request->alatuji_remutamaselisihgayapengeremanrodakirikanan4 >= 0) {
+            $selisih4 = $request->alatuji_remutamaselisihgayapengeremanrodakirikanan4;
+        }else{
+            $selisih4 = 0;
+        }
         $pengujian = Pengujian::where('pendaftaran_id',$id)->first();
         if (empty($pengujian)) {
             $data = Pengujian::create([
@@ -140,10 +302,10 @@ class PengujianController extends Controller
             'alatuji_emisicobahanbakarbensin'                 => $request->alatuji_emisicobahanbakarbensin,
             'alatuji_emisihcbahanbakarbensin'                 => $request->alatuji_emisihcbahanbakarbensin,
             'alatuji_remutamatotalgayapengereman'                 => $request->alatuji_remutamatotalgayapengereman,
-            'alatuji_remutamaselisihgayapengeremanrodakirikanan1'                 => $request->alatuji_remutamaselisihgayapengeremanrodakirikanan1,
-            'alatuji_remutamaselisihgayapengeremanrodakirikanan2'                 => $request->alatuji_remutamaselisihgayapengeremanrodakirikanan2,
-            'alatuji_remutamaselisihgayapengeremanrodakirikanan3'                 => $request->alatuji_remutamaselisihgayapengeremanrodakirikanan3,
-            'alatuji_remutamaselisihgayapengeremanrodakirikanan4'                 => $request->alatuji_remutamaselisihgayapengeremanrodakirikanan4,
+            'alatuji_remutamaselisihgayapengeremanrodakirikanan1'                 => $selisih1,
+            'alatuji_remutamaselisihgayapengeremanrodakirikanan2'                 => $selisih2,
+            'alatuji_remutamaselisihgayapengeremanrodakirikanan3'                 => $selisih3,
+            'alatuji_remutamaselisihgayapengeremanrodakirikanan4'                 => $selisih4,
             'alatuji_remparkirtangan'                 => $request->alatuji_remparkirtangan,
             'alatuji_remparkirkaki'                 => $request->alatuji_remparkirkaki,
             'alatuji_kincuprodadepan'                 => $request->alatuji_kincuprodadepan,
@@ -177,7 +339,7 @@ class PengujianController extends Controller
                     $pendaftaran->petugaspos2 = $request->petugaspos2;
                 }
 
-                if ($pendaftaran->pos1 == 1 || $pendaftaran->pos1 == 2 && is_null($pendaftaran->pos2)) {
+                if (($pendaftaran->pos1 == 1 || $pendaftaran->pos1 == 2) && is_null($pendaftaran->pos2)) {
                     $pendaftaran->pos2 = '0';
                 }
             }
@@ -186,7 +348,6 @@ class PengujianController extends Controller
         else{
             $pengujian = Pengujian::where('pendaftaran_id',$id)->first();
 
-        // return response()->json(['kendaraan1' => $pengujian]);
             if (!is_null($request->huv_nomordankondisirangka)) {
             	$pengujian->huv_nomordankondisirangka = $request->huv_nomordankondisirangka;
     	        $pengujian->huv_nomordantipemotorpenggerak = $request->huv_nomordantipemotorpenggerak;
@@ -240,10 +401,10 @@ class PengujianController extends Controller
 
             if (!is_null($request->alatuji_remutamatotalgayapengereman)) {
             	$pengujian->alatuji_remutamatotalgayapengereman = $request->alatuji_remutamatotalgayapengereman;
-    	        $pengujian->alatuji_remutamaselisihgayapengeremanrodakirikanan1 = $request->alatuji_remutamaselisihgayapengeremanrodakirikanan1;
-    	        $pengujian->alatuji_remutamaselisihgayapengeremanrodakirikanan2 = $request->alatuji_remutamaselisihgayapengeremanrodakirikanan2;
-    	        $pengujian->alatuji_remutamaselisihgayapengeremanrodakirikanan3 = $request->alatuji_remutamaselisihgayapengeremanrodakirikanan3;
-    	        $pengujian->alatuji_remutamaselisihgayapengeremanrodakirikanan4 = $request->alatuji_remutamaselisihgayapengeremanrodakirikanan4;
+    	        $pengujian->alatuji_remutamaselisihgayapengeremanrodakirikanan1 = $selisih1;
+    	        $pengujian->alatuji_remutamaselisihgayapengeremanrodakirikanan2 = $selisih2;
+    	        $pengujian->alatuji_remutamaselisihgayapengeremanrodakirikanan3 = $selisih3;
+    	        $pengujian->alatuji_remutamaselisihgayapengeremanrodakirikanan4 = $selisih4;
     	        $pengujian->alatuji_remparkirtangan = $request->alatuji_remparkirtangan;
     	        $pengujian->alatuji_remparkirkaki = $request->alatuji_remparkirkaki;
             }
@@ -280,7 +441,7 @@ class PengujianController extends Controller
                     $pendaftaran->petugaspos2 = $request->petugaspos2;
                 }
 
-                if ($pendaftaran->pos1 == 1 || $pendaftaran->pos1 == 2 && is_null($pendaftaran->pos2)) {
+                if (($pendaftaran->pos1 == 1 || $pendaftaran->pos1 == 2) && is_null($pendaftaran->pos2)) {
                     $pendaftaran->pos2 = '0';
                 }
             }
@@ -293,7 +454,7 @@ class PengujianController extends Controller
                 $datakendaraan->beratsumbu2 = $request->bsumbu2;
                 $datakendaraan->beratsumbu3 = $request->bsumbu3;
                 $datakendaraan->beratsumbu4 = $request->bsumbu4;
-                $datakendaraan->beratkosong = $request->bsumbu1+$request->bsumbu2+$request->bsumbu3+$request->bsumbu4;
+                $datakendaraan->beratkosong = $request->beratkosong;
                 $datakendaraan->save();
             }
 
@@ -346,6 +507,10 @@ class PengujianController extends Controller
     public function edit($id)
     {
         $kendaraan = Identitaskendaraan::where('pendaftarans.id',$id)->leftJoin('datakendaraans','identitaskendaraans.id','=','datakendaraans.identitaskendaraan_id')->leftJoin('pendaftarans','identitaskendaraans.id','=','pendaftarans.identitaskendaraan_id')->leftJoin('pengujians','pendaftarans.id','=','pengujians.pendaftaran_id')->first();
+        if ($kendaraan->kodepenerbitans_id == '7') {
+            $idd = Pendaftaran::where('identitaskendaraan_id',$kendaraan->identitaskendaraan_id)->where('pos2','>','0')->orderBy('pendaftarans.id','desc')->first();
+            $kendaraan = Identitaskendaraan::where('pendaftarans.id',$idd->id)->leftJoin('datakendaraans','identitaskendaraans.id','=','datakendaraans.identitaskendaraan_id')->leftJoin('pendaftarans','identitaskendaraans.id','=','pendaftarans.identitaskendaraan_id')->leftJoin('pengujians','pendaftarans.id','=','pengujians.pendaftaran_id')->first();
+        }
         return response()->json(['kendaraan' => $kendaraan]);
     }
 }

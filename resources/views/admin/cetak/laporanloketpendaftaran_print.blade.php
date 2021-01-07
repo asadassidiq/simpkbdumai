@@ -3,7 +3,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Invoice</title>
+    <title>Soltindo</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
     <!-- Scripts -->
@@ -38,7 +38,7 @@
         td, tr, th{
             padding:12px;
             border:1px solid #333;
-            font-size: 11px;
+            font-size: 8px;
             width: auto;
         }
         th{
@@ -56,50 +56,102 @@
 </head>
 <body onload="window.print();">
     <div class="container-fluid">
-        <div class="text-center">
-            <h5><b>DATA ADMINISTRASI</b></h5>
-            <h5><b>PENGUJIAN KENDARAAN BERMOTOR PADA UPTD PKB KOTA BANJARMASIN</b></h5>
-            <h5><b>{{ $tglprint }}</b></h5>
+        <div class="row">
+            <div class="col-1">
+              <p>DAFTAR</p>
+              <P>PADA</P>
+              <P>TANGGAL</P>
+            </div>
+            <div class="col-11">
+              <p class="text-left">: LAPORAN DATA KENDARAAN UJI</p>
+              <p class="text-left">: DINAS PERHBUNGAN KOTA DUMAI</p>
+              <p class="text-left">: {{ $tglprint }}</p>
+            </div>      
         </div>
         <div class="row">
             <table class="table table-bordered ">
                 <thead>
                     <tr>
-                      <th scope="col">NO</th>
-                      <th scope="col">NO UJI KENDARAAN</th>
-                      <th scope="col">NO KENDARAAN</th>
-                      <th scope="col">NAMA PEMILIK</th>
-                      <th scope="col">JENIS KENDARAAN</th>
-                      <th scope="col">JBB</th>
-                      <th scope="col">KENDARAAN</th>
-                      <th scope="col">JENIS PELAYANAN</th>
-                      <th scope="col">HASIL UJI</th>
-                      <th scope="col">PERUNTUKAN</th>
-                    </tr>
+                        <th scope="col" rowspan="2" class="text-center">#</th>         
+                        <th scope="col" colspan="2" class="text-center">Nomer</th>
+                        <th scope="col" colspan="2" class="text-center">Pemilik</th>
+                        <th scope="col" colspan="6" class="text-center">Data Kendaraan</th>        
+                        <th scope="col" rowspan="2" class="text-center">Tanggal Nomer Kwitansi</th>
+                        <th scope="col" colspan="10" class="text-center">Setoran Kas Negara Penerimaan Uang</th>
+                        <th scope="col" rowspan="2" class="text-center">Ket.</th>       
+                      </tr>
+                      <tr>    
+                        <th>Polisi</th> 
+                        <th>Kontrol</th>
+                        <th>Nama</th>
+                        <th>Alamat</th>
+                        <th>Merk</th>
+                        <th>Type</th>
+                        <th>Jenis</th>
+                        <th>Tahun</th>
+                        <th>Bahan Bakar</th>
+                        <th>Status Penggunaan</th>
+                        <th scope="col" class="text-center">JASA PENGUJIAN</th>
+                        <th scope="col" class="text-center">PENILAIAN TEKNIS </th>
+                        <th scope="col" class="text-center">KARTU UJI</th>
+                        <th scope="col" class="text-center">PERUBAHAN STATUS</th>
+                        <th scope="col" class="text-center">PERUBAHAN SIFAT</th>
+                        <th scope="col" class="text-center">DENDA</th>
+                        <th scope="col" class="text-center">PENGUJIAN KELILING</th>
+                        <th scope="col" class="text-center">EMISI GAS BUANG</th>
+                        <th scope="col" class="text-center">NUMPANG UJI & MUTASI</th>
+                        <th scope="col" class="text-center">TOTAL</th>
+                      </tr>
                 </thead>
                 <tbody>
-                @php $i=1
+                @php $i=1;$tot1 = 0;$tot2 = 0;$tot3 = 0;$tot4 = 0;$tot5 = 0;$tot6 = 0;$tot7 = 0;$tot8 = 0;$tot9 = 0;$tot10 = 0;
                 @endphp
                 @foreach ($kendaraan as $data) 
                 <tr>
                   <th scope="row">{{ $i }}</th>
-                  <td>{{ $data->nouji }}</td>
                   <td>{{ $data->noregistrasikendaraan }}</td>
+                  <td>{{ $data->nouji }}</td>
                   <td>{{ $data->nama }}</td>
-                  <td>{{ $data->klasifikasis }}</td>
-                  <td>{{ $data->jbb }}</td>
+                  <td>{{ $data->alamat }}</td>
+                  <td>{{ $data->merek }}</td>
+                  <td>{{ $data->tipe }}</td>
                   <td>{{ $data->jenis }}</td>
-                  <td>{{ $data->keterangan }}</td>
+                  <td>{{ $data->thpembuatan }}</td>
+                  <td>{{ $data->bahanbakar }}</td>
+                  <td>{{ $data->peruntukan }}</td>
+                  <td></td>
+                  <td>{{ $data->jasapengujian }}</td>
+                  <td>{{ $data->penilaianteknis }}</td>
+                  <td>{{ $data->kartu }}</td>
+                  <td>{{ $data->perubahanstatus }}</td>
+                  <td>{{ $data->perubahansifat }}</td>
+                  <td>{{ $data->denda }}</td>
+                  <td>{{ $data->pengujiankeliling }}</td>
+                  <td>{{ $data->emisi }}</td>
+                  <td>{{ $data->numpangujidanmutasi }}</td>
+                  <td>{{ $data->total }}</td>
                   @if ($data->statuslulusuji == 1)
                   <td>LULUS</td>
                   @else
                   <td>TIDAK LULUS</td>
                   @endif
-                  <td>{{ $data->peruntukan }}</td>
                 </tr>
-                @php $i++
+                @php $i++;$tot1=$tot1+$data->jasapengujian;$tot2=$tot2+$data->penilaianteknis;$tot3=$tot3+$data->kartu;$tot4=$tot4+$data->perubahanstatus;$tot5=$tot5+$data->perubahansifat;$tot6=$tot6+$data->denda;$tot7=$tot7+$data->emisi;$tot8=$tot8+$data->pengujiankeliling;$tot9=$tot9+$data->numpangujidanmutasi;$tot10=$tot10+$data->total;
                 @endphp
                 @endforeach
+                <tr>
+                  <td colspan="12">JUMLAH KAS </td>
+                  <td>{{ $tot1 }}</td>
+                  <td>{{ $tot2 }}</td>
+                  <td>{{ $tot3 }}</td>
+                  <td>{{ $tot4 }}</td>
+                  <td>{{ $tot5 }}</td>
+                  <td>{{ $tot6 }}</td>
+                  <td>{{ $tot7 }}</td>
+                  <td>{{ $tot8 }}</td>
+                  <td>{{ $tot9 }}/td>
+                  <td>{{ $tot10 }}</td>
+                </tr>
                 </tbody>
             </table>       
             </div>
@@ -122,85 +174,140 @@
         </div>
     </div>
     <div class="container-fluid kertasbaru">
-        <div class="text-left">
-            <h5><b>LAMPIRAN 1</b></h5>
-            <h5><b>DATA ADMINISTRASI</b></h5>
-            <h5><b>{{ $tglprint }}</b></h5>
+        <div class="row">
+            <div class="col-1">
+              <p>DAFTAR</p>
+              <P>PADA</P>
+              <P>TANGGAL</P>
+            </div>
+            <div class="col-11">
+              <p class="text-left">: LAPORAN JUMLAH DATA KENDARAAN TIDAK LULUS UJI</p>
+              <p class="text-left">: DINAS PERHBUNGAN KOTA DUMAI</p>
+              <p class="text-left">: {{ $tglprint }}</p>
+            </div>      
         </div>
     
         <div class="row">
-            <div class="col-6">
+            <div class="col-12">
             <table class="table table-bordered ">
                 <thead>
                     <tr>
-                      <th scope="col">JENIS KENDARAAN</th>
-                      <th scope="col">JUMLAH</th>
+                      <th scope="col" rowspan="2" class="text-center">#</th>         
+                      <th scope="col" colspan="2" class="text-center">Nomer</th>
+                      <th scope="col" colspan="3" class="text-center">Data Kendaraan</th>        
+                      <th scope="col" rowspan="2" class="text-center">Alasan Penolakan</th>       
+                    </tr>
+                    <tr>    
+                      <th>Polisi</th> 
+                      <th>Kontrol</th>
+                      <th>Merk</th>         
+                      <th>Jenis</th>
+                      <th>Tahun Buat</th>
                     </tr>
                 </thead>
                 <tbody>
-                @foreach ($jenis as $data) 
+                @php $i=1
+                @endphp
+                @foreach ($tidaklulus as $data) 
                   <tr>
-                    <td>{{ $data['jenis']  }}</td>
-                    <td>{{ $data['jumlah'] }}</td>
+                    <th scope="row">{{ $i }}</th>
+                    <td>{{ $data->noregistrasikendaraan }}</td>
+                    <td>{{ $data->nouji }}</td>
+                    <td>{{ $data->merek }}</td>
+                    <td>{{ $data->jenis }}</td>
+                    <td>{{ $data->thpembuatan }}</td>
+                    <td>{{ $data->catatanpos1 }} , {{ $data->catatanpos2 }} , {{ $data->catatanpos3 }}</td>
                   </tr>
+                @php $i++
+                @endphp
                 @endforeach
                 </tbody>
             </table>
             </div>
+        </div>
+    </div>
 
-            <div class="col-6">
+    <div class="container-fluid kertasbaru">
+        <div class="row">
+            <div class="col-1">
+              <p>DAFTAR</p>
+              <P>PADA</P>
+              <P>TANGGAL</P>
+            </div>
+            <div class="col-11">
+              <p class="text-left">: LAPORAN JUMLAH DATA KENDARAAN UJI PERJENIS KENDARAAN</p>
+              <p class="text-left">: DINAS PERHBUNGAN KOTA DUMAI</p>
+              <p class="text-left">: {{ $tglprint }}</p>
+            </div>      
+        </div>
+    
+        <div class="row">
+            <div class="col-12">
             <table class="table table-bordered ">
                 <thead>
-                    <tr>
-                      <th scope="col">JENIS PELAYANAN</th>
-                      <th scope="col">JUMLAH</th>
-                    </tr>
-                </thead>
-                <tbody>
-                @foreach ($jenispelayanan as $data) 
-                  <tr>
-                    <td>{{ $data['jenispelayanan']  }}</td>
-                    <td>{{ $data['jumlah'] }}</td>
-                  </tr>
-                @endforeach
-                </tbody>
-            </table>
-            <br>
-            <table class="table table-bordered ">
-                <thead>
-                    <tr>
-                      <th scope="col">KETERANGAN</th>
-                      <th scope="col">JUMLAH</th>
+                     <tr>
+                      <th colspan="22" class="text-center">Jenis Kendaraan</th>
                     </tr>
                 </thead>
                 <tbody>
                 <tr>
-                    <td>LULUS</td>
-                    <td>{{ $lulus }}</td>
+                    <td scope="col" colspan="1"></td>
+                    <td colspan="3">Mobil Penumpang</td>
+                    <td colspan="3">Mobil Bus</td>
+                    <td colspan="3">Mobil Barang</td>
+                    <td colspan="3">Mobil Tempelan</td>
+                    <td colspan="3">KRT. Gandengan</td>
+                    <td colspan="3">Kend. Roda 3</td>
+                    <td colspan="3">Kend. Khusus</td>
                   </tr>
                   <tr>
-                    <td>TIDAK LULUS</td>
-                    <td>{{ $tidaklulus }}</td>
-                  </tr>
-                </tbody>
-            </table>
-
-            <br>
-            <table class="table table-bordered ">
-                <thead>
-                    <tr>
-                      <th scope="col">UMUM / TIDAK UMUM</th>
-                      <th scope="col">JUMLAH</th>
-                    </tr>
-                </thead>
-                <tbody>
-                  <tr>
+                    <td>Sifat</td>
                     <td>UMUM</td>
-                    <td>{{ $umum }}</td>
+                    <td>TDK. UMUM</td>
+                    <td>PEMERINTAH</td>
+                    <td>UMUM</td>
+                    <td>TDK. UMUM</td>
+                    <td>PEMERINTAH</td>
+                    <td>UMUM</td>
+                    <td>TDK. UMUM</td>
+                    <td>PEMERINTAH</td>
+                    <td>UMUM</td>
+                    <td>TDK. UMUM</td>
+                    <td>PEMERINTAH</td>
+                    <td>UMUM</td>
+                    <td>TDK. UMUM</td>
+                    <td>PEMERINTAH</td>
+                    <td>UMUM</td>
+                    <td>TDK. UMUM</td>
+                    <td>PEMERINTAH</td>
+                    <td>UMUM</td>
+                    <td>TDK. UMUM</td>
+                    <td>PEMERINTAH</td>
                   </tr>
                   <tr>
-                    <td>TIDAK UMUM</td>
-                    <td>{{ $tidakumum }}</td>
+                    <td>
+                    </td>
+                    <td><?php if (!empty($datajm['mobilpenumpang1'])) echo $datajm['mobilpenumpang1'] ; else echo '0' ?></td>
+                    <td><?php if (!empty($datajm['mobilpenumpang2'])) echo $datajm['mobilpenumpang2'] ; else echo '0' ?></td>
+                    <td><?php if (!empty($datajm['mobilpenumpang3'])) echo $datajm['mobilpenumpang3'] ; else echo '0' ?></td>
+                    <td><?php if (!empty($datajm['mobilbus1'])) echo $datajm['mobilbus1'] ; else echo '0' ?></td>
+                    <td><?php if (!empty($datajm['mobilbus2'])) echo $datajm['mobilbus2'] ; else echo '0' ?></td>
+                    <td><?php if (!empty($datajm['mobilbus3'])) echo $datajm['mobilbus3'] ; else echo '0' ?></td>
+                    <td><?php if (!empty($datajm['mobilbarang1'])) echo $datajm['mobilbarang1'] ; else echo '0' ?></td>
+                    <td><?php if (!empty($datajm['mobilbarang2'])) echo $datajm['mobilbarang2'] ; else echo '0' ?></td>
+                    <td><?php if (!empty($datajm['mobilbarang3'])) echo $datajm['mobilbarang3'] ; else echo '0' ?></td>
+                    <td><?php if (!empty($datajm['keretatempelan1'])) echo $datajm['keretatempelan1'] ; else echo '0' ?></td>
+                    <td><?php if (!empty($datajm['keretatempelan2'])) echo $datajm['keretatempelan2'] ; else echo '0' ?></td>
+                    <td><?php if (!empty($datajm['keretatempelan3'])) echo $datajm['keretatempelan3'] ; else echo '0' ?></td>
+                    <td><?php if (!empty($datajm['keretagandeng1'])) echo $datajm['keretagandeng1'] ; else echo '0' ?></td>
+                    <td><?php if (!empty($datajm['keretagandeng2'])) echo $datajm['keretagandeng2'] ; else echo '0' ?></td>
+                    <td><?php if (!empty($datajm['keretagandeng3'])) echo $datajm['keretagandeng3'] ; else echo '0' ?></td>
+                    <td><?php if (!empty($datajm['kendaraankhusus1'])) echo $datajm['kendaraankhusus1'] ; else echo '0' ?></td>
+                    <td><?php if (!empty($datajm['kendaraankhusus2'])) echo $datajm['kendaraankhusus2'] ; else echo '0' ?></td>
+                    <td><?php if (!empty($datajm['kendaraankhusus3'])) echo $datajm['kendaraankhusus3'] ; else echo '0' ?></td>
+                    <td><?php if (!empty($datajm['kendaraanroda31'])) echo $datajm['kendaraanroda31'] ; else echo '0' ?></td>
+                    <td><?php if (!empty($datajm['kendaraanroda32'])) echo $datajm['kendaraanroda32'] ; else echo '0' ?></td>
+                    <td><?php if (!empty($datajm['kendaraanroda33'])) echo $datajm['kendaraanroda33'] ; else echo '0' ?></td>
                   </tr>
                 </tbody>
             </table>
