@@ -343,7 +343,7 @@ class PendaftaranController extends Controller
         }
 
         if ($request->kodewilayahasal == '') {
-            $kodeasal='DUAMI'; 
+            $kodeasal='DUMAI'; 
         }
 
         if (is_array($request->jeniskendaraan) == 1 ) {
