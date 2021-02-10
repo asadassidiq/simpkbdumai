@@ -204,7 +204,7 @@ class LaporanController extends Controller
             $arr = array(
                     'jenispengujian' => $list,
                     'jasapengujian'  => Pendaftaran::leftJoin('transaksis','transaksis.pendaftaran_id','=','pendaftarans.id')->where('kodepenerbitans_id',$jenis)->whereMonth('tglpendaftaran',$bulan)->sum('jasapengujian'),
-                    'penilaianteknis'  => Pendaftaran::leftJoin('transaksis','transaksis.pendaftaran_id','=','pendaftarans.id')->where('kodepenerbitans_id',$jenis)->whereMonth('tglpendaftaran',$bulan)->sum('penilaianteknis'),
+                    'administrasi'  => Pendaftaran::leftJoin('transaksis','transaksis.pendaftaran_id','=','pendaftarans.id')->where('kodepenerbitans_id',$jenis)->whereMonth('tglpendaftaran',$bulan)->sum('administrasi'),
                     'denda'  => Pendaftaran::leftJoin('transaksis','transaksis.pendaftaran_id','=','pendaftarans.id')->where('kodepenerbitans_id',$jenis)->whereMonth('tglpendaftaran',$bulan)->sum('denda'),
                     'kartu'  => Pendaftaran::leftJoin('transaksis','transaksis.pendaftaran_id','=','pendaftarans.id')->where('kodepenerbitans_id',$jenis)->whereMonth('tglpendaftaran',$bulan)->sum('kartu'),
                     'perubahanstatus'  => Pendaftaran::leftJoin('transaksis','transaksis.pendaftaran_id','=','pendaftarans.id')->where('kodepenerbitans_id',$jenis)->whereMonth('tglpendaftaran',$bulan)->sum('perubahanstatus'),
@@ -696,7 +696,7 @@ class LaporanController extends Controller
             $arr = array(
                     'jenispengujian' => $list,
                     'jasapengujian'  => Pendaftaran::leftJoin('transaksis','transaksis.pendaftaran_id','=','pendaftarans.id')->where('kodepenerbitans_id',$jenis)->whereBetween('tglpendaftaran',[$tglcreate1,$tglcreate2])->sum('jasapengujian'),
-                    'penilaianteknis'  => Pendaftaran::leftJoin('transaksis','transaksis.pendaftaran_id','=','pendaftarans.id')->where('kodepenerbitans_id',$jenis)->whereBetween('tglpendaftaran',[$tglcreate1,$tglcreate2])->sum('penilaianteknis'),
+                    'administrasi'  => Pendaftaran::leftJoin('transaksis','transaksis.pendaftaran_id','=','pendaftarans.id')->where('kodepenerbitans_id',$jenis)->whereBetween('tglpendaftaran',[$tglcreate1,$tglcreate2])->sum('administrasi'),
                     'denda'  => Pendaftaran::leftJoin('transaksis','transaksis.pendaftaran_id','=','pendaftarans.id')->where('kodepenerbitans_id',$jenis)->whereBetween('tglpendaftaran',[$tglcreate1,$tglcreate2])->sum('denda'),
                     'kartu'  => Pendaftaran::leftJoin('transaksis','transaksis.pendaftaran_id','=','pendaftarans.id')->where('kodepenerbitans_id',$jenis)->whereBetween('tglpendaftaran',[$tglcreate1,$tglcreate2])->sum('kartu'),
                     'perubahanstatus'  => Pendaftaran::leftJoin('transaksis','transaksis.pendaftaran_id','=','pendaftarans.id')->where('kodepenerbitans_id',$jenis)->whereBetween('tglpendaftaran',[$tglcreate1,$tglcreate2])->sum('perubahanstatus'),
@@ -1070,7 +1070,7 @@ class LaporanController extends Controller
             $arr = array(
                     'jenispengujian' => $list,
                     'jasapengujian'  => Pendaftaran::leftJoin('transaksis','transaksis.pendaftaran_id','=','pendaftarans.id')->where('kodepenerbitans_id',$jenis)->whereYear('tglpendaftaran',$tahun)->sum('jasapengujian'),
-                    'penilaianteknis'  => Pendaftaran::leftJoin('transaksis','transaksis.pendaftaran_id','=','pendaftarans.id')->where('kodepenerbitans_id',$jenis)->sum('penilaianteknis'),
+                    'administrasi'  => Pendaftaran::leftJoin('transaksis','transaksis.pendaftaran_id','=','pendaftarans.id')->where('kodepenerbitans_id',$jenis)->sum('administrasi'),
                     'denda'  => Pendaftaran::leftJoin('transaksis','transaksis.pendaftaran_id','=','pendaftarans.id')->where('kodepenerbitans_id',$jenis)->whereYear('tglpendaftaran',$tahun)->sum('denda'),
                     'kartu'  => Pendaftaran::leftJoin('transaksis','transaksis.pendaftaran_id','=','pendaftarans.id')->where('kodepenerbitans_id',$jenis)->whereYear('tglpendaftaran',$tahun)->sum('kartu'),
                     'perubahanstatus'  => Pendaftaran::leftJoin('transaksis','transaksis.pendaftaran_id','=','pendaftarans.id')->where('kodepenerbitans_id',$jenis)->whereYear('tglpendaftaran',$tahun)->sum('perubahanstatus'),

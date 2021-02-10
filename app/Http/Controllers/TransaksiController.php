@@ -35,7 +35,8 @@ class TransaksiController extends Controller
         	Transaksi::create([
 	            'pendaftaran_id' => $id,
 	            'jasapengujian'	 => $request->retribusi,
-	            'administrasi'   => $request->registrasi,
+                'administrasi'   => $request->registrasi,
+	            'blangko'        => $request->blangko,
 	            'kartu'    		 => $request->buku,
 	            'ketkartu'		 => $request->ketbuku,
             	'perubahanstatus'=> $request->statuskepemilikan,
@@ -54,7 +55,8 @@ class TransaksiController extends Controller
         }else{
         	$trans = Transaksi::where('pendaftaran_id',$id)->first();
         	$trans->jasapengujian      	= $request->retribusi;
-	        $trans->administrasi 	    = $request->registrasi;
+            $trans->administrasi        = $request->registrasi;
+	        $trans->blangko        	    = $request->blangko;
 	        $trans->ketkartu           	= $request->ketbuku;
 	        $trans->kartu              	= $request->buku;
 	        $trans->perubahanstatus   	= $request->statuskepemilikan;
@@ -139,12 +141,14 @@ class TransaksiController extends Controller
         $kendaraans = Pendaftaran::select('jbb','jenis')->where('pendaftarans.id',$id)->leftJoin('identitaskendaraans','pendaftarans.identitaskendaraan_id','=','identitaskendaraans.id')->first();
         $jeniskend = Jenis::where('jenis',$kendaraans->jenis)->first();
         if ($jeniskend->klasifikasis_id == 3) {
+            $retribusi = ['biaya'=> 25000];
         	if (intval($kendaraans->jbb) > 6001 && $kendaraans->jbb <= 9000) {
                 $name = 'Bus (JBB) 6001 s/d 9000';
             }elseif (intval($kendaraans->jbb) > 9000) {
                 $name = 'Bus (JBB) > 9000';
             }
         }elseif ($jeniskend->klasifikasis_id == 4) {
+            $retribusi = ['biaya'=> 25000];
         	if (intval($kendaraans->jbb) <= 4000) {
         		$name = 'Mobil Barang (JBB) s/d 4000';
         	}elseif (intval($kendaraans->jbb) > 4001 && $kendaraans->jbb <= 7500) {
@@ -164,9 +168,12 @@ class TransaksiController extends Controller
         	}
         }elseif ($jeniskend->klasifikasis_id == 2) {
         		$name = 'Mobil Penumpang Umum';
+                $retribusi = ['biaya'=> 17500];
         }elseif ($jeniskend->klasifikasis_id == 5 || $jeniskend->klasifikasis_id == 6) {
         		$name = 'Kereta Tempelan';
+                $retribusi = ['biaya'=> 25000];
         }elseif ($jeniskend->klasifikasis_id == 7) {
+            $retribusi = ['biaya'=> 25000];
         	if (intval($kendaraans->jbb) <= 4000) {
                 $name = 'Kendaraan Khusus (JBB) s/d 4000';
             }elseif (intval($kendaraans->jbb) > 4001 && $kendaraans->jbb <= 7500) {
@@ -185,17 +192,20 @@ class TransaksiController extends Controller
                 $name = 'Kendaraan Khusus (JBB) >= 21000';
             }
         }elseif ($jeniskend->klasifikasis_id == 8) {
+                $retribusi = ['biaya'=> 25000];
                 $name = 'Kendaraan Bermotor Roda 3';
         }else{
             $name = '';
+            $retribusi = ['biaya'=> 0];
         }
-        $retribusi = Biaya::select('biaya')->where('nama',$name)->where('pelayanan','Jasa Pengujian')->first();
+        // $retribusi = Biaya::select('biaya')->where('nama',$name)->where('pelayanan','Jasa Pengujian')->first();
         return response()->json(['retribusi'=>$retribusi]);
     }
 
     public function Penilianteknis($id)
     {
-        $registrasi = Biaya::select('biaya')->where('nama','Administrasi Pengujian')->where('pelayanan','Registrasi')->first();
+        $registrasi = ['biaya'=> 7500];
+        // $registrasi = Biaya::select('biaya')->where('nama','Administrasi Pengujian')->where('pelayanan','Registrasi')->first();
         return response()->json(['registrasi'=>$registrasi]);
     }
 

@@ -92,7 +92,7 @@
                         <th>Bahan Bakar</th>
                         <th>Status Penggunaan</th>
                         <th scope="col" class="text-center">JASA PENGUJIAN</th>
-                        <th scope="col" class="text-center">PENILAIAN TEKNIS </th>
+                        <th scope="col" class="text-center">ADMINISTRASI </th>
                         <th scope="col" class="text-center">KARTU UJI</th>
                         <th scope="col" class="text-center">PERUBAHAN STATUS</th>
                         <th scope="col" class="text-center">PERUBAHAN SIFAT</th>
@@ -121,7 +121,7 @@
                   <td>{{ $data->peruntukan }}</td>
                   <td></td>
                   <td>{{ $data->jasapengujian }}</td>
-                  <td>{{ $data->penilaianteknis }}</td>
+                  <td>{{ $data->administrasi }}</td>
                   <td>{{ $data->kartu }}</td>
                   <td>{{ $data->perubahanstatus }}</td>
                   <td>{{ $data->perubahansifat }}</td>
@@ -136,7 +136,7 @@
                   <td>TIDAK LULUS</td>
                   @endif
                 </tr>
-                @php $i++;$tot1=$tot1+$data->jasapengujian;$tot2=$tot2+$data->penilaianteknis;$tot3=$tot3+$data->kartu;$tot4=$tot4+$data->perubahanstatus;$tot5=$tot5+$data->perubahansifat;$tot6=$tot6+$data->denda;$tot7=$tot7+$data->emisi;$tot8=$tot8+$data->pengujiankeliling;$tot9=$tot9+$data->numpangujidanmutasi;$tot10=$tot10+$data->total;
+                @php $i++;$tot1=$tot1+$data->jasapengujian;$tot2=$tot2+$data->administrasi;$tot3=$tot3+$data->kartu;$tot4=$tot4+$data->perubahanstatus;$tot5=$tot5+$data->perubahansifat;$tot6=$tot6+$data->denda;$tot7=$tot7+$data->emisi;$tot8=$tot8+$data->pengujiankeliling;$tot9=$tot9+$data->numpangujidanmutasi;$tot10=$tot10+$data->total;
                 @endphp
                 @endforeach
                 <tr>

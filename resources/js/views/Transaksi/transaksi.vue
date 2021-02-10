@@ -62,45 +62,19 @@
               </thead>
               <tbody>
                 <tr>
+                  <td><v-checkbox v-model="blangko" @click="setblangko()"></v-checkbox></td>
+                  <td>Pengadaan Blangko</td>
+                  <td><v-text-field v-model="form.blangko" solo></v-text-field></td>
+                </tr>
+                <tr>
                   <td><v-checkbox v-model="retribusi" @click="setretribusi()"></v-checkbox></td>
                   <td>Jasa Pengujian</td>
                   <td><v-text-field v-model="form.retribusi" solo></v-text-field></td>
                 </tr>
                 <tr>
                   <td><v-checkbox @click="setregistrasi()" v-model="registrasi"></v-checkbox></td>
-                  <td>Administrasi Pengujian</td>
+                  <td>Pengolalaan Nomor</td>
                   <td><v-text-field  v-model="form.registrasi" solo></v-text-field></td>
-                </tr>
-                <tr>
-                  <td><v-checkbox v-model="bukuuji" @click="setbukuuji()"></v-checkbox></td>
-                  <td><v-select :items="items" v-model="formbuku.jenis" label="Smart Card" @change="getbukuuji()" solo></v-select></td>
-                  <td><v-text-field v-model="form.buku" solo></v-text-field></td>
-                </tr>
-                <tr>
-                  <td><v-checkbox v-model="statuskepemilikan" @click="setstatuskepemilikan()"></v-checkbox></td>
-                  <td>Perubahan status kepemilikan teknis KBM</td>
-                  <td><v-text-field v-model="form.statuskepemilikan" solo></v-text-field></td>
-                </tr>
-
-                <tr>
-                  <td><v-checkbox v-model="perubahansifat" @click="setperubahansifat()"></v-checkbox></td>
-                  <td>Perubahan/Penentuan sifat KBM(SPSK)</td>
-                  <td><v-text-field v-model="form.perubahansifat" solo></v-text-field></td>
-                </tr>
-                <tr>
-                  <td><v-checkbox v-model="emisi" @click="setemisi()"></v-checkbox></td>
-                  <td>Biaya Pengujian Emisi Gas Buang</td>
-                  <td><v-text-field v-model="form.emisi" solo></v-text-field></td>
-                </tr>
-                <tr>
-                  <td><v-checkbox v-model="pengujiankeliling" @click="setpengujiankeliling()"></v-checkbox></td>
-                  <td>Biaya Tambahan Pengujian Keliling</td>
-                  <td><v-text-field v-model="form.pengujiankeliling" solo></v-text-field></td>
-                </tr>
-                <tr>
-                  <td><v-checkbox v-model="numpangujidanmutasi" @click="setnumpangujidanmutasi()"></v-checkbox></td>
-                  <td>Biaya Numpang Uji dan Mutasi KBM</td>
-                  <td><v-text-field v-model="form.numpangujidanmutasi" solo></v-text-field></td>
                 </tr>
                 <tr>
                   <td><v-checkbox v-model="denda" @click="setdenda()"></v-checkbox></td>
@@ -139,6 +113,7 @@ export default {
         return ({
             post: {},
             retribusi:true,
+            blangko:true,
             registrasi:true,
             bukuuji:false,
             emisi:false,
@@ -162,6 +137,7 @@ export default {
                 perubahansifat:0,
                 total:0,
                 retribusi:0,
+                blangko:0,
                 statuskepemilikan: 0,
             }),
 
@@ -180,6 +156,7 @@ export default {
                 denda: 0,
                 registrasi: 0,
                 retribusi: 0,
+                blangko:0,
                 noregistrasikendaraan:'',
                 nama:'',
                 nouji:'',
@@ -256,6 +233,10 @@ export default {
                     this.form.retribusi = this.post.jasapengujian
                     this.retribusi = true
                     }
+                    if(this.post.blangko > 0){
+                    this.form.blangko = this.post.blangko
+                    this.blangko = true
+                    }
                     if(this.post.blndenda > 0){
                     this.form.blndenda = this.post.blndenda
                     this.form.denda = this.post.denda
@@ -265,7 +246,7 @@ export default {
                     this.form.total = this.post.total
                     }
                     if(!this.post.total){
-                     this.form.total = this.form.retribusi+this.form.registrasi
+                     this.form.total = this.form.retribusi+this.form.registrasi+this.form.blangko
                     }
                 }).catch((err) => {
 
@@ -309,6 +290,16 @@ export default {
             else{
                 this.form.total = this.form.total-this.formdata.statuskepemilikan
                 this.form.statuskepemilikan = 0
+            }
+        },
+        setblangko(){
+            if(this.blangko === false){
+                this.form.total = this.form.total-7500
+                this.form.blangko = 0
+            }
+            else{
+                this.form.total = this.form.total+7500
+                this.form.blangko = 7500
             }
         },
         setretribusi(){
@@ -488,6 +479,8 @@ export default {
                 .then((result) => {
                     this.form.retribusi = result.data.retribusi.biaya
                     this.formdata.retribusi = result.data.retribusi.biaya
+                    this.form.blangko = 7500
+                    this.formdata.retribusi = 7500
                 }).catch((err) => {
 
                 });
