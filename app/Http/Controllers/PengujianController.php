@@ -154,7 +154,7 @@ class PengujianController extends Controller
             'dayaangkutorang'       => $identitaskendaraan->dayaangkutorang,
             'dayaangkutbarang'      => $identitaskendaraan->dayaangkutbarang,
             'kelasjalanterendah'    => $identitaskendaraan->kelasjalanterendah,
-            'idpetugasuji'          => '799',
+            'idpetugasuji'          => '779',
             'huv_nomordankondisirangka'                 => $identitaskendaraan->huv_nomordankondisirangka,
             'huv_nomordantipemotorpenggerak'            => $identitaskendaraan->huv_nomordantipemotorpenggerak,
             'huv_kondisitangkicorongdanpipabahanbakar'  => $identitaskendaraan->huv_kondisitangkicorongdanpipabahanbakar,
