@@ -12,172 +12,85 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
-    <style>
-        body{
-            color:#333;
-            text-align:left;
-            font-size:18px;
-            margin:0;
+    <style type="text/css">
+    body {
+          background: rgb(204,204,204); 
+          font-size: 14px;
         }
-        .container{
-            margin:0 auto;
-            margin-top:35px;
-            padding:40px;
-            width:750px;
-            height:auto;
-            background-color:#fff;
+        page {
+          background: white;
+          display: block;
+          margin: 0 auto;
+          margin-bottom: 0.5cm;
+          box-shadow: 0 0 0.5cm rgba(0,0,0,0.5);
         }
-        caption{
-            font-size:28px;
-            margin-bottom:15px;
+        
+        page[size="F4"] {  
+          width: 21cm;
+          height: 16.5cm; 
         }
-        table{
-            border:1px solid #333;
-            border-collapse:collapse;
-            margin:0 auto;
-            width:740px;
+
+        @media print {
+          body, page {
+            margin: 0;
+            box-shadow: 0;
+          }
         }
-        td, tr, th{
-            padding:12px;
-            border:1px solid #333;
-            width:185px;
-        }
-        th{
-            background-color: #f0f0f0;
-        }
-        h4, p{
-            margin:0px;
-        }
-         @page { size: potrait; }
-    </style>
+  </style>
 </head>
 <body onload="window.print();">
+  <page size="F4">
     <div class="container-fluid">
+        <div class="row" style="margin-top: 15px">
+             <div class="col-2"></div>
+               <div class="col-8"></div> 
+        </div>          
+        <div class="row" style="margin-top: 140px">
+            <div class="col-3"></div>
+            <div class="col-6"></div>
+            <div class="col-3" style="line-height: 9px;">
+          <p><b><span><?php echo $data->nouji; ?></span></b></p></p>
+          <p><b><span><?php echo $data->noregistrasikendaraan; ?></span></b></p></p>
+          <!-- <p><b><span>ACT72-C18-00002</span></b></p></p> -->
+            </div>
+        </div>
+        <div class="row" style="margin-top: 0px; line-height: 12px">
+            <div class="col-3"></div>
+            <div class="col-6">
+                <P>: <span id="terima"></span> Rupiah</P>
+                <P>: <span id="uang"></span> Rupiah</P>
+            </div>  
+            <div class="col-3"></div></div> 
         <div class="row">
-            <div class="col-2">
-                <img class="img-fluid" width="30%" height="30%" src="{{url('/img/kota.jpg')}}" alt="Image"/>
+        <div class="col-3"></div>  
+        <div class="col-9">
+          <div class="row" style="line-height: 10px;">
+            <div class="col-4">
             </div>
-            <div class="col-8">
-            <div class="d-flex justify-content-center"><h2><b>DINAS PERHUBUNGAN</b></p></h2></div>
-            <div class="d-flex justify-content-center"><h3><b>TANDA BUKTI PENERIMAAN</b></h3></div>
-            </div>          
-            <div class="col-2">
-                <img class="img-fluid" width="30%" height="30%" src="{{url('/img/dishub.jpg')}}" alt="Image"/>
+            <div class="col-3 ">
+              
+              <p style="margin-top: 146px;"> :  <b><span id="tot"><?php echo $data->total; ?></span></b></p>
+            </div>
+          </div>
+        </div>
+      </div>
+        <div class="row" style="margin-top: 0px">
+            <div class="col-6">
+                <p><u><b></b></u></p>
+                <div class="col-2">
+                </div>
+                <div class="col-5">
+                    <p></p>
+                </div>
+            </div>
+            <div class="col-5" style="margin-top: 53px;">
+                <p class="text-center" style="padding-left: 55px; "><?php echo $data->tglbayar; ?></p>
+                <br><br><br>
             </div>
         </div>
-        <hr style="border: 1px double black;">
-        <br>
-        <div class="text-justify">
-            <p>Bendahara Penerimaan Pembantu Pengujian Kendaraan Bermotor telah menerima uang sebesar Rp. (dengan huruf <span id="uang"></span>) </p>
-        </div>
-        <div class="row">
-            <div class="col-2"></div>
-            <div class="col-2">
-                <p>Nama</p>
-            </div>
-            <div class="col-8">
-                <p>: {{ $kendaraan->nama }}</p>
-            </div>
-            <div class="col-2"></div>
-            <div class="col-2">
-                <p>Alamat</p>
-            </div>
-            <div class="col-8">
-                <p>: {{ $kendaraan->alamat }}</p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-2"></div>
-            <div class="col-10">
-                <p>Sebagai pembayaran : Retribusi Pengujian Kendaraan Bermotor terdiri dari :</p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-4"></div>
-            <div class="col-4">
-                <p>Plat Uji</p>
-            </div>
-            <div class="col-1">:</div>
-            <div class="col-2 text-right">
-                <p> {{ $kendaraan->platuji }}</p>
-            </div>
-            <div class="col-1"></div>
-
-            <div class="col-4"></div>
-            <div class="col-4">
-                <p>Buku Uji</p>
-            </div>
-            <div class="col-1">:</div>
-            <div class="col-2 text-right">
-                <p> {{ $kendaraan->bukuuji }}</p>
-            </div>
-            <div class="col-1"></div>
-
-            <div class="col-4"></div>
-            <div class="col-4">
-                <p>Retribusi</p>
-            </div>
-            <div class="col-1">:</div>
-            <div class="col-2 text-right">
-                <p> {{ $kendaraan->retribusi }}</p>
-            </div>
-            <div class="col-1"></div>
-
-            <div class="col-4"></div>
-            <div class="col-4">
-                <p>Registrasi</p>
-            </div>
-            <div class="col-1">:</div>
-            <div class="col-2 text-right">
-                <p> {{ $kendaraan->regkend }}</p>
-            </div>
-            <div class="col-1"></div>
-
-            <div class="col-4"></div>
-            <div class="col-4">
-                <p>Denda {{ $kendaraan->blndenda }} bulan</p>
-            </div>
-            <div class="col-1">:</div>
-            <div class="col-2 text-right">
-                <p>{{ $kendaraan->denda }}</p>
-            </div>
-            <div class="col-1"></div>
-
-            <div class="col-4"></div>
-            <div class="col-4">
-                <p>Stiker Tanda Samping</p>
-            </div>
-            <div class="col-1">:</div>
-            <div class="col-2 text-right">
-                <p> {{ $kendaraan->stiker }}</p>
-            </div>
-            <div class="col-1"></div>
-
-            <div class="col-4"></div>
-            <div class="col-4 text-right">
-                <p><b>Jumlah</b></p>
-            </div>
-            <div class="col-1">:</div>
-            <div class="col-2 text-right">
-                <p><b><span id="tot">{{ $kendaraan->total }}</span></b> </p>
-            </div>
-            <div class="col-1"></div>
-
-            <div class="col-4 border border-dark text-center">
-                <p>Perda Kota Banjarmasin</p>
-                <p>No. 12 Tahun 2012</p>
-            </div>
-            <div class="col-4 border border-dark text-center">
-                <p>Uang tersebut diatas diterima</p>
-                <p>Banjarmasin, {{ $kendaraan->tglbayar }}</p>
-                <p>Bendahara Penerimaan Pembantu</p>
-            </div>
-            <div class="col-4 border border-dark text-center"></div>
-        </div>
-        <br>
     </div>
-
-<script type="text/javascript">
+    </page>
+  <script type="text/javascript">
   $(document).ready(function(){
     terbilang();
     console.log("ok");
@@ -254,9 +167,10 @@
                         kalimat = kalimat.replace("Satu Ribu","Seribu");
                     }
                 }
+                $("#terima").html(kalimat);
                 $("#uang").html(kalimat);
             }
     });
   </script>
-</body>
+  </body>
 </html>
