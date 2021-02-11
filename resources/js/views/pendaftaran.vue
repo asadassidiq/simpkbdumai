@@ -69,7 +69,7 @@
           <v-row no-gutters>
               <v-col cols="10">
                   <v-autocomplete :items="jeniskendaraan" item-text="jenis" 
-                  item-value="jenis" v-model="form.jeniskendaraan" name="jeniskendaraan" label="Jenis Kendaraan" return-object outlined dense clearable required :disabled="form.jenispendaftaran === 2 || form.jenispendaftaran === 9 || form.jenispendaftaran === 10 || form.jenispendaftaran === 7 || form.jenispendaftaran === 3 || form.jenispendaftaran === 4 || form.jenispendaftaran === 8 || form.jenispendaftaran === 11 || form.jenispendaftaran.id === 2 || form.jenispendaftaran.id === 9 || form.jenispendaftaran.id === 10 || form.jenispendaftaran.id === 7 || form.jenispendaftaran.id === 3 || form.jenispendaftaran.id === 4 || form.jenispendaftaran.id === 8 || form.jenispendaftaran.id === 11"></v-autocomplete>
+                  item-value="jenis" v-model="form.jeniskendaraan" name="jeniskendaraan" label="Jenis Kendaraan" return-object outlined dense clearable required></v-autocomplete>
               </v-col>
               <v-col cols="2">
                   <v-btn class="v-btn-simple" color="error" icon v-on="on" @click="dialogjenis = !dialogjenis">
@@ -130,7 +130,7 @@
               item-value="kodewilayah" v-model="form.kodewilayahasal" name="kodewilayahasal" label="Daerah Asal" return-object outlined dense clearable required></v-autocomplete>
             </v-col>
             <v-col class="d-flex" cols="12" sm="4" md="4">
-              <v-select :items="peruntukan" v-model="form.peruntukan" name="peruntukan" label="Peruntukan" return-object outlined dense clearable required :disabled="form.jenispendaftaran === 2 || form.jenispendaftaran === 9 || form.jenispendaftaran === 10 || form.jenispendaftaran === 7 || form.jenispendaftaran === 3 || form.jenispendaftaran === 4  || form.jenispendaftaran === 11 || form.jenispendaftaran === 8 || form.jenispendaftaran.id === 2 || form.jenispendaftaran.id === 9 || form.jenispendaftaran.id === 10 || form.jenispendaftaran.id === 7 || form.jenispendaftaran.id === 3 || form.jenispendaftaran.id === 4 || form.jenispendaftaran.id === 11 || form.jenispendaftaran.id === 8"></v-select>
+              <v-select :items="peruntukan" v-model="form.peruntukan" name="peruntukan" label="Peruntukan" return-object outlined dense clearable required ></v-select>
             </v-col>
             <v-col class="d-flex" cols="12" sm="4" md="4">
             <v-menu ref="menu2" v-mode        <v-menu ref="menu2" v-mod11l="menu2":close-on-content-click="false" :return-value.sync="form.tglpendaftaran"

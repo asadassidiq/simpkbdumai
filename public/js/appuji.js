@@ -46232,31 +46232,7 @@ var render = function() {
                                           outlined: "",
                                           dense: "",
                                           clearable: "",
-                                          required: "",
-                                          disabled:
-                                            _vm.form.jenispendaftaran === 2 ||
-                                            _vm.form.jenispendaftaran === 9 ||
-                                            _vm.form.jenispendaftaran === 10 ||
-                                            _vm.form.jenispendaftaran === 7 ||
-                                            _vm.form.jenispendaftaran === 3 ||
-                                            _vm.form.jenispendaftaran === 4 ||
-                                            _vm.form.jenispendaftaran === 8 ||
-                                            _vm.form.jenispendaftaran === 11 ||
-                                            _vm.form.jenispendaftaran.id ===
-                                              2 ||
-                                            _vm.form.jenispendaftaran.id ===
-                                              9 ||
-                                            _vm.form.jenispendaftaran.id ===
-                                              10 ||
-                                            _vm.form.jenispendaftaran.id ===
-                                              7 ||
-                                            _vm.form.jenispendaftaran.id ===
-                                              3 ||
-                                            _vm.form.jenispendaftaran.id ===
-                                              4 ||
-                                            _vm.form.jenispendaftaran.id ===
-                                              8 ||
-                                            _vm.form.jenispendaftaran.id === 11
+                                          required: ""
                                         },
                                         model: {
                                           value: _vm.form.jeniskendaraan,
@@ -46796,24 +46772,7 @@ var render = function() {
                                   outlined: "",
                                   dense: "",
                                   clearable: "",
-                                  required: "",
-                                  disabled:
-                                    _vm.form.jenispendaftaran === 2 ||
-                                    _vm.form.jenispendaftaran === 9 ||
-                                    _vm.form.jenispendaftaran === 10 ||
-                                    _vm.form.jenispendaftaran === 7 ||
-                                    _vm.form.jenispendaftaran === 3 ||
-                                    _vm.form.jenispendaftaran === 4 ||
-                                    _vm.form.jenispendaftaran === 11 ||
-                                    _vm.form.jenispendaftaran === 8 ||
-                                    _vm.form.jenispendaftaran.id === 2 ||
-                                    _vm.form.jenispendaftaran.id === 9 ||
-                                    _vm.form.jenispendaftaran.id === 10 ||
-                                    _vm.form.jenispendaftaran.id === 7 ||
-                                    _vm.form.jenispendaftaran.id === 3 ||
-                                    _vm.form.jenispendaftaran.id === 4 ||
-                                    _vm.form.jenispendaftaran.id === 11 ||
-                                    _vm.form.jenispendaftaran.id === 8
+                                  required: ""
                                 },
                                 model: {
                                   value: _vm.form.peruntukan,
