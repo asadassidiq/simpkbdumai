@@ -789,7 +789,7 @@
 	</v-card>
 	</v-col>
 	
-	<v-col cols="12" v-if="activeBtn === itemuji[14]">
+	<v-col cols="12" v-if="activeBtn === itemuji[5]">
 	<v-card class="mx-auto yellow lighten-3">
 	<v-card-title>Daya Angkut, Jumlah Berat</v-card-title>
 	<v-card-subtitle>
