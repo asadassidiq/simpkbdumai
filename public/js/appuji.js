@@ -2232,6 +2232,11 @@ __webpack_require__.r(__webpack_exports__);
         link: '/admin/setting/posuji',
         level: '9'
       }, {
+        icon: 'mdi-fit-to-page',
+        text: 'Setting Amprah',
+        link: '/admin/setting/amprah',
+        level: '14'
+      }, {
         icon: 'mdi-chevron-up',
         'icon-alt': 'mdi-chevron-down',
         text: 'Cetak',

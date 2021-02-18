@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Itemuji;
 use App\Groupuji;
+use App\SettingAmprah;
 ;
 
 class SettingController extends Controller
@@ -36,6 +37,23 @@ class SettingController extends Controller
     {
         $post = Itemuji::find($id);
         $post->groupuji_id = $request->groupuji_id;
+        $post->save();
+    }
+
+    public function indexamprah()
+    {
+        $itempos = array();
+        $items = SettingAmprah::get();
+        foreach ($items as $item) {
+            array_push($itempos,$item->value);
+        }
+        return response()->json(['items'=> $itempos ]);
+    }
+
+    public function updateamprah(Request $request, $id)
+    {
+        $post = SettingAmprah::find($id);
+        $post->value = $request->groupuji_id;
         $post->save();
     }
 }

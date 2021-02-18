@@ -142,6 +142,7 @@
         { icon: 'mdi-content-copy', text: 'Mutasi Uji', link: '/admin/mutasi', level: '6' },
         { icon: 'mdi-account-reactivate', text: 'user', link: '/admin/managementuser', level: '13' },
         { icon: 'mdi-fit-to-page', text: 'settingpos', link: '/admin/setting/posuji', level: '9' },
+        { icon: 'mdi-fit-to-page', text: 'Setting Amprah', link: '/admin/setting/amprah', level: '14' },
         {
           icon: 'mdi-chevron-up',
           'icon-alt': 'mdi-chevron-down',

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Pendaftaran;
 use App\Datakendaraan;
+use App\SettingAmprah;
 use App\Identitaskendaraan;
 use App\Datapengujian;
 use App\Datapengujianlama;
@@ -508,7 +509,14 @@ class PendaftaranController extends Controller
     {
         $kendaraan = Pendaftaran::leftJoin('identitaskendaraans','identitaskendaraans.id','=','pendaftarans.identitaskendaraan_id')->find($id);
         // print_r($kendaraan);
-        return view('admin.cetak.lmbrpemeriksaan_print',  ['data' => $kendaraan]);
+
+        $itempos = array();
+        $items = SettingAmprah::get();
+        foreach ($items as $item) {
+            array_push($itempos,$item->value);
+        }
+
+        return view('admin.cetak.lmbrpemeriksaan_print',  ['data' => $kendaraan,'item' => $itempos]);
     }
 
     public function printlembarsktl($id)

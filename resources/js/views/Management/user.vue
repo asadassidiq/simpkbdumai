@@ -48,26 +48,14 @@
             <thead>
               <tr>
                 <th class="text-left">Name</th>
-                <th class="text-left">View</th>
-                <th class="text-left">Add</th>
-                <th class="text-left">Edit</th>
-                <th class="text-left">Delete</th>
                 <th class="text-left">Action</th>
               </tr>
             </thead>
             <tbody>
               <tr v-for="item in halamanakses" :key="item.halaman">
                 <td>{{ item.halaman }}</td>
-                <td v-if="item.view == '1' "> <v-checkbox input-value="true"  @click="falseview(item.id)"></v-checkbox></td>
-                <td v-else> <v-checkbox @click="trueview(item.id)" ></v-checkbox></td>
-                <td v-if="item.add == '1' "> <v-checkbox input-value="true" @click="falseadd(item.id)"></v-checkbox></td>
-                <td v-else> <v-checkbox @click="trueadd(item.id)" ></v-checkbox></td>
-                <td v-if="item.edit == '1' "> <v-checkbox input-value="true" @click="falseedit(item.id)"></v-checkbox></td>
-                <td v-else> <v-checkbox @click="trueedit(item.id)" ></v-checkbox></td>
-                <td v-if="item.delete == '1' "> <v-checkbox input-value="true" @click="falsedelete(item.id)"></v-checkbox></td>
-                <td v-else> <v-checkbox @click="truedelete(item.id)" ></v-checkbox></td>
                 <td>
-                    <v-btn class="v-btn-simple" color="error" icon v-on="on" @click="deletehalaman(item.id)">
+                    <v-btn class="v-btn-simple" color="error" icon v-on="on" @click="deletehalaman(item.id,item.user_id)">
                         <v-icon>mdi-trash-can</v-icon>
                     </v-btn>
                 </td>
@@ -111,7 +99,7 @@
 export default {
     data() {
         return {
-            level : ['Pendaftaran', 'Retribusi', 'Cetak', 'Penguji', 'Datakendaraan'],
+            level : ['Pendaftaran', 'Retribusi', 'Cetak', 'Penguji'],
             dialog: false,
             halamanakses: [],
             halaman: [],
@@ -149,7 +137,7 @@ export default {
                         text: err
                     })
                 });
-        },deletehalaman(id) {
+        },deletehalaman(id,id_user) {
             Swal.fire({
                 title: 'Anda yakin hapus halaman ini?',
                 type: 'warning',
@@ -159,7 +147,7 @@ export default {
                 confirmButtonText: 'Yes!'
             }).then((result) => {
                 if (result.value) {
-                    this.form.delete('/api/delhalaman/' + id)
+                    this.form.delete('/api/delhalaman/' + id+'/'+id_user)
                      Fire.$emit('afterCreate')
                         Swal.fire(
                             'Deleted!',

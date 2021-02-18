@@ -14,6 +14,7 @@ import Mutasi from './views/mutasi/index.vue';
 import Mutasiall from './views/mutasi/alldata.vue';
 import Uji from './views/pengujian/uji.vue';
 import SetPosUji from './views/setting/set_posuji.vue';
+import SetAmprah from './views/setting/set_amprah.vue';
 import ListUji from './views/pengujian/index.vue';
 import Verif from './views/pengujian/verif.vue';
 import Mereks from './views/master/merek.vue';
@@ -196,6 +197,13 @@ export const routes = [
     {
         path : '/admin/setting/posuji',
         component : SetPosUji,
+        meta:{
+            requireAuth : true
+        }
+    },
+    {
+        path : '/admin/setting/amprah',
+        component : SetAmprah,
         meta:{
             requireAuth : true
         }

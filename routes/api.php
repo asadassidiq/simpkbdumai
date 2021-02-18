@@ -113,8 +113,10 @@ Route::group(['middleware' => 'auth'], function ($router) {
 
     Route::get('itemuji', 'SettingController@index');
     Route::get('itemujipos', 'SettingController@indexpos');
+    Route::get('settingamprah', 'SettingController@indexamprah');
     Route::get('groupuji', 'SettingController@indexgroup');
     Route::post('setposuji/edit/{id}', 'SettingController@update');
+    Route::post('setpamprah/edit/{id}', 'SettingController@updateamprah');
 
     Route::patch('uji/edit/{id}', 'PengujianController@update');
     Route::patch('pengujian/acc/{id}', 'PengujianController@acc');

@@ -16,6 +16,7 @@
             color:#333;
             text-align:left;
             margin:0;
+            font-size: <?php echo $item[0] ?>;
         }
         .container{
             margin:0 auto;
@@ -57,7 +58,7 @@
 </head>
 <body onload="window.print();">
     <div class="container-fluid" style="margin-left: 0px;">
-            <div class="row" style="margin-top: 225px; margin-bottom: 22px;">
+            <div class="row" style="margin-top: <?php echo $item[1].'px' ?>; margin-bottom: <?php echo $item[2].'px' ?>;">
                 <div class="col-8">
                     <p> <span style="letter-spacing: 20px;"> <b><?php echo $data->nouji; ?></b></span></p>
                 </div>
@@ -71,7 +72,7 @@
                 </div>
                 <div class="col-2"></div>
             </div>
-            <div class="row" style="line-height: 16px;font-size: 14px;margin-top: 2px;margin-left: 5px;">
+            <div class="row" style="line-height: 16px;<?php echo $item[3].'px' ?> ;margin-left: 5px;">
                 <div class="col-8">
                   <div class="row">
                     <div class="col-2"></div>
@@ -118,8 +119,7 @@
                     </div>
                 <div class="col-4">
                   <div class="row">
-                    <div class="col-2"></div>
-                      <div class="col-10">
+                      <div class="col-12 text-right">
                         <?php if (!empty($data->isisilinder)) :?>
                           <p><b><?php echo $data->isisilinder ?></b></p>
                         <?php else: ?>
@@ -137,7 +137,7 @@
                </div>
             </div>
         
-        <div class="row text-center" style="line-height: 12px;font-size: 14px;margin-top: 13.95cm;">
+        <div class="row text-center" style="line-height: 12px;font-size: 14px;margin-top: <?php echo $item[4].'cm' ?>;">
           <div class="col-4">
             <div class="row">
                 <div class="col-6"></div>
