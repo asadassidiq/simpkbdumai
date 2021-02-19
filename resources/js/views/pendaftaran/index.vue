@@ -53,6 +53,14 @@
                         </template>
                         <span>print</span>
                     </v-tooltip>
+                    <v-tooltip top>
+                        <template v-slot:activator="{on}" v-if="user_id == 14">
+                            <v-btn class="v-btn-simple" color="error" icon v-on="on" @click="deletependaftaran(item.id)">
+                                <v-icon>mdi-trash-can</v-icon>
+                            </v-btn>
+                        </template>
+                        <span>delete</span>
+                    </v-tooltip>
                 </div>
 
             </template>
@@ -64,6 +72,7 @@ export default {
     data() {
         return {
             search: '',
+            user_id: [],
             headers1: [
                 { text: 'No Kendaraan', value: 'identitaskendaraan.noregistrasikendaraan' },
                 { text: 'No Uji', value: 'identitaskendaraan.nouji' },
@@ -139,6 +148,7 @@ export default {
         },
         initialize () {
             var id = JSON.parse(localStorage.getItem("user"));
+            this.user_id = id.id;
         },
         
     },
