@@ -53,7 +53,7 @@
           <!-- <p><b><span>ACT72-C18-00002</span></b></p></p> -->
             </div>
         </div>
-        <div class="row" style="margin-top: 80px; line-height: 12px">
+        <div class="row" style="margin-top: 20px; line-height: 12px">
             <div class="col-4"></div>
             <div class="col-6">
                 <P> <span id="terima"></span> Rupiah</P>
@@ -68,7 +68,7 @@
             </div>
             <div class="col-3 ">
               
-              <p style="margin-top: 100px;"> :  <b><span id="tot"><?php echo $data->total; ?></span></b></p>
+              <p style="margin-top: 40px;"> :  <b><span id="tot"><?php echo $data->total; ?></span></b></p>
             </div>
           </div>
         </div>
@@ -82,7 +82,7 @@
                     <p></p>
                 </div>
             </div>
-            <div class="col-5" style="margin-top: 33px;">
+            <div class="col-5" style="margin-top: 13px;">
                 <p class="text-center" style="padding-left: 55px; "><?php echo $data->tglbayar; ?></p>
                 <br><br><br>
             </div>
