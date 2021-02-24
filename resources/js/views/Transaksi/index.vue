@@ -26,9 +26,9 @@
                 <div class="text-center d-flex align-center">
                     <v-tooltip top>
                         <template v-slot:activator="{on}">
-                            <v-btn depressed color="error" x-small v-if="item.transaksi === ''"> Belum Lunas </v-btn>
-                            <v-btn depressed color="success" x-small  v-if="item.transaksi.status == 1"> Lunas </v-btn>
-                            <v-btn depressed color="error" x-small v-if="item.transaksi.status == 0">Belum Lunas </v-btn>
+                            <v-btn depressed color="error" x-small v-if="item.status == null"> Belum Lunas </v-btn>
+                            <v-btn depressed color="success" x-small  v-if="item.status == 1"> Lunas </v-btn>
+                            <v-btn depressed color="error" x-small v-if="item.status == 0"> Belum Lunas </v-btn>
                         </template>
                     </v-tooltip>
                 </div>
