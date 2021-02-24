@@ -730,13 +730,13 @@
 	<v-card-subtitle>
 		<v-row no-gutters >
 			<v-col cols="12" sm="6" md="4" v-if="datakendaraan.bahanbakar === 'Solar' ">
-				<v-text-field v-model="form.alatuji_emisiasapbahanbakarsolar" type="number" outlined label="Asap" suffix="Ppm"></v-text-field>
+				<v-text-field v-model="form.alatuji_emisiasapbahanbakarsolar" type="number" outlined label="Asap" suffix="%" :rules="rules.asap"></v-text-field>
 			</v-col>
 			<v-col cols="12" sm="6" md="4" v-if="datakendaraan.bahanbakar != 'Solar' ">
-				<v-text-field v-model="form.alatuji_emisicobahanbakarbensin" type="number" outlined label="CO" suffix="%"></v-text-field>
+				<v-text-field v-model="form.alatuji_emisicobahanbakarbensin" type="number" outlined label="CO" suffix="%" :rules="rules.emisico"></v-text-field>
 			</v-col>
-			<v-col cols="12" sm="6" md="4">
-				<v-text-field v-model="form.alatuji_emisihcbahanbakarbensin" type="number" outlined label="HC" suffix="Ppm"></v-text-field>
+			<v-col cols="12" sm="6" md="4" v-if="datakendaraan.bahanbakar != 'Solar' ">
+				<v-text-field v-model="form.alatuji_emisihcbahanbakarbensin" type="number" outlined label="HC" suffix="Ppm" :rules="rules.emisihc"></v-text-field>
 			</v-col>
 		</v-row>
 	</v-card-subtitle>
@@ -749,7 +749,7 @@
 	<v-card-subtitle>
 		<v-row no-gutters >
 			<v-col cols="12" sm="6" md="4">
-				<v-text-field v-model="form.alatuji_tingkatkebisingan" type="number" outlined suffix="dB(desibel)"></v-text-field>
+				<v-text-field v-model="form.alatuji_tingkatkebisingan" type="number" outlined suffix="dB(desibel)" :rules="rules.klaskson"></v-text-field>
 			</v-col>
 		</v-row>
 	</v-card-subtitle>
@@ -795,19 +795,19 @@
 	<v-card-subtitle>
 	<v-row>
 		<v-col cols="12" sm="6" md="3">
-          <v-text-field label="JBI (Kg)" name="jbi" v-model="form.jbi" type="number"  outlined dense required></v-text-field>
+          <v-text-field label="JBI (Kg)" name="jbi" v-model="form.jbi" type="number"  outlined dense required :rules="rules.jbi"></v-text-field>
         </v-col>
         <v-col cols="12" sm="6" md="3">
-          <v-text-field label="JBKI (Kg)" name="jbki" v-model="form.jbki" type="number"  outlined dense required></v-text-field>
+          <v-text-field label="JBKI (Kg)" name="jbki" v-model="form.jbki" type="number"  outlined dense required :rules="rules.jbki"></v-text-field>
         </v-col>
         <v-col cols="12" sm="6" md="3">
-            <v-text-field label="Daya Angkut Orang (orang)" name="dayaangkutorang" v-model="form.dayaangkutorang" type="number"  outlined dense required></v-text-field>
+            <v-text-field label="Daya Angkut Orang (orang)" name="dayaangkutorang" v-model="form.dayaangkutorang" type="number" outlined dense required :rules="rules.dayaangkutorang"></v-text-field>
         </v-col>
     	<v-col cols="12" sm="6" md="3">
-    		<v-text-field label="Daya Angkut Barang (Kg)" name="dayaangkutbarang" v-model="form.dayaangkutbarang" type="number"  outlined dense required></v-text-field>
+    		<v-text-field label="Daya Angkut Barang (Kg)" name="dayaangkutbarang" v-model="form.dayaangkutbarang" type="number"  outlined dense required :rules="rules.dayaangkutbarang"></v-text-field>
     	</v-col>
         <v-col cols="12" sm="6" md="3">
-            <v-text-field label="MST (Kg)" name="mst" v-model="form.mst" type="number"  outlined dense required></v-text-field>
+            <v-text-field label="MST (Kg)" name="mst" v-model="form.mst" type="number"  outlined dense required :rules="rules.mst"></v-text-field>
         </v-col>
 
 	</v-row>
@@ -886,10 +886,10 @@
 	<v-card-subtitle>
 		<v-row no-gutters >
 			<v-col cols="12" sm="6" md="3">
-				<v-text-field v-model="form.alatuji_remparkirtangan" type="number" outlined label="Tangan" suffix="%"></v-text-field>
+				<v-text-field v-model="form.alatuji_remparkirtangan" type="number" outlined label="Tangan" suffix="%" :rules="remparkirtangan"></v-text-field>
 			</v-col>
 			<v-col cols="12" sm="6" md="3">
-				<v-text-field v-model="form.alatuji_remparkirkaki" type="number" outlined label="kaki" suffix="%"></v-text-field>
+				<v-text-field v-model="form.alatuji_remparkirkaki" type="number" outlined label="kaki" suffix="%" :rules="remparkirkaki"></v-text-field>
 			</v-col>
 		</v-row>
 	</v-card-subtitle>
@@ -902,7 +902,7 @@
 	<v-card-subtitle>
 		<v-row no-gutters >
 			<v-col cols="12" sm="6" md="3">
-				<v-text-field v-model="form.alatuji_kincuprodadepan" type="number" outlined label="S1" suffix="mm"></v-text-field>
+				<v-text-field v-model="form.alatuji_kincuprodadepan" type="number" outlined label="S1" suffix="mm" :rules="rules.kincuproda"></v-text-field>
 			</v-col>
 		</v-row>
 	</v-card-subtitle>
@@ -916,21 +916,21 @@
 		Intensitas
 		<v-row no-gutters >
 			<v-col cols="12" sm="6" md="3">
-				<v-text-field v-model="form.alatuji_lampuutamakekuatanpancarlampukanan" type="number" outlined label="Kanan" suffix="cd"></v-text-field>
+				<v-text-field v-model="form.alatuji_lampuutamakekuatanpancarlampukanan" type="number" outlined label="Kanan" suffix="cd" :rules="rules.kekuatanpancarlampukanan"></v-text-field>
 			</v-col>
 
 			<v-col cols="12" sm="6" md="3">
-				<v-text-field v-model="form.alatuji_lampuutamakekuatanpancarlampukiri" type="number" outlined label="Kiri" suffix="cd"></v-text-field>
+				<v-text-field v-model="form.alatuji_lampuutamakekuatanpancarlampukiri" type="number" outlined label="Kiri" suffix="cd" :rules="rules.kekuatanpancarlampukiri"></v-text-field>
 			</v-col>
 		</v-row>
 		Arah
 		<v-row no-gutters >
 			<v-col cols="12" sm="6" md="3">
-				<v-text-field v-model="form.alatuji_lampuutamapenyimpanganlampukanan" type="number" outlined label="Kanan" suffix="degree"></v-text-field>
+				<v-text-field v-bind:class="{'text-red': text.alatuji_lampuutamapenyimpanganlampukanan}" v-model="form.alatuji_lampuutamapenyimpanganlampukanan" type="number" outlined label="Kanan" suffix="degree" :rules="rules.penyimpanganlampukanan" ></v-text-field>
 			</v-col>
 
 			<v-col cols="12" sm="6" md="3">
-				<v-text-field v-model="form.alatuji_lampuutamapenyimpanganlampukiri" type="number" outlined label="Kiri" suffix="degree"></v-text-field>
+				<v-text-field v-model="form.alatuji_lampuutamapenyimpanganlampukiri" type="number" outlined label="Kiri" suffix="degree" :rules="rules.penyimpanganlampukiri"></v-text-field>
 			</v-col>
 		</v-row>
 	</v-card-subtitle>
@@ -943,7 +943,7 @@
 	<v-card-subtitle>
 		<v-row no-gutters >
 			<v-col cols="12" sm="6" md="3">
-				<v-text-field v-model="form.alatuji_penunjukkecepatan" type="number" outlined  suffix="Km/Jam"></v-text-field>
+				<v-text-field v-model="form.alatuji_penunjukkecepatan" type="number" outlined  suffix="Km/Jam" :rules="rules.speed"></v-text-field>
 			</v-col>
 		</v-row>
 	</v-card-subtitle>
@@ -956,7 +956,7 @@
 	<v-card-subtitle>
 		<v-row no-gutters >
 			<v-col cols="12" sm="6" md="3">
-				<v-text-field v-model="form.alatuji_kedalamanalurban" type="number" outlined suffix="mm"></v-text-field>
+				<v-text-field v-model="form.alatuji_kedalamanalurban" type="number" outlined suffix="mm" :rules="rules.alurban"></v-text-field>
 			</v-col>
 		</v-row>
 	</v-card-subtitle>
@@ -1042,6 +1042,62 @@
     data () {
       return {
         radios: 'Duckduckgo',
+        rules: {
+          asap : [
+          	val => (val <= 70 && this.datakendaraan.thpembuatan < 2010 && this.datakendaraan.jbb <= 3500) || (val <= 40 && this.datakendaraan.thpembuatan >= 2010 && this.datakendaraan.jbb <= 3500) || (val <= 70 && this.datakendaraan.thpembuatan < 2010 && this.datakendaraan.jbb > 3500) || (val <= 50 && this.datakendaraan.thpembuatan >= 2010 && this.datakendaraan.jbb > 3500),
+          ],
+          emisico : [
+          	val => (val <= 4.5 && this.datakendaraan.thpembuatan < 2007) || (val <= 1.5 && this.datakendaraan.thpembuatan >= 2007),
+          ],
+          emisihc : [
+          	val => (val <= 1200 && this.datakendaraan.thpembuatan < 2007) || (val <= 200 && this.datakendaraan.thpembuatan >= 2007),
+          ],
+          alurban : [
+          	val => val >= 1,
+          ],
+          klaskson : [
+          	val => val >= 83 && val <= 118,
+          ],
+          remparkirtangan : [
+          	val => val <= 12,
+          ],
+          remparkirkaki : [
+          	val => val <= 12,
+          ],
+          kincuproda: [
+          	val => val <= 5,
+          ],
+          speed: [
+          	val => val  >=36 && val  <=46 
+          ],
+          kekuatanpancarlampukanan: [
+            val => val >= 12000 ,
+          ],
+          kekuatanpancarlampukiri: [
+            val => val >= 12000 ,
+          ],
+          penyimpanganlampukanan: [
+            val => val <= 0.34 ,
+          ],
+          penyimpanganlampukiri: [
+            val => val <= 1.09 ,
+          ],
+          jbi : [
+          	val => (val || '').length > 0|| 'This field is required',
+          ],
+          jbki : [
+          	val => (val || '').length > 0 || 'This field is required',
+          ],
+          dayaangkutorang  : [
+          	val => (val || '').length > 0 || 'This field is required',
+          ],
+          dayaangkutbarang : [
+          	val => (val || '').length > 0 || 'This field is required',
+          ],
+          mst : [
+          	val => (val || '').length > 0 || 'This field is required',
+          ],
+        },
 		activeBtn: '',
         datakendaraan: [],
         halamanakses: [],
@@ -1049,6 +1105,9 @@
         itemuji: [],
         kondisi:false,
         hasilpos2:'',
+        text: {
+        		alatuji_lampuutamapenyimpanganlampukanan:false,
+            },
         form: new Form({
                 huv_nomordankondisirangka: '1',
                 huv_nomordantipemotorpenggerak: '1',
@@ -1371,7 +1430,15 @@
 		    this.form.alatuji_remutamaselisihgayapengeremanrodakirikanan2 = (parseFloat(hasilS2)*100).toFixed(2);
 		    this.form.alatuji_remutamaselisihgayapengeremanrodakirikanan3 = (parseFloat(hasilS3)*100).toFixed(2);
 		    this.form.alatuji_remutamaselisihgayapengeremanrodakirikanan4 = (parseFloat(hasilS4)*100).toFixed(2);
-        }
+
+		   	if(this.form.gayaremkiris3 == 0 || this.form.gayaremkanans3 == 0 ){
+		   		this.form.alatuji_remutamaselisihgayapengeremanrodakirikanan3 = 0.0;
+		   	}
+
+		   	if(this.form.gayaremkiris4 == 0 || this.form.gayaremkanans4 == 0 ){
+		   		this.form.alatuji_remutamaselisihgayapengeremanrodakirikanan4 = 0.0;
+		   	}
+        },
     },
     created() {
         this.initialize()
@@ -1385,3 +1452,9 @@
 
   }
 </script>
+		
+<style>
+	.text-red input{
+			 color: red !important;
+		}
+</style>

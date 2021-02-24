@@ -106,8 +106,7 @@ export default {
             })
         },
         initialize () {
-            var id = JSON.parse(localStorage.getItem("user"));
-           
+            var id = JSON.parse(localStorage.getItem("user"));   
         },
         print(id){
             window.open('/cetak/'+id+'/printkwitansi', "_blank");

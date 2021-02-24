@@ -4345,7 +4345,9 @@ __webpack_require__.r(__webpack_exports__);
         value: 'actions',
         sortable: false
       }],
-      form: new Form({}),
+      form: new Form({
+        idpenguji: ''
+      }),
       dialog: false
     };
   },
@@ -4389,7 +4391,8 @@ __webpack_require__.r(__webpack_exports__);
           timer: 500
         });
         _this2.dialog = false;
-        _this2.refreshPost;
+
+        _this2.refreshPost();
       })["catch"](function (err) {
         Swal.fire({
           type: 'error',
@@ -4419,6 +4422,10 @@ __webpack_require__.r(__webpack_exports__);
         });
       });
     },
+    initialize: function initialize() {
+      var id = JSON.parse(localStorage.getItem("user"));
+      this.form.idpenguji = id.id;
+    },
     refreshPost: function refreshPost() {
       this.$store.dispatch('getVerifgagal');
     },
@@ -4445,6 +4452,7 @@ __webpack_require__.r(__webpack_exports__);
       _this4.refreshPost();
     });
     this.refreshPost();
+    this.initialize();
   }
 });
 
@@ -4972,7 +4980,9 @@ __webpack_require__.r(__webpack_exports__);
         value: 'actions',
         sortable: false
       }],
-      form: new Form({}),
+      form: new Form({
+        idpenguji: ''
+      }),
       dialog: false
     };
   },
@@ -5004,6 +5014,7 @@ __webpack_require__.r(__webpack_exports__);
     setAcc: function setAcc(id) {
       this.idAcc = id;
       this.dialog = true;
+      console.log('oi oi oi' + this.form.idpenguji);
     },
     acc: function acc() {
       var _this2 = this;
@@ -5016,7 +5027,8 @@ __webpack_require__.r(__webpack_exports__);
           timer: 500
         });
         _this2.dialog = false;
-        _this2.refreshPost;
+
+        _this2.refreshPost();
       })["catch"](function (err) {
         Swal.fire({
           type: 'error',
@@ -5046,6 +5058,10 @@ __webpack_require__.r(__webpack_exports__);
         });
       });
     },
+    initialize: function initialize() {
+      var id = JSON.parse(localStorage.getItem("user"));
+      this.form.idpenguji = id.id;
+    },
     refreshPost: function refreshPost() {
       this.$store.dispatch('getVeriflulus');
     },
@@ -5072,6 +5088,7 @@ __webpack_require__.r(__webpack_exports__);
       _this4.refreshPost();
     });
     this.refreshPost();
+    this.initialize();
   }
 });
 
@@ -6325,10 +6342,67 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
-    var _Form;
+    var _this = this,
+        _Form;
 
     return {
       radios: 'Duckduckgo',
+      rules: {
+        asap: [function (val) {
+          return val <= 70 && _this.datakendaraan.thpembuatan < 2010 && _this.datakendaraan.jbb <= 3500 || val <= 40 && _this.datakendaraan.thpembuatan >= 2010 && _this.datakendaraan.jbb <= 3500 || val <= 70 && _this.datakendaraan.thpembuatan < 2010 && _this.datakendaraan.jbb > 3500 || val <= 50 && _this.datakendaraan.thpembuatan >= 2010 && _this.datakendaraan.jbb > 3500;
+        }],
+        emisico: [function (val) {
+          return val <= 4.5 && _this.datakendaraan.thpembuatan < 2007 || val <= 1.5 && _this.datakendaraan.thpembuatan >= 2007;
+        }],
+        emisihc: [function (val) {
+          return val <= 1200 && _this.datakendaraan.thpembuatan < 2007 || val <= 200 && _this.datakendaraan.thpembuatan >= 2007;
+        }],
+        alurban: [function (val) {
+          return val >= 1;
+        }],
+        klaskson: [function (val) {
+          return val >= 83 && val <= 118;
+        }],
+        remparkirtangan: [function (val) {
+          return val <= 12;
+        }],
+        remparkirkaki: [function (val) {
+          return val <= 12;
+        }],
+        kincuproda: [function (val) {
+          return val <= 5;
+        }],
+        speed: [function (val) {
+          return val >= 36 && val <= 46;
+        }],
+        kekuatanpancarlampukanan: [function (val) {
+          return val >= 12000;
+        }],
+        kekuatanpancarlampukiri: [function (val) {
+          return val >= 12000;
+        }],
+        penyimpanganlampukanan: [function (val) {
+          return val <= 0.34;
+        }],
+        penyimpanganlampukiri: [function (val) {
+          return val <= 1.09;
+        }],
+        jbi: [function (val) {
+          return (val || '').length > 0 || 'This field is required';
+        }],
+        jbki: [function (val) {
+          return (val || '').length > 0 || 'This field is required';
+        }],
+        dayaangkutorang: [function (val) {
+          return (val || '').length > 0 || 'This field is required';
+        }],
+        dayaangkutbarang: [function (val) {
+          return (val || '').length > 0 || 'This field is required';
+        }],
+        mst: [function (val) {
+          return (val || '').length > 0 || 'This field is required';
+        }]
+      },
       activeBtn: '',
       datakendaraan: [],
       halamanakses: [],
@@ -6336,6 +6410,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       itemuji: [],
       kondisi: false,
       hasilpos2: '',
+      text: {
+        alatuji_lampuutamapenyimpanganlampukanan: false
+      },
       form: new Form((_Form = {
         huv_nomordankondisirangka: '1',
         huv_nomordantipemotorpenggerak: '1',
@@ -6421,108 +6498,108 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.form.posisipos = posisi;
     },
     fetchPost: function fetchPost(id) {
-      var _this = this;
+      var _this2 = this;
 
       axios({
         url: '/api/uji/' + id,
         method: "get"
       }).then(function (result) {
-        _this.datakendaraan = result.data.kendaraan;
+        _this2.datakendaraan = result.data.kendaraan;
 
         if (result.data.kendaraan.pendaftaran_id) {
-          _this.form.huv_nomordankondisirangka = result.data.kendaraan.huv_nomordankondisirangka;
-          _this.form.huv_nomordantipemotorpenggerak = result.data.kendaraan.huv_nomordantipemotorpenggerak;
-          _this.form.huv_kondisitangkicorongdanpipabahanbakar = result.data.kendaraan.huv_kondisitangkicorongdanpipabahanbakar;
-          _this.form.huv_kondisiconverterkit = result.data.kendaraan.huv_kondisiconverterkit;
-          _this.form.huv_kondisidanposisipipapembuangan = result.data.kendaraan.huv_kondisidanposisipipapembuangan;
-          _this.form.huv_ukurandankondisiban = result.data.kendaraan.huv_ukurandankondisiban;
-          _this.form.huv_kondisisistemsuspensi = result.data.kendaraan.huv_kondisisistemsuspensi;
-          _this.form.huv_kondisisistemremutama = result.data.kendaraan.huv_kondisisistemremutama;
-          _this.form.huv_kondisipenutuplampudanalatpantulcahaya = result.data.kendaraan.huv_kondisipenutuplampudanalatpantulcahaya;
-          _this.form.huv_kondisipanelinstrumentdashboard = result.data.kendaraan.huv_kondisipanelinstrumentdashboard;
-          _this.form.huv_kondisikacaspion = result.data.kendaraan.huv_kondisikacaspion;
-          _this.form.huv_kondisispakbor = result.data.kendaraan.huv_kondisispakbor;
-          _this.form.huv_bentukbumper = result.data.kendaraan.huv_bentukbumper;
-          _this.form.huv_keberadaandankondisiperlengkapan = result.data.kendaraan.huv_keberadaandankondisiperlengkapan;
-          _this.form.huv_rancanganteknis = result.data.kendaraan.huv_rancanganteknis;
-          _this.form.huv_keberadaandankondisifasilitastanggapdaruratuntukmobilbus = result.data.kendaraan.huv_keberadaandankondisifasilitastanggapdaruratuntukmobilbus;
-          _this.form.huv_kondisibadankacaengseltempatdudukmbarangbakmuatantertutup = result.data.kendaraan.huv_kondisibadankacaengseltempatdudukmbarangbakmuatantertutup;
-          _this.form.hum_kondisipenerusdaya = result.data.kendaraan.hum_kondisipenerusdaya;
-          _this.form.hum_sudutbebaskemudi = result.data.kendaraan.hum_sudutbebaskemudi;
-          _this.form.hum_kondisiremparkir = result.data.kendaraan.hum_kondisiremparkir;
-          _this.form.hum_fungsilampudanalatpantulcahaya = result.data.kendaraan.hum_fungsilampudanalatpantulcahaya;
-          _this.form.hum_fungsipenghapuskaca = result.data.kendaraan.hum_fungsipenghapuskaca;
-          _this.form.hum_tingkatkegelapankaca = result.data.kendaraan.hum_tingkatkegelapankaca;
-          _this.form.hum_fungsiklakson = result.data.kendaraan.hum_fungsiklakson;
-          _this.form.hum_kondisidanfungsisabukkeselamatan = result.data.kendaraan.hum_kondisidanfungsisabukkeselamatan;
-          _this.form.hum_ukurankendaraan = result.data.kendaraan.hum_ukurankendaraan;
-          _this.form.hum_ukurantempatdudukdanbagiandalamkendaraanuntukmobilbus = result.data.kendaraan.hum_ukurantempatdudukdanbagiandalamkendaraanuntukmobilbus;
-          _this.form.alatuji_emisiasapbahanbakarsolar = result.data.kendaraan.alatuji_emisiasapbahanbakarsolar;
-          _this.form.alatuji_emisicobahanbakarbensin = result.data.kendaraan.alatuji_emisicobahanbakarbensin;
-          _this.form.alatuji_emisihcbahanbakarbensin = result.data.kendaraan.alatuji_emisihcbahanbakarbensin;
-          _this.form.alatuji_remutamatotalgayapengereman = result.data.kendaraan.alatuji_remutamatotalgayapengereman;
-          _this.form.alatuji_remutamaselisihgayapengeremanrodakirikanan1 = result.data.kendaraan.alatuji_remutamaselisihgayapengeremanrodakirikanan1;
-          _this.form.alatuji_remutamaselisihgayapengeremanrodakirikanan2 = result.data.kendaraan.alatuji_remutamaselisihgayapengeremanrodakirikanan2;
-          _this.form.alatuji_remutamaselisihgayapengeremanrodakirikanan3 = result.data.kendaraan.alatuji_remutamaselisihgayapengeremanrodakirikanan3;
-          _this.form.alatuji_remutamaselisihgayapengeremanrodakirikanan4 = result.data.kendaraan.alatuji_remutamaselisihgayapengeremanrodakirikanan4;
-          _this.form.alatuji_remparkirtangan = result.data.kendaraan.alatuji_remparkirtangan;
-          _this.form.alatuji_remparkirkaki = result.data.kendaraan.alatuji_remparkirkaki;
-          _this.form.alatuji_kincuprodadepan = result.data.kendaraan.alatuji_kincuprodadepan;
-          _this.form.alatuji_tingkatkebisingan = result.data.kendaraan.alatuji_tingkatkebisingan;
-          _this.form.alatuji_lampuutamakekuatanpancarlampukanan = result.data.kendaraan.alatuji_lampuutamakekuatanpancarlampukanan;
-          _this.form.alatuji_lampuutamakekuatanpancarlampukiri = result.data.kendaraan.alatuji_lampuutamakekuatanpancarlampukiri;
-          _this.form.alatuji_lampuutamapenyimpanganlampukanan = result.data.kendaraan.alatuji_lampuutamapenyimpanganlampukanan;
-          _this.form.alatuji_lampuutamapenyimpanganlampukiri = result.data.kendaraan.alatuji_lampuutamapenyimpanganlampukiri;
-          _this.form.alatuji_penunjukkecepatan = result.data.kendaraan.alatuji_penunjukkecepatan;
-          _this.form.alatuji_kedalamanalurban = result.data.kendaraan.alatuji_kedalamanalurban;
-          _this.form.bsumbu1 = result.data.kendaraan.beratsumbu1;
-          _this.form.bsumbu2 = result.data.kendaraan.beratsumbu2;
-          _this.form.bsumbu3 = result.data.kendaraan.beratsumbu3;
-          _this.form.bsumbu4 = result.data.kendaraan.beratsumbu4;
-          _this.form.beratkosong = result.data.kendaraan.beratkosong;
-          _this.form.gayaremkanans1 = result.data.kendaraan.gayaremkanans1;
-          _this.form.gayaremkanans2 = result.data.kendaraan.gayaremkanans2;
-          _this.form.gayaremkanans3 = result.data.kendaraan.gayaremkanans3;
-          _this.form.gayaremkanans4 = result.data.kendaraan.gayaremkanans4;
-          _this.form.gayaremkiris1 = result.data.kendaraan.gayaremkiris1;
-          _this.form.gayaremkiris2 = result.data.kendaraan.gayaremkiris2;
-          _this.form.gayaremkiris3 = result.data.kendaraan.gayaremkiris3;
-          _this.form.gayaremkiris4 = result.data.kendaraan.gayaremkiris4;
+          _this2.form.huv_nomordankondisirangka = result.data.kendaraan.huv_nomordankondisirangka;
+          _this2.form.huv_nomordantipemotorpenggerak = result.data.kendaraan.huv_nomordantipemotorpenggerak;
+          _this2.form.huv_kondisitangkicorongdanpipabahanbakar = result.data.kendaraan.huv_kondisitangkicorongdanpipabahanbakar;
+          _this2.form.huv_kondisiconverterkit = result.data.kendaraan.huv_kondisiconverterkit;
+          _this2.form.huv_kondisidanposisipipapembuangan = result.data.kendaraan.huv_kondisidanposisipipapembuangan;
+          _this2.form.huv_ukurandankondisiban = result.data.kendaraan.huv_ukurandankondisiban;
+          _this2.form.huv_kondisisistemsuspensi = result.data.kendaraan.huv_kondisisistemsuspensi;
+          _this2.form.huv_kondisisistemremutama = result.data.kendaraan.huv_kondisisistemremutama;
+          _this2.form.huv_kondisipenutuplampudanalatpantulcahaya = result.data.kendaraan.huv_kondisipenutuplampudanalatpantulcahaya;
+          _this2.form.huv_kondisipanelinstrumentdashboard = result.data.kendaraan.huv_kondisipanelinstrumentdashboard;
+          _this2.form.huv_kondisikacaspion = result.data.kendaraan.huv_kondisikacaspion;
+          _this2.form.huv_kondisispakbor = result.data.kendaraan.huv_kondisispakbor;
+          _this2.form.huv_bentukbumper = result.data.kendaraan.huv_bentukbumper;
+          _this2.form.huv_keberadaandankondisiperlengkapan = result.data.kendaraan.huv_keberadaandankondisiperlengkapan;
+          _this2.form.huv_rancanganteknis = result.data.kendaraan.huv_rancanganteknis;
+          _this2.form.huv_keberadaandankondisifasilitastanggapdaruratuntukmobilbus = result.data.kendaraan.huv_keberadaandankondisifasilitastanggapdaruratuntukmobilbus;
+          _this2.form.huv_kondisibadankacaengseltempatdudukmbarangbakmuatantertutup = result.data.kendaraan.huv_kondisibadankacaengseltempatdudukmbarangbakmuatantertutup;
+          _this2.form.hum_kondisipenerusdaya = result.data.kendaraan.hum_kondisipenerusdaya;
+          _this2.form.hum_sudutbebaskemudi = result.data.kendaraan.hum_sudutbebaskemudi;
+          _this2.form.hum_kondisiremparkir = result.data.kendaraan.hum_kondisiremparkir;
+          _this2.form.hum_fungsilampudanalatpantulcahaya = result.data.kendaraan.hum_fungsilampudanalatpantulcahaya;
+          _this2.form.hum_fungsipenghapuskaca = result.data.kendaraan.hum_fungsipenghapuskaca;
+          _this2.form.hum_tingkatkegelapankaca = result.data.kendaraan.hum_tingkatkegelapankaca;
+          _this2.form.hum_fungsiklakson = result.data.kendaraan.hum_fungsiklakson;
+          _this2.form.hum_kondisidanfungsisabukkeselamatan = result.data.kendaraan.hum_kondisidanfungsisabukkeselamatan;
+          _this2.form.hum_ukurankendaraan = result.data.kendaraan.hum_ukurankendaraan;
+          _this2.form.hum_ukurantempatdudukdanbagiandalamkendaraanuntukmobilbus = result.data.kendaraan.hum_ukurantempatdudukdanbagiandalamkendaraanuntukmobilbus;
+          _this2.form.alatuji_emisiasapbahanbakarsolar = result.data.kendaraan.alatuji_emisiasapbahanbakarsolar;
+          _this2.form.alatuji_emisicobahanbakarbensin = result.data.kendaraan.alatuji_emisicobahanbakarbensin;
+          _this2.form.alatuji_emisihcbahanbakarbensin = result.data.kendaraan.alatuji_emisihcbahanbakarbensin;
+          _this2.form.alatuji_remutamatotalgayapengereman = result.data.kendaraan.alatuji_remutamatotalgayapengereman;
+          _this2.form.alatuji_remutamaselisihgayapengeremanrodakirikanan1 = result.data.kendaraan.alatuji_remutamaselisihgayapengeremanrodakirikanan1;
+          _this2.form.alatuji_remutamaselisihgayapengeremanrodakirikanan2 = result.data.kendaraan.alatuji_remutamaselisihgayapengeremanrodakirikanan2;
+          _this2.form.alatuji_remutamaselisihgayapengeremanrodakirikanan3 = result.data.kendaraan.alatuji_remutamaselisihgayapengeremanrodakirikanan3;
+          _this2.form.alatuji_remutamaselisihgayapengeremanrodakirikanan4 = result.data.kendaraan.alatuji_remutamaselisihgayapengeremanrodakirikanan4;
+          _this2.form.alatuji_remparkirtangan = result.data.kendaraan.alatuji_remparkirtangan;
+          _this2.form.alatuji_remparkirkaki = result.data.kendaraan.alatuji_remparkirkaki;
+          _this2.form.alatuji_kincuprodadepan = result.data.kendaraan.alatuji_kincuprodadepan;
+          _this2.form.alatuji_tingkatkebisingan = result.data.kendaraan.alatuji_tingkatkebisingan;
+          _this2.form.alatuji_lampuutamakekuatanpancarlampukanan = result.data.kendaraan.alatuji_lampuutamakekuatanpancarlampukanan;
+          _this2.form.alatuji_lampuutamakekuatanpancarlampukiri = result.data.kendaraan.alatuji_lampuutamakekuatanpancarlampukiri;
+          _this2.form.alatuji_lampuutamapenyimpanganlampukanan = result.data.kendaraan.alatuji_lampuutamapenyimpanganlampukanan;
+          _this2.form.alatuji_lampuutamapenyimpanganlampukiri = result.data.kendaraan.alatuji_lampuutamapenyimpanganlampukiri;
+          _this2.form.alatuji_penunjukkecepatan = result.data.kendaraan.alatuji_penunjukkecepatan;
+          _this2.form.alatuji_kedalamanalurban = result.data.kendaraan.alatuji_kedalamanalurban;
+          _this2.form.bsumbu1 = result.data.kendaraan.beratsumbu1;
+          _this2.form.bsumbu2 = result.data.kendaraan.beratsumbu2;
+          _this2.form.bsumbu3 = result.data.kendaraan.beratsumbu3;
+          _this2.form.bsumbu4 = result.data.kendaraan.beratsumbu4;
+          _this2.form.beratkosong = result.data.kendaraan.beratkosong;
+          _this2.form.gayaremkanans1 = result.data.kendaraan.gayaremkanans1;
+          _this2.form.gayaremkanans2 = result.data.kendaraan.gayaremkanans2;
+          _this2.form.gayaremkanans3 = result.data.kendaraan.gayaremkanans3;
+          _this2.form.gayaremkanans4 = result.data.kendaraan.gayaremkanans4;
+          _this2.form.gayaremkiris1 = result.data.kendaraan.gayaremkiris1;
+          _this2.form.gayaremkiris2 = result.data.kendaraan.gayaremkiris2;
+          _this2.form.gayaremkiris3 = result.data.kendaraan.gayaremkiris3;
+          _this2.form.gayaremkiris4 = result.data.kendaraan.gayaremkiris4;
         }
 
-        _this.form.dayaangkutbarang = result.data.kendaraan.dayaangkutbarang;
-        _this.form.dayaangkutorang = result.data.kendaraan.dayaangkutorang;
-        _this.form.mst = result.data.kendaraan.mst;
-        _this.form.jbi = result.data.kendaraan.jbi;
-        _this.form.jbki = result.data.kendaraan.jbki;
-        _this.form.panjangkendaraan = result.data.kendaraan.panjangkendaraan;
-        _this.form.lebarkendaraan = result.data.kendaraan.lebarkendaraan;
-        _this.form.tinggikendaraan = result.data.kendaraan.tinggikendaraan;
-        _this.form.julurbelakang = result.data.kendaraan.julurbelakang;
-        _this.form.julurdepan = result.data.kendaraan.julurdepan;
-        _this.form.groundclearance = result.data.kendaraan.groundclearance;
-        _this.form.panjangbakatautangki = result.data.kendaraan.panjangbakatautangki;
-        _this.form.lebarbakatautangki = result.data.kendaraan.lebarbakatautangki;
-        _this.form.tinggibakatautangki = result.data.kendaraan.tinggibakatautangki;
-        _this.form.jaraksumbu1_2 = result.data.kendaraan.jaraksumbu1_2;
-        _this.form.jaraksumbu2_3 = result.data.kendaraan.jaraksumbu2_3;
-        _this.form.jaraksumbu3_4 = result.data.kendaraan.jaraksumbu3_4;
-        _this.form.q = result.data.kendaraan.q;
-        _this.form.p = result.data.kendaraan.p;
-        _this.form.pos1 = result.data.kendaraan.pos1.toString();
-        _this.form.pos2 = result.data.kendaraan.pos2.toString();
-        _this.form.catatanpos1 = result.data.kendaraan.catatanpos1;
-        _this.form.catatanpos2 = result.data.kendaraan.catatanpos2;
+        _this2.form.dayaangkutbarang = result.data.kendaraan.dayaangkutbarang;
+        _this2.form.dayaangkutorang = result.data.kendaraan.dayaangkutorang;
+        _this2.form.mst = result.data.kendaraan.mst;
+        _this2.form.jbi = result.data.kendaraan.jbi;
+        _this2.form.jbki = result.data.kendaraan.jbki;
+        _this2.form.panjangkendaraan = result.data.kendaraan.panjangkendaraan;
+        _this2.form.lebarkendaraan = result.data.kendaraan.lebarkendaraan;
+        _this2.form.tinggikendaraan = result.data.kendaraan.tinggikendaraan;
+        _this2.form.julurbelakang = result.data.kendaraan.julurbelakang;
+        _this2.form.julurdepan = result.data.kendaraan.julurdepan;
+        _this2.form.groundclearance = result.data.kendaraan.groundclearance;
+        _this2.form.panjangbakatautangki = result.data.kendaraan.panjangbakatautangki;
+        _this2.form.lebarbakatautangki = result.data.kendaraan.lebarbakatautangki;
+        _this2.form.tinggibakatautangki = result.data.kendaraan.tinggibakatautangki;
+        _this2.form.jaraksumbu1_2 = result.data.kendaraan.jaraksumbu1_2;
+        _this2.form.jaraksumbu2_3 = result.data.kendaraan.jaraksumbu2_3;
+        _this2.form.jaraksumbu3_4 = result.data.kendaraan.jaraksumbu3_4;
+        _this2.form.q = result.data.kendaraan.q;
+        _this2.form.p = result.data.kendaraan.p;
+        _this2.form.pos1 = result.data.kendaraan.pos1.toString();
+        _this2.form.pos2 = result.data.kendaraan.pos2.toString();
+        _this2.form.catatanpos1 = result.data.kendaraan.catatanpos1;
+        _this2.form.catatanpos2 = result.data.kendaraan.catatanpos2;
       })["catch"](function (err) {});
     },
     initialize: function initialize() {
-      var _this2 = this;
+      var _this3 = this;
 
       axios({
         url: '/api/itemujipos/',
         method: "get"
       }).then(function (result) {
-        _this2.itemuji = result.data.items;
+        _this3.itemuji = result.data.items;
       })["catch"](function (err) {});
       var id = JSON.parse(localStorage.getItem("user"));
       this.form.petugaspos1 = id.id;
@@ -6531,29 +6608,29 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         url: '/api/cekakses1/' + id.id,
         method: "get"
       }).then(function (result) {
-        _this2.halamanakses = result.data.halamanakses;
+        _this3.halamanakses = result.data.halamanakses;
 
-        if (_this2.halamanakses === 1) {
-          _this2.form.posisipos = '1';
+        if (_this3.halamanakses === 1) {
+          _this3.form.posisipos = '1';
         }
       })["catch"](function (err) {});
       axios({
         url: '/api/cekakses2/' + id.id,
         method: "get"
       }).then(function (result) {
-        _this2.halamanakses2 = result.data.halamanakses;
+        _this3.halamanakses2 = result.data.halamanakses;
 
-        if (_this2.halamanakses === 1) {
-          _this2.form.posisipos = '1';
-          _this2.activeBtn = 1;
-        } else if (_this2.halamanakses2 === 1) {
-          _this2.form.posisipos = '2';
-          _this2.activeBtn = 2;
+        if (_this3.halamanakses === 1) {
+          _this3.form.posisipos = '1';
+          _this3.activeBtn = 1;
+        } else if (_this3.halamanakses2 === 1) {
+          _this3.form.posisipos = '2';
+          _this3.activeBtn = 2;
         }
       })["catch"](function (err) {});
     },
     editPost: function editPost(id) {
-      var _this3 = this;
+      var _this4 = this;
 
       this.form.patch('/api/uji/edit/' + id).then(function (result) {
         Swal.fire({
@@ -6562,9 +6639,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           showConfirmButton: false,
           timer: 500
         });
-        console.log(_this3.form);
+        console.log(_this4.form);
 
-        _this3.$router.push('/uji/pendaftarans');
+        _this4.$router.push('/uji/pendaftarans');
       })["catch"](function (err) {
         Swal.fire({
           type: 'error',
@@ -6619,6 +6696,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.form.alatuji_remutamaselisihgayapengeremanrodakirikanan2 = (parseFloat(hasilS2) * 100).toFixed(2);
       this.form.alatuji_remutamaselisihgayapengeremanrodakirikanan3 = (parseFloat(hasilS3) * 100).toFixed(2);
       this.form.alatuji_remutamaselisihgayapengeremanrodakirikanan4 = (parseFloat(hasilS4) * 100).toFixed(2);
+
+      if (this.form.gayaremkiris3 == 0 || this.form.gayaremkanans3 == 0) {
+        this.form.alatuji_remutamaselisihgayapengeremanrodakirikanan3 = 0.0;
+      }
+
+      if (this.form.gayaremkiris4 == 0 || this.form.gayaremkanans4 == 0) {
+        this.form.alatuji_remutamaselisihgayapengeremanrodakirikanan4 = 0.0;
+      }
     }
   },
   created: function created() {
@@ -7135,6 +7220,112 @@ __webpack_require__.r(__webpack_exports__);
     this.initialize();
   }
 });
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/pengujian/uji.vue?vue&type=style&index=0&lang=css&":
+/*!**************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/pengujian/uji.vue?vue&type=style&index=0&lang=css& ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.text-red input{\n\t\t color: red !important;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/lib/css-base.js":
+/*!*************************************************!*\
+  !*** ./node_modules/css-loader/lib/css-base.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/*
+	MIT License http://www.opensource.org/licenses/mit-license.php
+	Author Tobias Koppers @sokra
+*/
+// css base code, injected by the css-loader
+module.exports = function(useSourceMap) {
+	var list = [];
+
+	// return the list of modules as css string
+	list.toString = function toString() {
+		return this.map(function (item) {
+			var content = cssWithMappingToString(item, useSourceMap);
+			if(item[2]) {
+				return "@media " + item[2] + "{" + content + "}";
+			} else {
+				return content;
+			}
+		}).join("");
+	};
+
+	// import a list of modules into the list
+	list.i = function(modules, mediaQuery) {
+		if(typeof modules === "string")
+			modules = [[null, modules, ""]];
+		var alreadyImportedModules = {};
+		for(var i = 0; i < this.length; i++) {
+			var id = this[i][0];
+			if(typeof id === "number")
+				alreadyImportedModules[id] = true;
+		}
+		for(i = 0; i < modules.length; i++) {
+			var item = modules[i];
+			// skip already imported module
+			// this implementation is not 100% perfect for weird media query combinations
+			//  when a module is imported multiple times with different media queries.
+			//  I hope this will never occur (Hey this way we have smaller bundles)
+			if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
+				if(mediaQuery && !item[2]) {
+					item[2] = mediaQuery;
+				} else if(mediaQuery) {
+					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
+				}
+				list.push(item);
+			}
+		}
+	};
+	return list;
+};
+
+function cssWithMappingToString(item, useSourceMap) {
+	var content = item[1] || '';
+	var cssMapping = item[3];
+	if (!cssMapping) {
+		return content;
+	}
+
+	if (useSourceMap && typeof btoa === 'function') {
+		var sourceMapping = toComment(cssMapping);
+		var sourceURLs = cssMapping.sources.map(function (source) {
+			return '/*# sourceURL=' + cssMapping.sourceRoot + source + ' */'
+		});
+
+		return [content].concat(sourceURLs).concat([sourceMapping]).join('\n');
+	}
+
+	return [content].join('\n');
+}
+
+// Adapted from convert-source-map (MIT)
+function toComment(sourceMap) {
+	// eslint-disable-next-line no-undef
+	var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap))));
+	var data = 'sourceMappingURL=data:application/json;charset=utf-8;base64,' + base64;
+
+	return '/*# ' + data + ' */';
+}
+
 
 /***/ }),
 
@@ -38210,6 +38401,545 @@ process.umask = function() { return 0; };
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/pengujian/uji.vue?vue&type=style&index=0&lang=css&":
+/*!******************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/pengujian/uji.vue?vue&type=style&index=0&lang=css& ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../../node_modules/css-loader??ref--6-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--6-2!../../../../node_modules/vue-loader/lib??vue-loader-options!./uji.vue?vue&type=style&index=0&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/pengujian/uji.vue?vue&type=style&index=0&lang=css&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/lib/addStyles.js":
+/*!****************************************************!*\
+  !*** ./node_modules/style-loader/lib/addStyles.js ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+/*
+	MIT License http://www.opensource.org/licenses/mit-license.php
+	Author Tobias Koppers @sokra
+*/
+
+var stylesInDom = {};
+
+var	memoize = function (fn) {
+	var memo;
+
+	return function () {
+		if (typeof memo === "undefined") memo = fn.apply(this, arguments);
+		return memo;
+	};
+};
+
+var isOldIE = memoize(function () {
+	// Test for IE <= 9 as proposed by Browserhacks
+	// @see http://browserhacks.com/#hack-e71d8692f65334173fee715c222cb805
+	// Tests for existence of standard globals is to allow style-loader
+	// to operate correctly into non-standard environments
+	// @see https://github.com/webpack-contrib/style-loader/issues/177
+	return window && document && document.all && !window.atob;
+});
+
+var getTarget = function (target, parent) {
+  if (parent){
+    return parent.querySelector(target);
+  }
+  return document.querySelector(target);
+};
+
+var getElement = (function (fn) {
+	var memo = {};
+
+	return function(target, parent) {
+                // If passing function in options, then use it for resolve "head" element.
+                // Useful for Shadow Root style i.e
+                // {
+                //   insertInto: function () { return document.querySelector("#foo").shadowRoot }
+                // }
+                if (typeof target === 'function') {
+                        return target();
+                }
+                if (typeof memo[target] === "undefined") {
+			var styleTarget = getTarget.call(this, target, parent);
+			// Special case to return head of iframe instead of iframe itself
+			if (window.HTMLIFrameElement && styleTarget instanceof window.HTMLIFrameElement) {
+				try {
+					// This will throw an exception if access to iframe is blocked
+					// due to cross-origin restrictions
+					styleTarget = styleTarget.contentDocument.head;
+				} catch(e) {
+					styleTarget = null;
+				}
+			}
+			memo[target] = styleTarget;
+		}
+		return memo[target]
+	};
+})();
+
+var singleton = null;
+var	singletonCounter = 0;
+var	stylesInsertedAtTop = [];
+
+var	fixUrls = __webpack_require__(/*! ./urls */ "./node_modules/style-loader/lib/urls.js");
+
+module.exports = function(list, options) {
+	if (typeof DEBUG !== "undefined" && DEBUG) {
+		if (typeof document !== "object") throw new Error("The style-loader cannot be used in a non-browser environment");
+	}
+
+	options = options || {};
+
+	options.attrs = typeof options.attrs === "object" ? options.attrs : {};
+
+	// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
+	// tags it will allow on a page
+	if (!options.singleton && typeof options.singleton !== "boolean") options.singleton = isOldIE();
+
+	// By default, add <style> tags to the <head> element
+        if (!options.insertInto) options.insertInto = "head";
+
+	// By default, add <style> tags to the bottom of the target
+	if (!options.insertAt) options.insertAt = "bottom";
+
+	var styles = listToStyles(list, options);
+
+	addStylesToDom(styles, options);
+
+	return function update (newList) {
+		var mayRemove = [];
+
+		for (var i = 0; i < styles.length; i++) {
+			var item = styles[i];
+			var domStyle = stylesInDom[item.id];
+
+			domStyle.refs--;
+			mayRemove.push(domStyle);
+		}
+
+		if(newList) {
+			var newStyles = listToStyles(newList, options);
+			addStylesToDom(newStyles, options);
+		}
+
+		for (var i = 0; i < mayRemove.length; i++) {
+			var domStyle = mayRemove[i];
+
+			if(domStyle.refs === 0) {
+				for (var j = 0; j < domStyle.parts.length; j++) domStyle.parts[j]();
+
+				delete stylesInDom[domStyle.id];
+			}
+		}
+	};
+};
+
+function addStylesToDom (styles, options) {
+	for (var i = 0; i < styles.length; i++) {
+		var item = styles[i];
+		var domStyle = stylesInDom[item.id];
+
+		if(domStyle) {
+			domStyle.refs++;
+
+			for(var j = 0; j < domStyle.parts.length; j++) {
+				domStyle.parts[j](item.parts[j]);
+			}
+
+			for(; j < item.parts.length; j++) {
+				domStyle.parts.push(addStyle(item.parts[j], options));
+			}
+		} else {
+			var parts = [];
+
+			for(var j = 0; j < item.parts.length; j++) {
+				parts.push(addStyle(item.parts[j], options));
+			}
+
+			stylesInDom[item.id] = {id: item.id, refs: 1, parts: parts};
+		}
+	}
+}
+
+function listToStyles (list, options) {
+	var styles = [];
+	var newStyles = {};
+
+	for (var i = 0; i < list.length; i++) {
+		var item = list[i];
+		var id = options.base ? item[0] + options.base : item[0];
+		var css = item[1];
+		var media = item[2];
+		var sourceMap = item[3];
+		var part = {css: css, media: media, sourceMap: sourceMap};
+
+		if(!newStyles[id]) styles.push(newStyles[id] = {id: id, parts: [part]});
+		else newStyles[id].parts.push(part);
+	}
+
+	return styles;
+}
+
+function insertStyleElement (options, style) {
+	var target = getElement(options.insertInto)
+
+	if (!target) {
+		throw new Error("Couldn't find a style target. This probably means that the value for the 'insertInto' parameter is invalid.");
+	}
+
+	var lastStyleElementInsertedAtTop = stylesInsertedAtTop[stylesInsertedAtTop.length - 1];
+
+	if (options.insertAt === "top") {
+		if (!lastStyleElementInsertedAtTop) {
+			target.insertBefore(style, target.firstChild);
+		} else if (lastStyleElementInsertedAtTop.nextSibling) {
+			target.insertBefore(style, lastStyleElementInsertedAtTop.nextSibling);
+		} else {
+			target.appendChild(style);
+		}
+		stylesInsertedAtTop.push(style);
+	} else if (options.insertAt === "bottom") {
+		target.appendChild(style);
+	} else if (typeof options.insertAt === "object" && options.insertAt.before) {
+		var nextSibling = getElement(options.insertAt.before, target);
+		target.insertBefore(style, nextSibling);
+	} else {
+		throw new Error("[Style Loader]\n\n Invalid value for parameter 'insertAt' ('options.insertAt') found.\n Must be 'top', 'bottom', or Object.\n (https://github.com/webpack-contrib/style-loader#insertat)\n");
+	}
+}
+
+function removeStyleElement (style) {
+	if (style.parentNode === null) return false;
+	style.parentNode.removeChild(style);
+
+	var idx = stylesInsertedAtTop.indexOf(style);
+	if(idx >= 0) {
+		stylesInsertedAtTop.splice(idx, 1);
+	}
+}
+
+function createStyleElement (options) {
+	var style = document.createElement("style");
+
+	if(options.attrs.type === undefined) {
+		options.attrs.type = "text/css";
+	}
+
+	if(options.attrs.nonce === undefined) {
+		var nonce = getNonce();
+		if (nonce) {
+			options.attrs.nonce = nonce;
+		}
+	}
+
+	addAttrs(style, options.attrs);
+	insertStyleElement(options, style);
+
+	return style;
+}
+
+function createLinkElement (options) {
+	var link = document.createElement("link");
+
+	if(options.attrs.type === undefined) {
+		options.attrs.type = "text/css";
+	}
+	options.attrs.rel = "stylesheet";
+
+	addAttrs(link, options.attrs);
+	insertStyleElement(options, link);
+
+	return link;
+}
+
+function addAttrs (el, attrs) {
+	Object.keys(attrs).forEach(function (key) {
+		el.setAttribute(key, attrs[key]);
+	});
+}
+
+function getNonce() {
+	if (false) {}
+
+	return __webpack_require__.nc;
+}
+
+function addStyle (obj, options) {
+	var style, update, remove, result;
+
+	// If a transform function was defined, run it on the css
+	if (options.transform && obj.css) {
+	    result = typeof options.transform === 'function'
+		 ? options.transform(obj.css) 
+		 : options.transform.default(obj.css);
+
+	    if (result) {
+	    	// If transform returns a value, use that instead of the original css.
+	    	// This allows running runtime transformations on the css.
+	    	obj.css = result;
+	    } else {
+	    	// If the transform function returns a falsy value, don't add this css.
+	    	// This allows conditional loading of css
+	    	return function() {
+	    		// noop
+	    	};
+	    }
+	}
+
+	if (options.singleton) {
+		var styleIndex = singletonCounter++;
+
+		style = singleton || (singleton = createStyleElement(options));
+
+		update = applyToSingletonTag.bind(null, style, styleIndex, false);
+		remove = applyToSingletonTag.bind(null, style, styleIndex, true);
+
+	} else if (
+		obj.sourceMap &&
+		typeof URL === "function" &&
+		typeof URL.createObjectURL === "function" &&
+		typeof URL.revokeObjectURL === "function" &&
+		typeof Blob === "function" &&
+		typeof btoa === "function"
+	) {
+		style = createLinkElement(options);
+		update = updateLink.bind(null, style, options);
+		remove = function () {
+			removeStyleElement(style);
+
+			if(style.href) URL.revokeObjectURL(style.href);
+		};
+	} else {
+		style = createStyleElement(options);
+		update = applyToTag.bind(null, style);
+		remove = function () {
+			removeStyleElement(style);
+		};
+	}
+
+	update(obj);
+
+	return function updateStyle (newObj) {
+		if (newObj) {
+			if (
+				newObj.css === obj.css &&
+				newObj.media === obj.media &&
+				newObj.sourceMap === obj.sourceMap
+			) {
+				return;
+			}
+
+			update(obj = newObj);
+		} else {
+			remove();
+		}
+	};
+}
+
+var replaceText = (function () {
+	var textStore = [];
+
+	return function (index, replacement) {
+		textStore[index] = replacement;
+
+		return textStore.filter(Boolean).join('\n');
+	};
+})();
+
+function applyToSingletonTag (style, index, remove, obj) {
+	var css = remove ? "" : obj.css;
+
+	if (style.styleSheet) {
+		style.styleSheet.cssText = replaceText(index, css);
+	} else {
+		var cssNode = document.createTextNode(css);
+		var childNodes = style.childNodes;
+
+		if (childNodes[index]) style.removeChild(childNodes[index]);
+
+		if (childNodes.length) {
+			style.insertBefore(cssNode, childNodes[index]);
+		} else {
+			style.appendChild(cssNode);
+		}
+	}
+}
+
+function applyToTag (style, obj) {
+	var css = obj.css;
+	var media = obj.media;
+
+	if(media) {
+		style.setAttribute("media", media)
+	}
+
+	if(style.styleSheet) {
+		style.styleSheet.cssText = css;
+	} else {
+		while(style.firstChild) {
+			style.removeChild(style.firstChild);
+		}
+
+		style.appendChild(document.createTextNode(css));
+	}
+}
+
+function updateLink (link, options, obj) {
+	var css = obj.css;
+	var sourceMap = obj.sourceMap;
+
+	/*
+		If convertToAbsoluteUrls isn't defined, but sourcemaps are enabled
+		and there is no publicPath defined then lets turn convertToAbsoluteUrls
+		on by default.  Otherwise default to the convertToAbsoluteUrls option
+		directly
+	*/
+	var autoFixUrls = options.convertToAbsoluteUrls === undefined && sourceMap;
+
+	if (options.convertToAbsoluteUrls || autoFixUrls) {
+		css = fixUrls(css);
+	}
+
+	if (sourceMap) {
+		// http://stackoverflow.com/a/26603875
+		css += "\n/*# sourceMappingURL=data:application/json;base64," + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + " */";
+	}
+
+	var blob = new Blob([css], { type: "text/css" });
+
+	var oldSrc = link.href;
+
+	link.href = URL.createObjectURL(blob);
+
+	if(oldSrc) URL.revokeObjectURL(oldSrc);
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/lib/urls.js":
+/*!***********************************************!*\
+  !*** ./node_modules/style-loader/lib/urls.js ***!
+  \***********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+
+/**
+ * When source maps are enabled, `style-loader` uses a link element with a data-uri to
+ * embed the css on the page. This breaks all relative urls because now they are relative to a
+ * bundle instead of the current page.
+ *
+ * One solution is to only use full urls, but that may be impossible.
+ *
+ * Instead, this function "fixes" the relative urls to be absolute according to the current page location.
+ *
+ * A rudimentary test suite is located at `test/fixUrls.js` and can be run via the `npm test` command.
+ *
+ */
+
+module.exports = function (css) {
+  // get current location
+  var location = typeof window !== "undefined" && window.location;
+
+  if (!location) {
+    throw new Error("fixUrls requires window.location");
+  }
+
+	// blank or null?
+	if (!css || typeof css !== "string") {
+	  return css;
+  }
+
+  var baseUrl = location.protocol + "//" + location.host;
+  var currentDir = baseUrl + location.pathname.replace(/\/[^\/]*$/, "/");
+
+	// convert each url(...)
+	/*
+	This regular expression is just a way to recursively match brackets within
+	a string.
+
+	 /url\s*\(  = Match on the word "url" with any whitespace after it and then a parens
+	   (  = Start a capturing group
+	     (?:  = Start a non-capturing group
+	         [^)(]  = Match anything that isn't a parentheses
+	         |  = OR
+	         \(  = Match a start parentheses
+	             (?:  = Start another non-capturing groups
+	                 [^)(]+  = Match anything that isn't a parentheses
+	                 |  = OR
+	                 \(  = Match a start parentheses
+	                     [^)(]*  = Match anything that isn't a parentheses
+	                 \)  = Match a end parentheses
+	             )  = End Group
+              *\) = Match anything and then a close parens
+          )  = Close non-capturing group
+          *  = Match anything
+       )  = Close capturing group
+	 \)  = Match a close parens
+
+	 /gi  = Get all matches, not the first.  Be case insensitive.
+	 */
+	var fixedCss = css.replace(/url\s*\(((?:[^)(]|\((?:[^)(]+|\([^)(]*\))*\))*)\)/gi, function(fullMatch, origUrl) {
+		// strip quotes (if they exist)
+		var unquotedOrigUrl = origUrl
+			.trim()
+			.replace(/^"(.*)"$/, function(o, $1){ return $1; })
+			.replace(/^'(.*)'$/, function(o, $1){ return $1; });
+
+		// already a full url? no change
+		if (/^(#|data:|http:\/\/|https:\/\/|file:\/\/\/|\s*$)/i.test(unquotedOrigUrl)) {
+		  return fullMatch;
+		}
+
+		// convert the url to a full url
+		var newUrl;
+
+		if (unquotedOrigUrl.indexOf("//") === 0) {
+		  	//TODO: should we add protocol?
+			newUrl = unquotedOrigUrl;
+		} else if (unquotedOrigUrl.indexOf("/") === 0) {
+			// path should be relative to the base url
+			newUrl = baseUrl + unquotedOrigUrl; // already starts with '/'
+		} else {
+			// path should be relative to current directory
+			newUrl = currentDir + unquotedOrigUrl.replace(/^\.\//, ""); // Strip leading './'
+		}
+
+		// send back the fixed url(...)
+		return "url(" + JSON.stringify(newUrl) + ")";
+	});
+
+	// send back the fixed css
+	return fixedCss;
+};
+
+
+/***/ }),
+
 /***/ "./node_modules/sweetalert2/dist/sweetalert2.all.js":
 /*!**********************************************************!*\
   !*** ./node_modules/sweetalert2/dist/sweetalert2.all.js ***!
@@ -54040,7 +54770,8 @@ var render = function() {
                                             type: "number",
                                             outlined: "",
                                             label: "Asap",
-                                            suffix: "Ppm"
+                                            suffix: "%",
+                                            rules: _vm.rules.asap
                                           },
                                           model: {
                                             value:
@@ -54074,7 +54805,8 @@ var render = function() {
                                             type: "number",
                                             outlined: "",
                                             label: "CO",
-                                            suffix: "%"
+                                            suffix: "%",
+                                            rules: _vm.rules.emisico
                                           },
                                           model: {
                                             value:
@@ -54096,35 +54828,40 @@ var render = function() {
                                     )
                                   : _vm._e(),
                                 _vm._v(" "),
-                                _c(
-                                  "v-col",
-                                  { attrs: { cols: "12", sm: "6", md: "4" } },
-                                  [
-                                    _c("v-text-field", {
-                                      attrs: {
-                                        type: "number",
-                                        outlined: "",
-                                        label: "HC",
-                                        suffix: "Ppm"
+                                _vm.datakendaraan.bahanbakar != "Solar"
+                                  ? _c(
+                                      "v-col",
+                                      {
+                                        attrs: { cols: "12", sm: "6", md: "4" }
                                       },
-                                      model: {
-                                        value:
-                                          _vm.form
-                                            .alatuji_emisihcbahanbakarbensin,
-                                        callback: function($$v) {
-                                          _vm.$set(
-                                            _vm.form,
-                                            "alatuji_emisihcbahanbakarbensin",
-                                            $$v
-                                          )
-                                        },
-                                        expression:
-                                          "form.alatuji_emisihcbahanbakarbensin"
-                                      }
-                                    })
-                                  ],
-                                  1
-                                )
+                                      [
+                                        _c("v-text-field", {
+                                          attrs: {
+                                            type: "number",
+                                            outlined: "",
+                                            label: "HC",
+                                            suffix: "Ppm",
+                                            rules: _vm.rules.emisihc
+                                          },
+                                          model: {
+                                            value:
+                                              _vm.form
+                                                .alatuji_emisihcbahanbakarbensin,
+                                            callback: function($$v) {
+                                              _vm.$set(
+                                                _vm.form,
+                                                "alatuji_emisihcbahanbakarbensin",
+                                                $$v
+                                              )
+                                            },
+                                            expression:
+                                              "form.alatuji_emisihcbahanbakarbensin"
+                                          }
+                                        })
+                                      ],
+                                      1
+                                    )
+                                  : _vm._e()
                               ],
                               1
                             )
@@ -54165,7 +54902,8 @@ var render = function() {
                                       attrs: {
                                         type: "number",
                                         outlined: "",
-                                        suffix: "dB(desibel)"
+                                        suffix: "dB(desibel)",
+                                        rules: _vm.rules.klaskson
                                       },
                                       model: {
                                         value:
@@ -54430,7 +55168,8 @@ var render = function() {
                                         type: "number",
                                         outlined: "",
                                         dense: "",
-                                        required: ""
+                                        required: "",
+                                        rules: _vm.rules.jbi
                                       },
                                       model: {
                                         value: _vm.form.jbi,
@@ -54455,7 +55194,8 @@ var render = function() {
                                         type: "number",
                                         outlined: "",
                                         dense: "",
-                                        required: ""
+                                        required: "",
+                                        rules: _vm.rules.jbki
                                       },
                                       model: {
                                         value: _vm.form.jbki,
@@ -54480,7 +55220,8 @@ var render = function() {
                                         type: "number",
                                         outlined: "",
                                         dense: "",
-                                        required: ""
+                                        required: "",
+                                        rules: _vm.rules.dayaangkutorang
                                       },
                                       model: {
                                         value: _vm.form.dayaangkutorang,
@@ -54509,7 +55250,8 @@ var render = function() {
                                         type: "number",
                                         outlined: "",
                                         dense: "",
-                                        required: ""
+                                        required: "",
+                                        rules: _vm.rules.dayaangkutbarang
                                       },
                                       model: {
                                         value: _vm.form.dayaangkutbarang,
@@ -54538,7 +55280,8 @@ var render = function() {
                                         type: "number",
                                         outlined: "",
                                         dense: "",
-                                        required: ""
+                                        required: "",
+                                        rules: _vm.rules.mst
                                       },
                                       model: {
                                         value: _vm.form.mst,
@@ -55053,7 +55796,8 @@ var render = function() {
                                         type: "number",
                                         outlined: "",
                                         label: "Tangan",
-                                        suffix: "%"
+                                        suffix: "%",
+                                        rules: _vm.remparkirtangan
                                       },
                                       model: {
                                         value: _vm.form.alatuji_remparkirtangan,
@@ -55081,7 +55825,8 @@ var render = function() {
                                         type: "number",
                                         outlined: "",
                                         label: "kaki",
-                                        suffix: "%"
+                                        suffix: "%",
+                                        rules: _vm.remparkirkaki
                                       },
                                       model: {
                                         value: _vm.form.alatuji_remparkirkaki,
@@ -55139,7 +55884,8 @@ var render = function() {
                                         type: "number",
                                         outlined: "",
                                         label: "S1",
-                                        suffix: "mm"
+                                        suffix: "mm",
+                                        rules: _vm.rules.kincuproda
                                       },
                                       model: {
                                         value: _vm.form.alatuji_kincuprodadepan,
@@ -55201,7 +55947,9 @@ var render = function() {
                                         type: "number",
                                         outlined: "",
                                         label: "Kanan",
-                                        suffix: "cd"
+                                        suffix: "cd",
+                                        rules:
+                                          _vm.rules.kekuatanpancarlampukanan
                                       },
                                       model: {
                                         value:
@@ -55231,7 +55979,8 @@ var render = function() {
                                         type: "number",
                                         outlined: "",
                                         label: "Kiri",
-                                        suffix: "cd"
+                                        suffix: "cd",
+                                        rules: _vm.rules.kekuatanpancarlampukiri
                                       },
                                       model: {
                                         value:
@@ -55264,11 +56013,17 @@ var render = function() {
                                   { attrs: { cols: "12", sm: "6", md: "3" } },
                                   [
                                     _c("v-text-field", {
+                                      class: {
+                                        "text-red":
+                                          _vm.text
+                                            .alatuji_lampuutamapenyimpanganlampukanan
+                                      },
                                       attrs: {
                                         type: "number",
                                         outlined: "",
                                         label: "Kanan",
-                                        suffix: "degree"
+                                        suffix: "degree",
+                                        rules: _vm.rules.penyimpanganlampukanan
                                       },
                                       model: {
                                         value:
@@ -55298,7 +56053,8 @@ var render = function() {
                                         type: "number",
                                         outlined: "",
                                         label: "Kiri",
-                                        suffix: "degree"
+                                        suffix: "degree",
+                                        rules: _vm.rules.penyimpanganlampukiri
                                       },
                                       model: {
                                         value:
@@ -55360,7 +56116,8 @@ var render = function() {
                                       attrs: {
                                         type: "number",
                                         outlined: "",
-                                        suffix: "Km/Jam"
+                                        suffix: "Km/Jam",
+                                        rules: _vm.rules.speed
                                       },
                                       model: {
                                         value:
@@ -55419,7 +56176,8 @@ var render = function() {
                                       attrs: {
                                         type: "number",
                                         outlined: "",
-                                        suffix: "mm"
+                                        suffix: "mm",
+                                        rules: _vm.rules.alurban
                                       },
                                       model: {
                                         value:
@@ -118540,7 +119298,9 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _uji_vue_vue_type_template_id_7a73302e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./uji.vue?vue&type=template&id=7a73302e& */ "./resources/js/views/pengujian/uji.vue?vue&type=template&id=7a73302e&");
 /* harmony import */ var _uji_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./uji.vue?vue&type=script&lang=js& */ "./resources/js/views/pengujian/uji.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* empty/unused harmony star reexport *//* harmony import */ var _uji_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./uji.vue?vue&type=style&index=0&lang=css& */ "./resources/js/views/pengujian/uji.vue?vue&type=style&index=0&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
 
 
 
@@ -118548,7 +119308,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /* normalize component */
 
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
   _uji_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
   _uji_vue_vue_type_template_id_7a73302e___WEBPACK_IMPORTED_MODULE_0__["render"],
   _uji_vue_vue_type_template_id_7a73302e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
@@ -118577,6 +119337,22 @@ component.options.__file = "resources/js/views/pengujian/uji.vue"
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_uji_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./uji.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/pengujian/uji.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_uji_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/views/pengujian/uji.vue?vue&type=style&index=0&lang=css&":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/views/pengujian/uji.vue?vue&type=style&index=0&lang=css& ***!
+  \*******************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_uji_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/style-loader!../../../../node_modules/css-loader??ref--6-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--6-2!../../../../node_modules/vue-loader/lib??vue-loader-options!./uji.vue?vue&type=style&index=0&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/pengujian/uji.vue?vue&type=style&index=0&lang=css&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_uji_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_uji_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_uji_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_uji_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_uji_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
 

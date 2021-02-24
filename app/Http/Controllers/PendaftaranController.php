@@ -507,7 +507,7 @@ class PendaftaranController extends Controller
 
     public function printlembarpemeriksaan($id)
     {
-        $kendaraan = Pendaftaran::leftJoin('identitaskendaraans','identitaskendaraans.id','=','pendaftarans.identitaskendaraan_id')->find($id);
+        $kendaraan = Pendaftaran::leftJoin('identitaskendaraans','identitaskendaraans.id','=','pendaftarans.identitaskendaraan_id')->leftJoin('datakendaraans','datakendaraans.identitaskendaraan_id','=','identitaskendaraans.id')->find($id);
         // print_r($kendaraan);
 
         $itempos = array();

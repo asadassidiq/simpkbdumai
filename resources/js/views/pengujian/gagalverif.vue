@@ -110,7 +110,9 @@ export default {
                 { text: 'Hasil', value: 'hasil', sortable: false },
                 { text: 'Actions', value: 'actions', sortable: false },
             ],
-            form: new Form({}),
+            form: new Form({
+                    idpenguji: '',
+            }),
             dialog: false,
         }
     },
@@ -158,7 +160,7 @@ export default {
                                 timer: 500,
                             })
                             this.dialog = false;
-                            this.refreshPost
+                            this.refreshPost();
                     }).catch((err) => {
                     Swal.fire({
                         type: 'error',
@@ -186,6 +188,10 @@ export default {
                     })
                 });
         },
+        initialize() {
+            var id = JSON.parse(localStorage.getItem("user"));
+                this.form.idpenguji = id.id
+        },
         refreshPost() {
             this.$store.dispatch('getVerifgagal');
         },
@@ -209,6 +215,7 @@ export default {
             this.refreshPost();
         })
         this.refreshPost();
+        this.initialize();
     }
 }
 </script>

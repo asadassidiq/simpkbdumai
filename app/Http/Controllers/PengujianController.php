@@ -108,7 +108,102 @@ class PengujianController extends Controller
 
         $pendaftaran = Pendaftaran::find($id);
         if (!empty($pendaftaran->idx) || !is_null($pendaftaran->idx)) {
-            $dataidx = NULL;
+            $datapengujian = Datapengujian::find($pendaftaran->idx);
+            $datapengujian->statuspenerbitan      = $statuspenerbitan;
+            $datapengujian->nouji                 = $identitaskendaraan->nouji;
+            $datapengujian->nama                  = $identitaskendaraan->nama;
+            $datapengujian->alamat                = $identitaskendaraan->alamat;
+            $datapengujian->noidentitaspemilik    = $identitaskendaraan->noidentitaspemilik;
+            $datapengujian->noregistrasikendaraan = $identitaskendaraan->noregistrasikendaraan;
+            $datapengujian->norangka              = $identitaskendaraan->norangka;
+            $datapengujian->merek                 = $identitaskendaraan->merek;
+            $datapengujian->tipe                  = $identitaskendaraan->tipe;
+            $datapengujian->nomesin               = $identitaskendaraan->nomesin;
+            $datapengujian->jbb                   = $identitaskendaraan->jbb;
+            $datapengujian->thpembuatan           = $identitaskendaraan->thpembuatan;
+            $datapengujian->bahanbakar            = $identitaskendaraan->bahanbakar;
+            $datapengujian->jenis                 = $identitaskendaraan->jeniskendaraan;
+            $datapengujian->isisilinder           = $identitaskendaraan->isisilinder;
+            $datapengujian->dayamotorpenggerak    = $identitaskendaraan->dayamotorpenggerak;
+            $datapengujian->idkepaladinas         = '278';
+            $datapengujian->iddirektur            = '18';
+            $datapengujian->kodewilayah           = $identitaskendaraan->kodewilayah;
+            $datapengujian->kodewilayahasal       = $identitaskendaraan->kodewilayahasal;
+            $datapengujian->jbi                   = $identitaskendaraan->jbi;
+            $datapengujian->nosertifikatreg       = $identitaskendaraan->nosertifikatreg;
+            $datapengujian->tglsertifikatreg      = $tglsertifikatreg;
+            $datapengujian->jbkb                  = $identitaskendaraan->jbkb;
+            $datapengujian->jbki                  = $identitaskendaraan->jbki;
+            $datapengujian->mst                   = $identitaskendaraan->mst;
+            $datapengujian->beratkosong           = $identitaskendaraan->beratkosong;
+            $datapengujian->konfigurasisumburoda  = $identitaskendaraan->konfigurasisumburoda;
+            $datapengujian->ukuranban             = $identitaskendaraan->ukuranban;
+            $datapengujian->panjangkendaraan      = $identitaskendaraan->panjangkendaraan;
+            $datapengujian->lebarkendaraan        = $identitaskendaraan->lebarkendaraan;
+            $datapengujian->tinggikendaraan       = $identitaskendaraan->tinggikendaraan;
+            $datapengujian->panjangbakatautangki  = $identitaskendaraan->panjangbakatautangki;
+            $datapengujian->lebarbakatautangki    = $identitaskendaraan->lebarbakatautangki;
+            $datapengujian->tinggibakatautangki   = $identitaskendaraan->tinggibakatautangki;
+            $datapengujian->julurdepan            = $identitaskendaraan->julurdepan;
+            $datapengujian->julurbelakang         = $identitaskendaraan->julurbelakang;
+            $datapengujian->jaraksumbu1_2         = $identitaskendaraan->jaraksumbu1_2;
+            $datapengujian->jaraksumbu2_3         = $identitaskendaraan->jaraksumbu2_3;
+            $datapengujian->jaraksumbu3_4         = $identitaskendaraan->jaraksumbu3_4;
+            $datapengujian->dayaangkutorang       = $identitaskendaraan->dayaangkutorang;
+            $datapengujian->dayaangkutbarang      = $identitaskendaraan->dayaangkutbarang;
+            $datapengujian->kelasjalanterendah    = $identitaskendaraan->kelasjalanterendah;
+            $datapengujian->idpetugasuji          = $identitaskendaraan->idpenguji;
+            $datapengujian->huv_nomordankondisirangka                 = $identitaskendaraan->huv_nomordankondisirangka;
+            $datapengujian->huv_nomordantipemotorpenggerak            = $identitaskendaraan->huv_nomordantipemotorpenggerak;
+            $datapengujian->huv_kondisitangkicorongdanpipabahanbakar  = $identitaskendaraan->huv_kondisitangkicorongdanpipabahanbakar;
+            $datapengujian->huv_kondisiconverterkit                   = $identitaskendaraan->huv_kondisiconverterkit;
+            $datapengujian->huv_kondisidanposisipipapembuangan        = $identitaskendaraan->huv_kondisidanposisipipapembuangan;
+            $datapengujian->huv_ukurandankondisiban                   = $identitaskendaraan->huv_ukurandankondisiban;
+            $datapengujian->huv_kondisisistemsuspensi                 = $identitaskendaraan->huv_kondisisistemsuspensi;
+            $datapengujian->huv_kondisisistemremutama                 = $identitaskendaraan->huv_kondisisistemremutama;
+            $datapengujian->huv_kondisipenutuplampudanalatpantulcahaya= $identitaskendaraan->huv_kondisipenutuplampudanalatpantulcahaya;
+            $datapengujian->huv_kondisipanelinstrumentdashboard       = $identitaskendaraan->huv_kondisipanelinstrumentdashboard;
+            $datapengujian->huv_kondisikacaspion                      = $identitaskendaraan->huv_kondisikacaspion;
+            $datapengujian->huv_kondisispakbor                        = $identitaskendaraan->huv_kondisispakbor;
+            $datapengujian->huv_bentukbumper                          = $identitaskendaraan->huv_bentukbumper;
+            $datapengujian->huv_keberadaandankondisiperlengkapan      = $identitaskendaraan->huv_keberadaandankondisiperlengkapan;
+            $datapengujian->huv_rancanganteknis                       = $identitaskendaraan->huv_rancanganteknis;
+            $datapengujian->huv_keberadaandankondisifasilitastanggapdaruratuntukmobilbus   = $identitaskendaraan->huv_keberadaandankondisifasilitastanggapdaruratuntukmobilbus;
+            $datapengujian->huv_kondisibadankacaengseltempatdudukmbarangbakmuatantertutup  = $identitaskendaraan->huv_kondisibadankacaengseltempatdudukmbarangbakmuatantertutup;
+            $datapengujian->hum_kondisipenerusdaya                    = $identitaskendaraan->hum_kondisipenerusdaya;
+            $datapengujian->hum_sudutbebaskemudi                      = $identitaskendaraan->hum_sudutbebaskemudi;
+            $datapengujian->hum_kondisiremparkir                      = $identitaskendaraan->hum_kondisiremparkir;
+            $datapengujian->hum_fungsilampudanalatpantulcahaya        = $identitaskendaraan->hum_fungsilampudanalatpantulcahaya;
+            $datapengujian->hum_fungsipenghapuskaca                   = $identitaskendaraan->hum_fungsipenghapuskaca;
+            $datapengujian->hum_tingkatkegelapankaca                  = $identitaskendaraan->hum_tingkatkegelapankaca;
+            $datapengujian->hum_fungsiklakson                         = $identitaskendaraan->hum_fungsiklakson;
+            $datapengujian->hum_kondisidanfungsisabukkeselamatan      = $identitaskendaraan->hum_kondisidanfungsisabukkeselamatan;
+            $datapengujian->hum_ukurankendaraan                       = $identitaskendaraan->hum_ukurankendaraan;
+            $datapengujian->hum_ukurantempatdudukdanbagiandalamkendaraanuntukmobilbus       = $identitaskendaraan->hum_ukurantempatdudukdanbagiandalamkendaraanuntukmobilbus;
+            $datapengujian->alatuji_emisiasapbahanbakarsolar          = $identitaskendaraan->alatuji_emisiasapbahanbakarsolar;
+            $datapengujian->alatuji_emisicobahanbakarbensin           = $identitaskendaraan->alatuji_emisicobahanbakarbensin;
+            $datapengujian->alatuji_emisihcbahanbakarbensin           = $identitaskendaraan->alatuji_emisihcbahanbakarbensin;
+            $datapengujian->alatuji_remutamatotalgayapengereman       = $identitaskendaraan->alatuji_remutamatotalgayapengereman;
+            $datapengujian->alatuji_remutamaselisihgayapengeremanrodakirikanan1  = $identitaskendaraan->alatuji_remutamaselisihgayapengeremanrodakirikanan1;
+            $datapengujian->alatuji_remutamaselisihgayapengeremanrodakirikanan2  = $identitaskendaraan->alatuji_remutamaselisihgayapengeremanrodakirikanan2;
+            $datapengujian->alatuji_remutamaselisihgayapengeremanrodakirikanan3  = $identitaskendaraan->alatuji_remutamaselisihgayapengeremanrodakirikanan3;
+            $datapengujian->alatuji_remutamaselisihgayapengeremanrodakirikanan4  = $identitaskendaraan->alatuji_remutamaselisihgayapengeremanrodakirikanan4;
+            $datapengujian->alatuji_remparkirtangan                   = $identitaskendaraan->alatuji_remparkirtangan;
+            $datapengujian->alatuji_remparkirkaki                     = $identitaskendaraan->alatuji_remparkirkaki;
+            $datapengujian->alatuji_kincuprodadepan                   = $identitaskendaraan->alatuji_kincuprodadepan;
+            $datapengujian->alatuji_tingkatkebisingan                 = $identitaskendaraan->alatuji_tingkatkebisingan;
+            $datapengujian->alatuji_lampuutamakekuatanpancarlampukanan= $identitaskendaraan->alatuji_lampuutamakekuatanpancarlampukanan;
+            $datapengujian->alatuji_lampuutamakekuatanpancarlampukiri = $identitaskendaraan->alatuji_lampuutamakekuatanpancarlampukiri;
+            $datapengujian->alatuji_lampuutamapenyimpanganlampukanan  = $identitaskendaraan->alatuji_lampuutamapenyimpanganlampukanan;
+            $datapengujian->alatuji_lampuutamapenyimpanganlampukiri   = $identitaskendaraan->alatuji_lampuutamapenyimpanganlampukiri;
+            $datapengujian->alatuji_penunjukkecepatan                 = $identitaskendaraan->alatuji_penunjukkecepatan;
+            $datapengujian->alatuji_kedalamanalurban                  = $identitaskendaraan->alatuji_kedalamanalurban;
+            $datapengujian->tgluji                                    = $identitaskendaraan->tgluji; 
+            $datapengujian->masaberlakuuji                            = $masaberlakuuji;
+            $datapengujian->statuslulusuji                            = $identitaskendaraan->statuslulusuji;
+            $datapengujian->save();  
+            // $dataidx = $data->idx;
+
         }else{
             $data = Datapengujian::create([
             'statuspenerbitan'      => $statuspenerbitan,
@@ -154,7 +249,7 @@ class PengujianController extends Controller
             'dayaangkutorang'       => $identitaskendaraan->dayaangkutorang,
             'dayaangkutbarang'      => $identitaskendaraan->dayaangkutbarang,
             'kelasjalanterendah'    => $identitaskendaraan->kelasjalanterendah,
-            'idpetugasuji'          => '779',
+            'idpetugasuji'          => $identitaskendaraan->idpenguji,
             'huv_nomordankondisirangka'                 => $identitaskendaraan->huv_nomordankondisirangka,
             'huv_nomordantipemotorpenggerak'            => $identitaskendaraan->huv_nomordantipemotorpenggerak,
             'huv_kondisitangkicorongdanpipabahanbakar'  => $identitaskendaraan->huv_kondisitangkicorongdanpipabahanbakar,
@@ -205,17 +300,16 @@ class PengujianController extends Controller
             'statuslulusuji'                            => $identitaskendaraan->statuslulusuji, 
             ]);
             $dataidx = $data->idx;
-        }
-        
 
-        $pendaftaran = Pendaftaran::find($id);
-        $pendaftaran->pos1  = '1';
-        $pendaftaran->pos2  = '1';
-        $pendaftaran->verif = 'y';
-        if (!is_null($dataidx)) {
-            $pendaftaran->idx = $dataidx;
+            $pendaftaran = Pendaftaran::find($id);
+            $pendaftaran->pos1  = '1';
+            $pendaftaran->pos2  = '1';
+            $pendaftaran->verif = 'y';
+            if (!is_null($dataidx)) {
+                $pendaftaran->idx = $dataidx;
+            }
+            $pendaftaran->save();
         }
-        $pendaftaran->save();
 
     }
 
