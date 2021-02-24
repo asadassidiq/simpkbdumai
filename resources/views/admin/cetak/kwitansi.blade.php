@@ -39,7 +39,6 @@
   </style>
 </head>
 <body onload="window.print();">
-  <page size="F4">
     <div class="container-fluid">
         <div class="row" style="margin-top: 15px">
              <div class="col-2"></div>
@@ -47,20 +46,20 @@
         </div>          
         <div class="row" style="margin-top: 140px">
             <div class="col-3"></div>
-            <div class="col-6"></div>
-            <div class="col-3" style="line-height: 9px;">
+            <div class="col-7"></div>
+            <div class="col-2" style="line-height: 9px;">
           <p><b><span><?php echo $data->nouji; ?></span></b></p></p>
           <p><b><span><?php echo $data->noregistrasikendaraan; ?></span></b></p></p>
           <!-- <p><b><span>ACT72-C18-00002</span></b></p></p> -->
             </div>
         </div>
-        <div class="row" style="margin-top: 0px; line-height: 12px">
-            <div class="col-3"></div>
+        <div class="row" style="margin-top: 80px; line-height: 12px">
+            <div class="col-4"></div>
             <div class="col-6">
-                <P>: <span id="terima"></span> Rupiah</P>
-                <P>: <span id="uang"></span> Rupiah</P>
+                <P> <span id="terima"></span> Rupiah</P>
+                <P> <span id="uang"></span> Rupiah</P>
             </div>  
-            <div class="col-3"></div></div> 
+        </div> 
         <div class="row">
         <div class="col-3"></div>  
         <div class="col-9">
@@ -69,13 +68,13 @@
             </div>
             <div class="col-3 ">
               
-              <p style="margin-top: 146px;"> :  <b><span id="tot"><?php echo $data->total; ?></span></b></p>
+              <p style="margin-top: 100px;"> :  <b><span id="tot"><?php echo $data->total; ?></span></b></p>
             </div>
           </div>
         </div>
       </div>
         <div class="row" style="margin-top: 0px">
-            <div class="col-6">
+            <div class="col-7">
                 <p><u><b></b></u></p>
                 <div class="col-2">
                 </div>
@@ -83,13 +82,12 @@
                     <p></p>
                 </div>
             </div>
-            <div class="col-5" style="margin-top: 53px;">
+            <div class="col-5" style="margin-top: 33px;">
                 <p class="text-center" style="padding-left: 55px; "><?php echo $data->tglbayar; ?></p>
                 <br><br><br>
             </div>
         </div>
     </div>
-    </page>
   <script type="text/javascript">
   $(document).ready(function(){
     terbilang();
