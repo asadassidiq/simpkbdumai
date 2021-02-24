@@ -94,11 +94,11 @@ class DatakendaraanController extends Controller
         }
         
         if ($request->kodewilayah == '') {
-            $kode='BNJRM'; 
+            $kode='DUMAI'; 
         }
 
         if ($request->kodewilayahasal == '') {
-            $kodeasal='BNJRM'; 
+            $kodeasal='DUMAI'; 
         }
 
         if (is_array($request->jeniskendaraan) == 1 ) {

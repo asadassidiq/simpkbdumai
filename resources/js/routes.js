@@ -4,6 +4,8 @@ import Post from './components/views/post.vue';
 import Pendaftaran from './views/pendaftaran.vue';
 import Pendaftaranall from './views/pendaftaran/alldata.vue';
 import Pendaftarans from './views/pendaftaran/index.vue';
+import PendaftaranOlds from './views/pendaftaranold/alldata.vue';
+import Datakendaraanold from './views/pendaftaranold/datakendaraan.vue';
 import Datakendaraans from './views/datakendaraan/index.vue';
 import Datakendaraanall from './views/datakendaraan/alldata.vue';
 import Bukubesar from './views/datakendaraan/bukubesar.vue';
@@ -90,6 +92,20 @@ export const routes = [
     {
         path : '/admin/pendaftaranall/',
         component : Pendaftaranall,
+        meta:{
+            requireAuth : true
+        }
+    },
+    {
+        path : '/admin/pendaftaranolds',
+        component : PendaftaranOlds,
+        meta:{
+            requireAuth : true
+        }
+    },
+    {
+        path : '/admin/pendaftaranold/:id?',
+        component : Datakendaraanold,
         meta:{
             requireAuth : true
         }

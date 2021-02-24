@@ -50,6 +50,9 @@ Route::group(['middleware' => 'auth'], function ($router) {
     Route::delete('delhalaman/{id}', 'ManagementController@destroyhalaman');
 
     Route::get('pendaftarans', 'PendaftaranController@index');
+    Route::get('pendaftaranolds', 'PendaftranOldController@index');
+    Route::get('pendaftaranold/{id}', 'PendaftranOldController@edit');
+    Route::patch('pendaftaranold/edit/{id}', 'PendaftranOldController@update');
     Route::get('pendaftaranall', 'PendaftaranController@indexall');
     Route::get('pendaftaransnu', 'PendaftaranController@indexnu');
     Route::get('pendaftaransallnu', 'PendaftaranController@indexallnu');

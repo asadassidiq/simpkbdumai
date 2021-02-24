@@ -137,6 +137,7 @@
       items: [
         { icon: 'mdi-view-dashboard', text: 'Dashboard', link: '/', level : 'admin' },
         { icon: 'mdi-clipboard-list-outline', text: 'Pendaftaran', link: '/admin/pendaftarans', level: '1' },
+        { icon: 'mdi-clipboard-list-outline', text: 'DataKendaraan Lama', link: '/admin/pendaftaranolds', level: '1' },
         { icon: 'mdi-clipboard-list-outline', text: 'Datakendaraan', link: '/admin/datakendaraans', level: '7' },
         { icon: 'mdi-content-copy', text: 'Numpang Uji', link: '/admin/numpangs', level: '5' },
         { icon: 'mdi-content-copy', text: 'Mutasi Uji', link: '/admin/mutasi', level: '6' },

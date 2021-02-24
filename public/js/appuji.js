@@ -2208,6 +2208,11 @@ __webpack_require__.r(__webpack_exports__);
         level: '1'
       }, {
         icon: 'mdi-clipboard-list-outline',
+        text: 'DataKendaraan Lama',
+        link: '/admin/pendaftaranolds',
+        level: '1'
+      }, {
+        icon: 'mdi-clipboard-list-outline',
         text: 'Datakendaraan',
         link: '/admin/datakendaraans',
         level: '7'
@@ -117680,6 +117685,16 @@ var user = Object(_helpers_auth__WEBPACK_IMPORTED_MODULE_0__["getLocalUser"])();
     },
     getPendaftaranall: function getPendaftaranall(context) {
       axios.get('/api/pendaftaranall').then(function (result) {
+        context.commit('updatePendaftarans', result.data.kendaraans);
+      })["catch"](function (err) {
+        if (err.response.status == 401) {
+          context.commit('logout');
+          window.location.href = '/login';
+        }
+      });
+    },
+    getPendaftaranold: function getPendaftaranold(context) {
+      axios.get('/api/pendaftaranolds').then(function (result) {
         context.commit('updatePendaftarans', result.data.kendaraans);
       })["catch"](function (err) {
         if (err.response.status == 401) {

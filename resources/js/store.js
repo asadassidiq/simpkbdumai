@@ -111,6 +111,17 @@ export default new Vuex.Store ({
                 }
             });
         },
+        getPendaftaranold(context){
+            axios.get('/api/pendaftaranolds')
+            .then((result) => {
+                context.commit('updatePendaftarans',result.data.kendaraans)
+            }).catch((err) => {
+                if (err.response.status == 401) {
+                    context.commit('logout');
+                    window.location.href = '/login';
+                }
+            });
+        },
 
         getDatakendaraan(context){
             axios.get('/api/datakendaraans')
