@@ -56,7 +56,7 @@
         <div class="row" style="margin-top: 10px; line-height: 12px">
             <div class="col-4"></div>
             <div class="col-6">
-                <P> <span id="terima"></span> Rupiah</P>
+                <P> <span></span> {{ $data->nama }}</P>
                 <P> <span id="uang"></span> Rupiah</P>
             </div>  
         </div> 
