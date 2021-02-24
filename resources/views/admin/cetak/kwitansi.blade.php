@@ -90,7 +90,6 @@
   <script type="text/javascript">
   $(document).ready(function(){
     terbilang();
-    console.log("ok");
       function terbilang(){
                 var bilangan    =$("#tot").text();
                 var kalimat="";
