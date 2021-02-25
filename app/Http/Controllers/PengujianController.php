@@ -601,7 +601,7 @@ class PengujianController extends Controller
     public function edit($id)
     {
         $kendaraan = Identitaskendaraan::where('pendaftarans.id',$id)->leftJoin('datakendaraans','identitaskendaraans.id','=','datakendaraans.identitaskendaraan_id')->leftJoin('pendaftarans','identitaskendaraans.id','=','pendaftarans.identitaskendaraan_id')->leftJoin('pengujians','pendaftarans.id','=','pengujians.pendaftaran_id')->first();
-        if ($kendaraan->kodepenerbitans_id == '7') {
+        if ($kendaraan->kodepenerbitans_id == '7' || $kendaraan->kodepenerbitans_id == '3' || $kendaraan->kodepenerbitans_id == '4') {
             $idd = Pendaftaran::where('identitaskendaraan_id',$kendaraan->identitaskendaraan_id)->where('pos2','>','0')->orderBy('pendaftarans.id','desc')->first();
             $kendaraan = Identitaskendaraan::where('pendaftarans.id',$idd->id)->leftJoin('datakendaraans','identitaskendaraans.id','=','datakendaraans.identitaskendaraan_id')->leftJoin('pendaftarans','identitaskendaraans.id','=','pendaftarans.identitaskendaraan_id')->leftJoin('pengujians','pendaftarans.id','=','pengujians.pendaftaran_id')->first();
         }
