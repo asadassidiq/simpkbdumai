@@ -86,19 +86,35 @@ class PengujianController extends Controller
     }
 
     public function acc(Request $request,$id){
-        $pengujian = Pengujian::where('pendaftaran_id',$id)->first();
-        $pengujian->statuslulusuji = '1';
-        $pengujian->idpenguji = $request->idpenguji;
-        $pengujian->save();
 
         $identitaskendaraan = Pendaftaran::leftJoin('identitaskendaraans','pendaftarans.identitaskendaraan_id','=','identitaskendaraans.id')->leftJoin('datakendaraans','datakendaraans.identitaskendaraan_id','=','identitaskendaraans.id')->leftJoin('pengujians','pengujians.pendaftaran_id','=','pendaftarans.id')->leftJoin('jenis','jenis.jenis','=','identitaskendaraans.jenis')->find($id);
+        if ($request->idpenguji == '8') {
+            // $kode = Pendaftaran::where('pendaftarans.id',$id)->orderBy('pendaftarans.id','desc')->first();
+
+            // $pengujian = Pengujian::where('pendaftaran_id',$id)->first();
+            // $pengujian->statuslulusuji = '1';
+            // $pengujian->idpenguji = '779';
+            // $pengujian->save(); 
+        }else{
+            $pengujian = Pengujian::where('pendaftaran_id',$id)->first();
+            $pengujian->statuslulusuji = '1';
+            $pengujian->idpenguji = $request->idpenguji;
+            $pengujian->save();
+        }
+
         if ($identitaskendaraan->kodepenerbitans_id == '8') {
             $statuspenerbitan = '2';
         }elseif ($identitaskendaraan->kodepenerbitans_id == '7') {
-            $kode = Pendaftaran::where('pendaftarans.id',$id)->where('kodepenerbitans_id','!=','7')->orderBy('pendaftarans.id','desc')->limit('1');
+            $kode = Pendaftaran::where('pendaftarans.id',$id)->where('kodepenerbitans_id','!=','7')->orderBy('pendaftarans.id','desc')->first();
             $statuspenerbitan = $kode->kodepenerbitans_id;
         }else{
             $statuspenerbitan = $identitaskendaraan->kodepenerbitans_id;
+        }
+
+        if ($identitaskendaraan->idpenguji == NULL || empty($identitaskendaraan->idpenguji;)) {
+            $idpenguji = '779';
+        }else{
+            $idpenguji = $identitaskendaraan->idpenguji;
         }
 
         $date=date_create($identitaskendaraan->tglsertifikatreg);
@@ -152,7 +168,7 @@ class PengujianController extends Controller
             $datapengujian->dayaangkutorang       = $identitaskendaraan->dayaangkutorang;
             $datapengujian->dayaangkutbarang      = $identitaskendaraan->dayaangkutbarang;
             $datapengujian->kelasjalanterendah    = $identitaskendaraan->kelasjalanterendah;
-            $datapengujian->idpetugasuji          = $identitaskendaraan->idpenguji;
+            $datapengujian->idpetugasuji          = $idpenguji;
             $datapengujian->huv_nomordankondisirangka                 = $identitaskendaraan->huv_nomordankondisirangka;
             $datapengujian->huv_nomordantipemotorpenggerak            = $identitaskendaraan->huv_nomordantipemotorpenggerak;
             $datapengujian->huv_kondisitangkicorongdanpipabahanbakar  = $identitaskendaraan->huv_kondisitangkicorongdanpipabahanbakar;
