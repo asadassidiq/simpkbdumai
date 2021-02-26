@@ -111,7 +111,7 @@ class PengujianController extends Controller
             $statuspenerbitan = $identitaskendaraan->kodepenerbitans_id;
         }
 
-        if ($identitaskendaraan->idpenguji == NULL || empty($identitaskendaraan->idpenguji;)) {
+        if ($identitaskendaraan->idpenguji == NULL || empty($identitaskendaraan->idpenguji)) {
             $idpenguji = '779';
         }else{
             $idpenguji = $identitaskendaraan->idpenguji;
