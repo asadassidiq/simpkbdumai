@@ -91,10 +91,10 @@ class PengujianController extends Controller
         if ($request->idpenguji == '8') {
             // $kode = Pendaftaran::where('pendaftarans.id',$id)->orderBy('pendaftarans.id','desc')->first();
 
-            // $pengujian = Pengujian::where('pendaftaran_id',$id)->first();
-            // $pengujian->statuslulusuji = '1';
+            $pengujian = Pengujian::where('pendaftaran_id',$id)->first();
+            $pengujian->statuslulusuji = '1';
             // $pengujian->idpenguji = '779';
-            // $pengujian->save(); 
+            $pengujian->save(); 
         }else{
             $pengujian = Pengujian::where('pendaftaran_id',$id)->first();
             $pengujian->statuslulusuji = '1';
