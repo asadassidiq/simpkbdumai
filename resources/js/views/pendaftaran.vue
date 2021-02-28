@@ -16,7 +16,7 @@
               <v-text-field v-model="form.nouji" name="nouji" label="No Uji" outlined dense clearable required></v-text-field>
             </v-col>
             <v-col cols="12" sm="4" md="4">
-              <v-text-field name="noregistrasikendaraan" v-model="form.noregistrasikendaraan" label="No Kendaraan" outlined dense clearable required></v-text-field>
+              <v-text-field name="noregistrasikendaraan" v-model="form.noregistrasikendaraan" label="No Kendaraan" outlined dense clearable required :disabled="form.jenispendaftaran.id == '3' || form.jenispendaftaran.id == '4' || form.jenispendaftaran.id == '7' || form.jenispendaftaran.id == '12'"></v-text-field>
             </v-col>
             
           </v-row>
@@ -29,19 +29,19 @@
           </v-row>
           <v-row>
             <v-col cols="12" sm="4" md="4">
-              <v-text-field name="nama" v-model="form.nama" label="Nama" outlined dense clearable required></v-text-field>
+              <v-text-field name="nama" v-model="form.nama" label="Nama" outlined dense clearable required :disabled="form.jenispendaftaran.id == '3' || form.jenispendaftaran.id == '4' || form.jenispendaftaran.id == '7' || form.jenispendaftaran.id == '12'"></v-text-field>
             </v-col>
             <v-col cols="12" sm="4" md="4">
-              <v-textarea filled auto-grow row="4" v-model="form.alamat" row-height="10" name="alamat" label="Alamat" outlined dense clearable required></v-textarea>
+              <v-textarea filled auto-grow row="4" v-model="form.alamat" row-height="10" name="alamat" label="Alamat" outlined dense clearable required :disabled="form.jenispendaftaran.id == '3' || form.jenispendaftaran.id == '4' || form.jenispendaftaran.id == '7' || form.jenispendaftaran.id == '12'"></v-textarea>
             </v-col>
             <v-col cols="12" sm="4" md="4">
-              <v-text-field name="noidentitaspemilik" v-model="form.noidentitaspemilik" label="Nomer Identitas" outlined dense clearable required></v-text-field>
+              <v-text-field name="noidentitaspemilik" v-model="form.noidentitaspemilik" label="Nomer Identitas" outlined dense clearable required :disabled="form.jenispendaftaran.id == '3' || form.jenispendaftaran.id == '4' || form.jenispendaftaran.id == '7' || form.jenispendaftaran.id == '12'"></v-text-field>
             </v-col>
             <v-col cols="12" sm="4" md="4">
             <v-row no-gutters>
                 <v-col cols="10">
                     <v-autocomplete  :items="merek" item-text="merek" 
-                      item-value="merek" v-model="form.merek" name="merek" dense required outlined label="Merek">
+                      item-value="merek" v-model="form.merek" name="merek" dense required outlined label="Merek" :disabled="form.jenispendaftaran.id == '3' || form.jenispendaftaran.id == '4' || form.jenispendaftaran.id == '7' || form.jenispendaftaran.id == '12'">
                     </v-autocomplete>
                 </v-col>
                 <v-col cols="2">
@@ -55,7 +55,7 @@
             <v-row no-gutters>
                 <v-col cols="10">
                     <v-autocomplete  :items="tipe" item-text="tipe" 
-                      item-value="tipe" v-model="form.tipe" name="tipe" dense required outlined label="Tipe">
+                      item-value="tipe" v-model="form.tipe" name="tipe" dense required outlined label="Tipe" :disabled="form.jenispendaftaran.id == '3' || form.jenispendaftaran.id == '4' || form.jenispendaftaran.id == '7' || form.jenispendaftaran.id == '12'">
                     </v-autocomplete>
                 </v-col>
                 <v-col cols="2">
@@ -69,7 +69,7 @@
           <v-row no-gutters>
               <v-col cols="10">
                   <v-autocomplete :items="jeniskendaraan" item-text="jenis" 
-                  item-value="jenis" v-model="form.jeniskendaraan" name="jeniskendaraan" label="Jenis Kendaraan" return-object outlined dense clearable required></v-autocomplete>
+                  item-value="jenis" v-model="form.jeniskendaraan" name="jeniskendaraan" label="Jenis Kendaraan" return-object outlined dense clearable required :disabled="form.jenispendaftaran.id == '3' || form.jenispendaftaran.id == '4' || form.jenispendaftaran.id == '7' || form.jenispendaftaran.id == '12'"></v-autocomplete>
               </v-col>
               <v-col cols="2">
                   <v-btn class="v-btn-simple" color="error" icon v-on="on" @click="dialogjenis = !dialogjenis">
@@ -79,31 +79,31 @@
           </v-row>
           </v-col>
             <v-col cols="12" sm="4" md="4">
-              <v-text-field name="thpembuatan" v-model="form.thpembuatan" label="Tahun Pembuatan" outlined dense clearable required></v-text-field>
+              <v-text-field name="thpembuatan" v-model="form.thpembuatan" label="Tahun Pembuatan" outlined dense clearable required :disabled="form.jenispendaftaran.id == '3' || form.jenispendaftaran.id == '4' || form.jenispendaftaran.id == '7' || form.jenispendaftaran.id == '12'"></v-text-field>
             </v-col>
             <v-col cols="12" sm="4" md="4">
-              <v-text-field name="nomesin" v-model="form.nomesin" label="Nomer Mesin" outlined dense clearable required></v-text-field>
+              <v-text-field name="nomesin" v-model="form.nomesin" label="Nomer Mesin" outlined dense clearable required :disabled="form.jenispendaftaran.id == '3' || form.jenispendaftaran.id == '4' || form.jenispendaftaran.id == '7' || form.jenispendaftaran.id == '12'"></v-text-field>
             </v-col>
             <v-col cols="12" sm="4" md="4">
-              <v-text-field name="norangka" v-model="form.norangka" label="Nomer Rangka" outlined dense clearable required></v-text-field>
+              <v-text-field name="norangka" v-model="form.norangka" label="Nomer Rangka" outlined dense clearable required :disabled="form.jenispendaftaran.id == '3' || form.jenispendaftaran.id == '4' || form.jenispendaftaran.id == '7' || form.jenispendaftaran.id == '12'"></v-text-field>
             </v-col>
             <v-col cols="12" sm="4" md="4">
-              <v-text-field name="isisilender" v-model="form.isisilinder"  label="Isi Silender" outlined dense clearable required></v-text-field>
+              <v-text-field name="isisilender" v-model="form.isisilinder"  label="Isi Silender" outlined dense clearable required :disabled="form.jenispendaftaran.id == '3' || form.jenispendaftaran.id == '4' || form.jenispendaftaran.id == '7' || form.jenispendaftaran.id == '12'"></v-text-field>
             </v-col>
             <v-col cols="12" sm="4" md="4">
-              <v-text-field name="dayamotorpenggerak" v-model="form.dayamotorpenggerak"  label="Daya Motor Penggerak" outlined dense clearable required></v-text-field>
+              <v-text-field name="dayamotorpenggerak" v-model="form.dayamotorpenggerak"  label="Daya Motor Penggerak" outlined dense clearable required :disabled="form.jenispendaftaran.id == '3' || form.jenispendaftaran.id == '4' || form.jenispendaftaran.id == '7' || form.jenispendaftaran.id == '12'"></v-text-field>
             </v-col>
             <v-col class="d-flex" cols="12" sm="4" md="4">
-              <v-select :items="bahanbakar" v-model="form.bahanbakar" name="bahanbakar" label="Bahan Bakar" return-object outlined dense clearable required></v-select>
+              <v-select :items="bahanbakar" v-model="form.bahanbakar" name="bahanbakar" label="Bahan Bakar" return-object outlined dense clearable required :disabled="form.jenispendaftaran.id == '3' || form.jenispendaftaran.id == '4' || form.jenispendaftaran.id == '7' || form.jenispendaftaran.id == '12'"></v-select>
             </v-col>
             <v-col cols="12" sm="4" md="4">
-              <v-text-field name="nosertifikatreg" v-model="form.nosertifikatreg" label="No Sertifikat Reg" outlined dense required clearable></v-text-field>
+              <v-text-field name="nosertifikatreg" v-model="form.nosertifikatreg" label="No Sertifikat Reg" outlined dense required clearable :disabled="form.jenispendaftaran.id == '3' || form.jenispendaftaran.id == '4' || form.jenispendaftaran.id == '7' || form.jenispendaftaran.id == '12'"></v-text-field>
             </v-col>
             <v-col cols="12" sm="6" md="4">
               <v-menu ref="menu" v-model="menu":close-on-content-click="false" :return-value.sync="form.tglsertifikatreg"
                 transition="scale-transition" offset-y min-width="290px">
                 <template v-slot:activator="{ on, attrs }">
-                  <v-text-field v-model="form.tglsertifikatreg" name="tglsertifikatreg" label="Tgl Sertifikat Reg" outlined dense required v-bind="attrs" v-on="on"
+                  <v-text-field v-model="form.tglsertifikatreg" name="tglsertifikatreg" label="Tgl Sertifikat Reg" :disabled="form.jenispendaftaran.id == '3' || form.jenispendaftaran.id == '4' || form.jenispendaftaran.id == '7' || form.jenispendaftaran.id == '12'"outlined dense required v-bind="attrs" v-on="on"
                   ></v-text-field>
                 </template>
                 <v-date-picker v-model="form.tglsertifikatreg" no-title scrollable>
@@ -115,29 +115,29 @@
             </v-col>
             <v-col v-if="form.jenispendaftaran.id === 5  || form.jenispendaftaran.id === 6 || form.jenispendaftaran.id === 9 || form.jenispendaftaran.id === 10 " class="d-flex" cols="12" sm="4" md="4">
               <v-autocomplete :items="kodewilayah" item-text="namawilayah" 
-              item-value="kodewilayah" name="kodewilayah" v-model="form.kodewilayah"  label="Daerah" return-object outlined dense clearable required></v-autocomplete>
+              item-value="kodewilayah" name="kodewilayah" v-model="form.kodewilayah"  label="Daerah" return-object outlined dense clearable required :disabled="form.jenispendaftaran.id == '3' || form.jenispendaftaran.id == '4' || form.jenispendaftaran.id == '7' || form.jenispendaftaran.id == '12'"></v-autocomplete>
             </v-col>
             <v-col v-if="form.jenispendaftaran.id === 5 || form.jenispendaftaran.id === 6 || form.jenispendaftaran.id === 9 || form.jenispendaftaran.id === 10" class="d-flex" cols="12" sm="4" md="4">
               <v-autocomplete :items="kodewilayah" item-text="namawilayah" 
-              item-value="kodewilayah" v-model="form.kodewilayahasal" name="kodewilayahasal" label="Daerah Asal" return-object outlined dense clearable required></v-autocomplete>
+              item-value="kodewilayah" v-model="form.kodewilayahasal" name="kodewilayahasal" label="Daerah Asal" return-object outlined dense clearable required :disabled="form.jenispendaftaran.id == '3' || form.jenispendaftaran.id == '4' || form.jenispendaftaran.id == '7' || form.jenispendaftaran.id == '12'"></v-autocomplete>
             </v-col>
             <v-col v-if="this.$route.params.id" class="d-flex" cols="12" sm="4" md="4">
               <v-autocomplete :items="kodewilayah" item-text="namawilayah" 
-              item-value="kodewilayah" name="kodewilayah" v-model="form.kodewilayah"  label="Daerah" return-object outlined dense clearable required></v-autocomplete>
+              item-value="kodewilayah" name="kodewilayah" v-model="form.kodewilayah"  label="Daerah" return-object outlined dense clearable required :disabled="form.jenispendaftaran.id == '3' || form.jenispendaftaran.id == '4' || form.jenispendaftaran.id == '7' || form.jenispendaftaran.id == '12'"></v-autocomplete>
             </v-col>
             <v-col v-if="this.$route.params.id" class="d-flex" cols="12" sm="4" md="4">
               <v-autocomplete :items="kodewilayah" item-text="namawilayah" 
-              item-value="kodewilayah" v-model="form.kodewilayahasal" name="kodewilayahasal" label="Daerah Asal" return-object outlined dense clearable required></v-autocomplete>
+              item-value="kodewilayah" v-model="form.kodewilayahasal" name="kodewilayahasal" label="Daerah Asal" return-object outlined dense clearable required :disabled="form.jenispendaftaran.id == '3' || form.jenispendaftaran.id == '4' || form.jenispendaftaran.id == '7' || form.jenispendaftaran.id == '12'"></v-autocomplete>
             </v-col>
             <v-col class="d-flex" cols="12" sm="4" md="4">
-              <v-select :items="peruntukan" v-model="form.peruntukan" name="peruntukan" label="Peruntukan" return-object outlined dense clearable required ></v-select>
+              <v-select :items="peruntukan" v-model="form.peruntukan" name="peruntukan" label="Peruntukan" return-object outlined dense clearable required :disabled="form.jenispendaftaran.id == '3' || form.jenispendaftaran.id == '4' || form.jenispendaftaran.id == '7' || form.jenispendaftaran.id == '12'"></v-select>
             </v-col>
             <v-col class="d-flex" cols="12" sm="4" md="4">
             <v-menu ref="menu2" v-mode        <v-menu ref="menu2" v-mod11l="menu2":close-on-content-click="false" :return-value.sync="form.tglpendaftaran"
               transition="scale-transition" offset-y min-width="290px">
               <template v-slot:activator="{ on, attrs }">
                 <v-text-field v-model="form.tglpendaftaran" name="tglpendaftaran" label="Tgl Pendaftaran" outlined dense required v-bind="attrs" v-on="on"
-                ></v-text-field>
+                 ></v-text-field>
               </template>
               <v-date-picker v-model="form.tglpendaftaran" no-title scrollable>
                 <v-spacer></v-spacer>
@@ -207,19 +207,19 @@
         <v-card-subtitle>
         <v-row>
             <v-col cols="12" sm="6" md="3">
-              <v-text-field label="JBB (Kg)" name="jbb" v-model="form.jbb" type="number"  outlined dense required></v-text-field>
+              <v-text-field label="JBB (Kg)" name="jbb" v-model="form.jbb" type="number"  outlined dense required :disabled="form.jenispendaftaran.id == '3' || form.jenispendaftaran.id == '4' || form.jenispendaftaran.id == '7' || form.jenispendaftaran.id == '12'"></v-text-field>
             </v-col>
             <v-col cols="12" sm="6" md="3">
-              <v-text-field label="JBKB (Kg)" name="jbkb" v-model="form.jbkb" type="number"  outlined dense required></v-text-field>
+              <v-text-field label="JBKB (Kg)" name="jbkb" v-model="form.jbkb" type="number"  outlined dense required :disabled="form.jenispendaftaran.id == '3' || form.jenispendaftaran.id == '4' || form.jenispendaftaran.id == '7' || form.jenispendaftaran.id == '12'"></v-text-field>
             </v-col>
             <v-col cols="12" sm="6" md="4">
-              <v-text-field label="Kelas Jalan Terendah" name="kelasjalanterendah" v-model="form.kelasjalanterendah" type="text" value="III" outlined dense required clearable></v-text-field>
+              <v-text-field label="Kelas Jalan Terendah" name="kelasjalanterendah" v-model="form.kelasjalanterendah" type="text" value="III" outlined dense required clearable :disabled="form.jenispendaftaran.id == '3' || form.jenispendaftaran.id == '4' || form.jenispendaftaran.id == '7' || form.jenispendaftaran.id == '12'"></v-text-field>
             </v-col>
             <v-col cols="12" sm="6" md="4">
-              <v-text-field label="Konfigurasi Sumbu Roda" name="konfigurasisumburoda" v-model="form.konfigurasisumburoda" type="text" value="" outlined dense required clearable></v-text-field>
+              <v-text-field label="Konfigurasi Sumbu Roda" name="konfigurasisumburoda" v-model="form.konfigurasisumburoda" type="text" value="" outlined dense required clearable :disabled="form.jenispendaftaran.id == '3' || form.jenispendaftaran.id == '4' || form.jenispendaftaran.id == '7' || form.jenispendaftaran.id == '12'"></v-text-field>
             </v-col>
             <v-col cols="12" sm="6" md="4">
-              <v-text-field label="Ukuran Ban" name="ukuranban" v-model="form.ukuranban" type="text" outlined dense required clearable></v-text-field>
+              <v-text-field label="Ukuran Ban" name="ukuranban" v-model="form.ukuranban" type="text" outlined dense required clearable :disabled="form.jenispendaftaran.id == '3' || form.jenispendaftaran.id == '4' || form.jenispendaftaran.id == '7' || form.jenispendaftaran.id == '12'"></v-text-field>
             </v-col>
         </v-row>
         </v-card-subtitle>
@@ -232,19 +232,19 @@
           <v-card-subtitle>
           <v-row>
               <v-col cols="12" sm="6" md="3">
-                <v-text-field label="I-II (mm)" name="jaraksumbu1_2" v-model="form.jaraksumbu1_2" type="number"  outlined dense required></v-text-field>
+                <v-text-field label="I-II (mm)" name="jaraksumbu1_2" v-model="form.jaraksumbu1_2" type="number"  outlined dense required :disabled="form.jenispendaftaran.id == '3' || form.jenispendaftaran.id == '4' || form.jenispendaftaran.id == '7' || form.jenispendaftaran.id == '12'"></v-text-field>
               </v-col>
               <v-col cols="12" sm="6" md="3">
-                <v-text-field label="II-III (mm)" name="jaraksumbu2_3" v-model="form.jaraksumbu2_3" type="number"  outlined dense required></v-text-field>
+                <v-text-field label="II-III (mm)" name="jaraksumbu2_3" v-model="form.jaraksumbu2_3" type="number"  outlined dense required :disabled="form.jenispendaftaran.id == '3' || form.jenispendaftaran.id == '4' || form.jenispendaftaran.id == '7' || form.jenispendaftaran.id == '12'"></v-text-field>
               </v-col>
               <v-col cols="12" sm="6" md="3">
-                <v-text-field label="III-IV (mm)" name="jaraksumbu3_4" v-model="form.jaraksumbu3_4" type="number"  outlined dense required></v-text-field>
+                <v-text-field label="III-IV (mm)" name="jaraksumbu3_4" v-model="form.jaraksumbu3_4" type="number"  outlined dense required :disabled="form.jenispendaftaran.id == '3' || form.jenispendaftaran.id == '4' || form.jenispendaftaran.id == '7' || form.jenispendaftaran.id == '12'"></v-text-field>
               </v-col>
               <v-col cols="12" sm="6" md="3">
-                <v-text-field label="Q  (mm)" type="number" name="q" v-model="form.q"  outlined dense required></v-text-field>
+                <v-text-field label="Q  (mm)" type="number" name="q" v-model="form.q"  outlined dense required :disabled="form.jenispendaftaran.id == '3' || form.jenispendaftaran.id == '4' || form.jenispendaftaran.id == '7' || form.jenispendaftaran.id == '12'"></v-text-field>
               </v-col>
               <v-col cols="12" sm="6" md="3">
-                <v-text-field label="P (mm)" name="p" v-model="form.p" type="number"  outlined dense required></v-text-field>
+                <v-text-field label="P (mm)" name="p" v-model="form.p" type="number"  outlined dense required :disabled="form.jenispendaftaran.id == '3' || form.jenispendaftaran.id == '4' || form.jenispendaftaran.id == '7' || form.jenispendaftaran.id == '12'"></v-text-field>
               </v-col>
           </v-row>
           </v-card-subtitle>

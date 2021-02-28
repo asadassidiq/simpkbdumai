@@ -46707,7 +46707,12 @@ var render = function() {
                                   outlined: "",
                                   dense: "",
                                   clearable: "",
-                                  required: ""
+                                  required: "",
+                                  disabled:
+                                    _vm.form.jenispendaftaran.id == "3" ||
+                                    _vm.form.jenispendaftaran.id == "4" ||
+                                    _vm.form.jenispendaftaran.id == "7" ||
+                                    _vm.form.jenispendaftaran.id == "12"
                                 },
                                 model: {
                                   value: _vm.form.noregistrasikendaraan,
@@ -46782,7 +46787,12 @@ var render = function() {
                                   outlined: "",
                                   dense: "",
                                   clearable: "",
-                                  required: ""
+                                  required: "",
+                                  disabled:
+                                    _vm.form.jenispendaftaran.id == "3" ||
+                                    _vm.form.jenispendaftaran.id == "4" ||
+                                    _vm.form.jenispendaftaran.id == "7" ||
+                                    _vm.form.jenispendaftaran.id == "12"
                                 },
                                 model: {
                                   value: _vm.form.nama,
@@ -46811,7 +46821,12 @@ var render = function() {
                                   outlined: "",
                                   dense: "",
                                   clearable: "",
-                                  required: ""
+                                  required: "",
+                                  disabled:
+                                    _vm.form.jenispendaftaran.id == "3" ||
+                                    _vm.form.jenispendaftaran.id == "4" ||
+                                    _vm.form.jenispendaftaran.id == "7" ||
+                                    _vm.form.jenispendaftaran.id == "12"
                                 },
                                 model: {
                                   value: _vm.form.alamat,
@@ -46836,7 +46851,12 @@ var render = function() {
                                   outlined: "",
                                   dense: "",
                                   clearable: "",
-                                  required: ""
+                                  required: "",
+                                  disabled:
+                                    _vm.form.jenispendaftaran.id == "3" ||
+                                    _vm.form.jenispendaftaran.id == "4" ||
+                                    _vm.form.jenispendaftaran.id == "7" ||
+                                    _vm.form.jenispendaftaran.id == "12"
                                 },
                                 model: {
                                   value: _vm.form.noidentitaspemilik,
@@ -46875,7 +46895,15 @@ var render = function() {
                                           dense: "",
                                           required: "",
                                           outlined: "",
-                                          label: "Merek"
+                                          label: "Merek",
+                                          disabled:
+                                            _vm.form.jenispendaftaran.id ==
+                                              "3" ||
+                                            _vm.form.jenispendaftaran.id ==
+                                              "4" ||
+                                            _vm.form.jenispendaftaran.id ==
+                                              "7" ||
+                                            _vm.form.jenispendaftaran.id == "12"
                                         },
                                         model: {
                                           value: _vm.form.merek,
@@ -46941,7 +46969,15 @@ var render = function() {
                                           dense: "",
                                           required: "",
                                           outlined: "",
-                                          label: "Tipe"
+                                          label: "Tipe",
+                                          disabled:
+                                            _vm.form.jenispendaftaran.id ==
+                                              "3" ||
+                                            _vm.form.jenispendaftaran.id ==
+                                              "4" ||
+                                            _vm.form.jenispendaftaran.id ==
+                                              "7" ||
+                                            _vm.form.jenispendaftaran.id == "12"
                                         },
                                         model: {
                                           value: _vm.form.tipe,
@@ -47012,7 +47048,15 @@ var render = function() {
                                           outlined: "",
                                           dense: "",
                                           clearable: "",
-                                          required: ""
+                                          required: "",
+                                          disabled:
+                                            _vm.form.jenispendaftaran.id ==
+                                              "3" ||
+                                            _vm.form.jenispendaftaran.id ==
+                                              "4" ||
+                                            _vm.form.jenispendaftaran.id ==
+                                              "7" ||
+                                            _vm.form.jenispendaftaran.id == "12"
                                         },
                                         model: {
                                           value: _vm.form.jeniskendaraan,
@@ -47072,7 +47116,12 @@ var render = function() {
                                   outlined: "",
                                   dense: "",
                                   clearable: "",
-                                  required: ""
+                                  required: "",
+                                  disabled:
+                                    _vm.form.jenispendaftaran.id == "3" ||
+                                    _vm.form.jenispendaftaran.id == "4" ||
+                                    _vm.form.jenispendaftaran.id == "7" ||
+                                    _vm.form.jenispendaftaran.id == "12"
                                 },
                                 model: {
                                   value: _vm.form.thpembuatan,
@@ -47097,7 +47146,12 @@ var render = function() {
                                   outlined: "",
                                   dense: "",
                                   clearable: "",
-                                  required: ""
+                                  required: "",
+                                  disabled:
+                                    _vm.form.jenispendaftaran.id == "3" ||
+                                    _vm.form.jenispendaftaran.id == "4" ||
+                                    _vm.form.jenispendaftaran.id == "7" ||
+                                    _vm.form.jenispendaftaran.id == "12"
                                 },
                                 model: {
                                   value: _vm.form.nomesin,
@@ -47122,7 +47176,12 @@ var render = function() {
                                   outlined: "",
                                   dense: "",
                                   clearable: "",
-                                  required: ""
+                                  required: "",
+                                  disabled:
+                                    _vm.form.jenispendaftaran.id == "3" ||
+                                    _vm.form.jenispendaftaran.id == "4" ||
+                                    _vm.form.jenispendaftaran.id == "7" ||
+                                    _vm.form.jenispendaftaran.id == "12"
                                 },
                                 model: {
                                   value: _vm.form.norangka,
@@ -47147,7 +47206,12 @@ var render = function() {
                                   outlined: "",
                                   dense: "",
                                   clearable: "",
-                                  required: ""
+                                  required: "",
+                                  disabled:
+                                    _vm.form.jenispendaftaran.id == "3" ||
+                                    _vm.form.jenispendaftaran.id == "4" ||
+                                    _vm.form.jenispendaftaran.id == "7" ||
+                                    _vm.form.jenispendaftaran.id == "12"
                                 },
                                 model: {
                                   value: _vm.form.isisilinder,
@@ -47172,7 +47236,12 @@ var render = function() {
                                   outlined: "",
                                   dense: "",
                                   clearable: "",
-                                  required: ""
+                                  required: "",
+                                  disabled:
+                                    _vm.form.jenispendaftaran.id == "3" ||
+                                    _vm.form.jenispendaftaran.id == "4" ||
+                                    _vm.form.jenispendaftaran.id == "7" ||
+                                    _vm.form.jenispendaftaran.id == "12"
                                 },
                                 model: {
                                   value: _vm.form.dayamotorpenggerak,
@@ -47206,7 +47275,12 @@ var render = function() {
                                   outlined: "",
                                   dense: "",
                                   clearable: "",
-                                  required: ""
+                                  required: "",
+                                  disabled:
+                                    _vm.form.jenispendaftaran.id == "3" ||
+                                    _vm.form.jenispendaftaran.id == "4" ||
+                                    _vm.form.jenispendaftaran.id == "7" ||
+                                    _vm.form.jenispendaftaran.id == "12"
                                 },
                                 model: {
                                   value: _vm.form.bahanbakar,
@@ -47231,7 +47305,12 @@ var render = function() {
                                   outlined: "",
                                   dense: "",
                                   required: "",
-                                  clearable: ""
+                                  clearable: "",
+                                  disabled:
+                                    _vm.form.jenispendaftaran.id == "3" ||
+                                    _vm.form.jenispendaftaran.id == "4" ||
+                                    _vm.form.jenispendaftaran.id == "7" ||
+                                    _vm.form.jenispendaftaran.id == "12"
                                 },
                                 model: {
                                   value: _vm.form.nosertifikatreg,
@@ -47291,6 +47370,15 @@ var render = function() {
                                                   attrs: {
                                                     name: "tglsertifikatreg",
                                                     label: "Tgl Sertifikat Reg",
+                                                    disabled:
+                                                      _vm.form.jenispendaftaran
+                                                        .id == "3" ||
+                                                      _vm.form.jenispendaftaran
+                                                        .id == "4" ||
+                                                      _vm.form.jenispendaftaran
+                                                        .id == "7" ||
+                                                      _vm.form.jenispendaftaran
+                                                        .id == "12",
                                                     outlined: "",
                                                     dense: "",
                                                     required: ""
@@ -47408,7 +47496,12 @@ var render = function() {
                                       outlined: "",
                                       dense: "",
                                       clearable: "",
-                                      required: ""
+                                      required: "",
+                                      disabled:
+                                        _vm.form.jenispendaftaran.id == "3" ||
+                                        _vm.form.jenispendaftaran.id == "4" ||
+                                        _vm.form.jenispendaftaran.id == "7" ||
+                                        _vm.form.jenispendaftaran.id == "12"
                                     },
                                     model: {
                                       value: _vm.form.kodewilayah,
@@ -47445,7 +47538,12 @@ var render = function() {
                                       outlined: "",
                                       dense: "",
                                       clearable: "",
-                                      required: ""
+                                      required: "",
+                                      disabled:
+                                        _vm.form.jenispendaftaran.id == "3" ||
+                                        _vm.form.jenispendaftaran.id == "4" ||
+                                        _vm.form.jenispendaftaran.id == "7" ||
+                                        _vm.form.jenispendaftaran.id == "12"
                                     },
                                     model: {
                                       value: _vm.form.kodewilayahasal,
@@ -47483,7 +47581,12 @@ var render = function() {
                                       outlined: "",
                                       dense: "",
                                       clearable: "",
-                                      required: ""
+                                      required: "",
+                                      disabled:
+                                        _vm.form.jenispendaftaran.id == "3" ||
+                                        _vm.form.jenispendaftaran.id == "4" ||
+                                        _vm.form.jenispendaftaran.id == "7" ||
+                                        _vm.form.jenispendaftaran.id == "12"
                                     },
                                     model: {
                                       value: _vm.form.kodewilayah,
@@ -47517,7 +47620,12 @@ var render = function() {
                                       outlined: "",
                                       dense: "",
                                       clearable: "",
-                                      required: ""
+                                      required: "",
+                                      disabled:
+                                        _vm.form.jenispendaftaran.id == "3" ||
+                                        _vm.form.jenispendaftaran.id == "4" ||
+                                        _vm.form.jenispendaftaran.id == "7" ||
+                                        _vm.form.jenispendaftaran.id == "12"
                                     },
                                     model: {
                                       value: _vm.form.kodewilayahasal,
@@ -47552,7 +47660,12 @@ var render = function() {
                                   outlined: "",
                                   dense: "",
                                   clearable: "",
-                                  required: ""
+                                  required: "",
+                                  disabled:
+                                    _vm.form.jenispendaftaran.id == "3" ||
+                                    _vm.form.jenispendaftaran.id == "4" ||
+                                    _vm.form.jenispendaftaran.id == "7" ||
+                                    _vm.form.jenispendaftaran.id == "12"
                                 },
                                 model: {
                                   value: _vm.form.peruntukan,
@@ -48197,7 +48310,12 @@ var render = function() {
                                   type: "number",
                                   outlined: "",
                                   dense: "",
-                                  required: ""
+                                  required: "",
+                                  disabled:
+                                    _vm.form.jenispendaftaran.id == "3" ||
+                                    _vm.form.jenispendaftaran.id == "4" ||
+                                    _vm.form.jenispendaftaran.id == "7" ||
+                                    _vm.form.jenispendaftaran.id == "12"
                                 },
                                 model: {
                                   value: _vm.form.jbb,
@@ -48222,7 +48340,12 @@ var render = function() {
                                   type: "number",
                                   outlined: "",
                                   dense: "",
-                                  required: ""
+                                  required: "",
+                                  disabled:
+                                    _vm.form.jenispendaftaran.id == "3" ||
+                                    _vm.form.jenispendaftaran.id == "4" ||
+                                    _vm.form.jenispendaftaran.id == "7" ||
+                                    _vm.form.jenispendaftaran.id == "12"
                                 },
                                 model: {
                                   value: _vm.form.jbkb,
@@ -48249,7 +48372,12 @@ var render = function() {
                                   outlined: "",
                                   dense: "",
                                   required: "",
-                                  clearable: ""
+                                  clearable: "",
+                                  disabled:
+                                    _vm.form.jenispendaftaran.id == "3" ||
+                                    _vm.form.jenispendaftaran.id == "4" ||
+                                    _vm.form.jenispendaftaran.id == "7" ||
+                                    _vm.form.jenispendaftaran.id == "12"
                                 },
                                 model: {
                                   value: _vm.form.kelasjalanterendah,
@@ -48280,7 +48408,12 @@ var render = function() {
                                   outlined: "",
                                   dense: "",
                                   required: "",
-                                  clearable: ""
+                                  clearable: "",
+                                  disabled:
+                                    _vm.form.jenispendaftaran.id == "3" ||
+                                    _vm.form.jenispendaftaran.id == "4" ||
+                                    _vm.form.jenispendaftaran.id == "7" ||
+                                    _vm.form.jenispendaftaran.id == "12"
                                 },
                                 model: {
                                   value: _vm.form.konfigurasisumburoda,
@@ -48310,7 +48443,12 @@ var render = function() {
                                   outlined: "",
                                   dense: "",
                                   required: "",
-                                  clearable: ""
+                                  clearable: "",
+                                  disabled:
+                                    _vm.form.jenispendaftaran.id == "3" ||
+                                    _vm.form.jenispendaftaran.id == "4" ||
+                                    _vm.form.jenispendaftaran.id == "7" ||
+                                    _vm.form.jenispendaftaran.id == "12"
                                 },
                                 model: {
                                   value: _vm.form.ukuranban,
@@ -48363,7 +48501,12 @@ var render = function() {
                                   type: "number",
                                   outlined: "",
                                   dense: "",
-                                  required: ""
+                                  required: "",
+                                  disabled:
+                                    _vm.form.jenispendaftaran.id == "3" ||
+                                    _vm.form.jenispendaftaran.id == "4" ||
+                                    _vm.form.jenispendaftaran.id == "7" ||
+                                    _vm.form.jenispendaftaran.id == "12"
                                 },
                                 model: {
                                   value: _vm.form.jaraksumbu1_2,
@@ -48388,7 +48531,12 @@ var render = function() {
                                   type: "number",
                                   outlined: "",
                                   dense: "",
-                                  required: ""
+                                  required: "",
+                                  disabled:
+                                    _vm.form.jenispendaftaran.id == "3" ||
+                                    _vm.form.jenispendaftaran.id == "4" ||
+                                    _vm.form.jenispendaftaran.id == "7" ||
+                                    _vm.form.jenispendaftaran.id == "12"
                                 },
                                 model: {
                                   value: _vm.form.jaraksumbu2_3,
@@ -48413,7 +48561,12 @@ var render = function() {
                                   type: "number",
                                   outlined: "",
                                   dense: "",
-                                  required: ""
+                                  required: "",
+                                  disabled:
+                                    _vm.form.jenispendaftaran.id == "3" ||
+                                    _vm.form.jenispendaftaran.id == "4" ||
+                                    _vm.form.jenispendaftaran.id == "7" ||
+                                    _vm.form.jenispendaftaran.id == "12"
                                 },
                                 model: {
                                   value: _vm.form.jaraksumbu3_4,
@@ -48438,7 +48591,12 @@ var render = function() {
                                   name: "q",
                                   outlined: "",
                                   dense: "",
-                                  required: ""
+                                  required: "",
+                                  disabled:
+                                    _vm.form.jenispendaftaran.id == "3" ||
+                                    _vm.form.jenispendaftaran.id == "4" ||
+                                    _vm.form.jenispendaftaran.id == "7" ||
+                                    _vm.form.jenispendaftaran.id == "12"
                                 },
                                 model: {
                                   value: _vm.form.q,
@@ -48463,7 +48621,12 @@ var render = function() {
                                   type: "number",
                                   outlined: "",
                                   dense: "",
-                                  required: ""
+                                  required: "",
+                                  disabled:
+                                    _vm.form.jenispendaftaran.id == "3" ||
+                                    _vm.form.jenispendaftaran.id == "4" ||
+                                    _vm.form.jenispendaftaran.id == "7" ||
+                                    _vm.form.jenispendaftaran.id == "12"
                                 },
                                 model: {
                                   value: _vm.form.p,
