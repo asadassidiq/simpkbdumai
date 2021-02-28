@@ -219,6 +219,8 @@ class PendaftaranController extends Controller
             'identitaskendaraan_id' => $data->id,
             'tglpendaftaran'        => $request->tglpendaftaran,
             'tglbayar'              => $request->tglbayar,
+            'noamprah'              => $request->noamprah,
+            'tglamprah'             => $request->tglamprah,
             'masaberlakuuji'        => $request->masaberlakuuji,
             'kodepenerbitans_id'    => $jenispendaftaran,
             'jenispendaftaran'                 => 'ots',
@@ -247,6 +249,8 @@ class PendaftaranController extends Controller
             'identitaskendaraan_id' => $cekkendaraan->id,
             'tglpendaftaran'        => $request->tglpendaftaran,
             'tglbayar'              => $request->tglbayar,
+            'noamprah'              => $request->noamprah,
+            'tglamprah'             => $request->tglamprah,
             'masaberlakuuji'        => $request->masaberlakuuji,
             'kodepenerbitans_id'    => $jenispendaftaran,
             'jenispendaftaran'                 => 'ots',
@@ -399,6 +403,8 @@ class PendaftaranController extends Controller
         $pendaftaran = Pendaftaran::find($id);
         $pendaftaran->tglpendaftaran          = $request->tglpendaftaran;
         $pendaftaran->tglbayar                = $request->tglbayar;
+        $pendaftaran->noamprah                = $request->noamprah;
+        $pendaftaran->tglamprah               = $request->tglamprah;
         $pendaftaran->masaberlakuuji          = $request->masaberlakuuji;
         $pendaftaran->kodepenerbitans_id      = $jenispendaftaran;
         $pendaftaran->save();

@@ -176,6 +176,26 @@
               </v-date-picker>
             </v-menu>
             </v-col>
+
+
+            <v-col cols="12" sm="4" md="4">
+              <v-text-field name="noamprah" v-model="form.noamprah" label="No Amprah" outlined dense required clearable></v-text-field>
+            </v-col>
+
+            <v-col class="d-flex" cols="12" sm="4" md="4">
+            <v-menu ref="menu4" v-model="menu4":close-on-content-click="false" :return-value.sync="form.tglamprah"
+              transition="scale-transition" offset-y min-width="290px">
+              <template v-slot:activator="{ on, attrs }">
+                <v-text-field v-model="form.tglamprah" name="tglamprah" label="Tanggal Amprah" outlined dense required v-bind="attrs" v-on="on"
+                ></v-text-field>
+              </template>
+              <v-date-picker v-model="form.tglamprah" no-title scrollable>
+                <v-spacer></v-spacer>
+                <v-btn text color="primary" @click="menu4 = false">Cancel</v-btn>
+                <v-btn text color="primary" @click="$refs.menu4.save(form.tglamprah)">OK</v-btn>
+              </v-date-picker>
+            </v-menu>
+            </v-col>
           </v-row>
         </v-container>
       </v-card-text>
@@ -333,6 +353,7 @@ export default {
             jenispendaftaran: [],
             klasifikasi: [],
             kodewilayah: [],
+            menu4: false,
             menu3: false,
             menu2: false,
             menu1: false,
@@ -369,6 +390,8 @@ export default {
                 jeniskendaraan:'',
                 tglpendaftaran: new Date().toISOString().substr(0, 10),
                 tglbayar: new Date().toISOString().substr(0, 10),
+                tglamprah: new Date().toISOString().substr(0, 10),
+                noamprah:'',
                 jbkb: '0',
                 kelasjalanterendah: 'I',
                 konfigurasisumburoda: '1.1',
@@ -518,6 +541,8 @@ export default {
                     this.form.peruntukan= this.post.peruntukan
                     this.form.tglpendaftaran= this.post.tglpendaftaran
                     this.form.tglbayar= this.post.tglbayar
+                    this.form.tglamprah= this.post.tglamprah
+                    this.form.noamprah= this.post.noamprah
                     this.form.masaberlakuuji= this.post.masaberlakuuji
                     this.form.merek= this.post.merek
                     this.form.tipe= this.post.tipe

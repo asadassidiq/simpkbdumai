@@ -18,7 +18,6 @@ import Uji from './views/pengujian/uji.vue';
 import SetPosUji from './views/setting/set_posuji.vue';
 import SetAmprah from './views/setting/set_amprah.vue';
 import ListUji from './views/pengujian/index.vue';
-import Verif from './views/pengujian/verif.vue';
 import Mereks from './views/master/merek.vue';
 import Tipe from './views/master/klasifikasi.vue';
 import Klasifikasi from './views/master/klasifikasi.vue';
@@ -33,6 +32,12 @@ import Datakendaraanlulus from './views/pengujian/datakendaraanlulus.vue';
 import Laporan from './views/cetak/lappendaftaranloket.vue';
 import Hasiluji from './views/cetak/hasiluji.vue';
 import Hasilujiall from './views/cetak/hasilujiall.vue';
+
+
+import Verif from './views/pengujian/verif.vue';
+import Verifall from './views/pengujian/verifall.vue';
+import veriflulus from './views/pengujian/lulusverif.vue';
+import Verifgagal from './views/pengujian/gagalverif.vue';
 
 export const routes = [
     {
@@ -224,6 +229,7 @@ export const routes = [
             requireAuth : true
         }
     },
+
     {
         path : '/admin/verif',
         component : Verif,
@@ -281,4 +287,32 @@ export const routes = [
         }
     },
 
+    {
+        path : '/admin/verif',
+        component : Verif,
+        meta:{
+            requireAuth : true
+        }
+    },
+    {
+        path : '/admin/verifall',
+        component : Verifall,
+        meta:{
+            requireAuth : true
+        }
+    },
+    {
+        path : '/admin/veriflulus',
+        component : veriflulus,
+        meta:{
+            requireAuth : true
+        }
+    },
+    {
+        path : '/admin/verifgagal',
+        component : Verifgagal,
+        meta:{
+            requireAuth : true
+        }
+    },
 ]

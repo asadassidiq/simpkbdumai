@@ -2242,6 +2242,21 @@ __webpack_require__.r(__webpack_exports__);
         link: '/admin/setting/amprah',
         level: '14'
       }, {
+        icon: 'mdi-content-copy',
+        text: 'Pengujian',
+        link: '/admin/verif',
+        level: '12'
+      }, {
+        icon: 'mdi-content-copy',
+        text: 'Lulus',
+        link: '/admin/veriflulus',
+        level: '12'
+      }, {
+        icon: 'mdi-content-copy',
+        text: 'Tidak Lulus',
+        link: '/admin/verifgagal',
+        level: '12'
+      }, {
         icon: 'mdi-chevron-up',
         'icon-alt': 'mdi-chevron-down',
         text: 'Cetak',
@@ -3686,6 +3701,26 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -3696,6 +3731,7 @@ __webpack_require__.r(__webpack_exports__);
       jenispendaftaran: [],
       klasifikasi: [],
       kodewilayah: [],
+      menu4: false,
       menu3: false,
       menu2: false,
       menu1: false,
@@ -3732,6 +3768,8 @@ __webpack_require__.r(__webpack_exports__);
         jeniskendaraan: '',
         tglpendaftaran: new Date().toISOString().substr(0, 10),
         tglbayar: new Date().toISOString().substr(0, 10),
+        tglamprah: new Date().toISOString().substr(0, 10),
+        noamprah: '',
         jbkb: '0',
         kelasjalanterendah: 'I',
         konfigurasisumburoda: '1.1',
@@ -3882,6 +3920,8 @@ __webpack_require__.r(__webpack_exports__);
         _this5.form.peruntukan = _this5.post.peruntukan;
         _this5.form.tglpendaftaran = _this5.post.tglpendaftaran;
         _this5.form.tglbayar = _this5.post.tglbayar;
+        _this5.form.tglamprah = _this5.post.tglamprah;
+        _this5.form.noamprah = _this5.post.noamprah;
         _this5.form.masaberlakuuji = _this5.post.masaberlakuuji;
         _this5.form.merek = _this5.post.merek;
         _this5.form.tipe = _this5.post.tipe;
@@ -47937,6 +47977,169 @@ var render = function() {
                                             click: function($event) {
                                               return _vm.$refs.menu3.save(
                                                 _vm.form.masaberlakuuji
+                                              )
+                                            }
+                                          }
+                                        },
+                                        [_vm._v("OK")]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-col",
+                            { attrs: { cols: "12", sm: "4", md: "4" } },
+                            [
+                              _c("v-text-field", {
+                                attrs: {
+                                  name: "noamprah",
+                                  label: "No Amprah",
+                                  outlined: "",
+                                  dense: "",
+                                  required: "",
+                                  clearable: ""
+                                },
+                                model: {
+                                  value: _vm.form.noamprah,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.form, "noamprah", $$v)
+                                  },
+                                  expression: "form.noamprah"
+                                }
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-col",
+                            {
+                              staticClass: "d-flex",
+                              attrs: { cols: "12", sm: "4", md: "4" }
+                            },
+                            [
+                              _c(
+                                "v-menu",
+                                {
+                                  ref: "menu4",
+                                  attrs: {
+                                    "close-on-content-click": false,
+                                    "return-value": _vm.form.tglamprah,
+                                    transition: "scale-transition",
+                                    "offset-y": "",
+                                    "min-width": "290px"
+                                  },
+                                  on: {
+                                    "update:returnValue": function($event) {
+                                      return _vm.$set(
+                                        _vm.form,
+                                        "tglamprah",
+                                        $event
+                                      )
+                                    },
+                                    "update:return-value": function($event) {
+                                      return _vm.$set(
+                                        _vm.form,
+                                        "tglamprah",
+                                        $event
+                                      )
+                                    }
+                                  },
+                                  scopedSlots: _vm._u([
+                                    {
+                                      key: "activator",
+                                      fn: function(ref) {
+                                        var on = ref.on
+                                        var attrs = ref.attrs
+                                        return [
+                                          _c(
+                                            "v-text-field",
+                                            _vm._g(
+                                              _vm._b(
+                                                {
+                                                  attrs: {
+                                                    name: "tglamprah",
+                                                    label: "Tanggal Amprah",
+                                                    outlined: "",
+                                                    dense: "",
+                                                    required: ""
+                                                  },
+                                                  model: {
+                                                    value: _vm.form.tglamprah,
+                                                    callback: function($$v) {
+                                                      _vm.$set(
+                                                        _vm.form,
+                                                        "tglamprah",
+                                                        $$v
+                                                      )
+                                                    },
+                                                    expression: "form.tglamprah"
+                                                  }
+                                                },
+                                                "v-text-field",
+                                                attrs,
+                                                false
+                                              ),
+                                              on
+                                            )
+                                          )
+                                        ]
+                                      }
+                                    }
+                                  ]),
+                                  model: {
+                                    value: _vm.menu4,
+                                    callback: function($$v) {
+                                      _vm.menu4 = $$v
+                                    },
+                                    expression: "menu4"
+                                  }
+                                },
+                                [
+                                  _vm._v(" "),
+                                  _c(
+                                    "v-date-picker",
+                                    {
+                                      attrs: { "no-title": "", scrollable: "" },
+                                      model: {
+                                        value: _vm.form.tglamprah,
+                                        callback: function($$v) {
+                                          _vm.$set(_vm.form, "tglamprah", $$v)
+                                        },
+                                        expression: "form.tglamprah"
+                                      }
+                                    },
+                                    [
+                                      _c("v-spacer"),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-btn",
+                                        {
+                                          attrs: { text: "", color: "primary" },
+                                          on: {
+                                            click: function($event) {
+                                              _vm.menu4 = false
+                                            }
+                                          }
+                                        },
+                                        [_vm._v("Cancel")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "v-btn",
+                                        {
+                                          attrs: { text: "", color: "primary" },
+                                          on: {
+                                            click: function($event) {
+                                              return _vm.$refs.menu4.save(
+                                                _vm.form.tglamprah
                                               )
                                             }
                                           }

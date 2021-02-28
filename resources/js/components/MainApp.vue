@@ -144,6 +144,9 @@
         { icon: 'mdi-account-reactivate', text: 'user', link: '/admin/managementuser', level: '13' },
         { icon: 'mdi-fit-to-page', text: 'settingpos', link: '/admin/setting/posuji', level: '9' },
         { icon: 'mdi-fit-to-page', text: 'Setting Amprah', link: '/admin/setting/amprah', level: '14' },
+        { icon: 'mdi-content-copy', text: 'Pengujian', link: '/admin/verif', level: '12' },
+        { icon: 'mdi-content-copy', text: 'Lulus', link: '/admin/veriflulus', level: '12' },
+        { icon: 'mdi-content-copy', text: 'Tidak Lulus', link: '/admin/verifgagal', level: '12' },
         {
           icon: 'mdi-chevron-up',
           'icon-alt': 'mdi-chevron-down',
