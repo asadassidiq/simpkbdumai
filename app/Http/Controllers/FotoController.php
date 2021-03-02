@@ -88,21 +88,19 @@ class FotoController extends Controller
        $data = Fotomentah::create([
             'nouji'                => $nouji,
             'fotodepanmentah'      => file_get_contents($thumbPath1),
-            'fotobelakangmentah'   => file_get_contents($thumbPath2),
-            'fotokananmentah'      => file_get_contents($thumbPath3),
+            'fotobelakangmentah'   => file_get_contents($thumbPath3),
+            'fotokananmentah'      => file_get_contents($thumbPath2),
             'fotokirimentah'       => file_get_contents($thumbPath4),
             'statuskompres'        => '0',
             ]);
     }else{
         $foto = Fotomentah::where('nouji',$nouji)->first();
         $foto->fotodepanmentah    = file_get_contents($thumbPath1);
-        $foto->fotobelakangmentah = file_get_contents($thumbPath2);
-        $foto->fotokananmentah    = file_get_contents($thumbPath3);
+        $foto->fotobelakangmentah = file_get_contents($thumbPath3);
+        $foto->fotokananmentah    = file_get_contents($thumbPath2);
         $foto->fotokirimentah     = file_get_contents($thumbPath4);
         $foto->save();
-    }
-            // 'fotobelakangmentah'   => base64_encode(Image::make($image2)->resize(800, 600)->save($thumbPath, 10)),
-    
+    }    
 
     return redirect()->back()->with('success', 'Berhasil');
   }
