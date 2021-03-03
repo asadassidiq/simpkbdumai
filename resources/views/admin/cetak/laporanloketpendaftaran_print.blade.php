@@ -149,7 +149,7 @@
                   <td>{{ $tot6 }}</td>
                   <td>{{ $tot7 }}</td>
                   <td>{{ $tot8 }}</td>
-                  <td>{{ $tot9 }}/td>
+                  <td>{{ $tot9 }}</td>
                   <td>{{ $tot10 }}</td>
                 </tr>
                 </tbody>
