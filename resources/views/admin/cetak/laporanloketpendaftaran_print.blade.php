@@ -167,8 +167,8 @@
                     <P>Pengujian Kendaraan Bermotor</P>
                     <br><br>
                     <br>
-                    <p>CHALIKIN NOOR, SE</p>
-                    <p>NIP. 19750305 199803 1 006</p>
+                    <p>EFFENDI, Ama.PKB</p>
+                    <p>NIP. 19760606 200212 1 011</p>
                 </b>
             </div>
         </div>

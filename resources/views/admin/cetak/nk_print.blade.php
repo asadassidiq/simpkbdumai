@@ -145,8 +145,8 @@
 					<p>Kota Banjarmasin</p>
                     <br><br>
                     <br><br>
-                    <p><u>CHALIKIN NOOR, SE</u></p>
-                    <p>NIP. 19750305 199803 1 006</p>
+                    <p><u>EFFENDI, Ama.PKB</u></p>
+                    <p>NIP. 19760606 200212 1 011</p>
                 </b>
             </div>
         </div>

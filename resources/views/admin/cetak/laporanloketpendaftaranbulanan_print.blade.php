@@ -124,6 +124,7 @@
                     <br><br>
                     <br>
                     <p><u>EFFENDI, A.Ma.PKB</u></p>
+                    <p>NIP. 19760606 200212 1 011</p>
                 </b>
             </div>
         </div>
@@ -245,6 +246,7 @@
                     <br><br>
                     <br>
                     <p><u>EFFENDI, A.Ma.PKB</u></p>
+                    <p>NIP. 19760606 200212 1 011</p>
                 </b>
             </div>
         </div>
@@ -333,6 +335,7 @@
                     <P>PENGUJIAN KENDARAAN BERMOTOR</P>
                     <br><br>
                     <p><u>EFFENDI, A.Ma.PKB</u></p>
+                    <p>NIP. 19760606 200212 1 011</p>
                 </b>
             </div>
         </div>
@@ -424,6 +427,8 @@
                     <P>PENGUJIAN KENDARAAN BERMOTOR</P>
                     <br><br>
                     <p><u>EFFENDI, A.Ma.PKB</u></p>
+                    <p>NIP. 19760606 200212 1 011</p>
+                    
                 </b>
             </div>
         </div>
@@ -505,6 +510,7 @@
                     <br><br>
                     <br>
                     <p><u>EFFENDI, A.Ma.PKB</u></p>
+                    <p>NIP. 19760606 200212 1 011</p>
                 </b>
             </div>
         </div>
@@ -585,6 +591,7 @@
                     <br><br>
                     <br>
                     <p><u>EFFENDI, A.Ma.PKB</u></p>
+                    <p>NIP. 19760606 200212 1 011</p>
                 </b>
             </div>
         </div>
@@ -687,6 +694,7 @@
                     <P>PENGUJIAN KENDARAAN BERMOTOR</P>
                     <br><br>
                     <p><u>EFFENDI, A.Ma.PKB</u></p>
+                    <p>NIP. 19760606 200212 1 011</p>
                 </b>
             </div>
         </div>
@@ -791,6 +799,7 @@
                     <br><br>
                     <br>
                     <p><u>EFFENDI, A.Ma.PKB</u></p>
+                    <p>NIP. 19760606 200212 1 011</p>
                 </b>
             </div>
         </div>
@@ -893,6 +902,7 @@
                     <P>PENGUJIAN KENDARAAN BERMOTOR</P>
                     <br><br>
                     <p><u>EFFENDI, A.Ma.PKB</u></p>
+                    <p>NIP. 19760606 200212 1 011</p>
                 </b>
             </div>
         </div>
@@ -997,6 +1007,7 @@
                     <br><br>
                     <br>
                     <p><u>EFFENDI, A.Ma.PKB</u></p>
+                    <p>NIP. 19760606 200212 1 011</p>
                 </b>
             </div>
         </div>
