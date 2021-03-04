@@ -163,7 +163,7 @@
             <div class="col-4 text-center">
                 <b>
                     <p>Mengetahui,</p>
-                    <P>Kepala UPTD</P>
+                    <P>Kepala UPU</P>
                     <P>Pengujian Kendaraan Bermotor</P>
                     <br><br>
                     <br>

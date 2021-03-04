@@ -132,7 +132,7 @@
                     <P>KOTA BANJARMASIN</P>
                     <br><br>
                     <br><br>
-                    <p>Kepala UPTD / Pengujian Kendaraan Bermotor Banjarmasin</p>
+                    <p>Kepala UPU / Pengujian Kendaraan Bermotor Banjarmasin</p>
                 </b>
             </div>
         </div>

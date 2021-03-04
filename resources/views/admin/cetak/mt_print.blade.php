@@ -145,7 +145,7 @@
             <div class="col-5 text-center">
                 <b>
                     <p>An. Kepala Dinas Perhubungan Banjarmasin</p>
-					<p>Kepala UPTD</p>
+					<p>Kepala UPU</p>
                     <P>Pengujian Kendaraan Bermotor</P>
 					<p>Kota Banjarmasin</p>
                     <br><br>
