@@ -59,7 +59,7 @@
             <div class="col-8 align-self-center">
                     <h3><p class="text-center"><b>PEMERINTAH KOTA BANJARMASIN</b></p></h3>                   
                     <h2><p class="text-center"><b>DINAS PERHUBUNGAN</b></p></h2>    
-                    <h3><p class="text-center"><b>UPT PENGUJIAN KENDARAAN BERMOTOR</b></p></h3> 
+                    <h3><p class="text-center"><b>UPU PENGUJIAN KENDARAAN BERMOTOR</b></p></h3> 
                     <h4><p class="text-center"><b>Jl. Gubernur Soebarjo / Lingkar Selatan Km. 11 Banjarmasin</b></p></h4>  
             </div>           
             <div class="col-2">

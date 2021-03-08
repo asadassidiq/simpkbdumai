@@ -131,7 +131,7 @@
                   <td>{{ $data->numpangujidanmutasi }}</td>
                   <td>{{ $data->total }}</td>
                   @if ($data->statuslulusuji == 1)
-                  <td>LULUS</td>
+                  <td>LULUS</td>>
                   @else
                   <td>TIDAK LULUS</td>
                   @endif
@@ -216,7 +216,15 @@
                     <td>{{ $data->merek }}</td>
                     <td>{{ $data->jenis }}</td>
                     <td>{{ $data->thpembuatan }}</td>
-                    <td>{{ $data->catatanpos1 }} , {{ $data->catatanpos2 }} , {{ $data->catatanpos3 }}</td>
+                    <td>
+                    @if ($data->kodepenerbitans_id == '9')
+                    {{ 'Numpang Uji Keluar' }}
+                    @elseif ($data->kodepenerbitans_id == '10')
+                    {{ 'Mutasi Keluar' }}
+                    @else
+                    {{ $data->catatanpos1 }} , {{ $data->catatanpos2 }} , {{ $data->catatanpos3 }}
+                    @endif
+                    </td>
                   </tr>
                 @php $i++
                 @endphp

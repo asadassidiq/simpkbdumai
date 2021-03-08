@@ -850,12 +850,15 @@
 			</v-col>
 		</v-row>
 		<v-row no-gutters >
-			<v-col cols="12" sm="6" md="3">
+			<v-col cols="12" sm="12" md="12">
 				<v-row>
-				<v-col cols="9">
+				<v-col cols="5">
 				<v-text-field v-model="form.alatuji_remutamatotalgayapengereman" type="number" outlined label="Total Gaya Rem Utama" suffix="Kg"></v-text-field>
 				</v-col>
-				<v-col cols="3">
+				<v-col cols="5">
+				<v-text-field v-model="form.effisiensirem" type="number" outlined label="Effisiensi Gaya Rem Utama" suffix="%"></v-text-field>
+				</v-col>
+				<v-col cols="2">
 				<v-btn class="mx-2" fab dark small color="primary" @click="counteffisensirem()" ><v-icon dark> mdi-calculator-variant-outline </v-icon></v-btn>
 				</v-col>
 				</v-row>
@@ -1186,6 +1189,7 @@
                 gayaremkanans2:'0',
                 gayaremkanans3:'0',
                 gayaremkanans4:'0',
+                effisiensirem:'0',
                 posisipos:'',
                 pos1:'',
                 pos2:'',
@@ -1401,6 +1405,7 @@
 
 		    var hasil = (totals/btotals)*100;
         	this.form.alatuji_remutamatotalgayapengereman = totals;
+        	this.form.effisiensirem = hasil;
 
         	if (parseInt(s1)>parseInt(s5)) {
 		        var hasilS1 = ((parseInt(s1)-parseInt(s5))/parseInt(bs1));

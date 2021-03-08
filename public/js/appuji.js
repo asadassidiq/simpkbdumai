@@ -6380,6 +6380,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     var _this = this,
@@ -6512,7 +6515,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         groundclearance: '0',
         bsumbu1: '0',
         bsumbu2: '0'
-      }, _defineProperty(_Form, "bsumbu2", '0'), _defineProperty(_Form, "bsumbu4", '0'), _defineProperty(_Form, "beratkosong", '0'), _defineProperty(_Form, "panjangbakatautangki", '0'), _defineProperty(_Form, "lebarbakatautangki", '0'), _defineProperty(_Form, "tinggibakatautangki", '0'), _defineProperty(_Form, "jaraksumbu1_2", '0'), _defineProperty(_Form, "jaraksumbu2_3", '0'), _defineProperty(_Form, "jaraksumbu3_4", '0'), _defineProperty(_Form, "p", '0'), _defineProperty(_Form, "q", '0'), _defineProperty(_Form, "gayaremkiris1", '0'), _defineProperty(_Form, "gayaremkiris2", '0'), _defineProperty(_Form, "gayaremkiris3", '0'), _defineProperty(_Form, "gayaremkiris4", '0'), _defineProperty(_Form, "gayaremkanans1", '0'), _defineProperty(_Form, "gayaremkanans2", '0'), _defineProperty(_Form, "gayaremkanans3", '0'), _defineProperty(_Form, "gayaremkanans4", '0'), _defineProperty(_Form, "posisipos", ''), _defineProperty(_Form, "pos1", ''), _defineProperty(_Form, "pos2", ''), _defineProperty(_Form, "catatanpos1", ''), _defineProperty(_Form, "catatanpos2", ''), _defineProperty(_Form, "petugaspos1", ''), _defineProperty(_Form, "petugaspos2", ''), _Form))
+      }, _defineProperty(_Form, "bsumbu2", '0'), _defineProperty(_Form, "bsumbu4", '0'), _defineProperty(_Form, "beratkosong", '0'), _defineProperty(_Form, "panjangbakatautangki", '0'), _defineProperty(_Form, "lebarbakatautangki", '0'), _defineProperty(_Form, "tinggibakatautangki", '0'), _defineProperty(_Form, "jaraksumbu1_2", '0'), _defineProperty(_Form, "jaraksumbu2_3", '0'), _defineProperty(_Form, "jaraksumbu3_4", '0'), _defineProperty(_Form, "p", '0'), _defineProperty(_Form, "q", '0'), _defineProperty(_Form, "gayaremkiris1", '0'), _defineProperty(_Form, "gayaremkiris2", '0'), _defineProperty(_Form, "gayaremkiris3", '0'), _defineProperty(_Form, "gayaremkiris4", '0'), _defineProperty(_Form, "gayaremkanans1", '0'), _defineProperty(_Form, "gayaremkanans2", '0'), _defineProperty(_Form, "gayaremkanans3", '0'), _defineProperty(_Form, "gayaremkanans4", '0'), _defineProperty(_Form, "effisiensirem", '0'), _defineProperty(_Form, "posisipos", ''), _defineProperty(_Form, "pos1", ''), _defineProperty(_Form, "pos2", ''), _defineProperty(_Form, "catatanpos1", ''), _defineProperty(_Form, "catatanpos2", ''), _defineProperty(_Form, "petugaspos1", ''), _defineProperty(_Form, "petugaspos2", ''), _Form))
     };
   },
   methods: {
@@ -6707,6 +6710,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var btotals = parseInt(bs1) + parseInt(bs2) + parseInt(bs3) + parseInt(bs4);
       var hasil = totals / btotals * 100;
       this.form.alatuji_remutamatotalgayapengereman = totals;
+      this.form.effisiensirem = hasil;
 
       if (parseInt(s1) > parseInt(s5)) {
         var hasilS1 = (parseInt(s1) - parseInt(s5)) / parseInt(bs1);
@@ -55917,14 +55921,14 @@ var render = function() {
                               [
                                 _c(
                                   "v-col",
-                                  { attrs: { cols: "12", sm: "6", md: "3" } },
+                                  { attrs: { cols: "12", sm: "12", md: "12" } },
                                   [
                                     _c(
                                       "v-row",
                                       [
                                         _c(
                                           "v-col",
-                                          { attrs: { cols: "9" } },
+                                          { attrs: { cols: "5" } },
                                           [
                                             _c("v-text-field", {
                                               attrs: {
@@ -55954,7 +55958,35 @@ var render = function() {
                                         _vm._v(" "),
                                         _c(
                                           "v-col",
-                                          { attrs: { cols: "3" } },
+                                          { attrs: { cols: "5" } },
+                                          [
+                                            _c("v-text-field", {
+                                              attrs: {
+                                                type: "number",
+                                                outlined: "",
+                                                label:
+                                                  "Effisiensi Gaya Rem Utama",
+                                                suffix: "%"
+                                              },
+                                              model: {
+                                                value: _vm.form.effisiensirem,
+                                                callback: function($$v) {
+                                                  _vm.$set(
+                                                    _vm.form,
+                                                    "effisiensirem",
+                                                    $$v
+                                                  )
+                                                },
+                                                expression: "form.effisiensirem"
+                                              }
+                                            })
+                                          ],
+                                          1
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "v-col",
+                                          { attrs: { cols: "2" } },
                                           [
                                             _c(
                                               "v-btn",

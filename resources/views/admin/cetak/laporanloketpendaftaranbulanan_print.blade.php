@@ -119,7 +119,7 @@
             <div class="col-4 text-center">
                     <p>Dumai, {{ $tglcetak }}</p>
                 <b>
-                    <P>Kepala UPT</P>
+                    <P>Kepala UPU</P>
                     <P>PENGUJIAN KENDARAAN BERMOTOR</P>
                     <br><br>
                     <br>
@@ -241,7 +241,7 @@
             <div class="col-4 text-center">
                     <p>Dumai, {{ $tglcetak }}</p>
                 <b>
-                    <P>Kepala UPT</P>
+                    <P>Kepala UPU</P>
                     <P>PENGUJIAN KENDARAAN BERMOTOR</P>
                     <br><br>
                     <br>
@@ -331,7 +331,7 @@
             <div class="col-4 text-center">
                     <p>Dumai, {{ $tglcetak }}</p>
                 <b>
-                    <P>Kepala UPT</P>
+                    <P>Kepala UPU</P>
                     <P>PENGUJIAN KENDARAAN BERMOTOR</P>
                     <br><br>
                     <p><u>EFFENDI, A.Ma.PKB</u></p>
@@ -423,7 +423,7 @@
             <div class="col-4 text-center">
                     <p>Dumai, {{ $tglcetak }}</p>
                 <b>
-                    <P>Kepala UPT</P>
+                    <P>Kepala UPU</P>
                     <P>PENGUJIAN KENDARAAN BERMOTOR</P>
                     <br><br>
                     <p><u>EFFENDI, A.Ma.PKB</u></p>
@@ -505,7 +505,7 @@
             <div class="col-4 text-center">
                     <p>Dumai, {{ $tglcetak }}</p>
                 <b>
-                    <P>Kepala UPT</P>
+                    <P>Kepala UPU</P>
                     <P>PENGUJIAN KENDARAAN BERMOTOR</P>
                     <br><br>
                     <br>
@@ -586,7 +586,7 @@
             <div class="col-4 text-center">
                     <p>Dumai, {{ $tglcetak }}</p>
                 <b>
-                    <P>Kepala UPT</P>
+                    <P>Kepala UPU</P>
                     <P>PENGUJIAN KENDARAAN BERMOTOR</P>
                     <br><br>
                     <br>
@@ -690,7 +690,7 @@
             <div class="col-4 text-center">
                     <p>Dumai, {{ $tglcetak }}</p>
                 <b>
-                    <P>Kepala UPT</P>
+                    <P>Kepala UPU</P>
                     <P>PENGUJIAN KENDARAAN BERMOTOR</P>
                     <br><br>
                     <p><u>EFFENDI, A.Ma.PKB</u></p>
@@ -794,7 +794,7 @@
             <div class="col-4 text-center">
                     <p>Dumai, {{ $tglcetak }}</p>
                 <b>
-                    <P>Kepala UPT</P>
+                    <P>Kepala UPU</P>
                     <P>PENGUJIAN KENDARAAN BERMOTOR</P>
                     <br><br>
                     <br>
@@ -898,7 +898,7 @@
             <div class="col-4 text-center">
                     <p>Dumai, {{ $tglcetak }}</p>
                 <b>
-                    <P>Kepala UPT</P>
+                    <P>Kepala UPU</P>
                     <P>PENGUJIAN KENDARAAN BERMOTOR</P>
                     <br><br>
                     <p><u>EFFENDI, A.Ma.PKB</u></p>
@@ -1002,7 +1002,7 @@
             <div class="col-4 text-center">
                     <p>Dumai, {{ $tglcetak }}</p>
                 <b>
-                    <P>Kepala UPT</P>
+                    <P>Kepala UPU</P>
                     <P>PENGUJIAN KENDARAAN BERMOTOR</P>
                     <br><br>
                     <br>
