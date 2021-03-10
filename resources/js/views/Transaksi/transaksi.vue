@@ -281,6 +281,7 @@ export default {
         },
         getdenda(){
             this.formdata.denda = this.form.blndenda*this.biayadenda;
+            this.form.denda = this.form.blndenda*this.biayadenda;
         },
         setstatuskepemilikan(){
             if(this.statuskepemilikan === true){ 
@@ -392,7 +393,7 @@ export default {
                 this.getdenda()
                 this.form.total = this.form.total-this.formdata.denda
                 this.form.denda = 0
-                console.log('a')
+                this.form.blndenda = 0
             }
         },
         goBack() {
@@ -480,7 +481,6 @@ export default {
                     this.form.retribusi = result.data.retribusi.biaya
                     this.formdata.retribusi = result.data.retribusi.biaya
                     this.form.blangko = 7500
-                    this.formdata.retribusi = 7500
                 }).catch((err) => {
 
                 });

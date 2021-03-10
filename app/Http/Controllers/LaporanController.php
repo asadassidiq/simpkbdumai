@@ -190,19 +190,21 @@ class LaporanController extends Controller
                         );
             array_push($jumlah, $arr);
 
-        $jenispengujian = array("UJI PERTAMA","UJI ULANG","PEMERINTAH","NUMPAMG UJI", "PINDAH MASUK");
+        $jenispengujian = array("UJI PERTAMA","UJI ULANG","PEMERINTAH","NUMPANG UJI MASUK", "PINDAH MASUK","NUMPANG UJI KELUAR");
         $totalkeuangan = array();
         foreach ($jenispengujian as $list) {
             if ($list == 'UJI PERTAMA') {
                 $jenis = '1';
             }elseif($list == 'UJI ULANG'){
-                $jenis = '7';
+                $jenis = '2';
             }elseif($list == 'PEMERINTAH'){
                 $jenis = '12';
-            }elseif($list == 'NUMPANG UJI'){
+            }elseif($list == 'NUMPANG UJI MASUK'){
                 $jenis = '5';
             }elseif($list == 'PINDAH MASUK'){
                 $jenis = '6';
+            }elseif($list == 'NUMPANG UJI KELUAR'){
+                $jenis = '9';
             }
             $arr = array(
                     'jenispengujian' => $list,
@@ -682,7 +684,7 @@ class LaporanController extends Controller
                         );
             array_push($jumlah, $arr);
 
-        $jenispengujian = array("UJI PERTAMA","UJI ULANG","PEMERINTAH","NUMPAMG UJI", "PINDAH MASUK");
+        $jenispengujian = array("UJI PERTAMA","UJI ULANG","PEMERINTAH","NUMPANG UJI MASUK", "PINDAH MASUK","NUMPANG UJI KELUAR");
         $totalkeuangan = array();
         foreach ($jenispengujian as $list) {
             if ($list == 'UJI PERTAMA') {
@@ -691,10 +693,12 @@ class LaporanController extends Controller
                 $jenis = '7';
             }elseif($list == 'PEMERINTAH'){
                 $jenis = '12';
-            }elseif($list == 'NUMPANG UJI'){
+            }elseif($list == 'NUMPANG UJI MASUK'){
                 $jenis = '5';
             }elseif($list == 'PINDAH MASUK'){
                 $jenis = '6';
+            }elseif($list == 'NUMPANG UJI KELUAR'){
+                $jenis = '9';
             }
             $arr = array(
                     'jenispengujian' => $list,
@@ -1056,7 +1060,7 @@ class LaporanController extends Controller
                         );
             array_push($jumlah, $arr);
 
-        $jenispengujian = array("UJI PERTAMA","UJI ULANG","PEMERINTAH","NUMPAMG UJI", "PINDAH MASUK");
+        $jenispengujian = array("UJI PERTAMA","UJI ULANG","PEMERINTAH","NUMPANG UJI MASUK", "PINDAH MASUK","NUMPANG UJI KELUAR");
         $totalkeuangan = array();
         foreach ($jenispengujian as $list) {
             if ($list == 'UJI PERTAMA') {
@@ -1065,10 +1069,12 @@ class LaporanController extends Controller
                 $jenis = '7';
             }elseif($list == 'PEMERINTAH'){
                 $jenis = '12';
-            }elseif($list == 'NUMPANG UJI'){
+            }elseif($list == 'NUMPANG UJI MASUK'){
                 $jenis = '5';
             }elseif($list == 'PINDAH MASUK'){
                 $jenis = '6';
+            }elseif($list == 'NUMPANG UJI KELUAR'){
+                $jenis = '9';
             }
             $arr = array(
                     'jenispengujian' => $list,

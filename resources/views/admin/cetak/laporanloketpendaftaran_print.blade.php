@@ -131,7 +131,7 @@
                   <td>{{ $data->numpangujidanmutasi }}</td>
                   <td>{{ $data->total }}</td>
                   @if ($data->statuslulusuji == 1)
-                  <td>LULUS</td>>
+                  <td>LULUS</td>
                   @else
                   <td>TIDAK LULUS</td>
                   @endif
@@ -163,7 +163,7 @@
             <div class="col-4 text-center">
                 <b>
                     <p>Mengetahui,</p>
-                    <P>Kepala UPU</P>
+                    <P>Kepala UPU Berkala</P>
                     <P>Pengujian Kendaraan Bermotor</P>
                     <br><br>
                     <br>
