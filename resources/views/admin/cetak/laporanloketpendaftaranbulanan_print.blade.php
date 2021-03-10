@@ -273,7 +273,7 @@
                     <tr>
                         <th scope="col" rowspan="2" class="text-center">NO</th>                    
                         <th scope="col" rowspan="2" class="text-center">JENIS PENGUJUAN</th>                    
-                        <th scope="col" colspan="4" class="text-center">UANG</th>
+                        <th scope="col" colspan="3" class="text-center">UANG</th>
                         <th scope="col" rowspan="2" class="text-center">JUMLAH</th>
                     </tr>
                     <tr>
