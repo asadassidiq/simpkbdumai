@@ -273,19 +273,19 @@
                     <tr>
                         <th scope="col" rowspan="2" class="text-center">NO</th>                    
                         <th scope="col" rowspan="2" class="text-center">JENIS PENGUJUAN</th>                    
-                        <th scope="col" colspan="9" class="text-center">UANG</th>
+                        <th scope="col" colspan="3" class="text-center">UANG</th>
                         <th scope="col" rowspan="2" class="text-center">JUMLAH</th>
                     </tr>
                     <tr>
                         <th scope="col" class="text-center">JASA PENGUJIAN</th>
-                        <th scope="col" class="text-center">ADMINISTRASI </th>
-                        <th scope="col" class="text-center">KARTU UJI</th>
+                        <th scope="col" class="text-center">PENGADAAN BLANKO </th>
+                        <!-- <th scope="col" class="text-center">KARTU UJI</th> -->
                         <th scope="col" class="text-center">DENDA</th>
-                        <th scope="col" class="text-center">PERUBAHAN STATUS</th>
-                        <th scope="col" class="text-center">PERUBAHAN SIFAT</th>
-                        <th scope="col" class="text-center">PENGUJIAN KELILING</th>
-                        <th scope="col" class="text-center">EMISI GAS BUANG</th>
-                        <th scope="col" class="text-center">NUMPANG UJI & MUTASI</th>
+                        <!-- <th scope="col" class="text-center">PERUBAHAN STATUS</th> -->
+                        <!-- <th scope="col" class="text-center">PERUBAHAN SIFAT</th> -->
+                        <!-- <th scope="col" class="text-center">PENGUJIAN KELILING</th> -->
+                        <!-- <th scope="col" class="text-center">EMISI GAS BUANG</th> -->
+                        <!-- <th scope="col" class="text-center">NUMPANG UJI & MUTASI</th> -->
                     </tr>
                 </thead>
                 <tbody>
@@ -297,13 +297,13 @@
                         <td>{{ $data['jenispengujian'] }}</td>
                         <td>{{ $data['jasapengujian'] }}</td>
                         <td>{{ $data['administrasi'] }}</td>
-                        <td>{{ $data['kartu'] }}</td>
-                        <td>{{ $data['perubahanstatus'] }}</td>
-                        <td>{{ $data['perubahansifat'] }}</td>
+                        <!-- <td>{{ $data['kartu'] }}</td> -->
+                        <!-- <td>{{ $data['perubahanstatus'] }}</td> -->
+                        <!-- <td>{{ $data['perubahansifat'] }}</td> -->
                         <td>{{ $data['denda'] }}</td>
-                        <td>{{ $data['emisi'] }}</td>
-                        <td>{{ $data['pengujiankeliling'] }}</td>
-                        <td>{{ $data['numpangujidanmutasi'] }}</td>
+                        <!-- <td>{{ $data['emisi'] }}</td> -->
+                        <!-- <td>{{ $data['pengujiankeliling'] }}</td> -->
+                        <!-- <td>{{ $data['numpangujidanmutasi'] }}</td> -->
                         <td>{{ $data['total'] }}</td>
                     </tr>
                 @php $i++;$tot1=$tot1+$data['jasapengujian'];$tot2=$tot2+$data['administrasi'];$tot3=$tot3+$data['kartu'];$tot4=$tot4+$data['perubahanstatus'];$tot5=$tot5+$data['perubahansifat'];$tot6=$tot6+$data['denda'];$tot7=$tot7+$data['emisi'];$tot8=$tot8+$data['pengujiankeliling'];$tot9=$tot9+$data['numpangujidanmutasi'];$tot10=$tot10+$data['total'];
@@ -313,13 +313,13 @@
                         <td colspan="2">JUMLAH</td>
                         <td>{{ $tot1 }}</td>                        
                         <td>{{ $tot2 }}</td>                        
-                        <td>{{ $tot3 }}</td>                        
-                        <td>{{ $tot4 }}</td>                        
-                        <td>{{ $tot5 }}</td>                        
+                        <!-- <td>{{ $tot3 }}</td>                         -->
+                        <!-- <td>{{ $tot4 }}</td>                         -->
+                        <!-- <td>{{ $tot5 }}</td>                         -->
                         <td>{{ $tot6 }}</td>                        
-                        <td>{{ $tot7 }}</td>                        
-                        <td>{{ $tot8 }}</td>                        
-                        <td>{{ $tot9 }}</td>                        
+                        <!-- <td>{{ $tot7 }}</td>                         -->
+                        <!-- <td>{{ $tot8 }}</td>                         -->
+                        <!-- <td>{{ $tot9 }}</td>                         -->
                         <td>{{ $tot10 }}</td>                        
                     </tr>
                 </tbody>

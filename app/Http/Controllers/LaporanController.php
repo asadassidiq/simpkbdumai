@@ -488,8 +488,8 @@ class LaporanController extends Controller
         $bulan3 = date_format($tglcetak,"m");
         $tahun3 = date_format($tglcetak,"Y");
 
-        $tglcreate1 = "'".$tahun1."-".$bulan."-".$hari1."'";
-        $tglcreate2 = "'".$tahun2."-".$bulan2."-31'";
+        $tglcreate1 = "".$tahun1."-".$bulan."-".$hari1."";
+        $tglcreate2 = "".$tahun2."-".$bulan2."-31";
  
         switch($bulan){
             case 1:
@@ -686,6 +686,7 @@ class LaporanController extends Controller
 
         $jenispengujian = array("UJI PERTAMA","UJI ULANG","PEMERINTAH","NUMPANG UJI MASUK", "PINDAH MASUK","NUMPANG UJI KELUAR");
         $totalkeuangan = array();
+        
         foreach ($jenispengujian as $list) {
             if ($list == 'UJI PERTAMA') {
                 $jenis = '1';
@@ -714,7 +715,6 @@ class LaporanController extends Controller
                     'total'  => Pendaftaran::leftJoin('transaksis','transaksis.pendaftaran_id','=','pendaftarans.id')->where('kodepenerbitans_id',$jenis)->whereBetween('tglpendaftaran',[$tglcreate1,$tglcreate2])->where('kodepenerbitans_id','!=','7')->where('kodepenerbitans_id','!=','12')->sum('total'),
                 );
             array_push($totalkeuangan, $arr);
-
         }
         $dayaangkutorang = array("RENTAL = 5/9 ORANG","TAKSI = 4/5 ORANG","TAKSI = 6/7 ORANG","AJDP = 6/7 ORANG","OPLET = 8/9 ORANG", "BIS = 10/12 ORANG","BIS = 13/30 ORANG", "BIS = 21/30 ORANG","BIS = 31/40 ORANG","BIS = 40 KEATAS");
         $totaldayaangkutorang = array();
