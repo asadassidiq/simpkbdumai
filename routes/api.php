@@ -130,7 +130,7 @@ Route::group(['middleware' => 'auth'], function ($router) {
     Route::post('cekhargabuku', 'TransaksiController@cekhargabuku');
     Route::get('registrasi/{id}', 'TransaksiController@penilianteknis');
     Route::get('retribusi/{id}', 'TransaksiController@retribusi');
-    Route::get('biayadenda', 'TransaksiController@biayadenda');
+    Route::get('biayadenda/{id}', 'TransaksiController@biayadenda');
     Route::get('biayastatuskepemilikan', 'TransaksiController@biayastatuskepemilikan');
     Route::get('biayaperubahansifat', 'TransaksiController@biayaperubahansifat');
     Route::get('biayaemisi', 'TransaksiController@biayaemisi');

@@ -410,7 +410,7 @@ export default {
 
                 });
             axios({
-                    url: '/api/biayadenda/',
+                    url: '/api/biayadenda/'+this.$route.params.id,
                     method: "get"
                 })
                 .then((result) => {

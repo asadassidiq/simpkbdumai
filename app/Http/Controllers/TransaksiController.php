@@ -88,9 +88,15 @@ class TransaksiController extends Controller
         return response()->json(['masters'=> $masters]);
     }
 
-    public function biayadenda()
+    public function biayadenda($id)
     {
-        $denda = Biaya::select('biaya')->where('nama','denda')->first();
+        $kendaraans = Pendaftaran::select('jenis')->where('pendaftarans.id',$id)->leftJoin('identitaskendaraans','pendaftarans.identitaskendaraan_id','=','identitaskendaraans.id')->first();
+        $jeniskend = Jenis::where('jenis',$kendaraans->jenis)->first();
+        if ($jeniskend->klasifikasis_id == 2) {
+            $denda = array('biaya' => 650 );;
+        }else{
+            $denda = Biaya::select('biaya')->where('nama','denda')->first();
+        }
         return response()->json(['biayadenda'=>$denda]);
     }
 
