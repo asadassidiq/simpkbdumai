@@ -67,7 +67,7 @@
             <v-col cols="10">
                   <v-menu ref="menu6" v-model="menu6" :close-on-content-click="false" :return-value.sync="tgltriwulan1" offset-y max-width="290px" min-width="290px" >
                   <template v-slot:activator="{ on, attrs }">
-                    <v-text-field v-model="tgltriwulan1" label="Bulan" v-bind="attrs" outlined dense  v-on="on" ></v-text-field>
+                    <v-text-field v-model="tgltriwulan1" label="Bulan 1" v-bind="attrs" outlined dense  v-on="on" ></v-text-field>
                   </template>
                   <v-date-picker v-model="tgltriwulan1" type="month" no-title scrollable > <v-spacer></v-spacer>
                     <v-btn text color="primary" @click="menu6 = false" > Cancel </v-btn>
@@ -76,7 +76,7 @@
                 </v-menu>
                 <v-menu ref="menu7" v-model="menu7" :close-on-content-click="false" :return-value.sync="tgltriwulan2" offset-y max-width="290px" min-width="290px" >
                   <template v-slot:activator="{ on, attrs }">
-                    <v-text-field v-model="tgltriwulan2" label="Bulan 1" v-bind="attrs" outlined dense  v-on="on" ></v-text-field>
+                    <v-text-field v-model="tgltriwulan2" label="Bulan 2" v-bind="attrs" outlined dense  v-on="on" ></v-text-field>
                   </template>
                   <v-date-picker v-model="tgltriwulan2" type="month" no-title scrollable > <v-spacer></v-spacer>
                     <v-btn text color="primary" @click="menu7 = false" > Cancel </v-btn>

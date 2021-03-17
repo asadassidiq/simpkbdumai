@@ -103,7 +103,60 @@ class LaporanController extends Controller
         $hari1 = date_format($tglcetak,"d");
         $bulan1 = date_format($tglcetak,"m");
         $tahun1 = date_format($tglcetak,"Y");
- 
+        
+        switch($bulan){
+            case 1:
+                $bulan_ini1 = "Januari";
+            break;
+     
+            case 2:         
+                $bulan_ini1 = "Febuari";
+            break;
+     
+            case 3:
+                $bulan_ini1 = "Maret";
+            break;
+     
+            case 4:
+                $bulan_ini1 = "April";
+            break;
+     
+            case 5:
+                $bulan_ini1 = "Mei";
+            break;
+     
+            case 6:
+                $bulan_ini1 = "Juni";
+            break;
+     
+            case 7:
+                $bulan_ini1 = "Juli";
+            break;
+
+            case 8:
+                $bulan_ini1 = "Juli";
+            break;
+
+            case 9:
+                $bulan_ini1 = "Juli";
+            break;
+
+            case 10:
+                $bulan_ini = "Agustus";
+            break;
+
+            case 11:
+                $bulan_ini = "November";
+            break;
+
+            case 12:
+                $bulan_ini1 = "Desember";
+            break;
+            
+            default:
+                $bulan_ini1 = "Tidak di ketahui";     
+            break;
+        }
         switch($bulan1){
             case 1:
                 $bulan_ini = "Januari";
@@ -157,7 +210,7 @@ class LaporanController extends Controller
                 $bulan_ini = "Tidak di ketahui";     
             break;
         }
-        $tglprint = $bulan_ini;
+        $tglprint = $bulan_ini1;
         $tglcetak = $hari1.' '.$bulan_ini.' '.$tahun1;
 
         $jeniskendaraan = Jenis::leftJoin('klasifikasis','klasifikasis.id','=','jenis.klasifikasis_id')->get();

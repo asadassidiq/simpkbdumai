@@ -54,7 +54,7 @@
                         <span>print</span>
                     </v-tooltip>
                     <v-tooltip top>
-                        <template v-slot:activator="{on}" v-if="user_id == 14">
+                        <template v-slot:activator="{on}" v-if="user_id == 14 || user_id == 10">
                             <v-btn class="v-btn-simple" color="error" icon v-on="on" @click="deletependaftaran(item.id)">
                                 <v-icon>mdi-trash-can</v-icon>
                             </v-btn>

@@ -102,6 +102,8 @@ class PengujianController extends Controller
             $pengujian->save();
         }
 
+        // print_r($identitaskendaraan->kodepenerbitans_id);
+
         if ($identitaskendaraan->kodepenerbitans_id == '8') {
             $statuspenerbitan = '2';
         }elseif ($identitaskendaraan->kodepenerbitans_id == '7' || $identitaskendaraan->kodepenerbitans_id == '12') {
