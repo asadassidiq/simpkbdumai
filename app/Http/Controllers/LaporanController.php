@@ -744,7 +744,7 @@ class LaporanController extends Controller
             if ($list == 'UJI PERTAMA') {
                 $jenis = '1';
             }elseif($list == 'UJI ULANG'){
-                $jenis = '7';
+                $jenis = '2';
             }elseif($list == 'PEMERINTAH'){
                 $jenis = '12';
             }elseif($list == 'NUMPANG UJI MASUK'){
@@ -1119,7 +1119,7 @@ class LaporanController extends Controller
             if ($list == 'UJI PERTAMA') {
                 $jenis = '1';
             }elseif($list == 'UJI ULANG'){
-                $jenis = '7';
+                $jenis = '2';
             }elseif($list == 'PEMERINTAH'){
                 $jenis = '12';
             }elseif($list == 'NUMPANG UJI MASUK'){
