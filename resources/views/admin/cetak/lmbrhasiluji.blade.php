@@ -79,10 +79,12 @@
                     <div class="row">
                         <div class="col-4">
                             <p>Nama</p>
+                            <p>No HP</p>
                             <p>Alamat</p>
                         </div>
-                        <div class="col-4">
+                        <div class="col-8">
                             <p>: {{ $kendaraan->nama }}</p>
+                            <p>: {{ $kendaraan->nohp }}</p>
                             <p>: {{ $kendaraan->alamat }}</p>
                         </div>
                         <br><br><br><br><br><br>
@@ -331,13 +333,18 @@
                     <div class="row">
                         <div class="col-6">
                             <p>POS 1</p>
-                            <p>POS 2</p>
                         </div>
                         <div class="col-6">
-                            <p>: {{ $kendaraan->catatanpos1 }}</p>
-                            <p>: {{ $kendaraan->catatanpos2 }}</p>
+                            <p>POS 2</p>
                         </div>
-                        <br><br><br><br>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <p>{{ $kendaraan->catatanpos1 }}</p>
+                        </div>
+                        <div class="col-6">
+                            <p>{{ $kendaraan->catatanpos2 }}</p>
+                        </div>
                     </div>
                   </div>
                 </div>
