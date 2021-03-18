@@ -531,6 +531,12 @@ class PendaftaranController extends Controller
         return view('admin.cetak.lmbrsktl_print', compact('kendaraan'));
     }
 
+    public function printlembarhasiluji($id)
+    {
+        $kendaraan = Pendaftaran::leftJoin('identitaskendaraans','identitaskendaraans.id','=','pendaftarans.identitaskendaraan_id')->leftJoin('datakendaraans','datakendaraans.identitaskendaraan_id','=','identitaskendaraans.id')->leftJoin('pengujians','pengujians.pendaftaran_id','=','pendaftarans.id')->find($id);
+        return view('admin.cetak.lmbrhasiluji', compact('kendaraan'));
+    }
+
     public function printstiker($id)
     {
         $data = Pendaftaran::leftJoin('identitaskendaraans','identitaskendaraans.id','=','pendaftarans.identitaskendaraan_id')->leftJoin('datakendaraans','datakendaraans.identitaskendaraan_id','=','identitaskendaraans.id')->find($id);

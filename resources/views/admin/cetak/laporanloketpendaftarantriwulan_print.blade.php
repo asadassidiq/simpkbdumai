@@ -60,7 +60,7 @@
             <div class="col-1">
                 <p>DAFTAR</p>
                 <P>PADA</P>
-                <P>TAHUN</P>
+                <P>BULAN</P>
             </div>
             <div class="col-11">
                 <p class="text-left">: TAMAN KENDARAAN BERMOTOR</p>

@@ -54,16 +54,17 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-2">
-                <img class="img-fluid" src="{{url('/img/kota.jpg')}}" alt="Image"/>
+                <img height="75%" width="75%" class="img-fluid" src="{{url('/img/kota.jpg')}}" alt="Image"/>
             </div>
             <div class="col-8">
-            <div class="d-flex justify-content-center"><h3><b>PEMERINTAH KOTA BANJARMASIN</b></h3></div>  
+            <div class="d-flex justify-content-center"><h3><b>PEMERINTAH KOTA DUMAI</b></h3></div>  
             <div class="d-flex justify-content-center"><h2><b>DINAS PERHUBUNGAN</b></p></h2></div>
-            <div class="d-flex justify-content-center"><h3><b>UPU Berkala PENGUJIAN KENDARAAN BERMOTOR</b></p></h3></div>
-            <div class="d-flex justify-content-center"><h5><b>JL. SOEKARNO HATTA TELP. 907650 7007772 BANJARMASIN</b></h5></div>
+            <div class="d-flex justify-content-center"><h3><b>UPT PENGUJIAN KENDARAAN BERMOTOR</b></p></h3></div>
+            <div class="d-flex justify-content-center"><h5><b>UPUBKBkotadumai@gmail.com</b></h5></div>
+            <div class="d-flex justify-content-center"><h5><b>JL. SOEKARNO HATTA TELP. (0765) 7007772 DUMAI</b></h5></div>
             </div>          
             <div class="col-2">
-                <img class="img-fluid" src="{{url('/img/dishub.jpg')}}" alt="Image"/>
+                <img height="75%" width="75%" class="img-fluid" src="{{url('/img/dishub.png')}}" alt="Image"/>
             </div>
         </div>
         <hr style="border: 1px double black;">
@@ -128,11 +129,14 @@
             <div class="col-8"></div>
             <div class="col-4 text-center">
                 <b>
-                    <P>An. KEPALA DINAS PERHUBUNGAN</P>
-                    <P>KOTA BANJARMASIN</P>
+                    <p>An. Kepala Dinas Perhubungan Dumai</p>
+                    <p>Kepala UPU Berkala</p>
+                    <P>Pengujian Kendaraan Bermotor</P>
+                    <p>Kota Dumai</p>
                     <br><br>
                     <br><br>
-                    <p>Kepala UPU Berkala / Pengujian Kendaraan Bermotor Banjarmasin</p>
+                    <p><u>EFFENDI, Ama.PKB</u></p>
+                    <p>NIP. 19760606 200212 1 011</p>
                 </b>
             </div>
         </div>

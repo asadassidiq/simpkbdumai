@@ -29,33 +29,8 @@
           <v-data-table :headers="headers1" :items="pendaftarans" :search="search" class="elevation-1 yellow lighten-3" >
             <template v-slot:item.actions="{ item }">
                 <div class="text-center d-flex align-center">
-                    <v-tooltip top v-if="item.pos1 === 1 && item.pos2 === 1 && item.verif === 'y'">
-                        <template v-slot:activator="{on}">
-                            <v-btn depressed color="blue lighten-1" x-small @click="print1(item.id)"> hal 1 </v-btn>
-                        </template>
-                    </v-tooltip>
-                    <v-tooltip top v-if="item.pos1 === 1 && item.pos2 === 1 && item.verif === 'y'">
-                        <template v-slot:activator="{on}">
-                            <v-btn depressed color="blue lighten-2" x-small @click="print23(item.id)"> hal 23 </v-btn>
-                        </template>
-                    </v-tooltip>
-                    <v-tooltip top v-if="item.pos1 === 1 && item.pos2 === 1 && item.verif === 'y'">
-                        <template v-slot:activator="{on}">
-                            <v-btn depressed color="blue lighten-3" x-small @click="print45(item.id)"> hal 45 </v-btn>
-                        </template>
-                    </v-tooltip>
-                    <v-tooltip top v-if="item.pos1 === 1 && item.pos2 === 1 && item.verif === 'y'">
-                        <template v-slot:activator="{on}">
-                            <v-btn depressed color="blue lighten-4" x-small @click="print6(item.id)"> hal 6 </v-btn>
-                        </template>
-                    </v-tooltip>
-                    <v-tooltip top v-if="item.pos1 === 1 && item.pos2 === 1 && item.verif === 'y'">
-                        <template v-slot:activator="{on}">
-                            <v-btn depressed color="blue lighten-5" x-small @click="print7(item.id)"> hal 7 </v-btn>
-                        </template>
-                    </v-tooltip>
 					<v-tooltip top>
-                        <template v-slot:activator="{on}" v-if="item.pos1 === 2 && item.pos2 === 2 && item.verif === 'y'">
+                        <template v-slot:activator="{on}" v-if="item.pos1 === 2 || item.pos2 === 2 && item.verif === 'y'">
                             <v-btn  class="v-btn-simple" color="error" icon v-on="on" @click="printsktl(item.id)">
                                 <v-icon>mdi-printer</v-icon>
                             </v-btn>
@@ -68,7 +43,7 @@
                                 <v-icon>mdi-printer</v-icon>
                             </v-btn>
                         </template>
-                        <span>Stiker</span>
+                        <span>Hasil Pengujian</span>
                     </v-tooltip>
                 </div>
             </template>
@@ -93,26 +68,11 @@ export default {
         }
     },
     methods: {
-        print1(id){
-            window.open('/cetak/'+id+'/printbukuujihal1', "_blank");
-        },
-		print2(id){
-            window.open('/cetak/'+id+'/printstiker', "_blank");
-        },
-        print23(id){
-            window.open('/cetak/'+id+'/printbukuujihal23', "_blank");
-        },
-        print45(id){
-            window.open('/cetak/'+id+'/printbukuujihal45', "_blank");
-        },
-        print6(id){
-            window.open('/cetak/'+id+'/printbukuujihal6', "_blank");
-        },
-        print7(id){
-            window.open('/cetak/'+id+'/printbukuujihal7', "_blank");
-        },
         printsktl(id){
             window.open('/cetak/'+id+'/printlembarsktl', "_blank");
+        },
+        printhasiluji(id){
+            window.open('/cetak/'+id+'/printlembarhasiluji', "_blank");
         },
         refreshPostpend() {
             this.$store.dispatch('getPendaftarans');

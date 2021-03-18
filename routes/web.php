@@ -44,6 +44,7 @@ Route::group(['prefix' => 'cetak'], function() {
     Route::get('/{id}/printlmbrpermohonan', 'PendaftaranController@printlembarpermohonan')->name('lmbrpermohonan.print');
     Route::get('/{id}/printlmbrpemeriksaan', 'PendaftaranController@printlembarpemeriksaan')->name('lmbrpemeriksaan.print');
     Route::get('/{id}/printlembarsktl', 'PendaftaranController@printlembarsktl')->name('printlembarsktl.print');
+    Route::get('/{id}/printlembarhasiluji', 'PendaftaranController@printlembarhasiluji')->name('printlembarhasiluji.print');
     Route::get('/{id}/printkwitansi', 'TransaksiController@printkwitansi')->name('kwitansi.print');
     Route::get('/{id}/laporanloketpendaftaran', 'LaporanController@printlaporanloketpendaftaran')->name('laporanloketpendaftaran.print');
     Route::get('/{id}/laporanloketpendaftaranbulanan', 'LaporanController@printlaporanloketpendaftaranbulanan')->name('laporanloketpendaftaranbulanan.print');

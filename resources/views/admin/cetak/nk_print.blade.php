@@ -57,13 +57,13 @@
                 <img height="75%" width="75%" class="img-fluid" src="{{url('/img/kota.jpg')}}" alt="Image"/>
             </div>
             <div class="col-8 align-self-center">
-                    <h3><p class="text-center"><b>PEMERINTAH KOTA BANJARMASIN</b></p></h3>                   
+                    <h3><p class="text-center"><b>PEMERINTAH KOTA Dumai</b></p></h3>                   
                     <h2><p class="text-center"><b>DINAS PERHUBUNGAN</b></p></h2>    
                     <h3><p class="text-center"><b>UPU Berkala PENGUJIAN KENDARAAN BERMOTOR</b></p></h3> 
-                    <h4><p class="text-center"><b>Jl. Gubernur Soebarjo / Lingkar Selatan Km. 11 Banjarmasin</b></p></h4>  
+                    <h4><p class="text-center"><b>Jl. Gubernur Soebarjo / Lingkar Selatan Km. 11 Dumai</b></p></h4>  
             </div>          
             <div class="col-2">
-                <img class="img-fluid" src="{{url('/img/dishub.jpg')}}" alt="Image"/>
+                <img class="img-fluid" src="{{url('/img/dishub.png')}}" alt="Image"/>
             </div>
         </div>
         <hr style="border: 1px double black;">
@@ -83,7 +83,7 @@
                 </div>
 			 </div>
              <div class="col-6">
-                <p>Banjarmasin, <span id="date"><?php echo date("d F Y") ?></span></p>
+                <p>Dumai, <span id="date"><?php echo date("d F Y") ?></span></p>
 				<br>
 				<p><b>Kepada ,</b></p>
                 <p>Yth. <b>Kepala Dinas Perhubungan</b> </p>
@@ -128,7 +128,7 @@
             <br><br>    
             <div class="row">
                 <div class="col-12">
-                    <p>Sesuai dengan permohonan pemilik, kendaraan tersebut numpang uji ke <span><b> {{ $wilayah->namawilayah }} </b></span> satu kali uji dan hasil pengujiannya segera dikirimkan ke Kota Banjarmasin.</p>
+                    <p>Sesuai dengan permohonan pemilik, kendaraan tersebut numpang uji ke <span><b> {{ $wilayah->namawilayah }} </b></span> satu kali uji dan hasil pengujiannya segera dikirimkan ke Kota Dumai.</p>
                 <br>
                 <p>Demiikian disampaikan, untuk mendapatkan penyelesaian sebagaimana mestinya.</p>
                 </div>
@@ -139,10 +139,10 @@
             <div class="col-7"></div>
             <div class="col-5 text-center">
                 <b>
-                    <p>An. Kepala Dinas Perhubungan Banjarmasin</p>
+                    <p>An. Kepala Dinas Perhubungan Dumai</p>
 					<p>Kepala UPU Berkala</p>
                     <P>Pengujian Kendaraan Bermotor</P>
-					<p>Kota Banjarmasin</p>
+					<p>Kota Dumai</p>
                     <br><br>
                     <br><br>
                     <p><u>EFFENDI, Ama.PKB</u></p>
