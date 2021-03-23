@@ -652,28 +652,53 @@
 	</v-card>
 	</v-col>
 
+	 <v-col cols="12" v-if="activeBtn === itemuji[13]">
+          <v-card class="mx-auto yellow lighten-3">
+          <v-card-title>Jarak Sumbu</v-card-title>
+          <v-card-subtitle>
+          <v-row>
+              <v-col cols="12" sm="6" md="3">
+                <v-text-field label="I-II (mm)" name="jaraksumbu1_2" v-model="form.jaraksumbu1_2" type="number"  outlined dense required @change="getpanjangkendaraan()"></v-text-field>
+              </v-col>
+              <v-col cols="12" sm="6" md="3">
+                <v-text-field label="II-III (mm)" name="jaraksumbu2_3" v-model="form.jaraksumbu2_3" type="number"  outlined dense required @change="getpanjangkendaraan()"></v-text-field>
+              </v-col>
+              <v-col cols="12" sm="6" md="3">
+                <v-text-field label="III-IV (mm)" name="jaraksumbu3_4" v-model="form.jaraksumbu3_4" type="number"  outlined dense required @change="getpanjangkendaraan()"></v-text-field>
+              </v-col>
+              <v-col cols="12" sm="6" md="3">
+                <v-text-field label="Q  (mm)" type="number" name="q" v-model="form.q"  outlined dense required @change="getpanjangkendaraan()"></v-text-field>
+              </v-col>
+              <v-col cols="12" sm="6" md="3">
+                <v-text-field label="P (mm)" name="p" v-model="form.p" type="number"  outlined dense required @change="getpanjangkendaraan()"></v-text-field>
+              </v-col>
+               	<v-col cols="12" sm="6" md="3">
+		    		<v-text-field label="Rear Over Hang (mm)" name="julurbelakang" v-model="form.julurbelakang" type="number"  outlined dense required :rules="rules.rohkendaraan" @change="getpanjangkendaraan()"></v-text-field>
+		    	</v-col>
+		    	<v-col cols="12" sm="6" md="3">
+		    		<v-text-field label="Front Over Hang (mm)" name="julurdepan" v-model="form.julurdepan" type="number"  outlined dense required :rules="rules.fohkendaraan" @change="getpanjangkendaraan()"></v-text-field>
+		    	</v-col>
+		    	<v-col cols="12" sm="6" md="3">
+		    		<v-text-field label="Ground Clearance (mm)" name="groundclearance" v-model="form.groundclearance" type="number"  outlined dense required ></v-text-field>
+		    	</v-col>
+          </v-row>
+          </v-card-subtitle>
+          </v-card>
+    </v-col>
+
 	<v-col cols="12" v-if="activeBtn === itemuji[11]">
 	<v-card class="mx-auto yellow lighten-3">
 	<v-card-title>Dimensi Kendaraan</v-card-title>
 	<v-card-subtitle>
 	<v-row>
     	<v-col cols="12" sm="6" md="3">
-    		<v-text-field label="Panjang Kendaraan" name="panjangkendaraan" v-model="form.panjangkendaraan" type="number"  outlined dense required></v-text-field>
+    		<v-text-field label="Panjang Kendaraan" name="panjangkendaraan" v-model="form.panjangkendaraan" type="number"  outlined dense required :rules="rules.panjangkendaraan"></v-text-field>
     	</v-col>
     	<v-col cols="12" sm="6" md="3">
-    		<v-text-field label="Lebar Kendaraan" name="lebarkendaraan" v-model="form.lebarkendaraan" type="number"  outlined dense required></v-text-field>
+    		<v-text-field label="Lebar Kendaraan" name="lebarkendaraan" v-model="form.lebarkendaraan" type="number"  outlined dense required :rules="rules.lebarkendaraan"></v-text-field>
     	</v-col>
     	<v-col cols="12" sm="6" md="3">
-    		<v-text-field label="Tinggi Kendaraan (mm)" name="tinggikendaraan" v-model="form.tinggikendaraan" type="number"  outlined dense required></v-text-field>
-    	</v-col>
-    	<v-col cols="12" sm="6" md="3">
-    		<v-text-field label="Rear Over Hang (mm)" name="julurbelakang" v-model="form.julurbelakang" type="number"  outlined dense required></v-text-field>
-    	</v-col>
-    	<v-col cols="12" sm="6" md="3">
-    		<v-text-field label="Front Over Hang (mm)" name="julurdepan" v-model="form.julurdepan" type="number"  outlined dense required></v-text-field>
-    	</v-col>
-    	<v-col cols="12" sm="6" md="3">
-    		<v-text-field label="Ground Clearance (mm)" name="groundclearance" v-model="form.groundclearance" type="number"  outlined dense required></v-text-field>
+    		<v-text-field label="Tinggi Kendaraan (mm)" name="tinggikendaraan" v-model="form.tinggikendaraan" type="number"  outlined dense required :rules="rules.tinggikendaraan"></v-text-field>
     	</v-col>
 	</v-row>
 	</v-card-subtitle>
@@ -698,31 +723,6 @@
     </v-card-subtitle>
     </v-card>
     </v-col>
-
-    <v-col cols="12" v-if="activeBtn === itemuji[13]">
-          <v-card class="mx-auto yellow lighten-3">
-          <v-card-title>Jarak Sumbu</v-card-title>
-          <v-card-subtitle>
-          <v-row>
-              <v-col cols="12" sm="6" md="3">
-                <v-text-field label="I-II (mm)" name="jaraksumbu1_2" v-model="form.jaraksumbu1_2" type="number"  outlined dense required></v-text-field>
-              </v-col>
-              <v-col cols="12" sm="6" md="3">
-                <v-text-field label="II-III (mm)" name="jaraksumbu2_3" v-model="form.jaraksumbu2_3" type="number"  outlined dense required></v-text-field>
-              </v-col>
-              <v-col cols="12" sm="6" md="3">
-                <v-text-field label="III-IV (mm)" name="jaraksumbu3_4" v-model="form.jaraksumbu3_4" type="number"  outlined dense required></v-text-field>
-              </v-col>
-              <v-col cols="12" sm="6" md="3">
-                <v-text-field label="Q  (mm)" type="number" name="q" v-model="form.q"  outlined dense required></v-text-field>
-              </v-col>
-              <v-col cols="12" sm="6" md="3">
-                <v-text-field label="P (mm)" name="p" v-model="form.p" type="number"  outlined dense required></v-text-field>
-              </v-col>
-          </v-row>
-          </v-card-subtitle>
-          </v-card>
-          </v-col>
 
 	<v-col cols="12" v-if="activeBtn === itemuji[2]">
 	<v-card class="mx-auto yellow lighten-3 black--text">
@@ -762,16 +762,16 @@
 	<v-card-subtitle>
 		<v-row no-gutters >
 			<v-col cols="12" sm="6" md="3">
-				<v-text-field type="number" v-model="form.bsumbu1" outlined label="S1" suffix="Kg"></v-text-field>
+				<v-text-field type="number" v-model="form.bsumbu1" outlined label="S1" suffix="Kg" @change="getbk()"></v-text-field>
 			</v-col>
 			<v-col cols="12" sm="6" md="3">
-				<v-text-field type="number" v-model="form.bsumbu2" outlined label="S2" suffix="Kg"></v-text-field>
+				<v-text-field type="number" v-model="form.bsumbu2" outlined label="S2" suffix="Kg" @change="getbk()"></v-text-field>
 			</v-col>
 			<v-col cols="12" sm="6" md="3">
-				<v-text-field type="number" v-model="form.bsumbu3" outlined label="S3" suffix="Kg"></v-text-field>
+				<v-text-field type="number" v-model="form.bsumbu3" outlined label="S3" suffix="Kg" @change="getbk()"></v-text-field>
 			</v-col>
 			<v-col cols="12" sm="6" md="3">
-				<v-text-field type="number" v-model="form.bsumbu4" outlined label="S4" suffix="Kg"></v-text-field>
+				<v-text-field type="number" v-model="form.bsumbu4" outlined label="S4" suffix="Kg" @change="getbk()"></v-text-field>
 			</v-col>
 			<v-col cols="12" sm="6" md="3">
             
@@ -794,20 +794,24 @@
 	<v-card-title>Daya Angkut, Jumlah Berat</v-card-title>
 	<v-card-subtitle>
 	<v-row>
-		<v-col cols="12" sm="6" md="3">
+        <v-col cols="12" sm="6" md="3">
+            <v-text-field label="Daya Angkut Orang (orang)" name="dayaangkutorang" v-model="form.dayaangkutorang" type="number" outlined dense required :rules="rules.dayaangkutorang"  @change="getjbi()"></v-text-field>
+        </v-col>
+    	<v-col cols="12" sm="6" md="3">
+    		<v-text-field label="Daya Angkut Barang (Kg)" name="dayaangkutbarang" v-model="form.dayaangkutbarang" type="number"  outlined dense required :rules="rules.dayaangkutbarang" @change="getjbi()"></v-text-field>
+    	</v-col>
+        <v-col cols="12" sm="6" md="3">
+            <v-text-field label="MST (Kg)" name="mst" v-model="form.mst" type="number"  outlined dense required :rules="rules.mst"></v-text-field>
+        </v-col>
+
+        <v-col cols="12" sm="6" md="3">
+            <v-text-field label="JBB (Kg)" name="jbb" v-model="form.jbb" type="number"  outlined dense required :rules="rules.mst"></v-text-field>
+        </v-col>
+        <v-col cols="12" sm="6" md="3">
           <v-text-field label="JBI (Kg)" name="jbi" v-model="form.jbi" type="number"  outlined dense required :rules="rules.jbi"></v-text-field>
         </v-col>
         <v-col cols="12" sm="6" md="3">
           <v-text-field label="JBKI (Kg)" name="jbki" v-model="form.jbki" type="number"  outlined dense required :rules="rules.jbki"></v-text-field>
-        </v-col>
-        <v-col cols="12" sm="6" md="3">
-            <v-text-field label="Daya Angkut Orang (orang)" name="dayaangkutorang" v-model="form.dayaangkutorang" type="number" outlined dense required :rules="rules.dayaangkutorang"></v-text-field>
-        </v-col>
-    	<v-col cols="12" sm="6" md="3">
-    		<v-text-field label="Daya Angkut Barang (Kg)" name="dayaangkutbarang" v-model="form.dayaangkutbarang" type="number"  outlined dense required :rules="rules.dayaangkutbarang"></v-text-field>
-    	</v-col>
-        <v-col cols="12" sm="6" md="3">
-            <v-text-field label="MST (Kg)" name="mst" v-model="form.mst" type="number"  outlined dense required :rules="rules.mst"></v-text-field>
         </v-col>
 
 	</v-row>
@@ -819,34 +823,35 @@
 	<v-card class="mx-auto yellow lighten-3 black--text">
 	<v-card-title>KEMAMPUAN REM UTAMA</v-card-title>
 	<v-card-subtitle>
-		Gaya Rem Kanan
+		Gaya Rem
 		<v-row no-gutters >
 			<v-col cols="12" sm="6" md="3">
-				<v-text-field type="number" v-model="form.gayaremkanans1" outlined label="S1" ></v-text-field>
+				<v-text-field type="number" v-model="form.gayaremkanans1" outlined label="S1 Kanan" ></v-text-field>
 			</v-col>
 			<v-col cols="12" sm="6" md="3">
-				<v-text-field type="numbe2" v-model="form.gayaremkanans2" outlined label="S2" ></v-text-field>
+				<v-text-field type="number" v-model="form.gayaremkiris1" outlined label="S1 Kiri" ></v-text-field>
 			</v-col>
 			<v-col cols="12" sm="6" md="3">
-				<v-text-field type="number" v-model="form.gayaremkanans3" outlined label="S3" ></v-text-field>
+				<v-text-field type="number" v-model="form.gayaremkanans3" outlined label="S3 Kanan" ></v-text-field>
 			</v-col>
 			<v-col cols="12" sm="6" md="3">
-				<v-text-field type="number" v-model="form.gayaremkanans4" outlined label="S4" ></v-text-field>
+				<v-text-field type="number" v-model="form.gayaremkiris3" outlined label="S3 Kiri" ></v-text-field>
 			</v-col>
+			
 		</v-row>
-		Gaya Rem Kiri
+		Gaya Rem
 		<v-row no-gutters >
 			<v-col cols="12" sm="6" md="3">
-				<v-text-field type="number" v-model="form.gayaremkiris1" outlined label="S1" ></v-text-field>
+				<v-text-field type="numbe2" v-model="form.gayaremkanans2" outlined label="S2 Kanan" ></v-text-field>
 			</v-col>
 			<v-col cols="12" sm="6" md="3">
-				<v-text-field type="number" v-model="form.gayaremkiris2" outlined label="S2" ></v-text-field>
+				<v-text-field type="number" v-model="form.gayaremkiris2" outlined label="S2 Kiri" ></v-text-field>
 			</v-col>
 			<v-col cols="12" sm="6" md="3">
-				<v-text-field type="number" v-model="form.gayaremkiris3" outlined label="S3" ></v-text-field>
+				<v-text-field type="number" v-model="form.gayaremkanans4" outlined label="S4 Kanan" ></v-text-field>
 			</v-col>
 			<v-col cols="12" sm="6" md="3">
-				<v-text-field type="number" v-model="form.gayaremkiris4" outlined label="S4" ></v-text-field>
+				<v-text-field type="number" v-model="form.gayaremkiris4" outlined label="S4 Kiri" ></v-text-field>
 			</v-col>
 		</v-row>
 		<v-row no-gutters >
@@ -1068,7 +1073,7 @@
           	val => val <= 12,
           ],
           kincuproda: [
-          	val => val <= 5,
+          	val => val <= 5 && val >= -5,
           ],
           speed: [
           	val => val  >=36 && val  <=46 
@@ -1086,19 +1091,34 @@
             val => val <= 1.09 ,
           ],
           jbi : [
-          	val => (val || '').length > 0|| 'This field is required',
+          	val => (val || '').length > 0 || 'This field is required' && val <= this.form.jbb || 'jbi lebih besar jbb',
           ],
           jbki : [
           	val => (val || '').length > 0 || 'This field is required',
           ],
           dayaangkutorang  : [
-          	val => (val || '').length > 0 || 'This field is required',
+          	val => (val || '').length > 0 || val > 0,
           ],
           dayaangkutbarang : [
-          	val => (val || '').length > 0 || 'This field is required',
+          	val => (val || '').length > 0  || val > 0,
           ],
           mst : [
-          	val => (val || '').length > 0 || 'This field is required',
+          	val => (val || '').length > 0  || val > 0,
+          ],
+          panjangkendaraan :[
+          	val => ((val || '').length > 0 || 'This field is required') && val <=12000 ,
+          ],
+          lebarkendaraan :[
+          	val => ((val || '').length > 0 || 'This field is required') && val <=2500 ,
+          ],
+          tinggikendaraan :[
+          	val => ((val || '').length > 0 || 'This field is required') && val <=12000 ,
+          ],
+          rohkendaraan : [
+          	val => ((val || '').length > 0 || 'This field is required') && val <= this.roh ,
+          ],
+          fohkendaraan : [
+          	val => ((val || '').length > 0 || 'This field is required') && val <= this.foh ,
           ],
         },
 		activeBtn: '',
@@ -1108,9 +1128,11 @@
         itemuji: [],
         kondisi:false,
         hasilpos2:'',
-        text: {
-        		alatuji_lampuutamapenyimpanganlampukanan:false,
-            },
+       	text: {
+    		alatuji_lampuutamapenyimpanganlampukanan:false,
+        },
+        foh :10000,
+        roh :10000,
         form: new Form({
                 huv_nomordankondisirangka: '1',
                 huv_nomordantipemotorpenggerak: '1',
@@ -1147,16 +1169,16 @@
                 alatuji_remutamaselisihgayapengeremanrodakirikanan2:'0',
                 alatuji_remutamaselisihgayapengeremanrodakirikanan3:'0',
                 alatuji_remutamaselisihgayapengeremanrodakirikanan4:'0',
-                alatuji_remparkirtangan:'0',
-                alatuji_remparkirkaki:'0',
-                alatuji_kincuprodadepan:'0',
-                alatuji_tingkatkebisingan:'0',
+                alatuji_remparkirtangan:'16',
+                alatuji_remparkirkaki:'16',
+                alatuji_kincuprodadepan:'5',
+                alatuji_tingkatkebisingan:'83',
                 alatuji_lampuutamakekuatanpancarlampukanan:'0',
                 alatuji_lampuutamakekuatanpancarlampukiri:'0',
                 alatuji_lampuutamapenyimpanganlampukanan:'0',
                 alatuji_lampuutamapenyimpanganlampukiri:'0',
-                alatuji_penunjukkecepatan:'0',
-                alatuji_kedalamanalurban:'0',
+                alatuji_penunjukkecepatan:'40',
+                alatuji_kedalamanalurban:'1',
                 mst: '0',
                 jbi: '0',
                 jbki: '0',
@@ -1209,17 +1231,26 @@
         },
         savePost() {
         },
+        getpanjangkendaraan(){
+        	this.form.panjangkendaraan = parseInt(this.form.julurdepan) + parseInt(this.form.jaraksumbu1_2) + parseInt(this.form.jaraksumbu2_3) + parseInt(this.form.julurbelakang);
+        	var wb = parseInt(this.form.jaraksumbu1_2)+(parseInt(this.form.jaraksumbu2_3)*0.5);
+        	this.foh = 0.625*wb;
+        	this.roh = 0.475*wb;
+        },
+        getjbi(){
+        	this.form.jbi = parseInt(this.form.bsumbu1)+parseInt(this.form.bsumbu2)+parseInt(this.form.bsumbu3)+parseInt(this.form.bsumbu4)+(parseInt(this.form.dayaangkutorang)*60)+parseInt(this.form.dayaangkutbarang);
+        },
         getbk(){
             if(this.form.beratsumbu4 > 0){
             this.form.beratkosong = parseInt(this.form.bsumbu1)+parseInt(this.form.bsumbu2)+parseInt(this.form.bsumbu3)+parseInt(this.form.bsumbu4)
-            }else if(this.form.bsumbu13 > 0){
+            }else if(this.form.bsumbu3 > 0){
                 this.form.beratkosong = parseInt(this.form.bsumbu1)+parseInt(this.form.bsumbu2)+parseInt(this.form.bsumbu3)
             }else if(this.form.bsumbu2 > 0){
                 this.form.beratkosong = parseInt(this.form.bsumbu1)+parseInt(this.form.bsumbu2)
             }else if(this.form.bsumbu1 > 0){
                 this.form.beratkosong = parseInt(this.form.beratsumbu1)
             }
-            
+            this.getjbi();
         },
         posisipos(posisi){
         	this.form.posisipos = posisi; 
@@ -1295,6 +1326,7 @@
                     this.form.dayaangkutbarang = result.data.kendaraan.dayaangkutbarang
                     this.form.dayaangkutorang = result.data.kendaraan.dayaangkutorang
                     this.form.mst = result.data.kendaraan.mst
+                    this.form.jbb = result.data.kendaraan.jbb
                     this.form.jbi = result.data.kendaraan.jbi
                     this.form.jbki = result.data.kendaraan.jbki
                     this.form.panjangkendaraan = result.data.kendaraan.panjangkendaraan
@@ -1457,9 +1489,3 @@
 
   }
 </script>
-		
-<style>
-	.text-red input{
-			 color: red !important;
-		}
-</style>

@@ -135,7 +135,7 @@
             <div class="col-1">
                 <p>DAFTAR</p>
                 <P>PADA</P>
-                <P>TAHUN</P>
+                <P>BULAN</P>
             </div>
             <div class="col-11">
                 <p class="text-left">: TAMAN KENDARAAN WAJIB UJI BERDASARKAN JENIS DAN SIFAT</p>
@@ -151,7 +151,7 @@
                     <tr>
                         <th scope="col" rowspan="2" class="text-center">JENIS KENDARAAN</th>                    
                         <th scope="col" rowspan="2" class="text-center">SIFAT</th>                    
-                        <th scope="col" rowspan="2" class="text-center">TAHUN LALU</th>
+                        <th scope="col" rowspan="2" class="text-center">BULAN LALU</th>
                         <th scope="col" colspan="4" class="text-center">MASUK</th>
                         <th scope="col" colspan="5" class="text-center">KELUAR</th>
                         <th scope="col" rowspan="2" class="text-center">JUMLAH AKHIR</th>
@@ -257,7 +257,7 @@
             <div class="col-1">
                 <p>DAFTAR</p>
                 <P>PADA</P>
-                <P>TAHUN</P>
+                <P>BULAN</P>
             </div>
             <div class="col-11">
                 <p class="text-left">: JUMLAH PENERIMAAN UANG UJI</p>
@@ -346,7 +346,7 @@
             <div class="col-1">
                 <p>DAFTAR</p>
                 <P>PADA</P>
-                <P>TAHUN</P>
+                <P>BULAN</P>
             </div>
             <div class="col-11">
                 <p class="text-left">: DAYA ANGKUT DAN UMUR KENDARAAN PENUMPANG WAJIB UJI</p>
@@ -439,7 +439,7 @@
             <div class="col-1">
                 <p>DAFTAR</p>
                 <P>PADA</P>
-                <P>TAHUN</P>
+                <P>BULAN</P>
             </div>
             <div class="col-11">
                 <p class="text-left">: JUMLAH KENDARAAN WAJIB UJI BERDASARKAN MERK DAN JENIS KENDARAAN</p>
@@ -521,7 +521,7 @@
             <div class="col-1">
                 <p>DAFTAR</p>
                 <P>PADA</P>
-                <P>TAHUN</P>
+                <P>BULAN</P>
             </div>
             <div class="col-11">
                 <p class="text-left">: JUMLAH KENDARAAN WAJIB UJI BERDASARKAN GVW / JBB DAN DAYA ANGKUT</p>
@@ -602,7 +602,7 @@
             <div class="col-1">
                 <p>DAFTAR</p>
                 <P>PADA</P>
-                <P>TAHUN</P>
+                <P>BULAN</P>
             </div>
             <div class="col-11">
                 <p class="text-left">: JUMLAH KENDARAAN NUMPANG UJI MASUK DALAM KOTA - KABUPATEN PROVINSI RIAU</p>
@@ -705,7 +705,7 @@
             <div class="col-1">
                 <p>DAFTAR</p>
                 <P>PADA</P>
-                <P>TAHUN</P>
+                <P>BULAN</P>
             </div>
             <div class="col-11">
                 <p class="text-left">: JUMLAH KENDARAAN NUMPANG UJI MASUK DALAM KOTA - KABUPATEN INDONESIA</p>
@@ -810,7 +810,7 @@
             <div class="col-1">
                 <p>DAFTAR</p>
                 <P>PADA</P>
-                <P>TAHUN</P>
+                <P>BULAN</P>
             </div>
             <div class="col-11">
                 <p class="text-left">: JUMLAH KENDARAAN MUTASI MASUK DALAM KOTA - KABUPATEN PROVINSI RIAU</p>
@@ -913,7 +913,7 @@
             <div class="col-1">
                 <p>DAFTAR</p>
                 <P>PADA</P>
-                <P>TAHUN</P>
+                <P>BULAN</P>
             </div>
             <div class="col-11">
                 <p class="text-left">: JUMLAH KENDARAAN MUTASI MASUK DALAM KOTA - KABUPATEN INDONESIA</p>
