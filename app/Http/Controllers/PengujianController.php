@@ -108,7 +108,11 @@ class PengujianController extends Controller
             $statuspenerbitan = '2';
         }elseif ($identitaskendaraan->kodepenerbitans_id == '7' || $identitaskendaraan->kodepenerbitans_id == '12') {
             $kode = Pendaftaran::where('pendaftarans.identitaskendaraan_id',$identitaskendaraan->identitaskendaraan_id)->where('kodepenerbitans_id','!=','7')->where('kodepenerbitans_id','!=','12')->orderBy('pendaftarans.id','desc')->first();
-            $statuspenerbitan = $kode->kodepenerbitans_id;
+            if (empty($kode)) {
+                 $statuspenerbitan = '2';
+            }else{
+                 $statuspenerbitan = $kode->kodepenerbitans_id;
+            }
         }else{
             $statuspenerbitan = $identitaskendaraan->kodepenerbitans_id;
         }
