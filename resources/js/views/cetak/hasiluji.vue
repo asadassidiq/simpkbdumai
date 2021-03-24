@@ -39,7 +39,7 @@
                     </v-tooltip>
                     <v-tooltip top v-if="item.pos1 === 1 && item.pos2 === 1 && item.verif === 'y'">
                         <template v-slot:activator="{on}">
-                            <v-btn  class="v-btn-simple" color="success" icon v-on="on" @click="print2(item.id)">
+                            <v-btn  class="v-btn-simple" color="success" icon v-on="on" @click="printhasiluji(item.id)">
                                 <v-icon>mdi-printer</v-icon>
                             </v-btn>
                         </template>
