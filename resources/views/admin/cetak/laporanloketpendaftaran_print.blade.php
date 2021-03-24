@@ -233,6 +233,22 @@
             </table>
             </div>
         </div>
+        
+        <br>
+        <div class="row" style="font-size:14px">
+            <div class="col-8"></div>
+            <div class="col-4 text-center">
+                <b>
+                    <p>Mengetahui,</p>
+                    <P>Kepala UPU Berkala</P>
+                    <P>Pengujian Kendaraan Bermotor</P>
+                    <br><br>
+                    <br>
+                    <p>EFFENDI, Ama.PKB</p>
+                    <p>NIP. 19760606 200212 1 011</p>
+                </b>
+            </div>
+        </div>
     </div>
 
     <div class="container-fluid kertasbaru">
