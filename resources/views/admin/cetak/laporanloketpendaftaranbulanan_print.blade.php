@@ -650,20 +650,20 @@
                         <td>{{ $i }}</td>
                         <td>{{ $data['wilayah'] }}</td>
                         <td class="text-center">{{ $data['mobilpenumpangumum'] }}</td>
-                        <td class="text-center">{{ $data['mobilbisumum'] }}</td>
-                        <td class="text-center">{{ $data['mobilbarangumum'] }}</td>
-                        <td class="text-center">{{ $data['keretatempelanumum'] }}</td>
-                        <td class="text-center">{{ $data['keretagandengumum'] }}</td>
-                        <td class="text-center">{{ $data['kendaraankhususumum'] }}</td>
                         <td class="text-center">{{ $data['mobilpenumpangtidakumum'] }}</td>
+                        <td class="text-center">{{ $data['mobilbisumum'] }}</td>
                         <td class="text-center">{{ $data['mobilbistidakumum'] }}</td>
+                        <td class="text-center">{{ $data['mobilbarangumum'] }}</td>
                         <td class="text-center">{{ $data['mobilbarangtidakumum'] }}</td>
+                        <td class="text-center">{{ $data['keretatempelanumum'] }}</td>
                         <td class="text-center">{{ $data['keretatempelantidakumum'] }}</td>
+                        <td class="text-center">{{ $data['keretagandengumum'] }}</td>
                         <td class="text-center">{{ $data['keretagandengtidakumum'] }}</td>
+                        <td class="text-center">{{ $data['kendaraankhususumum'] }}</td>
                         <td class="text-center">{{ $data['kendaraankhusustidakumum'] }}</td>
                         <td class="text-center">{{ $data['mobilpenumpangumum']+$data['mobilbisumum']+$data['mobilbarangumum']+$data['keretagandengumum']+$data['keretatempelanumum']+$data['kendaraankhususumum']+$data['mobilpenumpangtidakumum']+$data['mobilbistidakumum']+$data['mobilbarangtidakumum']+$data['keretagandengtidakumum']+$data['keretatempelantidakumum']+$data['kendaraankhusustidakumum'] }}</td>
                     </tr>
-                @php $i++;$tot1=$tot1+$data['mobilpenumpangumum'];$tot2=$tot2+$data['mobilbisumum'];$tot3=$tot3+$data['mobilbarangumum'];$tot4=$tot4+$data['keretatempelanumum'];$tot5=$tot5+$data['keretagandengumum'];$tot6=$tot6+$data['kendaraankhususumum'];$tot7=$tot7+$data['mobilpenumpangtidakumum'];$tot8=$tot8+$data['mobilbistidakumum'];$tot9=$tot9+$data['mobilbarangtidakumum'];$tot10=$tot10+$data['keretatempelantidakumum'];$tot11=$tot11+$data['keretagandengtidakumum'];$tot12=$tot12+$data['kendaraankhusustidakumum'];
+                @php $i++;$tot1=$tot1+$data['mobilpenumpangumum'];$tot2=$tot2+$data['mobilpenumpangtidakumum'];$tot3=$tot3+$data['mobilbisumum'];$tot4=$tot4+$data['mobilbistidakumum'];$tot5=$tot5+$data['mobilbarangumum'];$tot6=$tot6+$data['mobilbarangtidakumum'];$tot7=$tot7+$data['keretatempelanumum'];$tot8=$tot8+$data['keretatempelantidakumum'];$tot9=$tot9+$data['keretagandengumum'];$tot10=$tot10+$data['keretagandengtidakumum'];$tot11=$tot11+$data['kendaraankhususumum'];$tot12=$tot12+$data['kendaraankhusustidakumum'];
                 @endphp
                 @endforeach
                     <tr>
@@ -753,20 +753,20 @@
                         <td>{{ $i }}</td>
                         <td>{{ $data['wilayah'] }}</td>
                         <td class="text-center">{{ $data['mobilpenumpangumum'] }}</td>
-                        <td class="text-center">{{ $data['mobilbisumum'] }}</td>
-                        <td class="text-center">{{ $data['mobilbarangumum'] }}</td>
-                        <td class="text-center">{{ $data['keretatempelanumum'] }}</td>
-                        <td class="text-center">{{ $data['keretagandengumum'] }}</td>
-                        <td class="text-center">{{ $data['kendaraankhususumum'] }}</td>
                         <td class="text-center">{{ $data['mobilpenumpangtidakumum'] }}</td>
+                        <td class="text-center">{{ $data['mobilbisumum'] }}</td>
                         <td class="text-center">{{ $data['mobilbistidakumum'] }}</td>
+                        <td class="text-center">{{ $data['mobilbarangumum'] }}</td>
                         <td class="text-center">{{ $data['mobilbarangtidakumum'] }}</td>
+                        <td class="text-center">{{ $data['keretatempelanumum'] }}</td>
                         <td class="text-center">{{ $data['keretatempelantidakumum'] }}</td>
+                        <td class="text-center">{{ $data['keretagandengumum'] }}</td>
                         <td class="text-center">{{ $data['keretagandengtidakumum'] }}</td>
+                        <td class="text-center">{{ $data['kendaraankhususumum'] }}</td>
                         <td class="text-center">{{ $data['kendaraankhusustidakumum'] }}</td>
                         <td class="text-center">{{ $data['mobilpenumpangumum']+$data['mobilbisumum']+$data['mobilbarangumum']+$data['keretagandengumum']+$data['keretatempelanumum']+$data['kendaraankhususumum']+$data['mobilpenumpangtidakumum']+$data['mobilbistidakumum']+$data['mobilbarangtidakumum']+$data['keretagandengtidakumum']+$data['keretatempelantidakumum']+$data['kendaraankhusustidakumum'] }}</td>
                     </tr>
-                @php $i++;$tot1=$tot1+$data['mobilpenumpangumum'];$tot2=$tot2+$data['mobilbisumum'];$tot3=$tot3+$data['mobilbarangumum'];$tot4=$tot4+$data['keretatempelanumum'];$tot5=$tot5+$data['keretagandengumum'];$tot6=$tot6+$data['kendaraankhususumum'];$tot7=$tot7+$data['mobilpenumpangtidakumum'];$tot8=$tot8+$data['mobilbistidakumum'];$tot9=$tot9+$data['mobilbarangtidakumum'];$tot10=$tot10+$data['keretatempelantidakumum'];$tot11=$tot11+$data['keretagandengtidakumum'];$tot12=$tot12+$data['kendaraankhusustidakumum'];
+                @php $i++;$tot1=$tot1+$data['mobilpenumpangumum'];$tot2=$tot2+$data['mobilpenumpangtidakumum'];$tot3=$tot3+$data['mobilbisumum'];$tot4=$tot4+$data['mobilbistidakumum'];$tot5=$tot5+$data['mobilbarangumum'];$tot6=$tot6+$data['mobilbarangtidakumum'];$tot7=$tot7+$data['keretatempelanumum'];$tot8=$tot8+$data['keretatempelantidakumum'];$tot9=$tot9+$data['keretagandengumum'];$tot10=$tot10+$data['keretagandengtidakumum'];$tot11=$tot11+$data['kendaraankhususumum'];$tot12=$tot12+$data['kendaraankhusustidakumum'];
                 @endphp
                 @endforeach
                     <tr>
@@ -858,20 +858,20 @@
                         <td>{{ $i }}</td>
                         <td>{{ $data['wilayah'] }}</td>
                         <td class="text-center">{{ $data['mobilpenumpangumum'] }}</td>
-                        <td class="text-center">{{ $data['mobilbisumum'] }}</td>
-                        <td class="text-center">{{ $data['mobilbarangumum'] }}</td>
-                        <td class="text-center">{{ $data['keretatempelanumum'] }}</td>
-                        <td class="text-center">{{ $data['keretagandengumum'] }}</td>
-                        <td class="text-center">{{ $data['kendaraankhususumum'] }}</td>
                         <td class="text-center">{{ $data['mobilpenumpangtidakumum'] }}</td>
+                        <td class="text-center">{{ $data['mobilbisumum'] }}</td>
                         <td class="text-center">{{ $data['mobilbistidakumum'] }}</td>
+                        <td class="text-center">{{ $data['mobilbarangumum'] }}</td>
                         <td class="text-center">{{ $data['mobilbarangtidakumum'] }}</td>
+                        <td class="text-center">{{ $data['keretatempelanumum'] }}</td>
                         <td class="text-center">{{ $data['keretatempelantidakumum'] }}</td>
+                        <td class="text-center">{{ $data['keretagandengumum'] }}</td>
                         <td class="text-center">{{ $data['keretagandengtidakumum'] }}</td>
+                        <td class="text-center">{{ $data['kendaraankhususumum'] }}</td>
                         <td class="text-center">{{ $data['kendaraankhusustidakumum'] }}</td>
                         <td class="text-center">{{ $data['mobilpenumpangumum']+$data['mobilbisumum']+$data['mobilbarangumum']+$data['keretagandengumum']+$data['keretatempelanumum']+$data['kendaraankhususumum']+$data['mobilpenumpangtidakumum']+$data['mobilbistidakumum']+$data['mobilbarangtidakumum']+$data['keretagandengtidakumum']+$data['keretatempelantidakumum']+$data['kendaraankhusustidakumum'] }}</td>
                     </tr>
-                @php $i++;$tot1=$tot1+$data['mobilpenumpangumum'];$tot2=$tot2+$data['mobilbisumum'];$tot3=$tot3+$data['mobilbarangumum'];$tot4=$tot4+$data['keretatempelanumum'];$tot5=$tot5+$data['keretagandengumum'];$tot6=$tot6+$data['kendaraankhususumum'];$tot7=$tot7+$data['mobilpenumpangtidakumum'];$tot8=$tot8+$data['mobilbistidakumum'];$tot9=$tot9+$data['mobilbarangtidakumum'];$tot10=$tot10+$data['keretatempelantidakumum'];$tot11=$tot11+$data['keretagandengtidakumum'];$tot12=$tot12+$data['kendaraankhusustidakumum'];
+                @php $i++;$tot1=$tot1+$data['mobilpenumpangumum'];$tot2=$tot2+$data['mobilpenumpangtidakumum'];$tot3=$tot3+$data['mobilbisumum'];$tot4=$tot4+$data['mobilbistidakumum'];$tot5=$tot5+$data['mobilbarangumum'];$tot6=$tot6+$data['mobilbarangtidakumum'];$tot7=$tot7+$data['keretatempelanumum'];$tot8=$tot8+$data['keretatempelantidakumum'];$tot9=$tot9+$data['keretagandengumum'];$tot10=$tot10+$data['keretagandengtidakumum'];$tot11=$tot11+$data['kendaraankhususumum'];$tot12=$tot12+$data['kendaraankhusustidakumum'];
                 @endphp
                 @endforeach
                     <tr>
@@ -961,20 +961,20 @@
                         <td>{{ $i }}</td>
                         <td>{{ $data['wilayah'] }}</td>
                         <td class="text-center">{{ $data['mobilpenumpangumum'] }}</td>
-                        <td class="text-center">{{ $data['mobilbisumum'] }}</td>
-                        <td class="text-center">{{ $data['mobilbarangumum'] }}</td>
-                        <td class="text-center">{{ $data['keretatempelanumum'] }}</td>
-                        <td class="text-center">{{ $data['keretagandengumum'] }}</td>
-                        <td class="text-center">{{ $data['kendaraankhususumum'] }}</td>
                         <td class="text-center">{{ $data['mobilpenumpangtidakumum'] }}</td>
+                        <td class="text-center">{{ $data['mobilbisumum'] }}</td>
                         <td class="text-center">{{ $data['mobilbistidakumum'] }}</td>
+                        <td class="text-center">{{ $data['mobilbarangumum'] }}</td>
                         <td class="text-center">{{ $data['mobilbarangtidakumum'] }}</td>
+                        <td class="text-center">{{ $data['keretatempelanumum'] }}</td>
                         <td class="text-center">{{ $data['keretatempelantidakumum'] }}</td>
+                        <td class="text-center">{{ $data['keretagandengumum'] }}</td>
                         <td class="text-center">{{ $data['keretagandengtidakumum'] }}</td>
+                        <td class="text-center">{{ $data['kendaraankhususumum'] }}</td>
                         <td class="text-center">{{ $data['kendaraankhusustidakumum'] }}</td>
                         <td class="text-center">{{ $data['mobilpenumpangumum']+$data['mobilbisumum']+$data['mobilbarangumum']+$data['keretagandengumum']+$data['keretatempelanumum']+$data['kendaraankhususumum']+$data['mobilpenumpangtidakumum']+$data['mobilbistidakumum']+$data['mobilbarangtidakumum']+$data['keretagandengtidakumum']+$data['keretatempelantidakumum']+$data['kendaraankhusustidakumum'] }}</td>
                     </tr>
-                @php $i++;$tot1=$tot1+$data['mobilpenumpangumum'];$tot2=$tot2+$data['mobilbisumum'];$tot3=$tot3+$data['mobilbarangumum'];$tot4=$tot4+$data['keretatempelanumum'];$tot5=$tot5+$data['keretagandengumum'];$tot6=$tot6+$data['kendaraankhususumum'];$tot7=$tot7+$data['mobilpenumpangtidakumum'];$tot8=$tot8+$data['mobilbistidakumum'];$tot9=$tot9+$data['mobilbarangtidakumum'];$tot10=$tot10+$data['keretatempelantidakumum'];$tot11=$tot11+$data['keretagandengtidakumum'];$tot12=$tot12+$data['kendaraankhusustidakumum'];
+                @php $i++;$tot1=$tot1+$data['mobilpenumpangumum'];$tot2=$tot2+$data['mobilpenumpangtidakumum'];$tot3=$tot3+$data['mobilbisumum'];$tot4=$tot4+$data['mobilbistidakumum'];$tot5=$tot5+$data['mobilbarangumum'];$tot6=$tot6+$data['mobilbarangtidakumum'];$tot7=$tot7+$data['keretatempelanumum'];$tot8=$tot8+$data['keretatempelantidakumum'];$tot9=$tot9+$data['keretagandengumum'];$tot10=$tot10+$data['keretagandengtidakumum'];$tot11=$tot11+$data['kendaraankhususumum'];$tot12=$tot12+$data['kendaraankhusustidakumum'];
                 @endphp
                 @endforeach
                     <tr>
