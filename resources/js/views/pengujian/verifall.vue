@@ -102,7 +102,6 @@ export default {
             search: '',
             idAcc: '',
             headers: [
-                { text: 'No', value: 'id' },
                 { text: 'No Kendaraan', value: 'noregistrasikendaraan' },
                 { text: 'No Uji', value: 'nouji' },
                 { text: 'Nama', value: 'nama' },
