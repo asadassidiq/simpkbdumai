@@ -7163,6 +7163,9 @@ __webpack_require__.r(__webpack_exports__);
       search: '',
       idAcc: '',
       headers: [{
+        text: 'No',
+        value: 'id'
+      }, {
         text: 'No Kendaraan',
         value: 'noregistrasikendaraan'
       }, {
