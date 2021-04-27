@@ -242,6 +242,12 @@ class PendaftaranController extends Controller
             'q'                     => $request->q,
             'p'                     => $request->p,
             'kelasjalanterendah'    => $request->kelasjalanterendah,
+            'panjangkendaraan'      => $identitaskendaraan->panjangkendaraan,
+            'lebarkendaraan'        => $identitaskendaraan->lebarkendaraan,
+            'tinggikendaraan'       => $identitaskendaraan->tinggikendaraan,
+            'panjangbakatautangki'  => $identitaskendaraan->panjangbakatautangki,
+            'lebarbakatautangki'    => $identitaskendaraan->lebarbakatautangki,
+            'tinggibakatautangki'   => $identitaskendaraan->tinggibakatautangki,
             ]);
         }
         else{
@@ -301,6 +307,12 @@ class PendaftaranController extends Controller
             $datakendaraan->q                       = $request->q;
             $datakendaraan->p                       = $request->p;
             $datakendaraan->kelasjalanterendah      = $request->kelasjalanterendah;
+            $datakendaraan->panjangkendaraan        = $request->panjangkendaraan;
+            $datakendaraan->lebarkendaraan          = $request->lebarkendaraan;
+            $datakendaraan->tinggikendaraan         = $request->tinggikendaraan;
+            $datakendaraan->panjangbakatautangki    = $request->panjangbakatautangki;
+            $datakendaraan->lebarbakatautangki      = $request->lebarbakatautangki;
+            $datakendaraan->tinggibakatautangki     = $request->tinggibakatautangki;
             $datakendaraan->save();  
         // print_r($cekkendaraan->id);
             
@@ -421,6 +433,12 @@ class PendaftaranController extends Controller
         $datakendaraan->q                       = $request->q;
         $datakendaraan->p                       = $request->p;
         $datakendaraan->kelasjalanterendah      = $request->kelasjalanterendah;
+        $datakendaraan->panjangkendaraan        = $request->panjangkendaraan;
+        $datakendaraan->lebarkendaraan          = $request->lebarkendaraan;
+        $datakendaraan->tinggikendaraan         = $request->tinggikendaraan;
+        $datakendaraan->panjangbakatautangki    = $request->panjangbakatautangki;
+        $datakendaraan->lebarbakatautangki      = $request->lebarbakatautangki;
+        $datakendaraan->tinggibakatautangki     = $request->tinggibakatautangki;
         $datakendaraan->save();
 
         $id = Pendaftaran::find($id);

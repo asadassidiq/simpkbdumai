@@ -3721,6 +3721,45 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -3778,7 +3817,13 @@ __webpack_require__.r(__webpack_exports__);
         jaraksumbu2_3: '0',
         jaraksumbu3_4: '0',
         p: '0',
-        q: '0'
+        q: '0',
+        panjangkendaraan: '0',
+        lebarkendaraan: '0',
+        tinggikendaraan: '0',
+        panjangbakatautangki: '0',
+        lebarbakatautangki: '0',
+        tinggibakatautangki: '0'
       }),
       formjenis: new Form({
         jenis: '',
@@ -3933,6 +3978,12 @@ __webpack_require__.r(__webpack_exports__);
         _this5.form.jaraksumbu3_4 = _this5.post.jaraksumbu3_4;
         _this5.form.q = _this5.post.q;
         _this5.form.p = _this5.post.p;
+        _this5.form.panjangkendaraan = _this5.post.panjangkendaraan;
+        _this5.form.lebarkendaraan = _this5.post.lebarkendaraan;
+        _this5.form.tinggikendaraan = _this5.post.tinggikendaraan;
+        _this5.form.panjangbakatautangki = _this5.post.panjangbakatautangki;
+        _this5.form.lebarbakatautangki = _this5.post.lebarbakatautangki;
+        _this5.form.tinggibakatautangki = _this5.post.tinggibakatautangki;
       })["catch"](function (err) {});
     },
     cariData: function cariData() {
@@ -6761,13 +6812,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       if (parseInt(s3) > parseInt(s7)) {
         var hasilS3 = (parseInt(s3) - parseInt(s7)) / parseInt(bs3);
       } else {
-        var hasilS3 = (parseInt(s5) - parseInt(s1)) / parseInt(bs3);
+        var hasilS3 = (parseInt(s7) - parseInt(s3)) / parseInt(bs3);
       }
 
       if (parseInt(s4) > parseInt(s8)) {
         var hasilS4 = (parseInt(s4) - parseInt(s8)) / parseInt(bs4);
       } else {
         var hasilS4 = (parseInt(s8) - parseInt(s4)) / parseInt(bs4);
+      }
+
+      if (hasilS4 < 0) {
+        hasil4 = 0;
       }
 
       this.form.alatuji_remutamaselisihgayapengeremanrodakirikanan1 = (parseFloat(hasilS1) * 100).toFixed(2);
@@ -48027,6 +48082,224 @@ var render = function() {
                                     _vm.$set(_vm.form, "p", $$v)
                                   },
                                   expression: "form.p"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-col",
+            { attrs: { cols: "12" } },
+            [
+              _c(
+                "v-card",
+                { staticClass: "mx-auto yellow lighten-3" },
+                [
+                  _c("v-card-title", [_vm._v("Dimensi Kendaraan")]),
+                  _vm._v(" "),
+                  _c(
+                    "v-card-subtitle",
+                    [
+                      _c(
+                        "v-row",
+                        [
+                          _c(
+                            "v-col",
+                            { attrs: { cols: "12", sm: "6", md: "3" } },
+                            [
+                              _c("v-text-field", {
+                                attrs: {
+                                  label: "Panjang Kendaraan",
+                                  name: "panjangkendaraan",
+                                  type: "number",
+                                  outlined: "",
+                                  dense: "",
+                                  required: ""
+                                },
+                                model: {
+                                  value: _vm.form.panjangkendaraan,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.form, "panjangkendaraan", $$v)
+                                  },
+                                  expression: "form.panjangkendaraan"
+                                }
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-col",
+                            { attrs: { cols: "12", sm: "6", md: "3" } },
+                            [
+                              _c("v-text-field", {
+                                attrs: {
+                                  label: "Lebar Kendaraan",
+                                  name: "lebarkendaraan",
+                                  type: "number",
+                                  outlined: "",
+                                  dense: "",
+                                  required: ""
+                                },
+                                model: {
+                                  value: _vm.form.lebarkendaraan,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.form, "lebarkendaraan", $$v)
+                                  },
+                                  expression: "form.lebarkendaraan"
+                                }
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-col",
+                            { attrs: { cols: "12", sm: "6", md: "3" } },
+                            [
+                              _c("v-text-field", {
+                                attrs: {
+                                  label: "Tinggi Kendaraan (mm)",
+                                  name: "tinggikendaraan",
+                                  type: "number",
+                                  outlined: "",
+                                  dense: "",
+                                  required: ""
+                                },
+                                model: {
+                                  value: _vm.form.tinggikendaraan,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.form, "tinggikendaraan", $$v)
+                                  },
+                                  expression: "form.tinggikendaraan"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-col",
+            { attrs: { cols: "12" } },
+            [
+              _c(
+                "v-card",
+                { staticClass: "mx-auto yellow lighten-3" },
+                [
+                  _c("v-card-title", [_vm._v("Dimensi Bak Mutan")]),
+                  _vm._v(" "),
+                  _c(
+                    "v-card-subtitle",
+                    [
+                      _c(
+                        "v-row",
+                        [
+                          _c(
+                            "v-col",
+                            { attrs: { cols: "12", sm: "6", md: "3" } },
+                            [
+                              _c("v-text-field", {
+                                attrs: {
+                                  label: "Panjang (mm)",
+                                  name: "panjangkendaraan",
+                                  type: "number",
+                                  outlined: "",
+                                  dense: "",
+                                  required: ""
+                                },
+                                model: {
+                                  value: _vm.form.panjangbakatautangki,
+                                  callback: function($$v) {
+                                    _vm.$set(
+                                      _vm.form,
+                                      "panjangbakatautangki",
+                                      $$v
+                                    )
+                                  },
+                                  expression: "form.panjangbakatautangki"
+                                }
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-col",
+                            { attrs: { cols: "12", sm: "6", md: "3" } },
+                            [
+                              _c("v-text-field", {
+                                attrs: {
+                                  label: "Lebar ",
+                                  name: "lebarkendaraan",
+                                  type: "number",
+                                  outlined: "",
+                                  dense: "",
+                                  required: ""
+                                },
+                                model: {
+                                  value: _vm.form.lebarbakatautangki,
+                                  callback: function($$v) {
+                                    _vm.$set(
+                                      _vm.form,
+                                      "lebarbakatautangki",
+                                      $$v
+                                    )
+                                  },
+                                  expression: "form.lebarbakatautangki"
+                                }
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-col",
+                            { attrs: { cols: "12", sm: "6", md: "3" } },
+                            [
+                              _c("v-text-field", {
+                                attrs: {
+                                  label: "Tinggi (mm)",
+                                  name: "tinggikendaraan",
+                                  type: "number",
+                                  outlined: "",
+                                  dense: "",
+                                  required: ""
+                                },
+                                model: {
+                                  value: _vm.form.tinggibakatautangki,
+                                  callback: function($$v) {
+                                    _vm.$set(
+                                      _vm.form,
+                                      "tinggibakatautangki",
+                                      $$v
+                                    )
+                                  },
+                                  expression: "form.tinggibakatautangki"
                                 }
                               })
                             ],

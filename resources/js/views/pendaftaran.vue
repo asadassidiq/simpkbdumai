@@ -251,6 +251,45 @@
           </v-card>
           </v-col>
 
+          <v-col cols="12">
+          <v-card class="mx-auto yellow lighten-3">
+          <v-card-title>Dimensi Kendaraan</v-card-title>
+          <v-card-subtitle>
+          <v-row>
+              <v-col cols="12" sm="6" md="3">
+                <v-text-field label="Panjang Kendaraan" name="panjangkendaraan" v-model="form.panjangkendaraan" type="number"  outlined dense required></v-text-field>
+              </v-col>
+              <v-col cols="12" sm="6" md="3">
+                <v-text-field label="Lebar Kendaraan" name="lebarkendaraan" v-model="form.lebarkendaraan" type="number"  outlined dense required></v-text-field>
+              </v-col>
+              <v-col cols="12" sm="6" md="3">
+                <v-text-field label="Tinggi Kendaraan (mm)" name="tinggikendaraan" v-model="form.tinggikendaraan" type="number"  outlined dense required></v-text-field>
+              </v-col>
+          </v-row>
+          </v-card-subtitle>
+          </v-card>
+          </v-col>
+
+          <v-col cols="12">
+            <v-card class="mx-auto yellow lighten-3">
+            <v-card-title>Dimensi Bak Mutan</v-card-title>
+            <v-card-subtitle>
+            <v-row>
+                <v-col cols="12" sm="6" md="3">
+                    <v-text-field label="Panjang (mm)" name="panjangkendaraan" v-model="form.panjangbakatautangki" type="number"  outlined dense required></v-text-field>
+                </v-col>
+                <v-col cols="12" sm="6" md="3">
+                    <v-text-field label="Lebar " name="lebarkendaraan" v-model="form.lebarbakatautangki" type="number"  outlined dense required></v-text-field>
+                </v-col>
+                <v-col cols="12" sm="6" md="3">
+                    <v-text-field label="Tinggi (mm)" name="tinggikendaraan" v-model="form.tinggibakatautangki" type="number"  outlined dense required></v-text-field>
+                </v-col>
+            </v-row>
+            </v-card-subtitle>
+            </v-card>
+            </v-col>
+
+
       <v-card-actions>
         <v-spacer></v-spacer>
         <v-btn color="blue darken-1" text @click="goBack()">Cancel</v-btn>
@@ -401,6 +440,12 @@ export default {
                 jaraksumbu3_4: '0',
                 p: '0',
                 q:  '0',
+                panjangkendaraan: '0',
+                lebarkendaraan: '0',
+                tinggikendaraan: '0',
+                panjangbakatautangki:'0',
+                lebarbakatautangki:'0',
+                tinggibakatautangki:'0',
             }),
             formjenis: new Form({
                 jenis:'',
@@ -554,6 +599,12 @@ export default {
                     this.form.jaraksumbu3_4 = this.post.jaraksumbu3_4
                     this.form.q = this.post.q
                     this.form.p = this.post.p
+                    this.form.panjangkendaraan = this.post.panjangkendaraan
+                    this.form.lebarkendaraan = this.post.lebarkendaraan
+                    this.form.tinggikendaraan = this.post.tinggikendaraan
+                    this.form.panjangbakatautangki = this.post.panjangbakatautangki
+                    this.form.lebarbakatautangki = this.post.lebarbakatautangki
+                    this.form.tinggibakatautangki = this.post.tinggibakatautangki
                 }).catch((err) => {
 
                 });

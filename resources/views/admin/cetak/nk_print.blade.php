@@ -60,7 +60,7 @@
                     <h3><p class="text-center"><b>PEMERINTAH KOTA Dumai</b></p></h3>                   
                     <h2><p class="text-center"><b>DINAS PERHUBUNGAN</b></p></h2>    
                     <h3><p class="text-center"><b>UPU Berkala PENGUJIAN KENDARAAN BERMOTOR</b></p></h3> 
-                    <h4><p class="text-center"><b>Jl. Gubernur Soebarjo / Lingkar Selatan Km. 11 Dumai</b></p></h4>  
+                    <h4><p class="text-center"><b>JL. SOEKARNO HATTA TELP. (0765) 7007772 DUMAI</b></p></h4>  
             </div>          
             <div class="col-2">
                 <img class="img-fluid" src="{{url('/img/dishub.png')}}" alt="Image"/>

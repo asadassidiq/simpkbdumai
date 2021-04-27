@@ -1454,7 +1454,7 @@
 		    if (parseInt(s3)>parseInt(s7)) {
 		        var hasilS3 = (parseInt(s3)-parseInt(s7))/parseInt(bs3);
 		    }else{
-		        var hasilS3 = (parseInt(s5)-parseInt(s1))/parseInt(bs3);
+		        var hasilS3 = (parseInt(s7)-parseInt(s3))/parseInt(bs3);
 		    }
 
 		    if (parseInt(s4)>parseInt(s8)) {
@@ -1462,6 +1462,10 @@
 		    }else{
 		        var hasilS4 = (parseInt(s8)-parseInt(s4))/parseInt(bs4);
 		    }
+		   	
+		   	if(hasilS4 < 0){
+		   		hasil4 = 0;
+		   	}
 
 		    this.form.alatuji_remutamaselisihgayapengeremanrodakirikanan1 = (parseFloat(hasilS1)*100).toFixed(2);
 		    this.form.alatuji_remutamaselisihgayapengeremanrodakirikanan2 = (parseFloat(hasilS2)*100).toFixed(2);
@@ -1471,6 +1475,7 @@
 		   	if(this.form.gayaremkiris3 == 0 || this.form.gayaremkanans3 == 0 ){
 		   		this.form.alatuji_remutamaselisihgayapengeremanrodakirikanan3 = 0.0;
 		   	}
+
 
 		   	if(this.form.gayaremkiris4 == 0 || this.form.gayaremkanans4 == 0 ){
 		   		this.form.alatuji_remutamaselisihgayapengeremanrodakirikanan4 = 0.0;
