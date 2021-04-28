@@ -141,5 +141,6 @@ Route::group(['middleware' => 'auth'], function ($router) {
     Route::patch('transaksi/edit/{id}', 'TransaksiController@update');
     Route::delete('transaksi/{id}', 'TransaksiController@destroy');
 
+    Route::get('getdatakendaraanAll', 'LaporanController@getDatakendaraanall');
 
 });

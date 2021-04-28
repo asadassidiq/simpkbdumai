@@ -1733,7 +1733,23 @@ class LaporanController extends Controller
     }
 
     public function getDatakendaraanall(){
-        
-        return response()->json(['kendaraans'=> $kendaraans]);
+        $datakendaraans = Identitaskendaraan::
+                          leftJoin('datakendaraans','datakendaraans.identitaskendaraan_id','=','identitaskendaraans.id')
+                        ->select(
+                            'identitaskendaraans.nama', 
+                            'identitaskendaraans.noregistrasikendaraan',
+                            'identitaskendaraans.nouji', 
+                            'identitaskendaraans.merek', 
+                            'identitaskendaraans.tipe',
+                            'identitaskendaraans.jenis',
+                            'datakendaraans.panjangkendaraan',
+                            'datakendaraans.lebarkendaraan',
+                            'datakendaraans.tinggikendaraan',
+                            'jbb',
+                            'nosertifikatreg'
+                            )
+                        ->groupBy('identitaskendaraans.nouji')->get();
+        return response()->json($datakendaraans);
+
     }
 }

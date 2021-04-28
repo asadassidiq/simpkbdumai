@@ -127,13 +127,13 @@
 
         <v-col cols="4">
           <v-card height="110" class="yellow lighten-3">
-            <v-col cols="12">
+            <v-col cols="12" class="text-center">
               <downloadexcel
                 class="btn"
                 :fetch="fetchData"
                 :fields="json_fields"
                 type="xls"
-                name="dataUsers.xlsx"
+                name="datakendaraan.xls"
               >
                <!-- :before-generate="startDownload"
                 :before-finish="finishDownload" -->
@@ -143,6 +143,9 @@
                 </button>
               </downloadexcel>
             </v-col>
+            <v-col cols="12" class="text-center">
+                  <p><b>LAPORAN SEMUA DATAKENDARAAN</b></p>
+                </v-col>
           </v-card>
         </v-col>
     </v-row>
@@ -169,6 +172,7 @@ import downloadexcel from "vue-json-excel";
               'Lebar Kendaraan': 'lebarkendaraan',
               'Tinggi Kendaraan': 'tinggikendaraan',
               'JBB': 'jbb',
+              'Nomer SRUT': 'nosertifikatreg',
             },
             menu: false,
             menu1: false,
@@ -205,6 +209,26 @@ import downloadexcel from "vue-json-excel";
       printtahunan(){
             window.open('/cetak/'+this.tgltahuanan+'/laporanloketpendaftarantahunan', "_blank");
       },
+      async fetchData() {
+        let data;
+        await axios({
+                    url: '/api/getdatakendaraanAll/',
+                    method: "get"
+                })
+                .then((result) => {
+                    data = result.data
+                }).catch((err) => {
+
+                });
+        console.log(data);
+        return data;
+      },
+      startDownload() {
+        alert("DataUsers.xls");
+      },
+      finishDownload() {
+        alert("Download Succesfully");
+      }
     }
   }
 </script>
