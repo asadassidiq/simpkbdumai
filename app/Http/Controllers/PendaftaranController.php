@@ -242,12 +242,12 @@ class PendaftaranController extends Controller
             'q'                     => $request->q,
             'p'                     => $request->p,
             'kelasjalanterendah'    => $request->kelasjalanterendah,
-            'panjangkendaraan'      => $identitaskendaraan->panjangkendaraan,
-            'lebarkendaraan'        => $identitaskendaraan->lebarkendaraan,
-            'tinggikendaraan'       => $identitaskendaraan->tinggikendaraan,
-            'panjangbakatautangki'  => $identitaskendaraan->panjangbakatautangki,
-            'lebarbakatautangki'    => $identitaskendaraan->lebarbakatautangki,
-            'tinggibakatautangki'   => $identitaskendaraan->tinggibakatautangki,
+            'panjangkendaraan'      => $request->panjangkendaraan,
+            'lebarkendaraan'        => $request->lebarkendaraan,
+            'tinggikendaraan'       => $request->tinggikendaraan,
+            'panjangbakatautangki'  => $request->panjangbakatautangki,
+            'lebarbakatautangki'    => $request->lebarbakatautangki,
+            'tinggibakatautangki'   => $request->tinggibakatautangki,
             ]);
         }
         else{
@@ -422,24 +422,49 @@ class PendaftaranController extends Controller
         $pendaftaran->save();
 
         $datakendaraan = Datakendaraan::where('identitaskendaraan_id',$identitaskendaraan_id)->first();
-        $datakendaraan->nosertifikatreg         = $request->nosertifikatreg;
-        $datakendaraan->tglsertifikatreg        = $request->tglsertifikatreg;
-        $datakendaraan->jbkb                    = $request->jbkb;
-        $datakendaraan->konfigurasisumburoda    = $request->konfigurasisumburoda;
-        $datakendaraan->ukuranban               = $request->ukuranban;
-        $datakendaraan->jaraksumbu1_2           = $request->jaraksumbu1_2;
-        $datakendaraan->jaraksumbu2_3           = $request->jaraksumbu2_3;
-        $datakendaraan->jaraksumbu3_4           = $request->jaraksumbu3_4;
-        $datakendaraan->q                       = $request->q;
-        $datakendaraan->p                       = $request->p;
-        $datakendaraan->kelasjalanterendah      = $request->kelasjalanterendah;
-        $datakendaraan->panjangkendaraan        = $request->panjangkendaraan;
-        $datakendaraan->lebarkendaraan          = $request->lebarkendaraan;
-        $datakendaraan->tinggikendaraan         = $request->tinggikendaraan;
-        $datakendaraan->panjangbakatautangki    = $request->panjangbakatautangki;
-        $datakendaraan->lebarbakatautangki      = $request->lebarbakatautangki;
-        $datakendaraan->tinggibakatautangki     = $request->tinggibakatautangki;
-        $datakendaraan->save();
+        if (empty($datakendaraan)) {
+            Datakendaraan::create([
+            'jbi'                   => $request->jbi,
+            'identitaskendaraan_id' => $data->id,
+            'nosertifikatreg'       => $request->nosertifikatreg,
+            'tglsertifikatreg'      => $request->tglsertifikatreg,
+            'jbkb'                  => $request->jbkb,
+            'jbki'                  => $request->jbki,
+            'konfigurasisumburoda'  => $request->konfigurasisumburoda,
+            'ukuranban'             => $request->ukuranban,
+            'jaraksumbu1_2'         => $request->jaraksumbu1_2,
+            'jaraksumbu2_3'         => $request->jaraksumbu2_3,
+            'jaraksumbu3_4'         => $request->jaraksumbu3_4,
+            'q'                     => $request->q,
+            'p'                     => $request->p,
+            'kelasjalanterendah'    => $request->kelasjalanterendah,
+            'panjangkendaraan'      => $request->panjangkendaraan,
+            'lebarkendaraan'        => $request->lebarkendaraan,
+            'tinggikendaraan'       => $request->tinggikendaraan,
+            'panjangbakatautangki'  => $request->panjangbakatautangki,
+            'lebarbakatautangki'    => $request->lebarbakatautangki,
+            'tinggibakatautangki'   => $request->tinggibakatautangki,
+            ]);
+        }else{
+            $datakendaraan->nosertifikatreg         = $request->nosertifikatreg;
+            $datakendaraan->tglsertifikatreg        = $request->tglsertifikatreg;
+            $datakendaraan->jbkb                    = $request->jbkb;
+            $datakendaraan->konfigurasisumburoda    = $request->konfigurasisumburoda;
+            $datakendaraan->ukuranban               = $request->ukuranban;
+            $datakendaraan->jaraksumbu1_2           = $request->jaraksumbu1_2;
+            $datakendaraan->jaraksumbu2_3           = $request->jaraksumbu2_3;
+            $datakendaraan->jaraksumbu3_4           = $request->jaraksumbu3_4;
+            $datakendaraan->q                       = $request->q;
+            $datakendaraan->p                       = $request->p;
+            $datakendaraan->kelasjalanterendah      = $request->kelasjalanterendah;
+            $datakendaraan->panjangkendaraan        = $request->panjangkendaraan;
+            $datakendaraan->lebarkendaraan          = $request->lebarkendaraan;
+            $datakendaraan->tinggikendaraan         = $request->tinggikendaraan;
+            $datakendaraan->panjangbakatautangki    = $request->panjangbakatautangki;
+            $datakendaraan->lebarbakatautangki      = $request->lebarbakatautangki;
+            $datakendaraan->tinggibakatautangki     = $request->tinggibakatautangki;
+            $datakendaraan->save();
+        }
 
         $id = Pendaftaran::find($id);
         if (!is_null($id->idx)) {

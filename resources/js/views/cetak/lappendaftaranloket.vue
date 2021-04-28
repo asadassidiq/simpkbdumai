@@ -124,15 +124,52 @@
                 </v-col>
           </v-card>
         </v-col>
+
+        <v-col cols="4">
+          <v-card height="110" class="yellow lighten-3">
+            <v-col cols="12">
+              <downloadexcel
+                class="btn"
+                :fetch="fetchData"
+                :fields="json_fields"
+                type="xls"
+                name="dataUsers.xlsx"
+              >
+               <!-- :before-generate="startDownload"
+                :before-finish="finishDownload" -->
+                <button class="btn btn-primary mr">
+                  <i class="fa fa-save"></i>
+                  Export
+                </button>
+              </downloadexcel>
+            </v-col>
+          </v-card>
+        </v-col>
     </v-row>
 
 </v-container>
 </template>
 
 <script>
+import downloadexcel from "vue-json-excel";
   export default {
+    components: {
+      downloadexcel
+    },
     data() {
         return ({
+            json_fields: {
+              'Nama Pemilik / Perusahaan': 'nama',
+              'No TNKB': 'noregistrasikendaraan',
+              'NO STUK': 'nouji',
+              'MEREK' : 'merek',
+              'TYPE': 'tipe',
+              'Jenis': 'jenis',
+              'Panjang Kendaraan': 'panjangkendaraan',
+              'Lebar Kendaraan': 'lebarkendaraan',
+              'Tinggi Kendaraan': 'tinggikendaraan',
+              'JBB': 'jbb',
+            },
             menu: false,
             menu1: false,
             menu2: false,

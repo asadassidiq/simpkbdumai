@@ -1731,4 +1731,9 @@ class LaporanController extends Controller
 
         return view('admin.cetak.laporankeuangantahunan_print', ['kendaraan' => $kendaraan,'tglprint' => $tglprint, 'jenis' => $totaljenis, 'jmlstiker' => $stiker, 'jenispelayanan' => $pelayanan, 'pemakaianbuku' => $pemakaianbuku, 'totplatuji' => $platuji ]);
     }
+
+    public function getDatakendaraanall(){
+        
+        return response()->json(['kendaraans'=> $kendaraans]);
+    }
 }
