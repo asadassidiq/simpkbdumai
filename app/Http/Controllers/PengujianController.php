@@ -496,8 +496,11 @@ class PengujianController extends Controller
             }
             if (!is_null($request->alatuji_emisiasapbahanbakarsolar)) {
             	$pengujian->alatuji_emisiasapbahanbakarsolar = $request->alatuji_emisiasapbahanbakarsolar;
-    	        $pengujian->alatuji_emisicobahanbakarbensin = $request->alatuji_emisicobahanbakarbensin;
-    	        $pengujian->alatuji_emisihcbahanbakarbensin = $request->alatuji_emisihcbahanbakarbensin;
+            }
+
+            if (!is_null($request->alatuji_emisicobahanbakarbensin)) {
+                $pengujian->alatuji_emisicobahanbakarbensin = $request->alatuji_emisicobahanbakarbensin;
+                $pengujian->alatuji_emisihcbahanbakarbensin = $request->alatuji_emisihcbahanbakarbensin;
             }
 
             
