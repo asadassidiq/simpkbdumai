@@ -566,7 +566,6 @@ class PengujianController extends Controller
             }
             $pendaftaran->save();
 
-            if (!is_null($request->bsumbu1)) {
                 $pendaftaran = Pendaftaran::find($id);
                 $datakendaraan = Datakendaraan::where('identitaskendaraan_id',$pendaftaran->identitaskendaraan_id)->first();
                 $datakendaraan->beratsumbu1 = $request->bsumbu1;
@@ -574,44 +573,19 @@ class PengujianController extends Controller
                 $datakendaraan->beratsumbu3 = $request->bsumbu3;
                 $datakendaraan->beratsumbu4 = $request->bsumbu4;
                 $datakendaraan->beratkosong = $request->beratkosong;
-                $datakendaraan->save();
-            }
-
-            if (!is_null($request->panjangkendaraan)) {
-                $pendaftaran = Pendaftaran::find($id);
-                $datakendaraan = Datakendaraan::where('identitaskendaraan_id',$pendaftaran->identitaskendaraan_id)->first();
                 $datakendaraan->panjangkendaraan = $request->panjangkendaraan;
                 $datakendaraan->lebarkendaraan   = $request->lebarkendaraan;
                 $datakendaraan->tinggikendaraan  = $request->tinggikendaraan;
                 $datakendaraan->julurdepan       = $request->julurdepan;
                 $datakendaraan->julurbelakang    = $request->julurbelakang;
                 $datakendaraan->groundclearance  = $request->groundclearance;
-                $datakendaraan->save();
-            }
-
-            if (!is_null($request->jaraksumbu1_2)) {
-                $pendaftaran = Pendaftaran::find($id);
-                $datakendaraan = Datakendaraan::where('identitaskendaraan_id',$pendaftaran->identitaskendaraan_id)->first();
-                $datakendaraan->jaraksumbu1_2           = $request->jaraksumbu1_2;
                 $datakendaraan->jaraksumbu2_3           = $request->jaraksumbu2_3;
                 $datakendaraan->jaraksumbu3_4           = $request->jaraksumbu3_4;
                 $datakendaraan->q                       = $request->q;
                 $datakendaraan->p                       = $request->p;
-                $datakendaraan->save();
-            }
-
-             if (!is_null($request->panjangbakatautangki)) {
-                $pendaftaran = Pendaftaran::find($id);
-                $datakendaraan = Datakendaraan::where('identitaskendaraan_id',$pendaftaran->identitaskendaraan_id)->first();
                 $datakendaraan->panjangbakatautangki = $request->panjangbakatautangki;
                 $datakendaraan->lebarbakatautangki   = $request->lebarbakatautangki;
                 $datakendaraan->tinggibakatautangki  = $request->tinggibakatautangki;
-                $datakendaraan->save();
-            }
-
-            if (!is_null($request->dayaangkutbarang)) {
-                $pendaftaran = Pendaftaran::find($id);
-                $datakendaraan = Datakendaraan::where('identitaskendaraan_id',$pendaftaran->identitaskendaraan_id)->first();
                 $datakendaraan->dayaangkutbarang = $request->dayaangkutbarang;
                 $datakendaraan->dayaangkutorang  = $request->dayaangkutorang;
                 $datakendaraan->mst              = $request->mst;
@@ -619,7 +593,6 @@ class PengujianController extends Controller
                 $datakendaraan->jbki             = $request->jbki;
                 $datakendaraan->save();
                 
-            }
         }
     }
 
