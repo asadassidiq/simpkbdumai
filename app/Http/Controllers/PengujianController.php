@@ -89,7 +89,6 @@ class PengujianController extends Controller
 
         $identitaskendaraan = Pendaftaran::leftJoin('identitaskendaraans','pendaftarans.identitaskendaraan_id','=','identitaskendaraans.id')->leftJoin('datakendaraans','datakendaraans.identitaskendaraan_id','=','identitaskendaraans.id')->leftJoin('pengujians','pengujians.pendaftaran_id','=','pendaftarans.id')->leftJoin('jenis','jenis.jenis','=','identitaskendaraans.jenis')->find($id);
         if ($request->idpenguji == '8') {
-            // $kode = Pendaftaran::where('pendaftarans.id',$id)->orderBy('pendaftarans.id','desc')->first();
 
             $pengujian = Pengujian::where('pendaftaran_id',$id)->first();
             $pengujian->statuslulusuji = '1';
@@ -102,7 +101,6 @@ class PengujianController extends Controller
             $pengujian->save();
         }
 
-        // print_r($identitaskendaraan->kodepenerbitans_id);
 
         if ($identitaskendaraan->kodepenerbitans_id == '8') {
             $statuspenerbitan = '2';
@@ -590,6 +588,7 @@ class PengujianController extends Controller
                 $datakendaraan->julurdepan       = $request->julurdepan;
                 $datakendaraan->julurbelakang    = $request->julurbelakang;
                 $datakendaraan->groundclearance  = $request->groundclearance;
+                $datakendaraan->jaraksumbu1_2           = $request->jaraksumbu1_2;
                 $datakendaraan->jaraksumbu2_3           = $request->jaraksumbu2_3;
                 $datakendaraan->jaraksumbu3_4           = $request->jaraksumbu3_4;
                 $datakendaraan->q                       = $request->q;
