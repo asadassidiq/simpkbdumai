@@ -133,6 +133,9 @@ class PengujianController extends Controller
         }
 
         $date=date_create($identitaskendaraan->tglsertifikatreg);
+        if($identitaskendaraan->tglsertifikatreg == '0000-00-00' || is_null($identitaskendaraan->tglsertifikatreg) || empty($identitaskendaraan->tglsertifikatreg)){
+            $date = date_create('2005-01-01');
+        }
         $tglsertifikatreg = date_format($date,'dmY');
         $date1=date_create($identitaskendaraan->masaberlakuuji);
         $masaberlakuuji= date_format($date1,'dmY');
