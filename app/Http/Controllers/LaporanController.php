@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Pendaftaran;
+use App\PendaftaranOld;
 use App\Transaksi;
 use App\Datakendaraan;
 use App\Identitaskendaraan;
@@ -1751,5 +1752,163 @@ class LaporanController extends Controller
                         ->groupBy('identitaskendaraans.nouji')->get();
         return response()->json($datakendaraans);
 
+    }
+
+    public function printlaporanloketpendaftaranlama($tgl)
+    {
+        $tglcetak = date('d-m-Y', strtotime($tgl));
+        $tglcreate = date_create($tgl);
+        $hari = date_format($tglcreate,"D");
+ 
+        switch($hari){
+            case 'Sun':
+                $hari_ini = "Minggu";
+            break;
+     
+            case 'Mon':         
+                $hari_ini = "Senin";
+            break;
+     
+            case 'Tue':
+                $hari_ini = "Selasa";
+            break;
+     
+            case 'Wed':
+                $hari_ini = "Rabu";
+            break;
+     
+            case 'Thu':
+                $hari_ini = "Kamis";
+            break;
+     
+            case 'Fri':
+                $hari_ini = "Jumat";
+            break;
+     
+            case 'Sat':
+                $hari_ini = "Sabtu";
+            break;
+            
+            default:
+                $hari_ini = "Tidak di ketahui";     
+            break;
+        }
+        $tglprint = $hari_ini.', '.$tglcetak;
+
+        $kendaraan  = PendaftaranOld::leftJoin('datapengujianlama','datapengujianlama.id','=','pendaftaraan.id')->leftJoin('kodepenerbitans','kodepenerbitans.id','=','datapengujianlama.statuspenerbitan')->leftJoin('jenis','jenis.jenis','=','datapengujianlama.jenis')->leftJoin('klasifikasis','klasifikasis.id','=','jenis.klasifikasis_id')->leftJoin('transaksis','transaksis.pendaftaran_id','=','pendaftarans.id')->where('statuspenerbitan','!=','7')->where('statuspenerbitan','!=','12')->where('tglpendaftaraan',$tgl)->groupBy('idx')->get();
+        $tidaklulus = PendaftaranOld::leftJoin('datapengujianlama','datapengujianlama.id','=','pendaftaraan.id')->where('tglpendaftaraan',$tgl)->where('statuspenerbitan','!=','7')->where('statuspenerbitan','!=','12')->where(function ($tidaklulus){ $tidaklulus->where('statuslulusuji','0')->orWhereNull('statuslulusuji');})->get();
+        $numpanguji = PendaftaranOld::leftJoin('datapengujianlama','datapengujianlama.id','=','pendaftaraan.id')->where('tglpendaftaraan',$tgl)->where(function ($numpanguji){ $numpanguji->where('statuspenerbitan','5')->orWhere('statuspenerbitan','9');})->get();
+        
+        $datajm['mobilpenumpang1'] = PendaftaranOld::leftJoin('datapengujianlama','datapengujianlama.id','=','pendaftaraan.id')->leftJoin('jenis','jenis.jenis','=','datapengujianlama.jenis')->where('tglpendaftaraan',$tgl)->where('klasifikasis_id','2')->where('statuspenggunaan','Umum')->where('statuspenerbitan','!=','7')->where('statuspenerbitan','!=','12')->count();
+        $datajm['mobilpenumpang2'] = PendaftaranOld::leftJoin('datapengujianlama','datapengujianlama.id','=','pendaftaraan.id')->leftJoin('jenis','jenis.jenis','=','datapengujianlama.jenis')->where('tglpendaftaraan',$tgl)->where('klasifikasis_id','2')->where('statuspenggunaan','Tidak Umum')->where('statuspenerbitan','!=','7')->where('statuspenerbitan','!=','12')->count();
+        $datajm['mobilpenumpang3'] = PendaftaranOld::leftJoin('datapengujianlama','datapengujianlama.id','=','pendaftaraan.id')->leftJoin('jenis','jenis.jenis','=','datapengujianlama.jenis')->where('tglpendaftaraan',$tgl)->where('klasifikasis_id','2')->where('statuspenggunaan','Pemerintah')->where('statuspenerbitan','!=','7')->where('statuspenerbitan','!=','12')->count();
+
+        $datajm['kendaraankhusus1'] = PendaftaranOld::leftJoin('datapengujianlama','datapengujianlama.id','=','pendaftaraan.id')->leftJoin('jenis','jenis.jenis','=','datapengujianlama.jenis')->where('tglpendaftaraan',$tgl)->where('klasifikasis_id','7')->where('statuspenggunaan','Umum')->where('statuspenerbitan','!=','7')->where('statuspenerbitan','!=','12')->count();
+        $datajm['kendaraankhusus2'] = PendaftaranOld::leftJoin('datapengujianlama','datapengujianlama.id','=','pendaftaraan.id')->leftJoin('jenis','jenis.jenis','=','datapengujianlama.jenis')->where('tglpendaftaraan',$tgl)->where('klasifikasis_id','7')->where('statuspenggunaan','Tidak Umum')->where('statuspenerbitan','!=','7')->where('statuspenerbitan','!=','12')->count();
+        $datajm['kendaraankhusus3'] = PendaftaranOld::leftJoin('datapengujianlama','datapengujianlama.id','=','pendaftaraanid')->leftJoin('jenis','jenis.jenis','=','datapengujianlama.jenis')->where('tglpendaftaraan',$tgl)->where('klasifikasis_id','7')->where('statuspenggunaan','Pemerintah')->where('statuspenerbitan','!=','7')->where('statuspenerbitan','!=','12')->count();
+
+        $datajm['mobilbus1'] = PendaftaranOld::leftJoin('datapengujianlama','datapengujianlama.id','=','pendaftaraanid.id')->leftJoin('jenis','jenis.jenis','=','datapengujianlama.jenis')->where('tglpendaftaraan',$tgl)->where('klasifikasis_id','3')->where('statuspenggunaan','Umum')->where('statuspenerbitan','!=','7')->where('statuspenerbitan','!=','12')->count();
+        $datajm['mobilbus2'] = PendaftaranOld::leftJoin('datapengujianlama','datapengujianlama.id','=','pendaftaraanid.id')->leftJoin('jenis','jenis.jenis','=','datapengujianlama.jenis')->where('tglpendaftaraan',$tgl)->where('klasifikasis_id','3')->where('statuspenggunaan','Tidak Umum')->where('statuspenerbitan','!=','7')->where('statuspenerbitan','!=','12')->count();
+        $data['mobilbus3'] = PendaftaranOld::leftJoin('datapengujianlama','datapengujianlama.id','=','pendaftaraanid.id')->leftJoin('jenis','jenis.jenis','=','datapengujianlama.jenis')->where('tglpendaftaraan',$tgl)->where('klasifikasis_id','3')->where('statuspenggunaan','Pemerintah')->where('statuspenerbitan','!=','7')->where('statuspenerbitan','!=','12')->count();
+
+        $datajm['mobilbarang1'] = PendaftaranOld::leftJoin('datapengujianlama','datapengujianlama.id','=','pendaftaraanid.id')->leftJoin('jenis','jenis.jenis','=','datapengujianlama.jenis')->where('tglpendaftaraan',$tgl)->where('klasifikasis_id','4')->where('statuspenggunaan','Umum')->where('statuspenerbitan','!=','7')->where('statuspenerbitan','!=','12')->count();
+        $datajm['mobilbarang2'] = PendaftaranOld::leftJoin('datapengujianlama','datapengujianlama.id','=','pendaftaraanid.id')->leftJoin('jenis','jenis.jenis','=','datapengujianlama.jenis')->where('tglpendaftaraan',$tgl)->where('klasifikasis_id','4')->where('statuspenggunaan','Tidak Umum')->where('statuspenerbitan','!=','7')->where('statuspenerbitan','!=','12')->count();
+        $datajm['mobilbarang3'] = PendaftaranOld::leftJoin('datapengujianlama','datapengujianlama.id','=','pendaftaraanid.id')->leftJoin('jenis','jenis.jenis','=','datapengujianlama.jenis')->where('tglpendaftaraan',$tgl)->where('klasifikasis_id','4')->where('statuspenggunaan','Pemerintah')->where('statuspenerbitan','!=','7')->where('statuspenerbitan','!=','12')->count();
+
+        $datajm['keretatempelan1'] = PendaftaranOld::leftJoin('datapengujianlama','datapengujianlama.id','=','pendaftaraanid.identitaskendaraan_id')->leftJoin('jenis','jenis.jenis','=','datapengujianlama.jenis')->where('tglpendaftaraan',$tgl)->where('klasifikasis_id','6')->where('statuspenggunaan','Umum')->where('statuspenerbitan','!=','7')->where('statuspenerbitan','!=','12')->count();
+        $datajm['keretatempelan2'] = PendaftaranOld::leftJoin('datapengujianlama','datapengujianlama.id','=','pendaftaraanid.id')->leftJoin('jenis','jenis.jenis','=','datapengujianlama.jenis')->where('tglpendaftaraan',$tgl)->where('klasifikasis_id','6')->where('statuspenggunaan','Tidak Umum')->where('statuspenerbitan','!=','7')->where('statuspenerbitan','!=','12')->count();
+        $datajm['keretatempelan3'] = PendaftaranOld::leftJoin('datapengujianlama','datapengujianlama.id','=','pendaftaraanid.id')->leftJoin('jenis','jenis.jenis','=','datapengujianlama.jenis')->where('tglpendaftaraan',$tgl)->where('klasifikasis_id','6')->where('statuspenggunaan','Pemerintah')->where('statuspenerbitan','!=','7')->where('statuspenerbitan','!=','12')->count();
+
+        $datajm['keretagandeng1'] = PendaftaranOld::leftJoin('datapengujianlama','datapengujianlama.id','=','pendaftaraanid.id')->leftJoin('jenis','jenis.jenis','=','datapengujianlama.jenis')->where('tglpendaftaraan',$tgl)->where('klasifikasis_id','5')->where('statuspenggunaan','Umum')->where('statuspenerbitan','!=','7')->where('statuspenerbitan','!=','12')->count();
+        $datajm['keretagandeng2'] = PendaftaranOld::leftJoin('datapengujianlama','datapengujianlama.id','=','pendaftaraanid.id')->leftJoin('jenis','jenis.jenis','=','datapengujianlama.jenis')->where('tglpendaftaraan',$tgl)->where('klasifikasis_id','5')->where('statuspenggunaan','Tidak Umum')->where('statuspenerbitan','!=','7')->where('statuspenerbitan','!=','12')->count();
+        $datajm['keretagandeng3'] = PendaftaranOld::leftJoin('datapengujianlama','datapengujianlama.id','=','pendaftaraanid.id')->leftJoin('jenis','jenis.jenis','=','datapengujianlama.jenis')->where('tglpendaftaraan',$tgl)->where('klasifikasis_id','5')->where('statuspenggunaan','Pemerintah')->where('statuspenerbitan','!=','7')->where('statuspenerbitan','!=','12')->count();
+
+        $datajm['kendaraanroda31'] = PendaftaranOld::leftJoin('datapengujianlama','datapengujianlama.id','=','pendaftaraanid.id')->leftJoin('jenis','jenis.jenis','=','datapengujianlama.jenis')->where('tglpendaftaraan',$tgl)->where('klasifikasis_id','8')->where('statuspenggunaan','Umum')->where('statuspenerbitan','!=','7')->where('statuspenerbitan','!=','12')->count();
+        $datajm['kendaraanroda32'] = PendaftaranOld::leftJoin('datapengujianlama','datapengujianlama.id','=','pendaftaraanid.id')->leftJoin('jenis','jenis.jenis','=','datapengujianlama.jenis')->where('tglpendaftaraan',$tgl)->where('klasifikasis_id','8')->where('statuspenggunaan','Tidak Umum')->where('statuspenerbitan','!=','7')->where('statuspenerbitan','!=','12')->count();
+        $datajm['kendaraanroda33'] = PendaftaranOld::leftJoin('datapengujianlama','datapengujianlama.id','=','pendaftaraanid.id')->leftJoin('jenis','jenis.jenis','=','datapengujianlama.jenis')->where('tglpendaftaraan',$tgl)->where('klasifikasis_id','8')->where('statuspenggunaan','Pemerintah')->where('statuspenerbitan','!=','7')->where('statuspenerbitan','!=','12')->count();
+        return view('admin.cetak.laporanloketpendaftaran_print', ['kendaraan' => $kendaraan,'tglprint' => $tglprint, 'tidaklulus' => $tidaklulus, 'datajm' => $datajm, 'numpanguji' => $numpanguji]);
+    }
+
+    public function printlaporankeuanganbulananlama($tgl)
+    {
+        $tglcetak = date('d-F-Y', strtotime($tgl));
+        $tglcreate = date_create($tgl);
+        $hari = date_format($tglcreate,"D");
+        $bulan = date_format($tglcreate,"m");
+        $bulanan = date_format($tglcreate,"F");
+        $tahun = date_format($tglcreate,"Y");
+ 
+        switch($hari){
+            case 'Sun':
+                $hari_ini = "Minggu";
+            break;
+     
+            case 'Mon':         
+                $hari_ini = "Senin";
+            break;
+     
+            case 'Tue':
+                $hari_ini = "Selasa";
+            break;
+     
+            case 'Wed':
+                $hari_ini = "Rabu";
+            break;
+     
+            case 'Thu':
+                $hari_ini = "Kamis";
+            break;
+     
+            case 'Fri':
+                $hari_ini = "Jumat";
+            break;
+     
+            case 'Sat':
+                $hari_ini = "Sabtu";
+            break;
+            
+            default:
+                $hari_ini = "Tidak di ketahui";     
+            break;
+        }
+        $tglprint = strtoupper($bulanan);
+        $tglprint2 = $tglcetak;
+
+        $kendaraan  = Pendaftaraan::leftJoin('datapengujianlama','datapengujianlama.id','=','pendaftaraan.id:')->leftJoin('kodepenerbitans','kodepenerbitans.id','=','pendaftaraan.statuspenerbitan')->rightJoin('transaksis','transaksis.pendaftaran_id','=','pendaftaraan.id')->leftJoin('jenis','jenis.jenis','=','datapengujianlama.jenis')->leftJoin('klasifikasis','klasifikasis.id','=','jenis.klasifikasis_id')->whereMonth('tglpendaftaraan',$bulan)->whereYear('tglpendaftaraan',$tahun)->get();
+
+        $umum       = Pendaftaraan::leftJoin('datapengujianlama','datapengujianlama.id','=','pendaftaraan.id:')->whereMonth('tglpendaftaraan',$bulan)->whereYear('tglpendaftaraan',$tahun)->where('peruntukan','Umum')->count();
+        $tidakumum  = Pendaftaraan::leftJoin('datapengujianlama','datapengujianlama.id','=','pendaftaraan.id:')->whereMonth('tglpendaftaraan',$bulan)->whereYear('tglpendaftaraan',$tahun)->where('peruntukan','Tidak Umum')->count();
+        $jeniskendaraan = Jenis::all();
+        $jenispelayanan = kodepenerbitan::all();
+
+        $totaljenis = array();
+        foreach ($jeniskendaraan as $jenis) {
+            $arr = array(
+                        'jenis'     => $jenis->jenis,
+                        'jumlah'    => Pendaftaraan::leftJoin('datapengujianlama','datapengujianlama.id','=','pendaftaraan.id:')->rightJoin('transaksis','transaksis.pendaftaran_id','=','pendaftaraan.id')->whereMonth('tglpendaftaraan',$bulan)->whereYear('tglpendaftaraan',$tahun)->where('jenis',$jenis->jenis)->count(),
+                        'umum'      => Pendaftaraan::leftJoin('datapengujianlama','datapengujianlama.id','=','pendaftaraan.id:')->rightJoin('transaksis','transaksis.pendaftaran_id','=','pendaftaraan.id')->whereMonth('tglpendaftaraan',$bulan)->whereYear('tglpendaftaraan',$tahun)->where('peruntukan','Umum')->where('jenis',$jenis->jenis)->count(),
+                        'tidakumum' => Pendaftaraan::leftJoin('datapengujianlama','datapengujianlama.id','=','pendaftaraan.id:')->rightJoin('transaksis','transaksis.pendaftaran_id','=','pendaftaraan.id')->whereMonth('tglpendaftaraan',$bulan)->whereYear('tglpendaftaraan',$tahun)->where('peruntukan','Tidak Umum')->where('jenis',$jenis->jenis)->count(),
+                        );
+            array_push($totaljenis, $arr);
+        }
+
+        $pelayanan = array();
+        foreach ($jenispelayanan as $data) {
+            $arr = array(
+                        'jenispelayanan'  => $data->keterangan,
+                        'jumlah' => Pendaftaraan::leftJoin('kodepenerbitans','kodepenerbitans.id','=','pendaftaraan.statuspenerbitan')->rightJoin('transaksis','transaksis.pendaftaran_id','=','pendaftaraan.id')->whereMonth('tglpendaftaraan',$bulan)->whereYear('tglpendaftaraan',$tahun)->where('keterangan',$data->keterangan)->count(),
+                        );
+            array_push($pelayanan, $arr);
+        }
+
+        $pemakaianbuku = array(
+                        'baru'   => Pendaftaraan::rightJoin('transaksis','transaksis.pendaftaran_id','=','pendaftaraan.id')->whereMonth('tglpendaftaraan',$bulan)->whereYear('tglpendaftaraan',$tahun)->where('ketbuku','Buku Uji Baru')->count(),
+                        'rusak'  => Pendaftaraan::rightJoin('transaksis','transaksis.pendaftaran_id','=','pendaftaraan.id')->whereMonth('tglpendaftaraan',$bulan)->whereYear('tglpendaftaraan',$tahun)->where('ketbuku','Buku Uji Rusak')->count(),
+                        'hilang' => Pendaftaraan::rightJoin('transaksis','transaksis.pendaftaran_id','=','pendaftaraan.id')->whereMonth('tglpendaftaraan',$bulan)->whereYear('tglpendaftaraan',$tahun)->where('ketbuku','Buku Uji Hilang')->count(),
+                        );
+        $stiker = Pendaftaraan::rightJoin('transaksis','transaksis.pendaftaran_id','=','pendaftaraan.id')->where('stiker','>','0')->whereMonth('tglpendaftaraan',$bulan)->whereYear('tglpendaftaraan',$tahun)->count();
+        $platuji = Pendaftaraan::rightJoin('transaksis','transaksis.pendaftaran_id','=','pendaftaraan.id')->where('platuji','>','0')->whereMonth('tglpendaftaraan',$bulan)->whereYear('tglpendaftaraan',$tahun)->count();
+
+        return view('admin.cetak.laporankeuanganbulanan_print', ['kendaraan' => $kendaraan,'tglprint' => $tglprint,'tglprint2' => $tglprint2, 'jenis' => $totaljenis, 'jmlstiker' => $stiker, 'jenispelayanan' => $pelayanan, 'pemakaianbuku' => $pemakaianbuku, 'totplatuji' => $platuji ]);
     }
 }

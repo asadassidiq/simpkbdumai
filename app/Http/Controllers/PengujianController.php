@@ -101,7 +101,6 @@ class PengujianController extends Controller
             $pengujian->save();
         }
 
-
         if ($identitaskendaraan->kodepenerbitans_id == '8') {
             $statuspenerbitan = '2';
         }elseif ($identitaskendaraan->kodepenerbitans_id == '7' || $identitaskendaraan->kodepenerbitans_id == '12') {
@@ -137,8 +136,11 @@ class PengujianController extends Controller
             $date = date_create('2005-01-01');
         }
         $tglsertifikatreg = date_format($date,'dmY');
-        $date1=date_create($identitaskendaraan->masaberlakuuji);
-        $masaberlakuuji= date_format($date1,'dmY');
+        $date=date_create("2021-01-01");
+        $masaberlakuuji=date("Y-m-d");
+        $masaberlakuuji=date_create($masaberlakuuji);
+        date_sub($masaberlakuuji,date_interval_create_from_date_string("6 months"));
+        $masaberlakuuji= date_format($masaberlakuuji,"dmY");
 
         $pendaftaran = Pendaftaran::find($id);
         if (!empty($pendaftaran->idx) || !is_null($pendaftaran->idx)) {
@@ -232,7 +234,7 @@ class PengujianController extends Controller
             $datapengujian->alatuji_lampuutamapenyimpanganlampukiri   = $identitaskendaraan->alatuji_lampuutamapenyimpanganlampukiri;
             $datapengujian->alatuji_penunjukkecepatan                 = $identitaskendaraan->alatuji_penunjukkecepatan;
             $datapengujian->alatuji_kedalamanalurban                  = $identitaskendaraan->alatuji_kedalamanalurban;
-            $datapengujian->tgluji                                    = $identitaskendaraan->tgluji; 
+            $datapengujian->tgluji                                    = date("dmY");
             $datapengujian->masaberlakuuji                            = $masaberlakuuji;
             $datapengujian->statuslulusuji                            = $identitaskendaraan->statuslulusuji;
             $datapengujian->save();  
@@ -329,7 +331,7 @@ class PengujianController extends Controller
             'alatuji_lampuutamapenyimpanganlampukiri'   => $identitaskendaraan->alatuji_lampuutamapenyimpanganlampukiri,
             'alatuji_penunjukkecepatan'                 => $identitaskendaraan->alatuji_penunjukkecepatan,
             'alatuji_kedalamanalurban'                  => $identitaskendaraan->alatuji_kedalamanalurban,
-            'tgluji'                                    => $identitaskendaraan->tgluji, 
+            'tgluji'                                    => date("dmY"), 
             'masaberlakuuji'                            => $masaberlakuuji, 
             'statuslulusuji'                            => $identitaskendaraan->statuslulusuji, 
             ]);
