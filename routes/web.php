@@ -53,6 +53,8 @@ Route::group(['prefix' => 'cetak'], function() {
     Route::get('/{id}/laporankeuanganharian', 'LaporanController@printlaporankeuanganharian')->name('laporankeuanganharian.print');
     Route::get('/{id}/laporankeuanganbulanan', 'LaporanController@printlaporankeuanganbulanan')->name('laporankeuanganbulanan.print');
     Route::get('/{id}/laporankeuangantahunan', 'LaporanController@printlaporankeuangantahunan')->name('laporankeuangantahunan.print');
+    Route::get('/{id}/laporanpendaftaranlama', 'LaporanController@printlaporanloketpendaftaranlama');
+    Route::get('/{id}/laporanpendaftaranbulananlama', 'LaporanController@printlaporanpendaftaranbulananlama');
 });
 
 

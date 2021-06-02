@@ -150,6 +150,67 @@
         </v-col>
     </v-row>
 
+    <v-row>
+        <v-col cols="4">
+          <v-card height="110" class="yellow lighten-3">
+            <v-col cols="12">
+            <v-row no-gutters>
+            <v-col cols="10">
+                  <v-menu ref="menu8" v-model="menu8":close-on-content-click="false" :return-value.sync="formharian.tgl"
+                    transition="scale-transition" offset-y min-width="290px">
+                    <template v-slot:activator="{ on, attrs }">
+                      <v-text-field v-model="tglharianlama" name="tgl" label="Tanggal" outlined dense required v-bind="attrs" v-on="on"
+                      ></v-text-field>
+                    </template>
+                    <v-date-picker v-model="tglharianlama" no-title scrollable>
+                      <v-spacer></v-spacer>
+                      <v-btn text color="primary" @click="menu8 = false">Cancel</v-btn>
+                      <v-btn text color="primary" @click="$refs.menu8.save(tglharianlama)">OK</v-btn>
+                    </v-date-picker>
+                  </v-menu>
+                </v-col>
+                <v-col cols="2" class="text-center">
+                  <v-btn class="mx-2" fab dark small color="primary" @click="printharianlama">
+                  <v-icon dark> mdi-printer </v-icon>
+                </v-btn>
+                </v-col>
+                <v-col cols="12" class="text-center">
+                  <p><b>LAPORAN HARIAN 2020</b></p>
+                </v-col>
+                </v-row>
+                </v-col>
+          </v-card>
+        </v-col>
+
+        <v-col cols="4">
+          <v-card height="110" class="yellow lighten-3">
+            <v-col cols="12">
+            <v-row no-gutters>
+            <v-col cols="10">
+                  <v-menu ref="menu9" v-model="menu9" :close-on-content-click="false" :return-value.sync="tglbulananlama" offset-y max-width="290px" min-width="290px" >
+                  <template v-slot:activator="{ on, attrs }">
+                    <v-text-field v-model="tglbulananlama" label="Bulan" v-bind="attrs" outlined dense  v-on="on" ></v-text-field>
+                  </template>
+                  <v-date-picker v-model="tglbulananlama" type="month" no-title scrollable > <v-spacer></v-spacer>
+                    <v-btn text color="primary" @click="menu9 = false" > Cancel </v-btn>
+                    <v-btn text color="primary" @click="$refs.menu9.save(tglbulananlama)">OK</v-btn>
+                  </v-date-picker>
+                </v-menu>
+                </v-col>
+                <v-col cols="2" class="text-center">
+                  <v-btn class="mx-2" fab dark small color="primary" @click="printbulananlama">
+                  <v-icon dark> mdi-printer </v-icon>
+                </v-btn>
+                </v-col>
+                <v-col cols="12" class="text-center">
+                  <p><b>LAPORAN BULANAN 2020</b></p>
+                </v-col>
+                </v-row>
+                </v-col>
+          </v-card>
+        </v-col>
+    </v-row>
+
 </v-container>
 </template>
 
@@ -182,8 +243,12 @@ import downloadexcel from "vue-json-excel";
             menu5: false,
             menu6: false,
             menu7: false,
+            menu8: false,
+            menu9: false,
             tglharian: new Date().toISOString().substr(0, 10),
+            tglharianlama: new Date().toISOString().substr(0, 10),
             tglbulanan: new Date().toISOString().substr(0, 7),
+            tglbulananlama: new Date().toISOString().substr(0, 7),
             tgltriwulan1: new Date().toISOString().substr(0, 7),
             tgltriwulan2: new Date().toISOString().substr(0, 7),
             tgltahuanan: new Date().toISOString().substr(0, 4),
@@ -208,6 +273,11 @@ import downloadexcel from "vue-json-excel";
       },
       printtahunan(){
             window.open('/cetak/'+this.tgltahuanan+'/laporanloketpendaftarantahunan', "_blank");
+      },printharianlama() {
+            window.open('/cetak/'+this.formharian.tgl+'/laporanpendaftaranlama', "_blank");
+        },
+      printbulananlama(){
+            window.open('/cetak/'+this.tglbulanan+'/laporanpendaftaranbulananlama', "_blank");
       },
       async fetchData() {
         let data;
