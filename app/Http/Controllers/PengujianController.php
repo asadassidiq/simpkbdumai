@@ -139,7 +139,7 @@ class PengujianController extends Controller
         $date=date_create("2021-01-01");
         $masaberlakuuji=date("Y-m-d");
         $masaberlakuuji=date_create($masaberlakuuji);
-        date_sub($masaberlakuuji,date_interval_create_from_date_string("6 months"));
+        date_sub($masaberlakuuji,date_interval_create_from_date_string("-6 months"));
         $masaberlakuuji= date_format($masaberlakuuji,"dmY");
 
         $pendaftaran = Pendaftaran::find($id);
