@@ -141,7 +141,7 @@ class PendaftaranController extends Controller
 
     public function store(Request $request)
     {
-         if (is_array($request->kodewilayah) == 1) {
+        if (is_array($request->kodewilayah) == 1) {
             $kode= $request->kodewilayah['kodewilayah'];
         }else{
             $kode= $request->kodewilayah;
@@ -248,6 +248,12 @@ class PendaftaranController extends Controller
             'panjangbakatautangki'  => $request->panjangbakatautangki,
             'lebarbakatautangki'    => $request->lebarbakatautangki,
             'tinggibakatautangki'   => $request->tinggibakatautangki,
+            'dayaangkutorang'       => $request->dayaangkutorang,
+            'dayaangkutbarang'      => $request->dayaangkutbarang,
+            'mst'                   => $request->mst,
+            'julurdepan'            => $request->julurdepan,
+            'julurbelakang'         => $request->julurbelakang,
+            'groundclearance'       => $request->groundclearance,
             ]);
         }
         else{
@@ -313,6 +319,12 @@ class PendaftaranController extends Controller
             $datakendaraan->panjangbakatautangki    = $request->panjangbakatautangki;
             $datakendaraan->lebarbakatautangki      = $request->lebarbakatautangki;
             $datakendaraan->tinggibakatautangki     = $request->tinggibakatautangki;
+            $datakendaraan->dayaangkutorang       = $request->dayaangkutorang;
+            $datakendaraan->dayaangkutbarang      = $request->dayaangkutbarang;
+            $datakendaraan->mst                   = $request->mst;
+            $datakendaraan->julurdepan            = $request->julurdepan;
+            $datakendaraan->julurbelakang         = $request->julurbelakang;
+            $datakendaraan->groundclearance       = $request->groundclearance;
             $datakendaraan->save();  
         // print_r($cekkendaraan->id);
             
@@ -447,6 +459,12 @@ class PendaftaranController extends Controller
             'panjangbakatautangki'  => $request->panjangbakatautangki,
             'lebarbakatautangki'    => $request->lebarbakatautangki,
             'tinggibakatautangki'   => $request->tinggibakatautangki,
+            'dayaangkutorang'       => $request->dayaangkutorang,
+            'dayaangkutbarang'      => $request->dayaangkutbarang,
+            'mst'                   => $request->mst,
+            'julurdepan'            => $request->julurdepan,
+            'julurbelakang'         => $request->julurbelakang,
+            'groundclearance'       => $request->groundclearance,
             ]);
         }else{
             $datakendaraan->nosertifikatreg         = $request->nosertifikatreg;
@@ -466,6 +484,12 @@ class PendaftaranController extends Controller
             $datakendaraan->panjangbakatautangki    = $request->panjangbakatautangki;
             $datakendaraan->lebarbakatautangki      = $request->lebarbakatautangki;
             $datakendaraan->tinggibakatautangki     = $request->tinggibakatautangki;
+            $datakendaraan->dayaangkutorang       = $request->dayaangkutorang;
+            $datakendaraan->dayaangkutbarang      = $request->dayaangkutbarang;
+            $datakendaraan->mst                   = $request->mst;
+            $datakendaraan->julurdepan            = $request->julurdepan;
+            $datakendaraan->julurbelakang         = $request->julurbelakang;
+            $datakendaraan->groundclearance       = $request->groundclearance;
             $datakendaraan->save();
         }
         

@@ -3760,6 +3760,30 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -3823,7 +3847,15 @@ __webpack_require__.r(__webpack_exports__);
         tinggikendaraan: '0',
         panjangbakatautangki: '0',
         lebarbakatautangki: '0',
-        tinggibakatautangki: '0'
+        tinggibakatautangki: '0',
+        dayaangkutorang: '0',
+        dayaangkutbarang: '0',
+        mst: '0',
+        jbi: '0',
+        jbki: '0',
+        julurdepan: '0',
+        julurbelakang: '0',
+        groundclearance: '0'
       }),
       formjenis: new Form({
         jenis: '',
@@ -3984,6 +4016,14 @@ __webpack_require__.r(__webpack_exports__);
         _this5.form.panjangbakatautangki = _this5.post.panjangbakatautangki;
         _this5.form.lebarbakatautangki = _this5.post.lebarbakatautangki;
         _this5.form.tinggibakatautangki = _this5.post.tinggibakatautangki;
+        _this5.form.dayaangkutorang = _this5.post.dayaangkutorang;
+        _this5.form.dayaangkutbarang = _this5.post.dayaangkutbarang;
+        _this5.form.mst = _this5.post.mst;
+        _this5.form.jbi = _this5.post.jbi;
+        _this5.form.jbki = _this5.post.jbki;
+        _this5.form.julurdepan = _this5.post.julurdepan;
+        _this5.form.julurbelakang = _this5.post.julurbelakang;
+        _this5.form.groundclearance = _this5.post.groundclearance;
       })["catch"](function (err) {});
     },
     cariData: function cariData() {
@@ -4033,6 +4073,14 @@ __webpack_require__.r(__webpack_exports__);
         _this6.form.jaraksumbu3_4 = _this6.post.jaraksumbu3_4;
         _this6.form.q = _this6.post.q;
         _this6.form.p = _this6.post.p;
+        _this6.form.dayaangkutorang = _this6.post.dayaangkutorang;
+        _this6.form.dayaangkutbarang = _this6.post.dayaangkutbarang;
+        _this6.form.mst = _this6.post.mst;
+        _this6.form.jbi = _this6.post.jbi;
+        _this6.form.jbki = _this6.post.jbki;
+        _this6.form.julurdepan = _this6.post.julurdepan;
+        _this6.form.julurbelakang = _this6.post.julurbelakang;
+        _this6.form.groundclearance = _this6.post.groundclearance;
       })["catch"](function (err) {
         Swal.fire({
           type: 'error',
@@ -47908,6 +47956,131 @@ var render = function() {
                               })
                             ],
                             1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-col",
+                            { attrs: { cols: "12", sm: "6", md: "3" } },
+                            [
+                              _c("v-text-field", {
+                                attrs: {
+                                  label: "Daya Angkut Orang (orang)",
+                                  name: "dayaangkutorang",
+                                  type: "number",
+                                  outlined: "",
+                                  dense: "",
+                                  required: ""
+                                },
+                                model: {
+                                  value: _vm.form.dayaangkutorang,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.form, "dayaangkutorang", $$v)
+                                  },
+                                  expression: "form.dayaangkutorang"
+                                }
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-col",
+                            { attrs: { cols: "12", sm: "6", md: "3" } },
+                            [
+                              _c("v-text-field", {
+                                attrs: {
+                                  label: "Daya Angkut Barang (Kg)",
+                                  name: "dayaangkutbarang",
+                                  type: "number",
+                                  outlined: "",
+                                  dense: "",
+                                  required: ""
+                                },
+                                model: {
+                                  value: _vm.form.dayaangkutbarang,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.form, "dayaangkutbarang", $$v)
+                                  },
+                                  expression: "form.dayaangkutbarang"
+                                }
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-col",
+                            { attrs: { cols: "12", sm: "6", md: "3" } },
+                            [
+                              _c("v-text-field", {
+                                attrs: {
+                                  label: "MST (Kg)",
+                                  name: "mst",
+                                  type: "number",
+                                  outlined: "",
+                                  dense: "",
+                                  required: ""
+                                },
+                                model: {
+                                  value: _vm.form.mst,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.form, "mst", $$v)
+                                  },
+                                  expression: "form.mst"
+                                }
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-col",
+                            { attrs: { cols: "12", sm: "6", md: "3" } },
+                            [
+                              _c("v-text-field", {
+                                attrs: {
+                                  label: "JBI (Kg)",
+                                  name: "jbi",
+                                  type: "number",
+                                  outlined: "",
+                                  dense: "",
+                                  required: ""
+                                },
+                                model: {
+                                  value: _vm.form.jbi,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.form, "jbi", $$v)
+                                  },
+                                  expression: "form.jbi"
+                                }
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-col",
+                            { attrs: { cols: "12", sm: "6", md: "3" } },
+                            [
+                              _c("v-text-field", {
+                                attrs: {
+                                  label: "JBKI (Kg)",
+                                  name: "jbki",
+                                  type: "number",
+                                  outlined: "",
+                                  dense: "",
+                                  required: ""
+                                },
+                                model: {
+                                  value: _vm.form.jbki,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.form, "jbki", $$v)
+                                  },
+                                  expression: "form.jbki"
+                                }
+                              })
+                            ],
+                            1
                           )
                         ],
                         1
@@ -48082,6 +48255,81 @@ var render = function() {
                                     _vm.$set(_vm.form, "p", $$v)
                                   },
                                   expression: "form.p"
+                                }
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-col",
+                            { attrs: { cols: "12", sm: "6", md: "3" } },
+                            [
+                              _c("v-text-field", {
+                                attrs: {
+                                  label: "Rear Over Hang (mm)",
+                                  name: "julurbelakang",
+                                  type: "number",
+                                  outlined: "",
+                                  dense: "",
+                                  required: ""
+                                },
+                                model: {
+                                  value: _vm.form.julurbelakang,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.form, "julurbelakang", $$v)
+                                  },
+                                  expression: "form.julurbelakang"
+                                }
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-col",
+                            { attrs: { cols: "12", sm: "6", md: "3" } },
+                            [
+                              _c("v-text-field", {
+                                attrs: {
+                                  label: "Front Over Hang (mm)",
+                                  name: "julurdepan",
+                                  type: "number",
+                                  outlined: "",
+                                  dense: "",
+                                  required: ""
+                                },
+                                model: {
+                                  value: _vm.form.julurdepan,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.form, "julurdepan", $$v)
+                                  },
+                                  expression: "form.julurdepan"
+                                }
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-col",
+                            { attrs: { cols: "12", sm: "6", md: "3" } },
+                            [
+                              _c("v-text-field", {
+                                attrs: {
+                                  label: "Ground Clearance (mm)",
+                                  name: "groundclearance",
+                                  type: "number",
+                                  outlined: "",
+                                  dense: "",
+                                  required: ""
+                                },
+                                model: {
+                                  value: _vm.form.groundclearance,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.form, "groundclearance", $$v)
+                                  },
+                                  expression: "form.groundclearance"
                                 }
                               })
                             ],

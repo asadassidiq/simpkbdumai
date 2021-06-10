@@ -221,6 +221,21 @@
             <v-col cols="12" sm="6" md="4">
               <v-text-field label="Ukuran Ban" name="ukuranban" v-model="form.ukuranban" type="text" outlined dense required clearable :disabled="form.jenispendaftaran.id == '3' || form.jenispendaftaran.id == '4' || form.jenispendaftaran.id == '7' || form.jenispendaftaran.id == '12'"></v-text-field>
             </v-col>
+            <v-col cols="12" sm="6" md="3">
+            <v-text-field label="Daya Angkut Orang (orang)" name="dayaangkutorang" v-model="form.dayaangkutorang" type="number" outlined dense required></v-text-field>
+        </v-col>
+        <v-col cols="12" sm="6" md="3">
+          <v-text-field label="Daya Angkut Barang (Kg)" name="dayaangkutbarang" v-model="form.dayaangkutbarang" type="number"  outlined dense required ></v-text-field>
+        </v-col>
+          <v-col cols="12" sm="6" md="3">
+              <v-text-field label="MST (Kg)" name="mst" v-model="form.mst" type="number"  outlined dense required></v-text-field>
+          </v-col>
+          <v-col cols="12" sm="6" md="3">
+            <v-text-field label="JBI (Kg)" name="jbi" v-model="form.jbi" type="number"  outlined dense required ></v-text-field>
+          </v-col>
+          <v-col cols="12" sm="6" md="3">
+            <v-text-field label="JBKI (Kg)" name="jbki" v-model="form.jbki" type="number"  outlined dense required ></v-text-field>
+          </v-col>
         </v-row>
         </v-card-subtitle>
         </v-card>
@@ -245,6 +260,15 @@
               </v-col>
               <v-col cols="12" sm="6" md="3">
                 <v-text-field label="P (mm)" name="p" v-model="form.p" type="number"  outlined dense required :disabled="form.jenispendaftaran.id == '3' || form.jenispendaftaran.id == '4' || form.jenispendaftaran.id == '7' || form.jenispendaftaran.id == '12'"></v-text-field>
+              </v-col>
+              <v-col cols="12" sm="6" md="3">
+                <v-text-field label="Rear Over Hang (mm)" name="julurbelakang" v-model="form.julurbelakang" type="number"  outlined dense required></v-text-field>
+              </v-col>
+              <v-col cols="12" sm="6" md="3">
+                <v-text-field label="Front Over Hang (mm)" name="julurdepan" v-model="form.julurdepan" type="number"  outlined dense required></v-text-field>
+              </v-col>
+              <v-col cols="12" sm="6" md="3">
+                <v-text-field label="Ground Clearance (mm)" name="groundclearance" v-model="form.groundclearance" type="number"  outlined dense required ></v-text-field>
               </v-col>
           </v-row>
           </v-card-subtitle>
@@ -446,6 +470,14 @@ export default {
                 panjangbakatautangki:'0',
                 lebarbakatautangki:'0',
                 tinggibakatautangki:'0',
+                dayaangkutorang:'0',
+                dayaangkutbarang:'0',
+                mst:'0',
+                jbi:'0',
+                jbki:'0',
+                julurdepan: '0',
+                julurbelakang: '0',
+                groundclearance:'0',
             }),
             formjenis: new Form({
                 jenis:'',
@@ -605,6 +637,14 @@ export default {
                     this.form.panjangbakatautangki = this.post.panjangbakatautangki
                     this.form.lebarbakatautangki = this.post.lebarbakatautangki
                     this.form.tinggibakatautangki = this.post.tinggibakatautangki
+                    this.form.dayaangkutorang = this.post.dayaangkutorang
+                    this.form.dayaangkutbarang = this.post.dayaangkutbarang
+                    this.form.mst = this.post.mst
+                    this.form.jbi = this.post.jbi
+                    this.form.jbki = this.post.jbki
+                    this.form.julurdepan = this.post.julurdepan
+                    this.form.julurbelakang = this.post.julurbelakang
+                    this.form.groundclearance = this.post.groundclearance
                 }).catch((err) => {
 
                 });
@@ -654,6 +694,14 @@ export default {
                     this.form.jaraksumbu3_4 = this.post.jaraksumbu3_4
                     this.form.q = this.post.q
                     this.form.p = this.post.p
+                    this.form.dayaangkutorang = this.post.dayaangkutorang
+                    this.form.dayaangkutbarang = this.post.dayaangkutbarang
+                    this.form.mst = this.post.mst
+                    this.form.jbi = this.post.jbi
+                    this.form.jbki = this.post.jbki
+                    this.form.julurdepan = this.post.julurdepan
+                    this.form.julurbelakang = this.post.julurbelakang
+                    this.form.groundclearance = this.post.groundclearance
                 }).catch((err) => {
                     Swal.fire({
                         type: 'error',
