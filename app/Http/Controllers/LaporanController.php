@@ -6,6 +6,7 @@ use App\Pendaftaran;
 use App\PendaftranOld;
 use App\Transaksi;
 use App\Datakendaraan;
+use App\Datapengujian;
 use App\Identitaskendaraan;
 use App\Kodewilayah;
 use App\Kodepenerbitan;
@@ -245,21 +246,21 @@ class LaporanController extends Controller
                         );
             array_push($jumlah, $arr);
 
-        $jenispengujian = array("UJI PERTAMA","UJI ULANG","PEMERINTAH","NUMPANG UJI MASUK", "PINDAH MASUK","NUMPANG UJI KELUAR");
+        $jenispengujian = array("UJI PERTAMA","UJI ULANG","PEMERINTAH","NUMPANG UJI MASUK", "PINDAH MASUK","NUMPANG UJI KELUAR","RUSAK","HILANG");
         $totalkeuangan = array();
         foreach ($jenispengujian as $list) {
             if ($list == 'UJI PERTAMA') {
                 $jenis = '1';
             }elseif($list == 'UJI ULANG'){
                 $jenis = '2';
-            }elseif($list == 'PEMERINTAH'){
-                $jenis = '12';
+            }elseif($list == 'RUSAK'){
+                $jenis = '3';
+            }elseif($list == 'HILANG'){
+                $jenis = '4';
             }elseif($list == 'NUMPANG UJI MASUK'){
                 $jenis = '5';
             }elseif($list == 'PINDAH MASUK'){
                 $jenis = '6';
-            }elseif($list == 'NUMPANG UJI KELUAR'){
-                $jenis = '9';
             }
             $arr = array(
                     'jenispengujian' => $list,
@@ -277,6 +278,26 @@ class LaporanController extends Controller
             array_push($totalkeuangan, $arr);
 
         }
+
+        $totalkartu = array();
+        
+            $arr = array(
+                    'ujipertama'  => Datapengujian::leftJoin('pendaftarans','pendaftarans.idx','=','datapengujian.idx')->where('statuspenerbitan','1')->whereMonth('tglpendaftaran',$bulan)->WhereNotNull('nokendalikartu')->count('datapengujian.idx'),
+                    'ujiberkala'  => Datapengujian::leftJoin('pendaftarans','pendaftarans.idx','=','datapengujian.idx')->where('statuspenerbitan','2')->whereMonth('tglpendaftaran',$bulan)->WhereNotNull('nokendalikartu')->count('datapengujian.idx'),
+                    'rusak'  => Datapengujian::leftJoin('pendaftarans','pendaftarans.idx','=','datapengujian.idx')->where('statuspenerbitan','3')->whereMonth('tglpendaftaran',$bulan)->WhereNotNull('nokendalikartu')->count('datapengujian.idx'),
+                    'hilang'  => Datapengujian::leftJoin('pendaftarans','pendaftarans.idx','=','datapengujian.idx')->where('statuspenerbitan','4')->whereMonth('tglpendaftaran',$bulan)->WhereNotNull('nokendalikartu')->count('datapengujian.idx'),
+                    'numasuk'  => Datapengujian::leftJoin('pendaftarans','pendaftarans.idx','=','datapengujian.idx')->where('statuspenerbitan','5')->whereMonth('tglpendaftaran',$bulan)->WhereNotNull('nokendalikartu')->count('datapengujian.idx'),
+                    'mutasimasuk'  => Datapengujian::leftJoin('pendaftarans','pendaftarans.idx','=','datapengujian.idx')->where('statuspenerbitan','6')->whereMonth('tglpendaftaran',$bulan)->WhereNotNull('nokendalikartu')->count('datapengujian.idx'),
+                    'ujipertamaamp' => Pendaftaran::where('kodepenerbitans_id','1')->whereMonth('tglamprah',$bulan)->WhereNotNull('noamprah')->count('noamprah'),
+                    'ujiberkalaamp' => Pendaftaran::where('kodepenerbitans_id','2')->whereMonth('tglamprah',$bulan)->WhereNotNull('noamprah')->count('noamprah'),
+                    'numasukamp' => Pendaftaran::where('kodepenerbitans_id','5')->whereMonth('tglamprah',$bulan)->WhereNotNull('noamprah')->count('noamprah'),
+                    'nukeluaramp' => Pendaftaran::where('kodepenerbitans_id','9')->whereMonth('tglamprah',$bulan)->WhereNotNull('noamprah')->count('noamprah'),
+                    'mutasimasukamp' => Pendaftaran::where('kodepenerbitans_id','6')->whereMonth('tglamprah',$bulan)->WhereNotNull('noamprah')->count('noamprah'),
+                    'mutasikeluaramp' => Pendaftaran::where('kodepenerbitans_id','10')->whereMonth('tglamprah',$bulan)->WhereNotNull('noamprah')->count('noamprah'),
+                    );
+            array_push($totalkartu, $arr);
+
+
         $dayaangkutorang = array("RENTAL = 5/9 ORANG","TAKSI = 4/5 ORANG","TAKSI = 6/7 ORANG","AJDP = 6/7 ORANG","OPLET = 8/9 ORANG", "BIS = 10/12 ORANG","BIS = 13/30 ORANG", "BIS = 21/30 ORANG","BIS = 31/40 ORANG","BIS = 40 KEATAS");
         $totaldayaangkutorang = array();
         foreach ($dayaangkutorang as $list) {
@@ -524,7 +545,7 @@ class LaporanController extends Controller
             array_push($totalwilayahmuall, $arr);
         }
 
-        return view('admin.cetak.laporanloketpendaftaranbulanan_print', ['tglprint' => $tglprint,'tglcetak' => $tglcetak, 'totaljenis' => $totaljenis, 'totalklasifikasi' => $totalklasifikasi, 'jumlah' => $jumlah, 'totaldayaangkutorang' => $totaldayaangkutorang, 'totalmerek' => $totalmerek, 'totaljbb' => $totaljbb, 'totalwilayahnu' => $totalwilayahnu, 'totalwilayahnuall' => $totalwilayahnuall, 'totalwilayahmu' => $totalwilayahmu, 'totalwilayahmuall' => $totalwilayahmuall, 'totalkeuangan' => $totalkeuangan ]);
+        return view('admin.cetak.laporanloketpendaftaranbulanan_print', ['tglprint' => $tglprint,'tglcetak' => $tglcetak, 'totaljenis' => $totaljenis,'totalkartu' => $totalkartu, 'totalklasifikasi' => $totalklasifikasi, 'jumlah' => $jumlah, 'totaldayaangkutorang' => $totaldayaangkutorang, 'totalmerek' => $totalmerek, 'totaljbb' => $totaljbb, 'totalwilayahnu' => $totalwilayahnu, 'totalwilayahnuall' => $totalwilayahnuall, 'totalwilayahmu' => $totalwilayahmu, 'totalwilayahmuall' => $totalwilayahmuall, 'totalkeuangan' => $totalkeuangan ]);
     }
 
     public function printlaporanloketpendaftarantriwulan($tgl1,$tgl2)
@@ -817,16 +838,16 @@ class LaporanController extends Controller
             }
             $arr = array(
                     'dayaangkutorang' => $list,
-                    '0-1'             => Pendaftaran::leftJoin('identitaskendaraans','identitaskendaraans.id','=','pendaftarans.identitaskendaraan_id')->leftJoin('datakendaraans','datakendaraans.identitaskendaraan_id','=','identitaskendaraans.id')->whereBetween('tglpendaftaran',[$tglcreate1,$tglcreate2])->where('jenis','like','%'.$jenis.'%')->where('dayaangkutorang','>=',$jmlorang1)->where('dayaangkutorang','<=',$jmlorang2)->where('thpembuatan','>=',$tahun-1)->where('kodepenerbitans_id','!=','7')->where('kodepenerbitans_id','!=','12')->count(), 
-                    '2'               => Pendaftaran::leftJoin('identitaskendaraans','identitaskendaraans.id','=','pendaftarans.identitaskendaraan_id')->leftJoin('datakendaraans','datakendaraans.identitaskendaraan_id','=','identitaskendaraans.id')->whereBetween('tglpendaftaran',[$tglcreate1,$tglcreate2])->where('jenis','like','%'.$jenis.'%')->where('dayaangkutorang','>=',$jmlorang1)->where('dayaangkutorang','<=',$jmlorang2)->where('thpembuatan','=',$tahun-2)->where('kodepenerbitans_id','!=','7')->where('kodepenerbitans_id','!=','12')->count(), 
-                    '3'               => Pendaftaran::leftJoin('identitaskendaraans','identitaskendaraans.id','=','pendaftarans.identitaskendaraan_id')->leftJoin('datakendaraans','datakendaraans.identitaskendaraan_id','=','identitaskendaraans.id')->whereBetween('tglpendaftaran',[$tglcreate1,$tglcreate2])->where('jenis','like','%'.$jenis.'%')->where('dayaangkutorang','>=',$jmlorang1)->where('dayaangkutorang','<=',$jmlorang2)->where('thpembuatan','=',$tahun-3)->where('kodepenerbitans_id','!=','7')->where('kodepenerbitans_id','!=','12')->count(), 
-                    '4'               => Pendaftaran::leftJoin('identitaskendaraans','identitaskendaraans.id','=','pendaftarans.identitaskendaraan_id')->leftJoin('datakendaraans','datakendaraans.identitaskendaraan_id','=','identitaskendaraans.id')->whereBetween('tglpendaftaran',[$tglcreate1,$tglcreate2])->where('jenis','like','%'.$jenis.'%')->where('dayaangkutorang','>=',$jmlorang1)->where('dayaangkutorang','<=',$jmlorang2)->where('thpembuatan','=',$tahun-4)->where('kodepenerbitans_id','!=','7')->where('kodepenerbitans_id','!=','12')->count(), 
-                    '5'               => Pendaftaran::leftJoin('identitaskendaraans','identitaskendaraans.id','=','pendaftarans.identitaskendaraan_id')->leftJoin('datakendaraans','datakendaraans.identitaskendaraan_id','=','identitaskendaraans.id')->whereBetween('tglpendaftaran',[$tglcreate1,$tglcreate2])->where('jenis','like','%'.$jenis.'%')->where('dayaangkutorang','>=',$jmlorang1)->where('dayaangkutorang','<=',$jmlorang2)->where('thpembuatan','=',$tahun-5)->where('kodepenerbitans_id','!=','7')->where('kodepenerbitans_id','!=','12')->count(), 
-                    '6'               => Pendaftaran::leftJoin('identitaskendaraans','identitaskendaraans.id','=','pendaftarans.identitaskendaraan_id')->leftJoin('datakendaraans','datakendaraans.identitaskendaraan_id','=','identitaskendaraans.id')->whereBetween('tglpendaftaran',[$tglcreate1,$tglcreate2])->where('jenis','like','%'.$jenis.'%')->where('dayaangkutorang','>=',$jmlorang1)->where('dayaangkutorang','<=',$jmlorang2)->where('thpembuatan','=',$tahun-6)->where('kodepenerbitans_id','!=','7')->where('kodepenerbitans_id','!=','12')->count(), 
-                    '7'               => Pendaftaran::leftJoin('identitaskendaraans','identitaskendaraans.id','=','pendaftarans.identitaskendaraan_id')->leftJoin('datakendaraans','datakendaraans.identitaskendaraan_id','=','identitaskendaraans.id')->whereBetween('tglpendaftaran',[$tglcreate1,$tglcreate2])->where('jenis','like','%'.$jenis.'%')->where('dayaangkutorang','>=',$jmlorang1)->where('dayaangkutorang','<=',$jmlorang2)->where('thpembuatan','=',$tahun-7)->where('kodepenerbitans_id','!=','7')->where('kodepenerbitans_id','!=','12')->count(), 
-                    '8'               => Pendaftaran::leftJoin('identitaskendaraans','identitaskendaraans.id','=','pendaftarans.identitaskendaraan_id')->leftJoin('datakendaraans','datakendaraans.identitaskendaraan_id','=','identitaskendaraans.id')->whereBetween('tglpendaftaran',[$tglcreate1,$tglcreate2])->where('jenis','like','%'.$jenis.'%')->where('dayaangkutorang','>=',$jmlorang1)->where('dayaangkutorang','<=',$jmlorang2)->where('thpembuatan','=',$tahun-8)->where('kodepenerbitans_id','!=','7')->where('kodepenerbitans_id','!=','12')->count(), 
-                    '9'               => Pendaftaran::leftJoin('identitaskendaraans','identitaskendaraans.id','=','pendaftarans.identitaskendaraan_id')->leftJoin('datakendaraans','datakendaraans.identitaskendaraan_id','=','identitaskendaraans.id')->whereBetween('tglpendaftaran',[$tglcreate1,$tglcreate2])->where('jenis','like','%'.$jenis.'%')->where('dayaangkutorang','>=',$jmlorang1)->where('dayaangkutorang','<=',$jmlorang2)->where('thpembuatan','=',$tahun-9)->where('kodepenerbitans_id','!=','7')->where('kodepenerbitans_id','!=','12')->count(), 
-                    '10'              => Pendaftaran::leftJoin('identitaskendaraans','identitaskendaraans.id','=','pendaftarans.identitaskendaraan_id')->leftJoin('datakendaraans','datakendaraans.identitaskendaraan_id','=','identitaskendaraans.id')->whereBetween('tglpendaftaran',[$tglcreate1,$tglcreate2])->where('jenis','like','%'.$jenis.'%')->where('dayaangkutorang','>=',$jmlorang1)->where('dayaangkutorang','<=',$jmlorang2)->where('thpembuatan','<=',$tahun-10)->where('kodepenerbitans_id','!=','7')->where('kodepenerbitans_id','!=','12')->count(), 
+                    '0-1'             => Pendaftaran::leftJoin('identitaskendaraans','identitaskendaraans.id','=','pendaftarans.identitaskendaraan_id')->leftJoin('datakendaraans','datakendaraans.identitaskendaraan_id','=','identitaskendaraans.id')->whereBetween('tglpendaftaran',[$tglcreate1,$tglcreate2])->where('jenis','like','%'.$jenis.'%')->where('dayaangkutorang','>=',$jmlorang1)->where('dayaangkutorang','<=',$jmlorang2)->where('thpembuatan','>=',$tahun3-1)->where('kodepenerbitans_id','!=','7')->where('kodepenerbitans_id','!=','12')->count(), 
+                    '2'               => Pendaftaran::leftJoin('identitaskendaraans','identitaskendaraans.id','=','pendaftarans.identitaskendaraan_id')->leftJoin('datakendaraans','datakendaraans.identitaskendaraan_id','=','identitaskendaraans.id')->whereBetween('tglpendaftaran',[$tglcreate1,$tglcreate2])->where('jenis','like','%'.$jenis.'%')->where('dayaangkutorang','>=',$jmlorang1)->where('dayaangkutorang','<=',$jmlorang2)->where('thpembuatan','=',$tahun3-2)->where('kodepenerbitans_id','!=','7')->where('kodepenerbitans_id','!=','12')->count(), 
+                    '3'               => Pendaftaran::leftJoin('identitaskendaraans','identitaskendaraans.id','=','pendaftarans.identitaskendaraan_id')->leftJoin('datakendaraans','datakendaraans.identitaskendaraan_id','=','identitaskendaraans.id')->whereBetween('tglpendaftaran',[$tglcreate1,$tglcreate2])->where('jenis','like','%'.$jenis.'%')->where('dayaangkutorang','>=',$jmlorang1)->where('dayaangkutorang','<=',$jmlorang2)->where('thpembuatan','=',$tahun3-3)->where('kodepenerbitans_id','!=','7')->where('kodepenerbitans_id','!=','12')->count(), 
+                    '4'               => Pendaftaran::leftJoin('identitaskendaraans','identitaskendaraans.id','=','pendaftarans.identitaskendaraan_id')->leftJoin('datakendaraans','datakendaraans.identitaskendaraan_id','=','identitaskendaraans.id')->whereBetween('tglpendaftaran',[$tglcreate1,$tglcreate2])->where('jenis','like','%'.$jenis.'%')->where('dayaangkutorang','>=',$jmlorang1)->where('dayaangkutorang','<=',$jmlorang2)->where('thpembuatan','=',$tahun3-4)->where('kodepenerbitans_id','!=','7')->where('kodepenerbitans_id','!=','12')->count(), 
+                    '5'               => Pendaftaran::leftJoin('identitaskendaraans','identitaskendaraans.id','=','pendaftarans.identitaskendaraan_id')->leftJoin('datakendaraans','datakendaraans.identitaskendaraan_id','=','identitaskendaraans.id')->whereBetween('tglpendaftaran',[$tglcreate1,$tglcreate2])->where('jenis','like','%'.$jenis.'%')->where('dayaangkutorang','>=',$jmlorang1)->where('dayaangkutorang','<=',$jmlorang2)->where('thpembuatan','=',$tahun3-5)->where('kodepenerbitans_id','!=','7')->where('kodepenerbitans_id','!=','12')->count(), 
+                    '6'               => Pendaftaran::leftJoin('identitaskendaraans','identitaskendaraans.id','=','pendaftarans.identitaskendaraan_id')->leftJoin('datakendaraans','datakendaraans.identitaskendaraan_id','=','identitaskendaraans.id')->whereBetween('tglpendaftaran',[$tglcreate1,$tglcreate2])->where('jenis','like','%'.$jenis.'%')->where('dayaangkutorang','>=',$jmlorang1)->where('dayaangkutorang','<=',$jmlorang2)->where('thpembuatan','=',$tahun3-6)->where('kodepenerbitans_id','!=','7')->where('kodepenerbitans_id','!=','12')->count(), 
+                    '7'               => Pendaftaran::leftJoin('identitaskendaraans','identitaskendaraans.id','=','pendaftarans.identitaskendaraan_id')->leftJoin('datakendaraans','datakendaraans.identitaskendaraan_id','=','identitaskendaraans.id')->whereBetween('tglpendaftaran',[$tglcreate1,$tglcreate2])->where('jenis','like','%'.$jenis.'%')->where('dayaangkutorang','>=',$jmlorang1)->where('dayaangkutorang','<=',$jmlorang2)->where('thpembuatan','=',$tahun3-7)->where('kodepenerbitans_id','!=','7')->where('kodepenerbitans_id','!=','12')->count(), 
+                    '8'               => Pendaftaran::leftJoin('identitaskendaraans','identitaskendaraans.id','=','pendaftarans.identitaskendaraan_id')->leftJoin('datakendaraans','datakendaraans.identitaskendaraan_id','=','identitaskendaraans.id')->whereBetween('tglpendaftaran',[$tglcreate1,$tglcreate2])->where('jenis','like','%'.$jenis.'%')->where('dayaangkutorang','>=',$jmlorang1)->where('dayaangkutorang','<=',$jmlorang2)->where('thpembuatan','=',$tahun3-8)->where('kodepenerbitans_id','!=','7')->where('kodepenerbitans_id','!=','12')->count(), 
+                    '9'               => Pendaftaran::leftJoin('identitaskendaraans','identitaskendaraans.id','=','pendaftarans.identitaskendaraan_id')->leftJoin('datakendaraans','datakendaraans.identitaskendaraan_id','=','identitaskendaraans.id')->whereBetween('tglpendaftaran',[$tglcreate1,$tglcreate2])->where('jenis','like','%'.$jenis.'%')->where('dayaangkutorang','>=',$jmlorang1)->where('dayaangkutorang','<=',$jmlorang2)->where('thpembuatan','=',$tahun3-9)->where('kodepenerbitans_id','!=','7')->where('kodepenerbitans_id','!=','12')->count(), 
+                    '10'              => Pendaftaran::leftJoin('identitaskendaraans','identitaskendaraans.id','=','pendaftarans.identitaskendaraan_id')->leftJoin('datakendaraans','datakendaraans.identitaskendaraan_id','=','identitaskendaraans.id')->whereBetween('tglpendaftaran',[$tglcreate1,$tglcreate2])->where('jenis','like','%'.$jenis.'%')->where('dayaangkutorang','>=',$jmlorang1)->where('dayaangkutorang','<=',$jmlorang2)->where('thpembuatan','<=',$tahun3-10)->where('kodepenerbitans_id','!=','7')->where('kodepenerbitans_id','!=','12')->count(), 
                 );
             array_push($totaldayaangkutorang, $arr);
         }

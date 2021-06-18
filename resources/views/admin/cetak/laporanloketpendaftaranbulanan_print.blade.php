@@ -130,6 +130,87 @@
         </div>
     </div>
 
+
+
+    <div class="container-fluid kertasbaru">
+        <div class="row">
+            <div class="col-1">
+                <p>DAFTAR</p>
+                <P>PADA</P>
+                <P>BULAN</P>
+            </div>
+            <div class="col-11">
+                <p class="text-left">: KARTU UJI DAN AMPRAH YANG KELUAR</p>
+                <p class="text-left">: DINAS PERHBUNGAN KOTA DUMAI</p>
+                <p class="text-left">: {{ $tglprint }}</p>
+            </div>  
+        </div>
+    
+        <div class="row">
+            <div class="col-12">
+            <table class="table table-bordered ">
+                <thead>
+                    <tr>
+                        <th scope="col" colspan="6" class="text-center">KARTU UJI</th>
+                        <th scope="col" colspan="8" class="text-center">AMPRAH</th>
+                    </tr>
+                    <tr>
+                        <th scope="col" class="text-center">UJI PERTAMA</th>
+                        <th scope="col" class="text-center">UJI BERKALA</th>
+                        <th scope="col" class="text-center">NUMPANG UJI MASUK</th>
+                        <th scope="col" class="text-center">MUTASI MASUK</th>
+                        <th scope="col" class="text-center">RUSAK</th>
+                        <th scope="col" class="text-center">HILANG</th>
+                        <th scope="col" class="text-center">UJI PERTAMA</th>
+                        <th scope="col" class="text-center">UJI BERKALA</th>
+                        <th scope="col" class="text-center">NUMPANG UJI MASUK</th>
+                        <th scope="col" class="text-center">NUMPANG UJI KELUAR</th>
+                        <th scope="col" class="text-center">MUTASI MASUK</th>
+                        <th scope="col" class="text-center">MUTASI KELUAR</th>
+                    </tr>
+                </thead>
+                <tbody>
+                @foreach ($totalkartu as $data)
+                    <tr>
+                        <td>{{ $data['ujipertama'] }}</td>
+                        <td>{{ $data['ujiberkala'] }}</td>
+                        <td>{{ $data['rusak'] }}</td>
+                        <td>{{ $data['hilang'] }}</td>
+                        <td>{{ $data['numasuk'] }}</td>
+                        <td>{{ $data['mutasimasuk'] }}</td>
+                        <td>{{ $data['ujipertamaamp'] }}</td>
+                        <td>{{ $data['ujiberkalaamp'] }}</td>
+                        <td>{{ $data['numasukamp'] }}</td>
+                        <td>{{ $data['nukeluaramp'] }}</td>
+                        <td>{{ $data['mutasimasukamp'] }}</td>
+                        <td>{{ $data['mutasikeluaramp'] }}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="6" class="text-center"><b>{{ $data['ujipertama']+$data['ujiberkala']+$data['rusak']+$data['hilang']+$data['numasukamp']+$data['mutasimasuk'] }}</b></td>
+                        <td colspan="6" class="text-center"><b>{{ $data['ujipertamaamp']+$data['ujiberkalaamp']+$data['numasukamp']+$data['nukeluaramp']+$data['mutasimasukamp']+$data['mutasikeluaramp'] }}</b></td>
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
+            </div>
+        </div>
+        <br>
+        <div class="row" style="font-size:14px">
+            <div class="col-8"></div>
+            <div class="col-4 text-center">
+                    <p>Dumai, {{ $tglcetak }}</p>
+                <b>
+                    <P>Kepala UPU Berkala</P>
+                    <P>PENGUJIAN KENDARAAN BERMOTOR</P>
+                    <br><br>
+                    <br>
+                    <p><u>EFFENDI, A.Ma.PKB</u></p>
+                    <p>NIP. 19760606 200212 1 011</p>
+                </b>
+            </div>
+        </div>
+    </div>
+
     <div class="container-fluid kertasbaru">
         <div class="row">
             <div class="col-1">

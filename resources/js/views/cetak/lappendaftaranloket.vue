@@ -156,7 +156,7 @@
             <v-col cols="12">
             <v-row no-gutters>
             <v-col cols="10">
-                  <v-menu ref="menu8" v-model="menu8":close-on-content-click="false" :return-value.sync="formharian.tgl"
+                  <v-menu ref="menu8" v-model="menu8":close-on-content-click="false" :return-value.sync="tglharianlama.tgl"
                     transition="scale-transition" offset-y min-width="290px">
                     <template v-slot:activator="{ on, attrs }">
                       <v-text-field v-model="tglharianlama" name="tgl" label="Tanggal" outlined dense required v-bind="attrs" v-on="on"
@@ -274,10 +274,10 @@ import downloadexcel from "vue-json-excel";
       printtahunan(){
             window.open('/cetak/'+this.tgltahuanan+'/laporanloketpendaftarantahunan', "_blank");
       },printharianlama() {
-            window.open('/cetak/'+this.formharian.tgl+'/laporanpendaftaranlama', "_blank");
+            window.open('/cetak/'+this.tglharianlama+'/laporanpendaftaranlama', "_blank");
         },
       printbulananlama(){
-            window.open('/cetak/'+this.tglbulanan+'/laporanpendaftaranbulananlama', "_blank");
+            window.open('/cetak/'+this.tglbulananlama+'/laporanpendaftaranbulananlama', "_blank");
       },
       async fetchData() {
         let data;
