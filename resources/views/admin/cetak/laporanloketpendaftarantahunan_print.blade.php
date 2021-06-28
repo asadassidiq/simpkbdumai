@@ -161,7 +161,7 @@
                         <th scope="col" class="text-center">BERUBAH JENIS</th>
                         <th scope="col" class="text-center">BERUBAH SIFAT</th>
                         <th scope="col" class="text-center">MUTASI</th>
-                        <th scope="col" class="text-center">UJI PERTAMA</th>
+                        <th scope="col" class="text-center">NUMPANG UJI</th>
                         <th scope="col" class="text-center">BERUBAH JENIS</th>
                         <th scope="col" class="text-center">BERUBAH SIFAT</th>
                         <th scope="col" class="text-center">MUTASI</th>
@@ -213,6 +213,7 @@
                             <td>{{ $data1['berubahsifatkeluar']  }}</td>
                             <td>{{ $data1['mutasikeluar']  }}</td>
                             <td>{{ $data1['afkirkeluar']  }}</td>
+                            <td>{{ $data1['thlalu']+$data1['ujipertama']+$data1['berubahsifat']+$data1['berubahjenis']+$data1['mutasimasuk']-$data1['numpangujikeluar']-$data1['berubahsifatkeluar']-$data1['berubahjeniskeluar']-$data1['mutasikeluar']-$data1['afkirkeluar'] }}</td>
                         </tr>
                         @endforeach
                         @php $tot1=$tot1+$data1['thlalu'];$tot2=$tot2+$data1['ujipertama'];$tot3=$tot3+$data1['berubahjenis'];$tot4=$tot4+$data1['berubahsifat'];$tot5=$tot5+$data1['mutasimasuk'];$tot6=$tot6+$data1['numpangujikeluar'];$tot7=$tot7+$data1['berubahjeniskeluar'];$tot8=$tot8+$data1['berubahsifatkeluar'];$tot9=$tot9+$data1['mutasikeluar'];$tot10=$tot10+$data1['afkirkeluar'];
@@ -230,6 +231,7 @@
                             <td>{{ $tot8 }}</td>
                             <td>{{ $tot9 }}</td>
                             <td>{{ $tot10 }}</td>
+                            <td>{{ $tot1+$tot2+$tot3+$tot4+$tot5-$tot6-$tot7-$tot8-$tot9-$tot10 }}</td>
                         </tr>
                 </tbody>
             </table>

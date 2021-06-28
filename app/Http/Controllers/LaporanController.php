@@ -216,7 +216,7 @@ class LaporanController extends Controller
         $tglprint = $bulan_ini1;
         $tglcetak = $hari1.' '.$bulan_ini.' '.$tahun1;
 
-        $jeniskendaraan = Jenis::leftJoin('klasifikasis','klasifikasis.id','=','jenis.klasifikasis_id')->get();
+        $jeniskendaraan = Jenis::leftJoin('klasifikasis','klasifikasis.id','=','jenis.klasifikasis_id')->groupBy('jenis.jenis')->orderBy('jenis.jenis','ASC')->get();
 
         $totaljenis = array();
         foreach ($jeniskendaraan as $list) {
@@ -246,7 +246,7 @@ class LaporanController extends Controller
                         );
             array_push($jumlah, $arr);
 
-        $jenispengujian = array("UJI PERTAMA","UJI ULANG","PEMERINTAH","NUMPANG UJI MASUK", "PINDAH MASUK","NUMPANG UJI KELUAR","RUSAK","HILANG");
+        $jenispengujian = array("UJI PERTAMA","UJI ULANG","NUMPANG UJI MASUK", "PINDAH MASUK","PINDAH KELUAR","NUMPANG UJI KELUAR","RUSAK","HILANG");
         $totalkeuangan = array();
         foreach ($jenispengujian as $list) {
             if ($list == 'UJI PERTAMA') {
@@ -261,6 +261,10 @@ class LaporanController extends Controller
                 $jenis = '5';
             }elseif($list == 'PINDAH MASUK'){
                 $jenis = '6';
+            }elseif($list == 'NUMPANG UJI KELUAR'){
+                $jenis = '9';
+            }elseif($list == 'PINDAH KELUAR'){
+                $jenis = '10';
             }
             $arr = array(
                     'jenispengujian' => $list,
@@ -302,7 +306,7 @@ class LaporanController extends Controller
         $totaldayaangkutorang = array();
         foreach ($dayaangkutorang as $list) {
             if ($list == 'RENTAL = 5/9 ORANG') {
-                $jenis = 'RENTAL';
+                $jenis = '2';
                 $jmlorang1 = 5;
                 $jmlorang2 = 9;
             }elseif ($list == 'TAKSI = 4/5 ORANG') {
@@ -310,50 +314,50 @@ class LaporanController extends Controller
                 $jmlorang1 = 4;
                 $jmlorang2 = 5;
             }elseif ($list == 'TAKSI = 6/7 ORANG') {
-                $jenis = 'TAKSI';
+                $jenis = '2';
                 $jmlorang1 = 6;
                 $jmlorang2 = 7;
             }elseif ($list == 'TAKSI = 4/5 ORANG') {
-                $jenis = 'TAKSI';
+                $jenis = '2';
                 $jmlorang1 = 4;
                 $jmlorang2 = 5;
             }elseif ($list == 'AJDP = 6/7 ORANG') {
-                $jenis = 'AJDP';
+                $jenis = '2';
                 $jmlorang1 = 6;
                 $jmlorang2 = 7;
             }elseif ($list == 'BIS = 10/12 ORANG') {
-                $jenis = 'BIS';
+                $jenis = '3';
                 $jmlorang1 = 10;
                 $jmlorang2 = 12;
             }elseif ($list == 'BIS = 13/20 ORANG') {
-                $jenis = 'BIS';
+                $jenis = '3';
                 $jmlorang1 = 13;
                 $jmlorang2 = 20;
             }elseif ($list == 'BIS = 21/30 ORANG') {
-                $jenis = 'BIS';
+                $jenis = '3';
                 $jmlorang1 = 21;
                 $jmlorang2 = 30;
             }elseif ($list == 'BIS = 31/40 ORANG') {
-                $jenis = 'BIS';
+                $jenis = '3';
                 $jmlorang1 = 31;
                 $jmlorang2 = 40;
             }elseif ($list == 'BIS = 40 KEATAS') {
-                $jenis = 'BIS';
+                $jenis = '3';
                 $jmlorang1 = 40;
                 $jmlorang2 = 60;
             }
             $arr = array(
                     'dayaangkutorang' => $list,
-                    '0-1'             => Pendaftaran::leftJoin('identitaskendaraans','identitaskendaraans.id','=','pendaftarans.identitaskendaraan_id')->leftJoin('datakendaraans','datakendaraans.identitaskendaraan_id','=','identitaskendaraans.id')->whereMonth('tglpendaftaran',$bulan)->where('jenis','like','%'.$jenis.'%')->where('dayaangkutorang','>=',$jmlorang1)->where('dayaangkutorang','<=',$jmlorang2)->where('thpembuatan','>=',$tahun-1)->where('kodepenerbitans_id','!=','7')->where('kodepenerbitans_id','!=','12')->count(), 
-                    '2'               => Pendaftaran::leftJoin('identitaskendaraans','identitaskendaraans.id','=','pendaftarans.identitaskendaraan_id')->leftJoin('datakendaraans','datakendaraans.identitaskendaraan_id','=','identitaskendaraans.id')->whereMonth('tglpendaftaran',$bulan)->where('jenis','like','%'.$jenis.'%')->where('dayaangkutorang','>=',$jmlorang1)->where('dayaangkutorang','<=',$jmlorang2)->where('thpembuatan','=',$tahun-2)->where('kodepenerbitans_id','!=','7')->where('kodepenerbitans_id','!=','12')->count(), 
-                    '3'               => Pendaftaran::leftJoin('identitaskendaraans','identitaskendaraans.id','=','pendaftarans.identitaskendaraan_id')->leftJoin('datakendaraans','datakendaraans.identitaskendaraan_id','=','identitaskendaraans.id')->whereMonth('tglpendaftaran',$bulan)->where('jenis','like','%'.$jenis.'%')->where('dayaangkutorang','>=',$jmlorang1)->where('dayaangkutorang','<=',$jmlorang2)->where('thpembuatan','=',$tahun-3)->where('kodepenerbitans_id','!=','7')->where('kodepenerbitans_id','!=','12')->count(), 
-                    '4'               => Pendaftaran::leftJoin('identitaskendaraans','identitaskendaraans.id','=','pendaftarans.identitaskendaraan_id')->leftJoin('datakendaraans','datakendaraans.identitaskendaraan_id','=','identitaskendaraans.id')->whereMonth('tglpendaftaran',$bulan)->where('jenis','like','%'.$jenis.'%')->where('dayaangkutorang','>=',$jmlorang1)->where('dayaangkutorang','<=',$jmlorang2)->where('thpembuatan','=',$tahun-4)->where('kodepenerbitans_id','!=','7')->where('kodepenerbitans_id','!=','12')->count(), 
-                    '5'               => Pendaftaran::leftJoin('identitaskendaraans','identitaskendaraans.id','=','pendaftarans.identitaskendaraan_id')->leftJoin('datakendaraans','datakendaraans.identitaskendaraan_id','=','identitaskendaraans.id')->whereMonth('tglpendaftaran',$bulan)->where('jenis','like','%'.$jenis.'%')->where('dayaangkutorang','>=',$jmlorang1)->where('dayaangkutorang','<=',$jmlorang2)->where('thpembuatan','=',$tahun-5)->where('kodepenerbitans_id','!=','7')->where('kodepenerbitans_id','!=','12')->count(), 
-                    '6'               => Pendaftaran::leftJoin('identitaskendaraans','identitaskendaraans.id','=','pendaftarans.identitaskendaraan_id')->leftJoin('datakendaraans','datakendaraans.identitaskendaraan_id','=','identitaskendaraans.id')->whereMonth('tglpendaftaran',$bulan)->where('jenis','like','%'.$jenis.'%')->where('dayaangkutorang','>=',$jmlorang1)->where('dayaangkutorang','<=',$jmlorang2)->where('thpembuatan','=',$tahun-6)->where('kodepenerbitans_id','!=','7')->where('kodepenerbitans_id','!=','12')->count(), 
-                    '7'               => Pendaftaran::leftJoin('identitaskendaraans','identitaskendaraans.id','=','pendaftarans.identitaskendaraan_id')->leftJoin('datakendaraans','datakendaraans.identitaskendaraan_id','=','identitaskendaraans.id')->whereMonth('tglpendaftaran',$bulan)->where('jenis','like','%'.$jenis.'%')->where('dayaangkutorang','>=',$jmlorang1)->where('dayaangkutorang','<=',$jmlorang2)->where('thpembuatan','=',$tahun-7)->where('kodepenerbitans_id','!=','7')->where('kodepenerbitans_id','!=','12')->count(), 
-                    '8'               => Pendaftaran::leftJoin('identitaskendaraans','identitaskendaraans.id','=','pendaftarans.identitaskendaraan_id')->leftJoin('datakendaraans','datakendaraans.identitaskendaraan_id','=','identitaskendaraans.id')->whereMonth('tglpendaftaran',$bulan)->where('jenis','like','%'.$jenis.'%')->where('dayaangkutorang','>=',$jmlorang1)->where('dayaangkutorang','<=',$jmlorang2)->where('thpembuatan','=',$tahun-8)->where('kodepenerbitans_id','!=','7')->where('kodepenerbitans_id','!=','12')->count(), 
-                    '9'               => Pendaftaran::leftJoin('identitaskendaraans','identitaskendaraans.id','=','pendaftarans.identitaskendaraan_id')->leftJoin('datakendaraans','datakendaraans.identitaskendaraan_id','=','identitaskendaraans.id')->whereMonth('tglpendaftaran',$bulan)->where('jenis','like','%'.$jenis.'%')->where('dayaangkutorang','>=',$jmlorang1)->where('dayaangkutorang','<=',$jmlorang2)->where('thpembuatan','=',$tahun-9)->where('kodepenerbitans_id','!=','7')->where('kodepenerbitans_id','!=','12')->count(), 
-                    '10'              => Pendaftaran::leftJoin('identitaskendaraans','identitaskendaraans.id','=','pendaftarans.identitaskendaraan_id')->leftJoin('datakendaraans','datakendaraans.identitaskendaraan_id','=','identitaskendaraans.id')->whereMonth('tglpendaftaran',$bulan)->where('jenis','like','%'.$jenis.'%')->where('dayaangkutorang','>=',$jmlorang1)->where('dayaangkutorang','<=',$jmlorang2)->where('thpembuatan','<=',$tahun-10)->where('kodepenerbitans_id','!=','7')->where('kodepenerbitans_id','!=','12')->count(), 
+                    '0-1'             => Pendaftaran::leftJoin('identitaskendaraans','identitaskendaraans.id','=','pendaftarans.identitaskendaraan_id')->leftJoin('datakendaraans','datakendaraans.identitaskendaraan_id','=','identitaskendaraans.id')->leftJoin('jenis','jenis.jenis','=','identitaskendaraans.jenis')->whereMonth('tglpendaftaran',$bulan)->where('klasifikasis_id',$jenis)->where('dayaangkutorang','>=',$jmlorang1)->where('dayaangkutorang','<=',$jmlorang2)->where('thpembuatan','>=',$tahun-1)->where('kodepenerbitans_id','!=','7')->where('kodepenerbitans_id','!=','12')->count(), 
+                    '2'               => Pendaftaran::leftJoin('identitaskendaraans','identitaskendaraans.id','=','pendaftarans.identitaskendaraan_id')->leftJoin('datakendaraans','datakendaraans.identitaskendaraan_id','=','identitaskendaraans.id')->leftJoin('jenis','jenis.jenis','=','identitaskendaraans.jenis')->whereMonth('tglpendaftaran',$bulan)->where('klasifikasis_id',$jenis)->where('dayaangkutorang','>=',$jmlorang1)->where('dayaangkutorang','<=',$jmlorang2)->where('thpembuatan','=',$tahun-2)->where('kodepenerbitans_id','!=','7')->where('kodepenerbitans_id','!=','12')->count(), 
+                    '3'               => Pendaftaran::leftJoin('identitaskendaraans','identitaskendaraans.id','=','pendaftarans.identitaskendaraan_id')->leftJoin('datakendaraans','datakendaraans.identitaskendaraan_id','=','identitaskendaraans.id')->leftJoin('jenis','jenis.jenis','=','identitaskendaraans.jenis')->whereMonth('tglpendaftaran',$bulan)->where('klasifikasis_id',$jenis)->where('dayaangkutorang','>=',$jmlorang1)->where('dayaangkutorang','<=',$jmlorang2)->where('thpembuatan','=',$tahun-3)->where('kodepenerbitans_id','!=','7')->where('kodepenerbitans_id','!=','12')->count(), 
+                    '4'               => Pendaftaran::leftJoin('identitaskendaraans','identitaskendaraans.id','=','pendaftarans.identitaskendaraan_id')->leftJoin('datakendaraans','datakendaraans.identitaskendaraan_id','=','identitaskendaraans.id')->leftJoin('jenis','jenis.jenis','=','identitaskendaraans.jenis')->whereMonth('tglpendaftaran',$bulan)->where('klasifikasis_id',$jenis)->where('dayaangkutorang','>=',$jmlorang1)->where('dayaangkutorang','<=',$jmlorang2)->where('thpembuatan','=',$tahun-4)->where('kodepenerbitans_id','!=','7')->where('kodepenerbitans_id','!=','12')->count(), 
+                    '5'               => Pendaftaran::leftJoin('identitaskendaraans','identitaskendaraans.id','=','pendaftarans.identitaskendaraan_id')->leftJoin('datakendaraans','datakendaraans.identitaskendaraan_id','=','identitaskendaraans.id')->leftJoin('jenis','jenis.jenis','=','identitaskendaraans.jenis')->whereMonth('tglpendaftaran',$bulan)->where('klasifikasis_id',$jenis)->where('dayaangkutorang','>=',$jmlorang1)->where('dayaangkutorang','<=',$jmlorang2)->where('thpembuatan','=',$tahun-5)->where('kodepenerbitans_id','!=','7')->where('kodepenerbitans_id','!=','12')->count(), 
+                    '6'               => Pendaftaran::leftJoin('identitaskendaraans','identitaskendaraans.id','=','pendaftarans.identitaskendaraan_id')->leftJoin('datakendaraans','datakendaraans.identitaskendaraan_id','=','identitaskendaraans.id')->leftJoin('jenis','jenis.jenis','=','identitaskendaraans.jenis')->whereMonth('tglpendaftaran',$bulan)->where('klasifikasis_id',$jenis)->where('dayaangkutorang','>=',$jmlorang1)->where('dayaangkutorang','<=',$jmlorang2)->where('thpembuatan','=',$tahun-6)->where('kodepenerbitans_id','!=','7')->where('kodepenerbitans_id','!=','12')->count(), 
+                    '7'               => Pendaftaran::leftJoin('identitaskendaraans','identitaskendaraans.id','=','pendaftarans.identitaskendaraan_id')->leftJoin('datakendaraans','datakendaraans.identitaskendaraan_id','=','identitaskendaraans.id')->leftJoin('jenis','jenis.jenis','=','identitaskendaraans.jenis')->whereMonth('tglpendaftaran',$bulan)->where('klasifikasis_id',$jenis)->where('dayaangkutorang','>=',$jmlorang1)->where('dayaangkutorang','<=',$jmlorang2)->where('thpembuatan','=',$tahun-7)->where('kodepenerbitans_id','!=','7')->where('kodepenerbitans_id','!=','12')->count(), 
+                    '8'               => Pendaftaran::leftJoin('identitaskendaraans','identitaskendaraans.id','=','pendaftarans.identitaskendaraan_id')->leftJoin('datakendaraans','datakendaraans.identitaskendaraan_id','=','identitaskendaraans.id')->leftJoin('jenis','jenis.jenis','=','identitaskendaraans.jenis')->whereMonth('tglpendaftaran',$bulan)->where('klasifikasis_id',$jenis)->where('dayaangkutorang','>=',$jmlorang1)->where('dayaangkutorang','<=',$jmlorang2)->where('thpembuatan','=',$tahun-8)->where('kodepenerbitans_id','!=','7')->where('kodepenerbitans_id','!=','12')->count(), 
+                    '9'               => Pendaftaran::leftJoin('identitaskendaraans','identitaskendaraans.id','=','pendaftarans.identitaskendaraan_id')->leftJoin('datakendaraans','datakendaraans.identitaskendaraan_id','=','identitaskendaraans.id')->leftJoin('jenis','jenis.jenis','=','identitaskendaraans.jenis')->whereMonth('tglpendaftaran',$bulan)->where('klasifikasis_id',$jenis)->where('dayaangkutorang','>=',$jmlorang1)->where('dayaangkutorang','<=',$jmlorang2)->where('thpembuatan','=',$tahun-9)->where('kodepenerbitans_id','!=','7')->where('kodepenerbitans_id','!=','12')->count(), 
+                    '10'              => Pendaftaran::leftJoin('identitaskendaraans','identitaskendaraans.id','=','pendaftarans.identitaskendaraan_id')->leftJoin('datakendaraans','datakendaraans.identitaskendaraan_id','=','identitaskendaraans.id')->leftJoin('jenis','jenis.jenis','=','identitaskendaraans.jenis')->whereMonth('tglpendaftaran',$bulan)->where('klasifikasis_id',$jenis)->where('dayaangkutorang','>=',$jmlorang1)->where('dayaangkutorang','<=',$jmlorang2)->where('thpembuatan','<=',$tahun-10)->where('kodepenerbitans_id','!=','7')->where('kodepenerbitans_id','!=','12')->count(), 
                 );
             array_push($totaldayaangkutorang, $arr);
         }
@@ -760,7 +764,7 @@ class LaporanController extends Controller
                         );
             array_push($jumlah, $arr);
 
-        $jenispengujian = array("UJI PERTAMA","UJI ULANG","PEMERINTAH","NUMPANG UJI MASUK", "PINDAH MASUK","NUMPANG UJI KELUAR");
+        $jenispengujian = array("UJI PERTAMA","UJI ULANG","NUMPANG UJI MASUK", "PINDAH MASUK","PINDAH KELUAR","NUMPANG UJI KELUAR");
         $totalkeuangan = array();
         
         foreach ($jenispengujian as $list) {
@@ -776,6 +780,8 @@ class LaporanController extends Controller
                 $jenis = '6';
             }elseif($list == 'NUMPANG UJI KELUAR'){
                 $jenis = '9';
+            }elseif($list == 'PINDAH KELUAR'){
+                $jenis = '10';
             }
             $arr = array(
                     'jenispengujian' => $list,
@@ -1136,7 +1142,7 @@ class LaporanController extends Controller
                         );
             array_push($jumlah, $arr);
 
-        $jenispengujian = array("UJI PERTAMA","UJI ULANG","PEMERINTAH","NUMPANG UJI MASUK", "PINDAH MASUK","NUMPANG UJI KELUAR");
+        $jenispengujian = array("UJI PERTAMA","UJI ULANG","NUMPANG UJI MASUK", "PINDAH MASUK","PINDAH KELUAR","NUMPANG UJI KELUAR");
         $totalkeuangan = array();
         foreach ($jenispengujian as $list) {
             if ($list == 'UJI PERTAMA') {
@@ -1151,6 +1157,8 @@ class LaporanController extends Controller
                 $jenis = '6';
             }elseif($list == 'NUMPANG UJI KELUAR'){
                 $jenis = '9';
+            }elseif($list == 'PINDAH KELUAR'){
+                $jenis = '10';
             }
             $arr = array(
                     'jenispengujian' => $list,
@@ -2000,7 +2008,7 @@ class LaporanController extends Controller
                         );
             array_push($jumlah, $arr);
 
-        $jenispengujian = array("UJI PERTAMA","UJI ULANG","PEMERINTAH","NUMPANG UJI MASUK", "PINDAH MASUK","NUMPANG UJI KELUAR");
+        $jenispengujian = array("UJI PERTAMA","UJI ULANG","NUMPANG UJI MASUK", "PINDAH MASUK","PINDAH KELUAR","NUMPANG UJI KELUAR");
         $totalkeuangan = array();
         foreach ($jenispengujian as $list) {
             if ($list == 'UJI PERTAMA') {
@@ -2015,6 +2023,8 @@ class LaporanController extends Controller
                 $jenis = '6';
             }elseif($list == 'NUMPANG UJI KELUAR'){
                 $jenis = '9';
+            }elseif($list == 'PINDAH KELUAR'){
+                $jenis = '10';
             }
             $arr = array(
                     'jenispengujian' => $list,
