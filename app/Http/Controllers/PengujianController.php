@@ -161,7 +161,7 @@ class PengujianController extends Controller
             $datapengujian->jenis                 = $identitaskendaraan->jeniskendaraan;
             $datapengujian->isisilinder           = $identitaskendaraan->isisilinder;
             $datapengujian->dayamotorpenggerak    = $identitaskendaraan->dayamotorpenggerak;
-            $datapengujian->idkepaladinas         = '278';
+            $datapengujian->idkepaladinas         = '390';
             $datapengujian->iddirektur            = '18';
             $datapengujian->kodewilayah           = $identitaskendaraan->kodewilayah;
             $datapengujian->kodewilayahasal       = $identitaskendaraan->kodewilayahasal;
@@ -258,7 +258,7 @@ class PengujianController extends Controller
             'jenis'                 => $identitaskendaraan->jeniskendaraan,
             'isisilinder'           => $identitaskendaraan->isisilinder,
             'dayamotorpenggerak'    => $identitaskendaraan->dayamotorpenggerak,
-            'idkepaladinas'         => '278',
+            'idkepaladinas'         => '390',
             'iddirektur'            => '18',
             'kodewilayah'           => $identitaskendaraan->kodewilayah,
             'kodewilayahasal'       => $identitaskendaraan->kodewilayahasal,

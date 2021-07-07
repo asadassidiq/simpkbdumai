@@ -209,7 +209,7 @@ class PendaftaranController extends Controller
             'jenis'                 => $jeniskendaraan,
             'isisilinder'           => $request->isisilinder,
             'dayamotorpenggerak'    => $request->dayamotorpenggerak,
-            'idkepaladinas'         => '278',
+            'idkepaladinas'         => '390',
             'iddirektur'            => '18',
             'kodewilayah'           => $kode,
             'kodewilayahasal'       => $kodeasal,
@@ -292,7 +292,7 @@ class PendaftaranController extends Controller
             $kendaraan->jbb                     = $request->jbb;
             $kendaraan->kodewilayah             = $kode;
             $kendaraan->kodewilayahasal         = $kodeasal;
-            $kendaraan->idkepaladinas           = '278';
+            $kendaraan->idkepaladinas           = '390';
             $kendaraan->iddirektur              = '18';
             if ($jenispendaftaran == '8') {
             $kendaraan->jenislama               = $cekkendaraan->jenis;
