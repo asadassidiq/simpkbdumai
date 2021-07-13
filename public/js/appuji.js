@@ -3784,6 +3784,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -3833,6 +3836,7 @@ __webpack_require__.r(__webpack_exports__);
         tglbayar: new Date().toISOString().substr(0, 10),
         tglamprah: new Date().toISOString().substr(0, 10),
         noamprah: '',
+        nosertifikat: '',
         jbkb: '0',
         kelasjalanterendah: 'I',
         konfigurasisumburoda: '1.1',
@@ -3999,6 +4003,7 @@ __webpack_require__.r(__webpack_exports__);
         _this5.form.tglbayar = _this5.post.tglbayar;
         _this5.form.tglamprah = _this5.post.tglamprah;
         _this5.form.noamprah = _this5.post.noamprah;
+        _this5.form.nosertifikat = _this5.post.nosertifikat;
         _this5.form.masaberlakuuji = _this5.post.masaberlakuuji;
         _this5.form.merek = _this5.post.merek;
         _this5.form.tipe = _this5.post.tipe;
@@ -47761,6 +47766,31 @@ var render = function() {
                                 ],
                                 1
                               )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-col",
+                            { attrs: { cols: "12", sm: "4", md: "4" } },
+                            [
+                              _c("v-text-field", {
+                                attrs: {
+                                  name: "nosertifikat",
+                                  label: "No Sertikat Kartu",
+                                  outlined: "",
+                                  dense: "",
+                                  required: "",
+                                  clearable: ""
+                                },
+                                model: {
+                                  value: _vm.form.nosertifikat,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.form, "nosertifikat", $$v)
+                                  },
+                                  expression: "form.nosertifikat"
+                                }
+                              })
                             ],
                             1
                           )

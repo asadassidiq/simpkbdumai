@@ -196,6 +196,9 @@
               </v-date-picker>
             </v-menu>
             </v-col>
+            <v-col cols="12" sm="4" md="4">
+              <v-text-field name="nosertifikat" v-model="form.nosertifikat" label="No Sertikat Kartu" outlined dense required clearable></v-text-field>
+            </v-col>
           </v-row>
         </v-container>
       </v-card-text>
@@ -455,6 +458,7 @@ export default {
                 tglbayar: new Date().toISOString().substr(0, 10),
                 tglamprah: new Date().toISOString().substr(0, 10),
                 noamprah:'',
+                nosertifikat:'',
                 jbkb: '0',
                 kelasjalanterendah: 'I',
                 konfigurasisumburoda: '1.1',
@@ -620,6 +624,7 @@ export default {
                     this.form.tglbayar= this.post.tglbayar
                     this.form.tglamprah= this.post.tglamprah
                     this.form.noamprah= this.post.noamprah
+                    this.form.nosertifikat = this.post.nosertifikat
                     this.form.masaberlakuuji= this.post.masaberlakuuji
                     this.form.merek= this.post.merek
                     this.form.tipe= this.post.tipe

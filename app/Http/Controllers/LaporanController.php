@@ -61,6 +61,8 @@ class LaporanController extends Controller
         }
         $tglprint = $hari_ini.', '.$tglcetak;
 
+        $kartu = Datapengujian::leftJoin('pendaftarans','pendaftarans.idx','=','datapengujian.idx')->where('tglpendaftaran',$tgl)->WhereNotNull('nokendalikartu')->get();
+
         $kendaraan  = Pendaftaran::leftJoin('identitaskendaraans','identitaskendaraans.id','=','pendaftarans.identitaskendaraan_id')->leftJoin('kodepenerbitans','kodepenerbitans.id','=','pendaftarans.kodepenerbitans_id')->leftJoin('pengujians','pengujians.pendaftaran_id','=','pendaftarans.id')->leftJoin('jenis','jenis.jenis','=','identitaskendaraans.jenis')->leftJoin('klasifikasis','klasifikasis.id','=','jenis.klasifikasis_id')->leftJoin('transaksis','transaksis.pendaftaran_id','=','pendaftarans.id')->where('kodepenerbitans_id','!=','7')->where('kodepenerbitans_id','!=','12')->where('kodepenerbitans_id','!=','3')->where('tglpendaftaran',$tgl)->groupBy('identitaskendaraan_id')->get();
         $tidaklulus = Pendaftaran::leftJoin('identitaskendaraans','identitaskendaraans.id','=','pendaftarans.identitaskendaraan_id')->leftJoin('pengujians','pengujians.pendaftaran_id','=','pendaftarans.id')->where('tglpendaftaran',$tgl)->where('kodepenerbitans_id','!=','7')->where('kodepenerbitans_id','!=','12')->where(function ($tidaklulus){ $tidaklulus->where('statuslulusuji','0')->orWhereNull('statuslulusuji');})->get();
         $numpanguji = Pendaftaran::leftJoin('identitaskendaraans','identitaskendaraans.id','=','pendaftarans.identitaskendaraan_id')->leftJoin('pengujians','pengujians.pendaftaran_id','=','pendaftarans.id')->where('tglpendaftaran',$tgl)->where(function ($numpanguji){ $numpanguji->where('kodepenerbitans_id','5')->orWhere('kodepenerbitans_id','9');})->get();
@@ -92,7 +94,7 @@ class LaporanController extends Controller
         $datajm['kendaraanroda31'] = Pendaftaran::leftJoin('identitaskendaraans','identitaskendaraans.id','=','pendaftarans.identitaskendaraan_id')->leftJoin('jenis','jenis.jenis','=','identitaskendaraans.jenis')->where('tglpendaftaran',$tgl)->where('klasifikasis_id','8')->where('peruntukan','Umum')->where('kodepenerbitans_id','!=','7')->where('kodepenerbitans_id','!=','12')->count();
         $datajm['kendaraanroda32'] = Pendaftaran::leftJoin('identitaskendaraans','identitaskendaraans.id','=','pendaftarans.identitaskendaraan_id')->leftJoin('jenis','jenis.jenis','=','identitaskendaraans.jenis')->where('tglpendaftaran',$tgl)->where('klasifikasis_id','8')->where('peruntukan','Tidak Umum')->where('kodepenerbitans_id','!=','7')->where('kodepenerbitans_id','!=','12')->count();
         $datajm['kendaraanroda33'] = Pendaftaran::leftJoin('identitaskendaraans','identitaskendaraans.id','=','pendaftarans.identitaskendaraan_id')->leftJoin('jenis','jenis.jenis','=','identitaskendaraans.jenis')->where('tglpendaftaran',$tgl)->where('klasifikasis_id','8')->where('peruntukan','Pemerintah')->where('kodepenerbitans_id','!=','7')->where('kodepenerbitans_id','!=','12')->count();
-        return view('admin.cetak.laporanloketpendaftaran_print', ['kendaraan' => $kendaraan,'tglprint' => $tglprint, 'tidaklulus' => $tidaklulus, 'datajm' => $datajm, 'numpanguji' => $numpanguji]);
+        return view('admin.cetak.laporanloketpendaftaran_print', ['kendaraan' => $kendaraan,'kartu' => $kartu,'tglprint' => $tglprint, 'tidaklulus' => $tidaklulus, 'datajm' => $datajm, 'numpanguji' => $numpanguji]);
     }
 
 

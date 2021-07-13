@@ -431,6 +431,7 @@ class PendaftaranController extends Controller
         $pendaftaran->tglamprah               = $request->tglamprah;
         $pendaftaran->masaberlakuuji          = $request->masaberlakuuji;
         $pendaftaran->kodepenerbitans_id      = $jenispendaftaran;
+        $pendaftaran->nosertifikat            = $request->nosertifikat;
         $pendaftaran->save();
 
         $datakendaraan = Datakendaraan::where('identitaskendaraan_id',$identitaskendaraan_id)->first();

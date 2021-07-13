@@ -23,7 +23,8 @@ class TransaksiController extends Controller
             'stiker'	=> $request->stiker,
             'blndenda'	=> $request->blndenda,
             'denda' 	=> $request->denda,
-            'total'		=> $request->total,
+            'total'     => $request->total,
+            'nokwitansi'		=> $request->nokwitansi,
             'status'    => '1',
         ]);
     }
@@ -47,6 +48,7 @@ class TransaksiController extends Controller
 	            'blndenda'		 => $request->blndenda,
 	            'denda' 		 => $request->denda,
 	            'total'			 => $request->total,
+                'nokwitansi'        => $request->nokwitansi,
 	        ]);
             $pendaftarans = Pendaftaran::where('id',$id)->first();
             $pendaftarans->status      = '1';
@@ -67,6 +69,7 @@ class TransaksiController extends Controller
 	        $trans->blndenda 	        = $request->blndenda;
 	        $trans->denda 	 	        = $request->denda;
 	        $trans->total 		        = $request->total;
+            $trans->nokwitansi          = $request->nokwitansi;
 	        $trans->save();
 
             $pendaftarans = Pendaftaran::where('id',$id)->first();

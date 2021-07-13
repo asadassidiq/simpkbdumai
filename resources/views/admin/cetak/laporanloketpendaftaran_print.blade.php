@@ -77,7 +77,7 @@
                         <th scope="col" colspan="2" class="text-center">Pemilik</th>
                         <th scope="col" colspan="6" class="text-center">Data Kendaraan</th>        
                         <th scope="col" rowspan="2" class="text-center">Tanggal Nomer Kwitansi</th>
-                        <th scope="col" colspan="10" class="text-center">Setoran Kas Negara Penerimaan Uang</th>
+                        <th scope="col" colspan="5" class="text-center">Setoran Kas Negara Penerimaan Uang</th>
                         <th scope="col" rowspan="2" class="text-center">Ket.</th>       
                       </tr>
                       <tr>    
@@ -120,7 +120,7 @@
                   <td>{{ $data->thpembuatan }}</td>
                   <td>{{ $data->bahanbakar }}</td>
                   <td>{{ $data->peruntukan }}</td>
-                  <td></td>
+                  <td>{{ $data->nokwitansi }}</td>
                   <td>{{ $data->jasapengujian }}</td>
                   <td>{{ $data->administrasi }}</td>
                   <td>{{ $data->blangko }}</td>
@@ -226,6 +226,77 @@
                     {{ $data->catatanpos1 }} , {{ $data->catatanpos2 }} , {{ $data->catatanpos3 }}
                     @endif
                     </td>
+                  </tr>
+                @php $i++
+                @endphp
+                @endforeach
+                </tbody>
+            </table>
+            </div>
+        </div>
+        
+        <br>
+        <div class="row" style="font-size:14px">
+            <div class="col-8"></div>
+            <div class="col-4 text-center">
+                <b>
+                    <p>Mengetahui,</p>
+                    <P>Kepala UPU Berkala</P>
+                    <P>Pengujian Kendaraan Bermotor</P>
+                    <br><br>
+                    <br>
+                    <p>EFFENDI, Ama.PKB</p>
+                    <p>NIP. 19760606 200212 1 011</p>
+                </b>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container-fluid kertasbaru">
+        <div class="row">
+            <div class="col-1">
+              <p>DAFTAR</p>
+              <P>PADA</P>
+              <P>TANGGAL</P>
+            </div>
+            <div class="col-11">
+              <p class="text-left">: LAPORAN CETAK KARTU UJI</p>
+              <p class="text-left">: DINAS PERHBUNGAN KOTA DUMAI</p>
+              <p class="text-left">: {{ $tglprint }}</p>
+            </div>      
+        </div>
+    
+        <div class="row">
+            <div class="col-12">
+            <table class="table table-bordered ">
+                <thead>
+                    <tr>
+                      <th scope="col" rowspan="2" class="text-center">#</th>         
+                      <th scope="col" colspan="2" class="text-center">Nomer</th>
+                      <th scope="col" colspan="2" class="text-center">Data Kendaraan</th>        
+                      <th scope="col" rowspan="2" class="text-center">Nomer Kartu</th>       
+                      <th scope="col" rowspan="2" class="text-center">Nomer Sertifikat</th>       
+                    </tr>
+                    <tr>    
+                      <th>Polisi</th> 
+                      <th>Kontrol</th>
+                      <th>Merk</th>         
+                      <th>Jenis</th>
+                    </tr>
+                </thead>
+                <tbody>
+                @php $i=1
+                @endphp
+                @foreach ($kartu as $data) 
+                  <tr>
+                    <td scope="row">{{ $i }}</td>
+                    <td>{{ $data->noregistrasikendaraan }}</td>
+                    <td>{{ $data->nouji }}</td>
+                    <td>{{ $data->merek }}</td>
+                    <td>{{ $data->jenis }}</td>
+                    <td>{{ $data->nokendalikartu }}</td>
+                    <td>{{ $data->nosertifikat }}</td>
                   </tr>
                 @php $i++
                 @endphp

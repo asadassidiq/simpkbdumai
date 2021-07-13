@@ -32,6 +32,9 @@
 	          <v-autocomplete :items="jenispendaftaran" item-text="keterangan" 
               item-value="id" v-model="formdata.jenispendaftaran"  label="Jenis Pendaftaran" name="jenispendaftaran" return-object outlined dense readonly></v-autocomplete>
 	        </v-col>
+            <v-col cols="12" sm="3">
+              <v-text-field  label="No Kwitansi" v-model="form.nokwitansi" outlined ></v-text-field>
+            </v-col>
         </v-row>
       	</v-container>
       </v-card-text>
@@ -139,6 +142,7 @@ export default {
                 retribusi:0,
                 blangko:0,
                 statuskepemilikan: 0,
+                nokwitansi:'',
             }),
 
             formbuku : new Form({
@@ -199,6 +203,7 @@ export default {
                     this.formdata.peruntukan= this.post.peruntukan
                     this.formdata.jbb= this.post.jbb
                     this.formdata.jenis= this.post.jenis
+                    this.form.nokwitansi = this.post.nokwitansi
                     if(this.post.kartu > 0){
                     this.form.buku = this.post.kartu
                     this.formbuku.jenis = this.post.ketkartu
