@@ -221,7 +221,7 @@ class TransaksiController extends Controller
     public function printkwitansi($id)
     {
         $kendaraan = Pendaftaran::leftJoin('identitaskendaraans','pendaftarans.identitaskendaraan_id','=','identitaskendaraans.id')->leftJoin('transaksis','transaksis.pendaftaran_id','=','pendaftarans.id')->where('pendaftarans.id',$id)->first();
-        return view('admin.cetak.kwitansi',  ['data' => $kendaraan]);
+        return view('admin.cetak.kwitansi',  ['kendaraan' => $kendaraan]);
     }
 
     public function destroy($id)

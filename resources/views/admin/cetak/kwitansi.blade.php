@@ -48,15 +48,15 @@
             <div class="col-3"></div>
             <div class="col-7"></div>
             <div class="col-2" style="line-height: 9px;">
-          <p><b><span><?php echo $data->nouji; ?></span></b></p></p>
-          <p><b><span><?php echo $data->noregistrasikendaraan; ?></span></b></p></p>
+          <p><b><span><?php echo $kendaraan->nouji; ?></span></b></p></p>
+          <p><b><span><?php echo $kendaraan->noregistrasikendaraan; ?></span></b></p></p>
           <!-- <p><b><span>ACT72-C18-00002</span></b></p></p> -->
             </div>
         </div>
         <div class="row" style="margin-top: 10px; line-height: 12px">
             <div class="col-4"></div>
             <div class="col-6">
-                <P> <span></span> {{ $data->nama }}</P>
+                <P> <span></span> {{ $kendaraan->nama }}</P>
                 <P> <span id="uang"></span> Rupiah</P>
             </div>  
         </div> 
@@ -67,7 +67,7 @@
             <div class="col-5">
             </div>
             <div class="col-3 ">
-              <p style="margin-top: 100px;">   <b><span id="tot"><?php echo $data->total; ?></span></b></p>
+              <p style="margin-top: 100px;">   <b><span id="tot"><?php echo $kendaraan->total; ?></span></b></p>
             </div>
           </div>
         </div>
@@ -82,7 +82,7 @@
                 </div>
             </div>
             <div class="col-5" style="margin-top: 13px;">
-                <p class="text-center" style="padding-left: 55px; "><?php echo $data->tglbayar; ?></p>
+                <p class="text-center" style="padding-left: 55px; "><?php echo $kendaraan->tglbayar; ?></p>
                 <br><br><br>
             </div>
         </div>
