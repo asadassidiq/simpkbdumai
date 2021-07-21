@@ -277,6 +277,7 @@
                       <th scope="col" colspan="2" class="text-center">Data Kendaraan</th>        
                       <th scope="col" rowspan="2" class="text-center">Nomer Kartu</th>       
                       <th scope="col" rowspan="2" class="text-center">Nomer Sertifikat</th>       
+                      <th scope="col" rowspan="2" class="text-center">Nomer Kwitansi</th>       
                     </tr>
                     <tr>    
                       <th>Polisi</th> 
@@ -297,6 +298,7 @@
                     <td>{{ $data->jenis }}</td>
                     <td>{{ $data->nokendalikartu }}</td>
                     <td>{{ $data->nosertifikat }}</td>
+                    <td>{{ $data->nokwitansi }}</td>
                   </tr>
                 @php $i++
                 @endphp
