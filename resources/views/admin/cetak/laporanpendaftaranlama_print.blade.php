@@ -72,7 +72,7 @@
             <table class="table table-bordered ">
                 <thead>
                     <tr>
-                        <th scope="col" rowspan="2" class="text-center">#</th>         
+                        <th scope="col" rowspan="2" class="text-center">NO</th>         
                         <th scope="col" colspan="2" class="text-center">Nomer</th>
                         <th scope="col" colspan="2" class="text-center">Pemilik</th>
                         <th scope="col" colspan="6" class="text-center">Data Kendaraan</th>        
@@ -193,7 +193,7 @@
             <table class="table table-bordered ">
                 <thead>
                     <tr>
-                      <th scope="col" rowspan="2" class="text-center">#</th>         
+                      <th scope="col" rowspan="2" class="text-center">NO</th>         
                       <th scope="col" colspan="2" class="text-center">Nomer</th>
                       <th scope="col" colspan="3" class="text-center">Data Kendaraan</th>        
                       <th scope="col" rowspan="2" class="text-center">Alasan Penolakan</th>       
@@ -272,7 +272,7 @@
             <table class="table table-bordered ">
                 <thead>
                     <tr>
-                      <th scope="col" rowspan="2" class="text-center">#</th>         
+                      <th scope="col" rowspan="2" class="text-center">NO</th>         
                       <th scope="col" colspan="2" class="text-center">Nomer</th>
                       <th scope="col" colspan="4" class="text-center">Data Kendaraan</th>        
                     </tr>
