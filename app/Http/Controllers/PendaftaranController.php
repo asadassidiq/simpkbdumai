@@ -101,7 +101,7 @@ class PendaftaranController extends Controller
     public function verifall()
     {
         // $kendaraans = Pendaftaran::with('kodepenerbitans','identitaskendaraan')->where('pos1','>=','1')->where('pos2','>=','1')->get();
-        $kendaraans = Identitaskendaraan::leftJoin('datakendaraans','identitaskendaraans.id','=','datakendaraans.identitaskendaraan_id')->leftJoin('pendaftarans','identitaskendaraans.id','=','pendaftarans.identitaskendaraan_id')->leftJoin('pengujians','pendaftarans.id','=','pengujians.pendaftaran_id')->leftJoin('kodepenerbitans','kodepenerbitans.id','=','pendaftarans.kodepenerbitans_id')->where('pos1','>=','1')->where('pos2','>=','1')->orderBy('tglpendaftaran','desc')->get();
+        $kendaraans = Identitaskendaraan::select('pendaftarans.id','identitaskendaraans.noregistrasikendaraan','identitaskendaraans.nouji','identitaskendaraans.nama','identitaskendaraans.noregistrasikendaraan','kodepenerbitans.keterangan','pendaftarans.pos1','pendaftarans.pos2','pengujians.statuslulusuji','pengujians.pendaftaran_id')->leftJoin('datakendaraans','identitaskendaraans.id','=','datakendaraans.identitaskendaraan_id')->leftJoin('pendaftarans','identitaskendaraans.id','=','pendaftarans.identitaskendaraan_id')->leftJoin('pengujians','pendaftarans.id','=','pengujians.pendaftaran_id')->leftJoin('kodepenerbitans','kodepenerbitans.id','=','pendaftarans.kodepenerbitans_id')->where('pos1','>=','1')->where('pos2','>=','1')->groupBy('pendaftarans.id')->orderBy('tglpendaftaran','desc')->get();
         return response()->json(['kendaraans'=> $kendaraans]);
     }
 
