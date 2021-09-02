@@ -33,6 +33,7 @@ class FotoController extends Controller
     $image4 = $request->file('image4');
     $cek = Fotomentah::where('nouji',$nouji)->first();
 
+
     if (!empty($cek)) {
         $oriPath1   = Image::make(public_path() . '/normal_images/' . $nouji.'-tampakdepan.jpg');
         $oriPath2   = Image::make(public_path() . '/normal_images/' . $nouji.'-tampakkanan.jpg');
@@ -42,19 +43,19 @@ class FotoController extends Controller
         $thumbPath2 = Image::make(public_path() . '/normal_images/' . $nouji.'-tampakkanan.jpg');
         $thumbPath3 = Image::make(public_path() . '/normal_images/' . $nouji.'-tampakbelakang.jpg');
         $thumbPath4 = Image::make(public_path() . '/normal_images/' . $nouji.'-tampakkiri.jpg');
-        if (!empty($image1)) {
+        if (!empty($image1) && file_exists(public_path() . '/normal_images/' . $kendaraan->nouji.'-tampakdepan.jpg')) {
             $oriPath1->destroy();
             $thumbPath1->destroy();
         }
-        if (!empty($image2)) {
+        if (!empty($image2) && file_exists(public_path() . '/normal_images/' . $kendaraan->nouji.'-tampakkanan.jpg')) {
             $oriPath2->destroy();
             $thumbPath2->destroy();
         }
-        if (!empty($image3)) {
+        if (!empty($image3) && file_exists(public_path() . '/normal_images/' . $kendaraan->nouji.'-tampakbelakang.jpg')) {
             $oriPath3->destroy();
             $thumbPath3->destroy();
         }
-        if (!empty($image4)) {
+        if (!empty($image4) && file_exists(public_path() . '/normal_images/' . $kendaraan->nouji.'-tampakkiri.jpg')) {
             $oriPath4->destroy();
             $thumbPath4->destroy();
         }
