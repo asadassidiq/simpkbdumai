@@ -699,6 +699,12 @@ export default {
                     this.form.jaraksumbu3_4 = this.post.jaraksumbu3_4
                     this.form.q = this.post.q
                     this.form.p = this.post.p
+                    this.form.panjangkendaraan = this.post.panjangkendaraan
+                    this.form.lebarkendaraan = this.post.lebarkendaraan
+                    this.form.tinggikendaraan = this.post.tinggikendaraan
+                    this.form.panjangbakatautangki = this.post.panjangbakatautangki
+                    this.form.lebarbakatautangki = this.post.lebarbakatautangki
+                    this.form.tinggibakatautangki = this.post.tinggibakatautangki
                     this.form.dayaangkutorang = this.post.dayaangkutorang
                     this.form.dayaangkutbarang = this.post.dayaangkutbarang
                     this.form.mst = this.post.mst
