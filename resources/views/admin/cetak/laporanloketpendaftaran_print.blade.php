@@ -55,6 +55,7 @@
     </style>
 </head>
 <body onload="window.print();">
+    <!-- PRINT A4 -->
     <div class="container-fluid">
         <div class="row">
             <div class="col-1">
