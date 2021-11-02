@@ -257,20 +257,34 @@ class PendaftaranController extends Controller
             ]);
         }
         else{
-            Pendaftaran::create([
-            'identitaskendaraan_id' => $cekkendaraan->id,
-            'tglpendaftaran'        => $request->tglpendaftaran,
-            'tglbayar'              => $request->tglbayar,
-            'noamprah'              => $request->noamprah,
-            'tglamprah'             => $request->tglamprah,
-            'masaberlakuuji'        => $request->masaberlakuuji,
-            'kodepenerbitans_id'    => $jenispendaftaran,
-            'jenispendaftaran'                 => 'ots',
-            'verif'                 => 'n',
-            ]); 
-
+            
             $cekkendaraan = Identitaskendaraan::where('identitaskendaraans.nouji',$request->nouji)->first();
             $identitaskendaraan_id= $cekkendaraan->id;
+            $pendaftaran = Pendaftaran::where('identitaskendaraan_id', $identitaskendaraan_id)->where('tglpendaftaran',$request->tglpendaftaran)->first();
+            if ($pendaftaran) {
+                $pendaftaran = Pendaftaran::find($pendaftaran->id);
+                $pendaftaran->tglpendaftaran          = $request->tglpendaftaran;
+                $pendaftaran->tglbayar                = $request->tglbayar;
+                $pendaftaran->noamprah                = $request->noamprah;
+                $pendaftaran->tglamprah               = $request->tglamprah;
+                $pendaftaran->masaberlakuuji          = $request->masaberlakuuji;
+                $pendaftaran->kodepenerbitans_id      = $jenispendaftaran;
+                $pendaftaran->nosertifikat            = $request->nosertifikat;
+                $pendaftaran->save();
+            }else{
+                Pendaftaran::create([
+                'identitaskendaraan_id' => $cekkendaraan->id,
+                'tglpendaftaran'        => $request->tglpendaftaran,
+                'tglbayar'              => $request->tglbayar,
+                'noamprah'              => $request->noamprah,
+                'tglamprah'             => $request->tglamprah,
+                'masaberlakuuji'        => $request->masaberlakuuji,
+                'kodepenerbitans_id'    => $jenispendaftaran,
+                'jenispendaftaran'                 => 'ots',
+                'verif'                 => 'n',
+                ]); 
+            }
+
             $kendaraan = Identitaskendaraan::where('id',$identitaskendaraan_id)->first();
             $kendaraan->nouji                   = $request->nouji;
             $kendaraan->nama                    = $request->nama;

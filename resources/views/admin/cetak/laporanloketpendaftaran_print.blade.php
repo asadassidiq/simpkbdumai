@@ -488,5 +488,80 @@
             </div>
         </div>
     </div>
+
+    <div class="container-fluid kertasbaru">
+        <div class="row">
+            <div class="col-1">
+                <p>DAFTAR</p>
+                <P>PADA</P>
+                <P>TANGGAL</P>
+            </div>
+            <div class="col-11">
+                <p class="text-left">: TAMAN KENDARAAN BERMOTOR</p>
+                <p class="text-left">: DINAS PERHBUNGAN KOTA DUMAI</p>
+                <p class="text-left">: {{ $tglprint }}</p>
+            </div>  
+        </div>
+    
+        <div class="row">
+            <div class="col-12">
+            <table class="table table-bordered ">
+                <thead>
+                    <tr>
+                        <th scope="col" rowspan="2" class="text-center">NO</th>
+                        <th scope="col" rowspan="2" colspan="2" class="text-center">JENIS KENDARAAN</th>                    
+                        <th scope="col" colspan="3" class="text-center">SIFAT KENDARAAN</th>                    
+                        <th scope="col" rowspan="2" class="text-center">JUMLAH</th>
+                    </tr>
+                    <tr>
+                        <th scope="col" class="text-center">UMUM</th>
+                        <th scope="col" class="text-center">TIDAK UMUM</th>
+                        <th scope="col" class="text-center">PEMERINTAH</th>
+                    </tr>
+                </thead>
+                <tbody>
+                @php $i=1;$umum=0;$tidakumum=0;$pemerintah=0;
+                @endphp
+                @foreach ($totaljenis as $data) 
+                  <tr>
+                    <td class="text-center">{{ $i }}</td>
+                    <td>{{ $data['klasifikasis']  }}</td>
+                    <td>{{ $data['jenis']  }}</td>
+                    <td class="text-center">{{ $data['umum']  }}</td>
+                    <td class="text-center">{{ $data['tidakumum']  }}</td>
+                    <td class="text-center">{{ $data['pemerintah']  }}</td>
+                    <td class="text-center">{{ $data['umum']+$data['tidakumum']+$data['pemerintah']  }}</td>
+                  </tr>
+                @php $i++;$umum=$umum+$data['umum'];$tidakumum=$tidakumum+$data['tidakumum'];$pemerintah=$pemerintah+$data['pemerintah'];
+                @endphp
+                @endforeach
+                <tr>
+                      <td colspan="2" class="text-center"> JUMLAH</td>
+                      <td></td>
+                      <td class="text-center">{{ $umum }}</td>
+                      <td class="text-center">{{ $tidakumum }}</td>
+                      <td class="text-center">{{ $pemerintah }}</td>
+                      <td class="text-center">{{ $umum+$tidakumum+$pemerintah }}</td>
+                  </tr>
+                </tbody>
+            </table>
+            </div>
+        </div>
+        <br>
+        <div class="row" style="font-size:14px">
+            <div class="col-8"></div>
+            <div class="col-4 text-center">
+                <b>
+                    <p>Mengetahui,</p>
+                    <P>Kepala UPU Berkala</P>
+                    <P>Pengujian Kendaraan Bermotor</P>
+                    <br><br>
+                    <br>
+                    <p>EFFENDI, Ama.PKB</p>
+                    <p>NIP. 19760606 200212 1 011</p>
+                </b>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

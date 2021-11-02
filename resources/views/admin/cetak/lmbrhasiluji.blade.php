@@ -119,51 +119,51 @@
         <div class="row">
             <div class="col-12">
                 <div class="card">
-                <div class="card-body">
-                    <div class="row">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-3 text-center">
+                            Foto Tampak Depan
+                            <div>
+                            @if(file_exists(public_path() . '/thumbnail_images/' . $kendaraan->nouji.'-tampakdepan.jpg'))
+                                <img height="50%" width="50%" class="img-fluid" src="{{url('/thumbnail_images/'.$kendaraan->nouji.'-tampakdepan.jpg')}}" alt="Image"/>
+                            @else
+                                <img height="50%" width="50%" class="img-fluid" src="{{url('/img/no image.jpg')}}" alt="Image"/>
+                            @endif
+                            </div>
+                        </div>
                         <div class="col-3 text-center">
-                        Foto Tampak Depan
-                        <div>
-                        @if(file_exists(public_path() . '/thumbnail_images/' . $kendaraan->nouji.'-tampakdepan.jpg'))
-                            <img height="50%" width="50%" class="img-fluid" src="{{url('/thumbnail_images/'.$kendaraan->nouji.'-tampakdepan.jpg')}}" alt="Image"/>
-                        @else
-                            <img height="50%" width="50%" class="img-fluid" src="{{url('/img/no image.jpg')}}" alt="Image"/>
-                        @endif
+                            Foto Tampak Belakang
+                            <div>
+                            @if(file_exists(public_path() . '/thumbnail_images/' . $kendaraan->nouji.'-tampakbelakang.jpg'))
+                                <img height="50%" width="50%" class="img-fluid" src="{{url('/thumbnail_images/'.$kendaraan->nouji.'-tampakbelakang.jpg')}}" alt="Image"/>
+                            @else
+                                <img height="50%" width="50%" class="img-fluid" src="{{url('/img/no image.jpg')}}" alt="Image"/>
+                            @endif
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-3 text-center">
-                        Foto Tampak Belakang
-                        <div>
-                        @if(file_exists(public_path() . '/thumbnail_images/' . $kendaraan->nouji.'-tampakbelakang.jpg'))
-                            <img height="50%" width="50%" class="img-fluid" src="{{url('/thumbnail_images/'.$kendaraan->nouji.'-tampakbelakang.jpg')}}" alt="Image"/>
-                        @else
-                            <img height="50%" width="50%" class="img-fluid" src="{{url('/img/no image.jpg')}}" alt="Image"/>
-                        @endif
+                        <div class="col-3 text-center">
+                            Foto Tampak Kanan
+                            <div>
+                            @if(file_exists(public_path() . '/thumbnail_images/' . $kendaraan->nouji.'-tampakkanan.jpg'))
+                                <img height="50%" width="50%" class="img-fluid" src="{{url('/thumbnail_images/'.$kendaraan->nouji.'-tampakkanan.jpg')}}" alt="Image"/>
+                            @else
+                                <img height="50%" width="50%" class="img-fluid" src="{{url('/img/no image.jpg')}}" alt="Image"/>
+                            @endif
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-3 text-center">
-                        Foto Tampak Kanan
-                        <div>
-                        @if(file_exists(public_path() . '/thumbnail_images/' . $kendaraan->nouji.'-tampakkanan.jpg'))
-                            <img height="50%" width="50%" class="img-fluid" src="{{url('/thumbnail_images/'.$kendaraan->nouji.'-tampakkanan.jpg')}}" alt="Image"/>
-                        @else
-                            <img height="50%" width="50%" class="img-fluid" src="{{url('/img/no image.jpg')}}" alt="Image"/>
-                        @endif
+                        <div class="col-3 text-center">
+                            Foto Tampak Kiri
+                            <div>
+                            @if(file_exists(public_path() . '/thumbnail_images/' . $kendaraan->nouji.'-tampakkiri.jpg'))
+                                <img height="50%" width="50%" class="img-fluid" src="{{url('/thumbnail_images/'.$kendaraan->nouji.'-tampakkiri.jpg')}}" alt="Image"/>
+                            @else
+                                <img height="50%" width="50%" class="img-fluid" src="{{url('/img/no image.jpg')}}" alt="Image"/>
+                            @endif
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-3 text-center">
-                        Foto Tampak Kiri
-                        <div>
-                        @if(file_exists(public_path() . '/thumbnail_images/' . $kendaraan->nouji.'-tampakkiri.jpg'))
-                            <img height="50%" width="50%" class="img-fluid" src="{{url('/thumbnail_images/'.$kendaraan->nouji.'-tampakkiri.jpg')}}" alt="Image"/>
-                        @else
-                            <img height="50%" width="50%" class="img-fluid" src="{{url('/img/no image.jpg')}}" alt="Image"/>
-                        @endif
                         </div>
-                    </div>
                     </div>
                 </div>
-            </div>
             </div>
         </div>
         <div class="row">
