@@ -25,6 +25,8 @@ class LaporanController extends Controller
         $tglcetak = date('d-m-Y', strtotime($tgl));
         $tglcreate = date_create($tgl);
         $hari = date_format($tglcreate,"D");
+
+        //YUK BISA
  
         switch($hari){
             case 'Sun':
