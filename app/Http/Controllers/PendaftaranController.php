@@ -17,6 +17,7 @@ use PDF;
 
 class PendaftaranController extends Controller
 {
+    //YUK BISA
     public function index()
     {
         $date = date('Y-m-d');
@@ -257,7 +258,7 @@ class PendaftaranController extends Controller
             ]);
         }
         else{
-            
+
             $cekkendaraan = Identitaskendaraan::where('identitaskendaraans.nouji',$request->nouji)->first();
             $identitaskendaraan_id= $cekkendaraan->id;
             $pendaftaran = Pendaftaran::where('identitaskendaraan_id', $identitaskendaraan_id)->where('tglpendaftaran',$request->tglpendaftaran)->first();
