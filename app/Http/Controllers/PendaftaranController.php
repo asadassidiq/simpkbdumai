@@ -262,7 +262,7 @@ class PendaftaranController extends Controller
             $cekkendaraan = Identitaskendaraan::where('identitaskendaraans.nouji',$request->nouji)->first();
             $identitaskendaraan_id= $cekkendaraan->id;
             $pendaftaran = Pendaftaran::where('identitaskendaraan_id', $identitaskendaraan_id)->where('tglpendaftaran',$request->tglpendaftaran)->first();
-            if ($pendaftaran) {
+            if ($pendaftaran && $jenispendaftaran != '3' && $jenispendaftaran != '4') {
                 $pendaftaran = Pendaftaran::find($pendaftaran->id);
                 $pendaftaran->tglpendaftaran          = $request->tglpendaftaran;
                 $pendaftaran->tglbayar                = $request->tglbayar;
