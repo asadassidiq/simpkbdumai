@@ -13,7 +13,6 @@ use App\Jenis;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
-use PDF;
 
 class PendaftaranController extends Controller
 {
@@ -575,11 +574,7 @@ class PendaftaranController extends Controller
     public function generateNK($id)
     {
         //GET DATA BERDASARKAN ID
-        $kendaraan = Pendaftaran::with(['identitaskendaraan'])->find($id);
-        //LOAD PDF YANG MERUJUK KE VIEW PRINT.BLADE.PHP DENGAN MENGIRIMKAN DATA DARI INVOICE
-        //KEMUDIAN MENGGUNAKAN PENGATURAN LANDSCAPE A4
-        $pdf = PDF::loadView('admin.cetak.nk_print',  compact('kendaraan'))->setPaper('a4', 'landscape');
-        return $pdf->stream();
+       
     }
 
     public function printNK($id)
